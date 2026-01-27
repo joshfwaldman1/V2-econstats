@@ -565,5 +565,88 @@
     "show_yoy": [true, false, false],
     "combine_chart": false,
     "explanation": "IPG3361T3S tracks industrial production of motor vehicles and parts (index). CES3133600101 shows employment specifically in motor vehicles & parts manufacturing. MANEMP provides broader manufacturing employment context to see how auto manufacturing compares to the sector overall."
+  },
+  "is ai a bubble": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "AI bubble analysis requires the Shiller CAPE ratio (Cyclically Adjusted P/E) - the gold standard for market valuation. CAPE divides the S&P 500 by 10-year average inflation-adjusted earnings. Current CAPE is compared to the dot-com peak (44.2 in 2000) and long-term average (17). S&P 500 and VIX provide market context. NOTE: The CAPE box shows detailed valuation analysis."
+  },
+  "stock market bubble": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "Bubble analysis uses the Shiller CAPE ratio - the most respected long-term valuation metric. CAPE above 30 is historically elevated; the dot-com peak was 44.2. S&P 500 price and VIX volatility provide market context. See the CAPE box for detailed valuation assessment."
+  },
+  "market valuation": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "Market valuation is best assessed with the Shiller CAPE ratio (P/E using 10-year average earnings). CAPE removes cyclical earnings noise and has predicted long-term returns since 1881. The CAPE box shows current valuation percentile and comparisons to historical peaks."
+  },
+  "cape ratio": {
+    "series": ["SP500"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "The Shiller CAPE (Cyclically Adjusted Price-to-Earnings) ratio divides S&P 500 price by 10-year average real earnings. It's the gold standard for long-term valuation. Long-term average is ~17; dot-com peak was 44.2; readings above 30 historically predict lower 10-year returns."
+  },
+  "shiller pe": {
+    "series": ["SP500"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "The Shiller P/E (also called CAPE) uses 10-year average inflation-adjusted earnings to smooth out business cycle effects. It's the most widely cited long-term valuation metric, developed by Nobel laureate Robert Shiller. See CAPE box for current reading and historical context."
+  },
+  "is the market overvalued": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "Market overvaluation is assessed using the Shiller CAPE ratio - the gold standard since 1881. CAPE above 25 suggests above-average valuations; above 30 is historically elevated. The CAPE box shows current percentile ranking and comparison to historical peaks like dot-com (44.2)."
+  },
+  "market expensive": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "Whether the market is 'expensive' depends on the CAPE ratio. Current CAPE is compared against the long-term average (~17) and historical peaks. High CAPE doesn't mean imminent crash, but historically predicts lower 10-year forward returns."
+  },
+  "pe ratio": {
+    "series": ["SP500"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "For long-term P/E analysis, the Shiller CAPE ratio is preferred over trailing P/E because it smooths earnings over 10 years. This removes cyclical distortions (earnings collapse in recessions artificially inflates P/E). CAPE has predicted long-term returns since 1881."
+  },
+  "tech bubble": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "Tech/AI bubble concerns are analyzed via the Shiller CAPE ratio. The dot-com bubble peaked at CAPE 44.2 in March 2000. Current valuations are compared against that peak and the long-term average (17). S&P 500 includes major tech stocks; VIX shows market fear levels."
+  },
+  "dot com bubble": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "The dot-com bubble peaked at CAPE 44.2 in March 2000 - the highest in 140+ years of data. The CAPE box compares current valuations against that peak. The S&P 500 eventually fell 49% from peak to trough after the bubble burst."
+  },
+  "are stocks overvalued": {
+    "series": ["SP500", "VIXCLS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "special_route": "cape",
+    "explanation": "Stock valuation assessment using the Shiller CAPE ratio. CAPE percentile shows where current valuations rank historically. Above 90th percentile = very elevated. The CAPE box provides dot-com comparison and interpretation of current levels."
+  },
+  "stock prices": {
+    "series": ["SP500", "VIXCLS", "DJIA"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Key stock indices: S&P 500 (SP500) is the most-watched broad market benchmark tracking 500 large-cap stocks. DJIA (Dow Jones Industrial Average) tracks 30 blue-chip stocks. VIX (VIXCLS) shows implied volatility/'fear gauge'. Note: FRED data has a lag; for real-time quotes use a brokerage or Yahoo Finance."
   }
 }

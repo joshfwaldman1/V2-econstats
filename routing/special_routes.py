@@ -32,6 +32,7 @@ class SpecialRouter:
         self._recession = None
         self._polymarket = None
         self._health_check = None
+        self._shiller = None
         self._load_modules()
 
     def _load_modules(self):
@@ -92,6 +93,21 @@ class SpecialRouter:
         except Exception as e:
             print(f"[SpecialRoutes] Health check: not available - {e}")
 
+        # Shiller CAPE data
+        try:
+            from agents.shiller import (
+                is_valuation_query, get_current_cape, get_bubble_comparison_data, get_cape_series
+            )
+            self._shiller = {
+                'is_query': is_valuation_query,
+                'get_current': get_current_cape,
+                'get_bubble_data': get_bubble_comparison_data,
+                'get_series': get_cape_series,
+            }
+            print("[SpecialRoutes] Shiller CAPE: available")
+        except Exception as e:
+            print(f"[SpecialRoutes] Shiller CAPE: not available - {e}")
+
     def check(self, query: str) -> Optional[SpecialRouteResult]:
         """
         Check if query matches any special route.
@@ -109,6 +125,10 @@ class SpecialRouter:
         # Check health check
         if self._health_check and self._health_check['is_query'](query):
             return self._handle_health_check_query(query)
+
+        # Check CAPE/valuation/bubble queries
+        if self._shiller and self._shiller['is_query'](query):
+            return self._handle_cape_query(query)
 
         return None
 
@@ -176,6 +196,107 @@ class SpecialRouter:
             extra_data={'entity': entity, 'config': config}
         )
 
+    def _handle_cape_query(self, query: str) -> SpecialRouteResult:
+        """Handle CAPE/valuation/bubble queries."""
+        result = SpecialRouteResult(
+            matched=True,
+            route_type='cape',
+            # Include S&P 500 and VIX alongside CAPE for market context
+            series=['SP500', 'VIXCLS'],
+            show_yoy=False,
+        )
+
+        # Get CAPE data and format HTML box
+        try:
+            bubble_data = self._shiller['get_bubble_data']()
+            if bubble_data:
+                result.extra_data['cape_data'] = bubble_data
+                result.extra_data['cape_html'] = self._format_cape_html(bubble_data)
+        except Exception as e:
+            print(f"[SpecialRoutes] Error getting CAPE data: {e}")
+
+        return result
+
+    def _format_cape_html(self, bubble_data: dict) -> str:
+        """Format CAPE valuation data as HTML box."""
+        if not bubble_data:
+            return ''
+
+        current = bubble_data.get('current', {})
+        cape_value = current.get('current_value', 'N/A')
+        percentile = current.get('percentile', 0)
+        interpretation = current.get('interpretation', '')
+        cape_date = current.get('current_date', '')
+
+        dot_com = bubble_data.get('dot_com_comparison', {})
+        dot_com_peak = dot_com.get('peak_cape', 44.2)
+        vs_dot_com = dot_com.get('current_vs_peak_pct', 0)
+
+        vs_avg = current.get('vs_average', {})
+        long_term_avg = vs_avg.get('long_term_avg', 17)
+        premium_pct = vs_avg.get('premium_pct', 0)
+
+        summary = bubble_data.get('summary', '')
+
+        # Color coding based on percentile
+        if percentile >= 90:
+            color_class = 'red'
+            bg_color = 'bg-red-50'
+            border_color = 'border-red-200'
+            text_color = 'text-red-800'
+            value_color = 'text-red-600'
+        elif percentile >= 70:
+            color_class = 'amber'
+            bg_color = 'bg-amber-50'
+            border_color = 'border-amber-200'
+            text_color = 'text-amber-800'
+            value_color = 'text-amber-600'
+        else:
+            color_class = 'green'
+            bg_color = 'bg-green-50'
+            border_color = 'border-green-200'
+            text_color = 'text-green-800'
+            value_color = 'text-green-600'
+
+        html = f'''
+        <div class="{bg_color} border {border_color} rounded-xl p-4 mb-4">
+            <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 {text_color}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <span class="font-semibold {text_color}">Shiller CAPE Valuation ({cape_date})</span>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm mb-3">
+                <div class="bg-white rounded-lg p-3">
+                    <div class="text-xs text-slate-500">Current CAPE</div>
+                    <div class="text-xl font-bold {value_color}">{cape_value}</div>
+                    <div class="text-xs text-slate-400">{percentile:.0f}th percentile</div>
+                </div>
+                <div class="bg-white rounded-lg p-3">
+                    <div class="text-xs text-slate-500">Long-term Avg</div>
+                    <div class="text-xl font-bold text-slate-700">{long_term_avg}</div>
+                    <div class="text-xs text-slate-400">since 1881</div>
+                </div>
+                <div class="bg-white rounded-lg p-3">
+                    <div class="text-xs text-slate-500">vs Average</div>
+                    <div class="text-xl font-bold {value_color}">{premium_pct:+.0f}%</div>
+                    <div class="text-xs text-slate-400">premium</div>
+                </div>
+                <div class="bg-white rounded-lg p-3">
+                    <div class="text-xs text-slate-500">vs Dot-com Peak</div>
+                    <div class="text-xl font-bold text-slate-700">{vs_dot_com:+.0f}%</div>
+                    <div class="text-xs text-slate-400">peak was {dot_com_peak}</div>
+                </div>
+            </div>
+
+            <p class="text-sm {text_color}">{summary}</p>
+            <p class="text-xs text-slate-500 mt-2">Source: Robert Shiller, Yale University</p>
+        </div>
+        '''
+        return html
+
     def _format_fed_sep_html(self, sep_data: dict) -> str:
         """Format Fed SEP data as HTML box."""
         if not sep_data:
@@ -233,6 +354,10 @@ class SpecialRouter:
     @property
     def polymarket_available(self) -> bool:
         return self._polymarket is not None
+
+    @property
+    def shiller_available(self) -> bool:
+        return self._shiller is not None
 
 
 # Global instance

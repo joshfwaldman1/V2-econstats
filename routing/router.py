@@ -221,6 +221,8 @@ class QueryRouter:
             result.fed_guidance = special.extra_data['fed_guidance']
         if 'recession_html' in special.extra_data:
             result.recession_html = special.extra_data['recession_html']
+        if 'cape_html' in special.extra_data:
+            result.cape_html = special.extra_data['cape_html']
 
         return result
 
