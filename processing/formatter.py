@@ -52,6 +52,37 @@ def format_chart_data(
     is_job_change = series_id == 'PAYEMS' and not show_yoy
     is_payems_level = series_id == 'PAYEMS'
 
+    # PAYEMS special handling: compute monthly job changes with 3-month averaging
+    three_mo_avg = None
+    if is_job_change and len(transformed_values) >= 4:
+        # Compute month-over-month changes (in thousands of jobs)
+        job_changes = []
+        for i in range(1, len(transformed_values)):
+            change = transformed_values[i] - transformed_values[i - 1]
+            job_changes.append(change)
+
+        # Apply 3-month moving average for stability
+        smoothed_changes = []
+        for i in range(len(job_changes)):
+            if i < 2:
+                # Not enough data for 3-month average, use raw
+                smoothed_changes.append(job_changes[i])
+            else:
+                # 3-month average
+                avg = (job_changes[i] + job_changes[i-1] + job_changes[i-2]) / 3
+                smoothed_changes.append(avg)
+
+        # Update chart data with job changes
+        transformed_dates = transformed_dates[1:]  # Remove first date (no change for it)
+        transformed_values = smoothed_changes
+
+        # Update name and unit for job changes display
+        name = 'Monthly Job Gains/Losses (3-Mo Avg)'
+        unit = 'Thousands'
+
+        # Store latest 3-month average
+        three_mo_avg = smoothed_changes[-1] if smoothed_changes else None
+
     # Get latest value
     latest = transformed_values[-1] if transformed_values else None
     latest_date = transformed_dates[-1] if transformed_dates else None
@@ -112,6 +143,7 @@ def format_chart_data(
         'latest_date': latest_date_formatted,
         'is_job_change': is_job_change,
         'is_payems_level': is_payems_level,
+        'three_mo_avg': three_mo_avg,
         'yoy_change': yoy_change,
         'yoy_type': yoy_type,
         'bullets': bullets,
