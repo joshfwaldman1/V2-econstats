@@ -62,7 +62,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Bureau of Labor Statistics',
         data_type='level',
         show_absolute_change=True,
-        short_description='Total jobs in the U.S. economy (excluding farms)',
+        short_description='Total U.S. jobs excluding farms. Released monthly (first Friday). Change shown is month-over-month. Adding 150K+ jobs/month is strong; 50-75K keeps pace with population growth; negative means job losses.',
         bullets=[
             'The single most important monthly indicator of labor market health—this is the "jobs number" that moves markets on the first Friday of each month.',
             'Context: The economy now needs only 50-75K new jobs/month to keep pace with slowing population growth. Gains above 150K signal robust hiring; below 50K suggests softening.'
@@ -74,7 +74,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
-        short_description='% of labor force actively seeking work but unemployed',
+        short_description='Share of people actively job-seeking who can\'t find work. <4% is historically tight; doesn\'t count those who\'ve stopped looking.',
         bullets=[
             'The headline unemployment rate—the share of Americans actively looking for work but unable to find it.',
             'Rates below 4% are historically rare and signal a tight labor market. The rate peaked at 10% in 2009 and briefly hit 14.7% in April 2020.'
@@ -101,7 +101,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='CPI Inflation Rate (Headline)',
         yoy_unit='% Change YoY',
-        short_description='Price changes for a basket of consumer goods and services',
+        short_description='Prices of a fixed basket of goods/services. Released monthly. Shown as year-over-year % change. The Fed targets about 2% per year.',
         bullets=[
             'CPI measures the average change in prices paid by urban consumers for a basket of goods and services.',
             'The Fed targets 2% annual inflation. Above 3% raises concerns; sustained rates above 5% typically prompt aggressive Fed action.'
@@ -116,7 +116,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Core CPI Inflation Rate',
         yoy_unit='% Change YoY',
-        short_description='Inflation excluding volatile food and energy prices',
+        short_description='CPI excluding food and energy (which swing month-to-month). Released monthly, shown year-over-year. Reveals underlying inflation trend.',
         bullets=[
             'CPI excluding food and energy—shows underlying inflation trends without volatile components.',
             'Markets and policymakers watch core inflation to gauge persistent price pressures.'
@@ -129,7 +129,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Board of Governors of the Federal Reserve System',
         data_type='rate',
         sa=False,
-        short_description='The Fed\'s benchmark interest rate that influences all borrowing costs',
+        short_description='The interest rate banks charge each other for overnight loans. Set by the Federal Reserve. When the Fed raises this rate, all borrowing gets more expensive, which slows growth and (eventually) inflation.',
         bullets=[
             'The Fed\'s primary tool for monetary policy—the rate banks charge each other for overnight loans.',
             'When the Fed raises rates, borrowing becomes more expensive throughout the economy, slowing growth and inflation.'
@@ -168,7 +168,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Freddie Mac',
         data_type='rate',
         sa=False,
-        short_description='Average rate on a 30-year fixed home loan; key driver of housing affordability',
+        short_description='Average 30-year fixed mortgage rate. Each 1% rise cuts buying power ~10%. Below 4% is historically cheap; above 7% chills the market.',
         bullets=[
             'The rate on a conventional 30-year fixed mortgage—the primary driver of housing affordability.',
             'Each 1% increase in rates reduces buying power by roughly 10%. Rates below 4% are historically low; above 7% is restrictive.'
@@ -181,7 +181,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Federal Reserve Bank of St. Louis',
         data_type='spread',
         sa=False,
-        short_description='Difference between long-term and short-term interest rates; inversion warns of recession',
+        short_description='The 10-year Treasury interest rate minus the 2-year rate. Normally positive (longer loans cost more). When negative ("inverted"), it means bond markets expect the Fed to cut rates because the economy is slowing. Preceded every recession since 1970—but the 2022-24 inversion was a false alarm.',
         bullets=[
             'WHY IT MATTERS: When short-term rates exceed long-term rates (inversion), it signals markets expect tight policy will slow growth—historically a reliable recession warning.',
             'The 2022-2024 inversion was the longest since the 1980s, yet no recession followed—possibly due to post-COVID resilience and strong labor markets.',
@@ -195,7 +195,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Federal Reserve Bank of St. Louis',
         data_type='spread',
         benchmark=0.5,
-        short_description='Recession signal: triggers at 0.5 when unemployment rises quickly above its recent low',
+        short_description='Gap between current 3-mo avg unemployment and its 12-mo low. At 0.5+, recession has likely begun. Called every recession since 1970.',
         bullets=[
             'Created by economist Claudia Sahm—signals recession when the 3-month average unemployment rate rises 0.5 points above its 12-month low.',
             'Has correctly identified every U.S. recession since 1970 with no false positives.'
@@ -208,7 +208,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Employment and Training Administration',
         data_type='level',
         frequency='weekly',
-        short_description='Weekly new filings for unemployment benefits; early warning of labor market stress',
+        short_description='New unemployment filings each week—most timely labor indicator. <250K = healthy, >300K = trouble brewing.',
         bullets=[
             'Weekly count of new unemployment insurance filings—the most timely indicator of labor market stress.',
             'Claims below 250K indicate a healthy labor market. Sustained readings above 300K suggest deterioration.'
@@ -232,7 +232,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
-        short_description='% of 25-54 year-olds employed; cleanest measure of labor market health',
+        short_description='% of 25-54 year-olds with jobs. Avoids retiree/student distortions—many economists\' favorite labor gauge. ~80% is a strong reading.',
         bullets=[
             'Share of Americans aged 25-54 who are employed—avoids distortions from retiring boomers and students.',
             'Many economists consider this the single best measure of labor market health.'
@@ -247,7 +247,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Core PCE Inflation Rate',
         yoy_unit='% Change YoY',
-        short_description='The Fed\'s preferred inflation gauge; excludes food and energy; target is 2%',
+        short_description='The Fed\'s official 2% inflation target. Released monthly, shown year-over-year. Excludes food/energy. Broader than CPI because it adjusts when consumers switch to cheaper alternatives.',
         bullets=[
             'The Federal Reserve\'s preferred inflation measure—excludes volatile food and energy prices.',
             'The Fed explicitly targets 2% core PCE inflation over time.'
@@ -275,7 +275,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='University of Michigan',
         data_type='index',
         sa=False,
-        short_description='Survey of how confident consumers feel about the economy; >90=optimistic, <70=pessimistic',
+        short_description='Monthly survey asking consumers about their finances and economic expectations. >90 = optimistic, <70 = pessimistic. Can predict spending shifts.',
         bullets=[
             'Survey-based measure of how consumers feel about their finances and the economy.',
             'Readings above 90 indicate optimism; below 70 suggests pessimism. Can lead changes in spending behavior.'
@@ -354,7 +354,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Bureau of Economic Analysis',
         data_type='growth_rate',
         frequency='quarterly',
-        short_description='Quarterly GDP growth, annualized—2-3% is healthy; negative for 2+ quarters = recession',
+        short_description='How fast the economy grew this quarter vs last quarter, projected to a full year. Released quarterly. 2-3% is healthy; two negative quarters in a row is often called a recession.',
         bullets=[
             'Quarterly GDP growth expressed at an annualized rate—the standard way GDP is reported in the U.S.',
             'Shows quarter-to-quarter momentum. Growth above 2% is healthy; negative readings for 2+ quarters suggest recession.'

@@ -586,7 +586,13 @@ def format_predictions_box(predictions: list, query: str = "") -> Optional[str]:
     rows_html = ""
     for item in display_items:
         safe_title = html_lib.escape(item["title"])
-        rows_html += f'<tr><td style="color: #0f172a; font-size: 0.875rem; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">{safe_title}</td><td style="color: {item["color"]}; font-weight: 600; font-size: 0.875rem; text-align: right; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">{item["prob"]:.0f}%</td></tr>'
+        url = item.get("url", "")
+        # Make title a clickable link to the Polymarket market
+        if url:
+            title_html = f'<a href="{url}" target="_blank" rel="noopener noreferrer" style="color: #0f172a; text-decoration: none; border-bottom: 1px dotted #94a3b8;">{safe_title}</a>'
+        else:
+            title_html = safe_title
+        rows_html += f'<tr><td style="font-size: 0.875rem; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">{title_html}</td><td style="color: {item["color"]}; font-weight: 600; font-size: 0.875rem; text-align: right; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">{item["prob"]:.0f}%</td></tr>'
 
     # Build complete HTML using string concatenation (not f-string for the items)
     html = (
@@ -595,7 +601,7 @@ def format_predictions_box(predictions: list, query: str = "") -> Optional[str]:
         '<div style="display: flex; justify-content: space-between; align-items: center;">'
         '<div><h3 style="font-weight: 600; color: #0f172a; font-size: 1rem; margin: 0;">What Markets Expect</h3>'
         '<p style="color: #64748b; font-size: 0.875rem; margin: 0.25rem 0 0 0;">Prediction market probabilities</p></div>'
-        '<span style="font-size: 0.7rem; color: #94a3b8;">via Polymarket</span>'
+        '<a href="https://polymarket.com" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #94a3b8; text-decoration: none;">via Polymarket</a>'
         '</div></div>'
         '<div style="padding: 0 1.5rem;">'
         '<table style="width: 100%; border-collapse: collapse;">' + rows_html + '</table>'
