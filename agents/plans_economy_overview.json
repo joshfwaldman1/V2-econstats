@@ -955,6 +955,78 @@
     "combine_chart": false,
     "explanation": "Ohio employment: State nonfarm payrolls (OHNA) show Ohio job creation vs national payrolls (PAYEMS). State unemployment (OHUR) provides labor market context. Ohio is a key manufacturing and swing state."
   },
+  "texas unemployment": {
+    "series": ["TXUR", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Texas unemployment rate (TXUR) compared to national unemployment (UNRATE). Texas typically runs below the national average due to its diverse economy and job growth."
+  },
+  "texas jobs": {
+    "series": ["TXNA", "TXUR", "PAYEMS"],
+    "show_yoy": [true, false, true],
+    "combine_chart": false,
+    "explanation": "Texas employment: State nonfarm payrolls (TXNA), unemployment rate (TXUR), and national payrolls (PAYEMS) for comparison. Texas has been one of the fastest-growing state economies."
+  },
+  "california unemployment": {
+    "series": ["CAUR", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "California unemployment rate (CAUR) compared to national unemployment (UNRATE). California typically runs slightly above the national average despite being the largest state economy."
+  },
+  "california jobs": {
+    "series": ["CANA", "CAUR", "PAYEMS"],
+    "show_yoy": [true, false, true],
+    "combine_chart": false,
+    "explanation": "California employment: State nonfarm payrolls (CANA), unemployment rate (CAUR), and national payrolls (PAYEMS) for comparison."
+  },
+  "florida unemployment": {
+    "series": ["FLUR", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Florida unemployment rate (FLUR) compared to national unemployment (UNRATE). Florida's diverse economy includes tourism, finance, and growing tech sector."
+  },
+  "florida employment": {
+    "series": ["FLUR", "UNRATE", "PAYEMS"],
+    "show_yoy": [false, false, true],
+    "combine_chart": false,
+    "explanation": "Florida labor market: Unemployment rate (FLUR) vs national rate (UNRATE), with national payrolls (PAYEMS) for context."
+  },
+  "florida economy": {
+    "series": ["FLUR", "FLNA", "UNRATE", "PAYEMS"],
+    "show_yoy": [false, true, false, true],
+    "combine_chart": false,
+    "explanation": "Florida economy: State unemployment (FLUR) and nonfarm payrolls (FLNA) compared to national benchmarks. Florida's economy is driven by tourism, real estate, finance, and growing tech presence."
+  },
+  "new york unemployment": {
+    "series": ["NYUR", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "New York unemployment rate (NYUR) compared to national unemployment (UNRATE). NYC's recovery from COVID has been uneven across sectors."
+  },
+  "new york jobs": {
+    "series": ["NYNA", "NYUR", "PAYEMS"],
+    "show_yoy": [true, false, true],
+    "combine_chart": false,
+    "explanation": "New York employment: State nonfarm payrolls (NYNA), unemployment rate (NYUR), and national comparison."
+  },
+  "new york economy": {
+    "series": ["NYUR", "NYNA", "UNRATE", "PAYEMS"],
+    "show_yoy": [false, true, false, true],
+    "combine_chart": false,
+    "explanation": "New York economy: State unemployment (NYUR) and nonfarm payrolls (NYNA) compared to national benchmarks. NYC dominates the state economy with finance, media, and tech."
+  },
+  "midwest employment": {
+    "series": ["ILUR", "OHUR", "MIUR", "WIUR"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Midwest unemployment rates: Illinois (ILUR), Ohio (OHUR), Michigan (MIUR), and Wisconsin (WIUR). The Midwest has a manufacturing-heavy economy that's sensitive to industrial cycles."
+  },
+  "midwest economy": {
+    "series": ["ILUR", "OHUR", "MIUR", "MANEMP"],
+    "show_yoy": [false, false, false, true],
+    "combine_chart": false,
+    "explanation": "Midwest economic health: Unemployment rates for Illinois, Ohio, Michigan plus national manufacturing employment (MANEMP). The Midwest's economy is tied to manufacturing trends."
+  },
   "texas economy": {
     "series": [
       "TXUR",
@@ -1328,5 +1400,72 @@
     "show_yoy": true,
     "combine_chart": false,
     "explanation": "Reindustrialization scorecard:\n\n\u2022 **Manufacturing Jobs** (MANEMP): Has the long decline reversed?\n\u2022 **Industrial Production** (INDPRO): Is factory output growing?\n\u2022 **Construction Spending** (TTLCONS): Factory construction = future capacity.\n\u2022 **Manufacturing Hours** (CES3000000001): Are existing workers producing more?\n\nContext: US lost 5M+ factory jobs 2000-2010 to China/automation. CHIPS Act and reshoring aim to reverse this. Look for sustained job gains + rising construction."
+  },
+  "business investment": {
+    "series": ["PNFI", "A006RL1Q225SBEA"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Business investment: Private Nonresidential Fixed Investment (PNFI) is the comprehensive measure of business capital spending on equipment, structures, and intellectual property. Strong business investment signals confidence in future growth."
+  },
+  "capex": {
+    "series": ["PNFI"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Capital expenditure (capex): PNFI (Private Nonresidential Fixed Investment) measures business spending on equipment, structures, and intellectual property."
+  },
+  "productivity": {
+    "series": ["OPHNFB", "ULCNFB"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Productivity: Output per hour (OPHNFB) measures how efficiently workers produce goods and services. Unit labor costs (ULCNFB) show whether wages are outpacing productivity."
+  },
+  "m2": {
+    "series": ["M2SL"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "M2 money supply includes cash, checking deposits, savings, and money market funds. Rapid M2 growth can fuel inflation."
+  },
+  "wage growth": {
+    "series": ["CES0500000003", "AHETPI"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Wage growth: Average hourly earnings (CES0500000003) and production worker earnings (AHETPI). Compare to inflation to assess real wage gains."
+  },
+  "real wages": {
+    "series": ["LES1252881600Q"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Real (inflation-adjusted) wages: Real median usual weekly earnings. Positive growth means workers are gaining ground against inflation."
+  },
+  "wages vs inflation": {
+    "series": ["CES0500000003", "CPIAUCSL"],
+    "show_yoy": true,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wages vs inflation comparison: Average hourly earnings growth compared to CPI inflation. When wage growth exceeds CPI, workers gain purchasing power."
+  },
+  "are wages keeping up with inflation": {
+    "series": ["CES0500000003", "CPIAUCSL", "LES1252881600Q"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Are wages keeping up? Compare average hourly earnings growth to CPI inflation. Real median weekly earnings directly answers this."
+  },
+  "industrial production": {
+    "series": ["INDPRO", "IPMAN", "TCU"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Industrial production: Total industrial production (INDPRO), manufacturing output (IPMAN), and capacity utilization (TCU)."
+  },
+  "capacity utilization": {
+    "series": ["TCU", "MCUMFN"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Capacity utilization: Total industry (TCU) and manufacturing (MCUMFN). Above 80% is strong; below 70% indicates slack."
+  },
+  "corporate profits": {
+    "series": ["CP", "CPATAX"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Corporate profits: Total corporate profits (CP) and corporate profits after tax (CPATAX). Profits drive stock prices and investment."
   }
 }

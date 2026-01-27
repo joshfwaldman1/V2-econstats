@@ -486,6 +486,18 @@
     "combine_chart": false,
     "explanation": "The current account is primarily driven by the trade balance of goods and services (BOPGSTB). While the full current account also includes income flows and transfers, the trade balance is the largest and most volatile component that determines current account trends. A negative BOPGSTB indicates a trade deficit, which typically corresponds to a current account deficit."
   },
+  "international trade": {
+    "series": ["BOPGSTB", "IMPGS", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US international trade overview: the trade balance (BOPGSTB) shows the net position, while imports (IMPGS) and exports (EXPGS) show the absolute flows. The US typically runs a goods deficit but a services surplus."
+  },
+  "global trade": {
+    "series": ["BOPGSTB", "IMPGS", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US global trade flows: trade balance (BOPGSTB), total imports (IMPGS), and total exports (EXPGS). Together they show America's position in global commerce."
+  },
   "trade war": {
     "series": [
       "BOPGSTB",
