@@ -78,8 +78,34 @@ MARKET_SERIES = {
     "DCOILWTICO": {
         "name": "WTI Crude Oil Price",
         "category": "commodities",
-        "keywords": ["oil", "crude", "wti", "energy", "petroleum"],
+        "keywords": ["oil", "crude", "wti", "petroleum"],
         "description": "Crude Oil Prices: West Texas Intermediate",
+    },
+    # Gas prices
+    "GASREGW": {
+        "name": "Regular Gasoline Price",
+        "category": "commodities",
+        "keywords": ["gas", "gasoline", "gas prices", "fuel", "pump prices"],
+        "description": "US Regular All Formulations Gas Price",
+    },
+    # Energy CPI
+    "CPIENGSL": {
+        "name": "Energy CPI",
+        "category": "inflation",
+        "keywords": ["energy costs", "energy prices", "energy inflation"],
+        "description": "Consumer Price Index: Energy",
+    },
+    "CUSR0000SEHF01": {
+        "name": "Electricity Price Index",
+        "category": "inflation",
+        "keywords": ["electricity", "electric", "power prices", "utility"],
+        "description": "Consumer Price Index: Electricity",
+    },
+    "MHHNGSP": {
+        "name": "Natural Gas Price",
+        "category": "commodities",
+        "keywords": ["natural gas", "gas price", "heating"],
+        "description": "Henry Hub Natural Gas Spot Price",
     },
 }
 
@@ -141,6 +167,35 @@ MARKET_QUERY_PLANS = {
         "series": ["VIXCLS", "BAMLH0A0HYM2", "T10Y2Y"],
         "explanation": "Risk indicators: VIX, credit spreads, yield curve.",
     },
+    # Energy prices
+    "gas prices": {
+        "series": ["GASREGW"],
+        "explanation": "US Regular Gasoline Prices (weekly).",
+    },
+    "gasoline prices": {
+        "series": ["GASREGW"],
+        "explanation": "US Regular Gasoline Prices (weekly).",
+    },
+    "gasoline": {
+        "series": ["GASREGW"],
+        "explanation": "US Regular Gasoline Prices (weekly).",
+    },
+    "energy costs": {
+        "series": ["CPIENGSL", "GASREGW", "DCOILWTICO"],
+        "explanation": "Energy CPI, gas prices, and oil prices.",
+    },
+    "energy prices": {
+        "series": ["CPIENGSL", "GASREGW", "DCOILWTICO"],
+        "explanation": "Energy CPI, gas prices, and oil prices.",
+    },
+    "electricity prices": {
+        "series": ["CUSR0000SEHF01"],
+        "explanation": "Consumer Price Index for Electricity.",
+    },
+    "natural gas": {
+        "series": ["MHHNGSP"],
+        "explanation": "Henry Hub Natural Gas Spot Price.",
+    },
 }
 
 
@@ -199,6 +254,8 @@ def is_market_query(query: str) -> bool:
         "stock", "stock market", "s&p", "sp500", "dow", "nasdaq", "vix",
         "volatility", "equities", "wall street", "trading",
         "yield curve", "treasury", "gold", "oil price", "crude",
+        "gas prices", "gasoline", "energy costs", "energy prices",
+        "electricity prices", "natural gas",
     ]
     return any(indicator in query_lower for indicator in market_indicators)
 
