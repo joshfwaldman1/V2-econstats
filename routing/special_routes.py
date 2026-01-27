@@ -201,8 +201,8 @@ class SpecialRouter:
         result = SpecialRouteResult(
             matched=True,
             route_type='cape',
-            # Include S&P 500 and VIX alongside CAPE for market context
-            series=['SP500', 'VIXCLS'],
+            # Include Shiller CAPE chart plus S&P 500 for market context
+            series=['shiller_cape', 'SP500'],
             show_yoy=False,
         )
 

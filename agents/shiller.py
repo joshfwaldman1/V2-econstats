@@ -156,15 +156,36 @@ def get_cape_series() -> Dict:
     """
     Get CAPE data in the standard series format used by the app.
 
+    Combines historical data from Shiller's Excel file with live data
+    from multpl.com to ensure the series is current.
+
     Returns:
         Dict with 'dates', 'values', 'info' keys matching FRED format
     """
     df = load_shiller_data()
     df = df[df['cape'].notna()]
 
+    dates = df['date'].dt.strftime('%Y-%m-%d').tolist()
+    values = df['cape'].tolist()
+
+    # Append live data if historical data is outdated
+    try:
+        live_data = fetch_current_cape_from_multpl()
+        if live_data and live_data.get('value'):
+            live_date = datetime.now().replace(day=1).strftime('%Y-%m-%d')
+            last_historical_date = dates[-1] if dates else None
+
+            # Only append if live date is after historical data
+            if last_historical_date and live_date > last_historical_date:
+                dates.append(live_date)
+                values.append(live_data['value'])
+                logger.info(f"Appended live CAPE {live_data['value']:.1f} for {live_date}")
+    except Exception as e:
+        logger.warning(f"Could not append live CAPE data: {e}")
+
     return {
-        'dates': df['date'].dt.strftime('%Y-%m-%d').tolist(),
-        'values': df['cape'].tolist(),
+        'dates': dates,
+        'values': values,
         'info': {
             'id': 'shiller_cape',
             'title': 'Shiller CAPE Ratio (Cyclically Adjusted P/E)',

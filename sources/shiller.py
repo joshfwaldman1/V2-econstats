@@ -56,18 +56,32 @@ class ShillerSource(DataSource):
             return SeriesData(id=series_id, dates=[], values=[], error="Shiller module not available")
 
         try:
+            # get_cape_series returns dict with 'dates', 'values', 'info'
             get_cape = self._module['get_cape_series']
-            dates, values, info = get_cape(years=years)
+            cape_data = get_cape()  # Returns full history, we filter below
+
+            dates = cape_data.get('dates', [])
+            values = cape_data.get('values', [])
+            info = cape_data.get('info', {})
+
+            # Filter to requested years (data is monthly)
+            if years and len(dates) > years * 12:
+                dates = dates[-(years * 12):]
+                values = values[-(years * 12):]
 
             if dates and values:
                 return SeriesData(
                     id=series_id,
                     dates=dates,
                     values=values,
-                    info=info or {
-                        'name': 'Shiller CAPE Ratio',
-                        'unit': 'Ratio',
-                        'source': 'Robert Shiller, Yale University'
+                    info={
+                        'name': info.get('title', 'Shiller CAPE Ratio'),
+                        'title': info.get('title', 'Shiller CAPE Ratio'),
+                        'unit': info.get('units', 'Ratio'),
+                        'units': info.get('units', 'Ratio'),
+                        'source': info.get('source', 'Robert Shiller, Yale University'),
+                        'notes': info.get('notes', ''),
+                        'frequency': info.get('frequency', 'Monthly'),
                     }
                 )
 
