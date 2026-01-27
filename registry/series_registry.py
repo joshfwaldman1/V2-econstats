@@ -905,6 +905,14 @@ class SeriesRegistry:
                 except Exception as e:
                     print(f"[Registry] Error loading {filename}: {e}")
 
+        # Load international plans from dbnomics module
+        try:
+            from agents.dbnomics import INTERNATIONAL_QUERY_PLANS
+            self._plans.update(INTERNATIONAL_QUERY_PLANS)
+            print(f"[Registry] Loaded {len(INTERNATIONAL_QUERY_PLANS)} international plans from dbnomics")
+        except Exception as e:
+            print(f"[Registry] International plans not available: {e}")
+
         # Build keyword index
         self._build_keyword_index()
         self._loaded = True
