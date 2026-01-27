@@ -20,6 +20,14 @@ from ai import generate_summary, get_bullets, review_summary, get_summary_text, 
 from config import config
 from registry import registry
 
+# Judgment layer for interpretive queries (adds expert quotes, thresholds, web search)
+try:
+    from agents.judgment_layer import is_judgment_query, process_judgment_query
+    JUDGMENT_AVAILABLE = True
+except ImportError:
+    JUDGMENT_AVAILABLE = False
+    print("[Search] Judgment layer not available")
+
 search_router = APIRouter()
 
 
@@ -201,6 +209,20 @@ async def api_search(body: SearchRequest):
         summary_text = str(summary_result)
         ai_suggestions = []
         chart_descriptions = {}
+
+    # 5b. Judgment layer for interpretive queries (adds expert quotes, thresholds, web search)
+    if JUDGMENT_AVAILABLE and is_judgment_query(query):
+        try:
+            judgment_result, was_judgment = process_judgment_query(
+                query=query,
+                series_data=series_data,
+                original_explanation=summary_text
+            )
+            if judgment_result and was_judgment:
+                summary_text = judgment_result
+                print(f"[Search] Enhanced with judgment layer")
+        except Exception as e:
+            print(f"[Search] Judgment error: {e}")
 
     # Apply economist reviewer if enabled
     if config.enable_economist_reviewer and summary_text:
@@ -410,6 +432,20 @@ async def search_html(
     # Extract AI-generated suggestions and chart descriptions
     ai_suggestions = summary_result.get('suggestions', []) if isinstance(summary_result, dict) else []
     chart_descriptions = summary_result.get('chart_descriptions', {}) if isinstance(summary_result, dict) else {}
+
+    # 5b. Judgment layer for interpretive queries (adds expert quotes, thresholds, web search)
+    if JUDGMENT_AVAILABLE and is_judgment_query(query):
+        try:
+            judgment_result, was_judgment = process_judgment_query(
+                query=query,
+                series_data=series_data,
+                original_explanation=summary
+            )
+            if judgment_result and was_judgment:
+                summary = judgment_result
+                print(f"[Search] Enhanced with judgment layer")
+        except Exception as e:
+            print(f"[Search] Judgment error: {e}")
 
     # Apply economist reviewer if enabled
     if config.enable_economist_reviewer:
