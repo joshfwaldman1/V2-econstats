@@ -52,18 +52,27 @@ def generate_dynamic_bullets(
     name = info.get('name', info.get('title', series_id))
     unit = info.get('unit', info.get('units', ''))
     latest = values[-1]
+    frequency = info.get('frequency', 'Monthly').lower()
 
-    # Format date
+    # Format date (frequency-aware)
     try:
         latest_date_obj = datetime.strptime(latest_date, '%Y-%m-%d')
-        date_str = latest_date_obj.strftime('%B %Y')
+        if 'quarter' in frequency:
+            quarter = (latest_date_obj.month - 1) // 3 + 1
+            date_str = f"Q{quarter} {latest_date_obj.year}"
+        else:
+            date_str = latest_date_obj.strftime('%B %Y')
     except:
         date_str = latest_date
 
-    # Calculate trends
+    # Calculate trends (frequency-aware)
     trend_info = ""
     if len(values) >= 13:
-        year_ago = values[-13]
+        # Use appropriate lookback for frequency
+        if 'quarter' in frequency:
+            year_ago = values[-5] if len(values) >= 5 else values[0]
+        else:
+            year_ago = values[-13]
         yoy_change = latest - year_ago
         if year_ago != 0:
             yoy_pct = ((latest - year_ago) / abs(year_ago)) * 100
@@ -81,6 +90,13 @@ def generate_dynamic_bullets(
             else:
                 recent_trend = "Roughly flat over past 3 months"
 
+    # 5-year historical context (key for substantive bullets)
+    historical_context = ""
+    if len(values) >= 60:
+        five_yr_high = max(values[-60:])
+        five_yr_low = min(values[-60:])
+        historical_context = f"5-year range: {five_yr_low:.2f} to {five_yr_high:.2f}"
+
     # Get static bullets for context
     static_bullets = get_static_bullets(series_id)
     static_guidance = "\n".join([f"- {b}" for b in static_bullets]) if static_bullets else ""
@@ -91,6 +107,7 @@ SERIES: {name} ({series_id})
 CURRENT VALUE: {latest:.2f} {unit} as of {date_str}
 {trend_info}
 {recent_trend}
+{historical_context}
 
 {f"DOMAIN CONTEXT: {static_guidance}" if static_guidance else ""}
 {f"USER QUESTION: {user_query}" if user_query else ""}

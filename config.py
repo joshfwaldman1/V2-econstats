@@ -30,7 +30,7 @@ class Config:
     default_model: str = "claude-sonnet-4-20250514"
     max_llm_calls_per_request: int = 2
     enable_economist_reviewer: bool = False  # Off by default to save costs
-    enable_dynamic_bullets: bool = False     # Use static bullets by default
+    enable_dynamic_bullets: bool = True      # AI-generated bullets for richer context
     enable_gemini_audit: bool = True         # Fast Gemini-auditing-Gemini layer
 
     # Data settings
@@ -50,7 +50,7 @@ class Config:
             routing_cache_ttl=int(os.environ.get('ROUTING_CACHE_TTL', 3600)),
             data_cache_ttl=int(os.environ.get('DATA_CACHE_TTL', 1800)),
             enable_economist_reviewer=os.environ.get('ENABLE_ECONOMIST_REVIEWER', '').lower() == 'true',
-            enable_dynamic_bullets=os.environ.get('ENABLE_DYNAMIC_BULLETS', '').lower() == 'true',
+            enable_dynamic_bullets=os.environ.get('ENABLE_DYNAMIC_BULLETS', 'true').lower() != 'false',  # On by default
             enable_gemini_audit=os.environ.get('ENABLE_GEMINI_AUDIT', 'true').lower() != 'false',  # On by default
         )
 
