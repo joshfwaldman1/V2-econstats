@@ -14,7 +14,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from routing import router as query_router
 from sources import source_manager
-from processing import format_chart_data, extract_temporal_filter, get_smart_date_range
+from processing import format_chart_data, format_combined_chart, extract_temporal_filter, get_smart_date_range
 from processing.temporal import filter_data_by_dates
 from ai import generate_summary, get_bullets, review_summary, get_summary_text, get_suggestions as get_ai_suggestions, get_chart_descriptions
 from config import config
@@ -154,20 +154,33 @@ async def api_search(body: SearchRequest):
 
     # 4. Format chart data
     charts = []
-    for series_id, dates, values, info in series_data:
-        chart = format_chart_data(
-            series_id, dates, values, info,
+
+    # Check if we should combine series into one chart
+    if routing_result.combine_chart and len(series_data) > 1:
+        # Create a single combined chart with multiple traces
+        combined = format_combined_chart(
+            series_data,
             show_yoy=routing_result.show_yoy,
             user_query=query
         )
+        if combined:
+            charts.append(combined)
+    else:
+        # Create separate charts for each series
+        for series_id, dates, values, info in series_data:
+            chart = format_chart_data(
+                series_id, dates, values, info,
+                show_yoy=routing_result.show_yoy,
+                user_query=query
+            )
 
-        # Get bullets (AI or static)
-        chart['bullets'] = get_bullets(
-            series_id, dates, values, info,
-            user_query=query
-        )
+            # Get bullets (AI or static)
+            chart['bullets'] = get_bullets(
+                series_id, dates, values, info,
+                user_query=query
+            )
 
-        charts.append(chart)
+            charts.append(chart)
 
     # 5. Generate AI summary (returns dict with summary, suggestions, chart_descriptions)
     summary_result = generate_summary(query, series_data)
@@ -353,20 +366,33 @@ async def search_html(
 
     # 4. Format chart data
     charts = []
-    for series_id, dates, values, info in series_data:
-        chart = format_chart_data(
-            series_id, dates, values, info,
+
+    # Check if we should combine series into one chart
+    if routing_result.combine_chart and len(series_data) > 1:
+        # Create a single combined chart with multiple traces
+        combined = format_combined_chart(
+            series_data,
             show_yoy=routing_result.show_yoy,
             user_query=query
         )
+        if combined:
+            charts.append(combined)
+    else:
+        # Create separate charts for each series
+        for series_id, dates, values, info in series_data:
+            chart = format_chart_data(
+                series_id, dates, values, info,
+                show_yoy=routing_result.show_yoy,
+                user_query=query
+            )
 
-        # Get bullets (AI or static)
-        chart['bullets'] = get_bullets(
-            series_id, dates, values, info,
-            user_query=query
-        )
+            # Get bullets (AI or static)
+            chart['bullets'] = get_bullets(
+                series_id, dates, values, info,
+                user_query=query
+            )
 
-        charts.append(chart)
+            charts.append(chart)
 
     # 5. Generate AI summary
     summary_result = generate_summary(query, series_data)

@@ -10,6 +10,25 @@ interface ChartProps {
 
 export function Chart({ data, description }: ChartProps) {
   const plotData = useMemo(() => {
+    // Check if this is a combined chart with multiple traces
+    const traces = (data as any).traces
+    if (traces && traces.length > 1) {
+      const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b']
+      return traces.map((trace: any, i: number) => ({
+        x: trace.dates,
+        y: trace.values,
+        type: 'scatter' as const,
+        mode: 'lines' as const,
+        name: trace.name,
+        line: {
+          color: colors[i % colors.length],
+          width: 2,
+        },
+        hovertemplate: `${trace.name}<br>%{x|%b %Y}<br><b>%{y:.2f}</b> ${data.unit}<extra></extra>`,
+      }))
+    }
+
+    // Single series chart
     const trace: Plotly.Data = {
       x: data.dates,
       y: data.values,
@@ -43,6 +62,10 @@ export function Chart({ data, description }: ChartProps) {
       layer: 'below',
     }))
 
+    // Check if multiple traces (combined chart)
+    const traces = (data as any).traces
+    const hasMultipleTraces = traces && traces.length > 1
+
     return {
       autosize: true,
       height: 300,
@@ -65,8 +88,16 @@ export function Chart({ data, description }: ChartProps) {
       paper_bgcolor: 'transparent',
       plot_bgcolor: 'transparent',
       shapes,
+      showlegend: hasMultipleTraces,
+      legend: hasMultipleTraces ? {
+        orientation: 'h',
+        y: -0.15,
+        x: 0.5,
+        xanchor: 'center',
+        font: { size: 11, color: '#64748b' },
+      } : undefined,
     }
-  }, [data.recessions])
+  }, [data])
 
   const config: Partial<Plotly.Config> = {
     displayModeBar: false,

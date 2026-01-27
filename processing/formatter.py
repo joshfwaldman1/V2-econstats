@@ -207,3 +207,123 @@ def format_multiple_charts(
             )
             charts.append(chart)
     return charts
+
+
+def format_combined_chart(
+    series_data: List[tuple],
+    show_yoy: bool = False,
+    user_query: str = '',
+    chart_title: str = ''
+) -> Dict[str, Any]:
+    """
+    Combine multiple series into a single multi-trace chart.
+
+    Useful for comparing related series like CPI vs Core CPI, or
+    Fed Funds vs 10-Year Treasury.
+
+    Args:
+        series_data: List of (series_id, dates, values, info) tuples
+        show_yoy: Whether to show YoY transformation
+        user_query: Original user query
+        chart_title: Optional title for the combined chart
+
+    Returns:
+        Single chart dict with multiple traces in 'traces' field
+    """
+    if not series_data:
+        return {}
+
+    # Build traces for each series
+    traces = []
+    all_bullets = []
+    common_unit = None
+    common_source = None
+    recessions = []
+
+    for series_id, dates, values, info in series_data:
+        if not dates or not values:
+            continue
+
+        # Get series info
+        series_info = registry.get_series(series_id)
+
+        # Apply transforms
+        frequency = info.get('frequency', 'monthly').lower()
+        transformed_dates, transformed_values, transformed_info = apply_transforms(
+            series_id, dates, values, info, show_yoy, frequency
+        )
+
+        # Get display name
+        name = transformed_info.get('name', info.get('title', series_id))
+        unit = transformed_info.get('unit', info.get('units', ''))
+        source = info.get('source', 'FRED')
+
+        # Store common unit/source (from first series)
+        if common_unit is None:
+            common_unit = unit
+        if common_source is None:
+            common_source = source
+
+        # Get recessions (only need once)
+        if not recessions:
+            recessions = get_recessions_in_range(transformed_dates)
+
+        # Calculate YoY change for this series
+        yoy_change = None
+        yoy_type = None
+        if series_info and len(values) >= 13:
+            yoy_type = get_yoy_type(series_id)
+            if yoy_type:
+                if yoy_type == 'jobs':
+                    yoy_change = values[-1] - values[-13]
+                elif yoy_type == 'pp':
+                    yoy_change = values[-1] - values[-13]
+                elif values[-13] != 0:
+                    yoy_change = ((values[-1] - values[-13]) / abs(values[-13])) * 100
+
+        traces.append({
+            'series_id': series_id,
+            'name': name,
+            'dates': transformed_dates,
+            'values': transformed_values,
+            'latest': transformed_values[-1] if transformed_values else None,
+            'yoy_change': yoy_change,
+            'yoy_type': yoy_type,
+        })
+
+        # Collect bullets
+        if series_info and series_info.bullets:
+            all_bullets.extend(series_info.bullets[:1])  # 1 bullet per series
+
+    if not traces:
+        return {}
+
+    # Build combined chart title
+    if not chart_title:
+        trace_names = [t['name'] for t in traces[:2]]
+        chart_title = ' vs '.join(trace_names)
+
+    # Use dates from the longest series
+    longest_trace = max(traces, key=lambda t: len(t['dates']))
+
+    return {
+        'series_id': '__combined__',
+        'name': chart_title,
+        'unit': common_unit or '',
+        'source': common_source or 'FRED',
+        'dates': longest_trace['dates'],
+        'values': longest_trace['values'],  # Primary trace values
+        'traces': traces,  # All traces for multi-line chart
+        'latest': longest_trace['latest'],
+        'latest_date': longest_trace['dates'][-1] if longest_trace['dates'] else '',
+        'is_job_change': False,
+        'is_payems_level': False,
+        'three_mo_avg': None,
+        'yoy_change': traces[0].get('yoy_change') if traces else None,
+        'yoy_type': traces[0].get('yoy_type') if traces else None,
+        'bullets': all_bullets[:2],  # Max 2 combined bullets
+        'sa': True,
+        'recessions': recessions,
+        'description': '',
+        'is_combined': True,
+    }

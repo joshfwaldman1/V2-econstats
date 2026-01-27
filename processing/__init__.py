@@ -2,7 +2,7 @@
 
 from .transforms import calculate_yoy, apply_transforms
 from .temporal import extract_temporal_filter, get_smart_date_range
-from .formatter import format_chart_data
+from .formatter import format_chart_data, format_combined_chart
 
 __all__ = [
     'calculate_yoy',
@@ -10,4 +10,5 @@ __all__ = [
     'extract_temporal_filter',
     'get_smart_date_range',
     'format_chart_data',
+    'format_combined_chart',
 ]

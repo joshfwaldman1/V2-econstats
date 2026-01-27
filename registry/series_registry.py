@@ -420,6 +420,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of 25-54 year-olds working or looking for work. Strips out retirees and students for a cleaner read on worker engagement.',
         bullets=[
             'Share of Americans aged 25-54 in the labor force—avoids distortions from retirees and students.',
             'Has recovered to pre-pandemic levels, suggesting strong labor force attachment.'
@@ -431,6 +432,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of all adults (16+) working or job-seeking. Has fallen from 67% in 2000 as baby boomers retire.',
         bullets=[
             'Share of all adults (16+) either working or seeking work.',
             'Has declined from 67% in 2000 due to aging population and rising disability.'
@@ -503,6 +505,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Census Bureau',
         data_type='level',
         show_yoy=True,
+        short_description='Consumer spending at stores (excluding restaurants). Released monthly. Consumer spending is ~70% of GDP.',
         bullets=[
             'Retail sales excluding restaurants—shows goods spending by consumers.',
             'Consumer spending drives ~70% of GDP, making this a key economic indicator.'
@@ -531,6 +534,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Energy Information Administration',
         data_type='level',
         sa=False,
+        short_description='West Texas Intermediate—the U.S. benchmark oil price. Directly affects gas prices and inflation.',
         bullets=[
             'West Texas Intermediate—the U.S. benchmark crude oil price.',
             'Oil prices affect gasoline costs, inflation, and energy sector profits.'
@@ -543,6 +547,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Energy Information Administration',
         data_type='level',
         sa=False,
+        short_description='Global benchmark oil price (from North Sea). Usually trades slightly above WTI.',
         bullets=[
             'Brent crude—the global benchmark oil price.',
             'Typically trades at a small premium to WTI due to global demand dynamics.'
@@ -587,6 +592,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Billions of Dollars',
         source='U.S. Bureau of Economic Analysis',
         data_type='level',
+        short_description='Value of goods/services bought from abroad. Rising imports often signal strong U.S. consumer demand.',
         bullets=[
             'Total value of goods and services imported into the U.S.',
             'Strong imports often reflect healthy consumer demand and a strong dollar.'
@@ -598,6 +604,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Billions of Dollars',
         source='U.S. Bureau of Economic Analysis',
         data_type='level',
+        short_description='Value of goods/services sold abroad. Rises when global demand is strong or the dollar weakens.',
         bullets=[
             'Total value of goods and services exported from the U.S.',
             'Export growth is boosted by global demand and a weaker dollar.'
@@ -609,6 +616,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Millions of Dollars',
         source='U.S. Census Bureau',
         data_type='level',
+        short_description='Goods bought from China—historically our #1 import source. Share has dropped due to tariffs and supply chain reshoring.',
         bullets=[
             'Value of goods imported from China—our largest source of imports.',
             'Tariffs and supply chain shifts have reduced China\'s share in recent years.'
@@ -620,6 +628,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Millions of Dollars',
         source='U.S. Census Bureau',
         data_type='level',
+        short_description='Goods sold to China—mostly soybeans, aircraft, and chips. Volatile due to trade tensions.',
         bullets=[
             'Value of goods exported to China—primarily agricultural products and aircraft.',
             'Trade tensions have created significant volatility in this relationship.'
@@ -635,6 +644,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Eurostat',
         data_type='level',
         frequency='quarterly',
+        short_description='Total economic output of the 19 countries using the euro. Released quarterly. Useful for US-Europe comparisons.',
         bullets=[
             'Total economic output of the 19 Eurozone countries.',
             'Useful for comparing U.S. and European economic performance.'
@@ -646,6 +656,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='OECD',
         data_type='rate',
+        short_description='Jobless rate across the 19 euro-area countries. Historically runs higher than U.S. due to stricter labor laws.',
         bullets=[
             'The unemployment rate across Eurozone countries.',
             'Historically higher than U.S. due to different labor market structures.'
@@ -657,6 +668,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='OECD',
         data_type='growth_rate',
+        short_description='Year-over-year price changes in the euro area. The European Central Bank targets 2%, like the Fed.',
         bullets=[
             'Year-over-year inflation in the Eurozone.',
             'The ECB targets 2% inflation, similar to the Fed.'
@@ -671,6 +683,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='Jobless rate for women 16+. Usually tracks the overall rate but can diverge during sector-specific shocks.',
         bullets=[
             'Unemployment rate for women aged 16 and over.',
             'Typically tracks closely with the overall rate but can diverge during sector-specific shocks.'
@@ -682,6 +695,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of women aged 25-54 who are employed. Has risen steadily over decades as more women entered the workforce.',
         bullets=[
             'Share of prime-age women (25-54) who are employed.',
             'Has risen steadily as women\'s labor force participation increased.'
@@ -693,6 +707,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of adult women working or looking for work. Rose from 43% in 1970 to ~57% today.',
         bullets=[
             'Share of adult women in the labor force.',
             'Rose from 43% in 1970 to around 57% today.'
