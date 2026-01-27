@@ -140,10 +140,11 @@ class QueryRouter:
                 self._cache_result(query, result)
                 return result
 
-        # 4. Check comparison queries
+        # 4. Check comparison queries (both domestic and international)
         if self._query_router_module and self._query_router_module['is_comparison'](query):
-            comparison_plan = self._query_router_module['route_comparison'](query)
-            if comparison_plan:
+            # Use smart_route which handles both domestic and international comparisons
+            comparison_plan = self._query_router_module['smart_route'](query)
+            if comparison_plan and comparison_plan.get('series'):
                 result = self._plan_to_result(comparison_plan, 'comparison')
                 result.is_comparison = True
                 self._cache_result(query, result)

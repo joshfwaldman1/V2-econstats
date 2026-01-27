@@ -1035,6 +1035,78 @@
     "is_comparison": true,
     "explanation": "Unemployment rates by race show persistent disparities. White unemployment is typically lowest, with Hispanic somewhat higher, and Black unemployment highest (often 2x White). During recessions, minority unemployment spikes more. During tight labor markets like 2023, the gaps narrowed to historic lows."
   },
+  "black unemployment": {
+    "series": ["LNS14000006", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Black unemployment rate (LNS14000006) compared to overall unemployment (UNRATE). Black unemployment typically runs about 2x the overall rate - a persistent disparity that narrows during tight labor markets."
+  },
+  "black unemployment rate": {
+    "series": ["LNS14000006", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Black unemployment rate (LNS14000006) compared to overall unemployment (UNRATE). Black unemployment typically runs about 2x the overall rate - a persistent disparity that narrows during tight labor markets."
+  },
+  "african american unemployment": {
+    "series": ["LNS14000006", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "African American unemployment rate (LNS14000006) compared to overall unemployment (UNRATE). This disparity is a key measure of labor market inclusiveness."
+  },
+  "hispanic unemployment": {
+    "series": ["LNS14000009", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Hispanic unemployment rate (LNS14000009) compared to overall unemployment (UNRATE). Hispanic unemployment typically runs somewhat above the overall rate but below Black unemployment."
+  },
+  "hispanic unemployment rate": {
+    "series": ["LNS14000009", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Hispanic unemployment rate (LNS14000009) compared to overall unemployment (UNRATE)."
+  },
+  "latino unemployment": {
+    "series": ["LNS14000009", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Latino/Hispanic unemployment rate (LNS14000009) compared to overall unemployment (UNRATE)."
+  },
+  "hispanic workers": {
+    "series": ["LNS14000009", "LNS12300089", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Hispanic labor market: unemployment rate (LNS14000009), employment-population ratio (LNS12300089), compared to overall unemployment (UNRATE)."
+  },
+  "latino workers": {
+    "series": ["LNS14000009", "LNS12300089", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Latino/Hispanic labor market: unemployment rate (LNS14000009), employment-population ratio (LNS12300089), compared to overall unemployment (UNRATE)."
+  },
+  "asian unemployment": {
+    "series": ["LNS14032183", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Asian unemployment rate (LNS14032183) compared to overall unemployment (UNRATE). Asian unemployment typically runs below the overall rate."
+  },
+  "white unemployment": {
+    "series": ["LNS14000003", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "White unemployment rate (LNS14000003) compared to overall unemployment (UNRATE). White unemployment typically runs below the overall rate."
+  },
+  "teenage unemployment": {
+    "series": ["LNS14000012", "UNRATE"],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Teenage unemployment rate (ages 16-19) compared to overall unemployment. Teen unemployment is always much higher due to limited experience and part-time/seasonal work patterns."
+  },
+  "senior employment": {
+    "series": ["LNS12300091", "LNS14000091", "CIVPART"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Employment for older workers (55+): employment-population ratio (LNS12300091), unemployment rate (LNS14000091), and overall labor force participation (CIVPART) for context."
+  },
   "job openings vs unemployment": {
     "series": [
       "JTSJOL",
