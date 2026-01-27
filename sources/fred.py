@@ -5,11 +5,48 @@ Primary source for most US economic data series.
 """
 
 import httpx
+import asyncio
 from datetime import datetime, timedelta
 from typing import Optional, List
 
 from .base import DataSource, SeriesData
 from config import config
+
+
+# Module-level connection pool for HTTP connection reuse
+# This significantly reduces latency by avoiding TCP/TLS handshakes on each request
+_async_client: Optional[httpx.AsyncClient] = None
+_sync_client: Optional[httpx.Client] = None
+
+
+def get_async_client() -> httpx.AsyncClient:
+    """Get or create the shared async HTTP client with connection pooling."""
+    global _async_client
+    if _async_client is None or _async_client.is_closed:
+        _async_client = httpx.AsyncClient(
+            timeout=15.0,
+            limits=httpx.Limits(
+                max_keepalive_connections=10,
+                max_connections=20,
+                keepalive_expiry=30.0
+            )
+        )
+    return _async_client
+
+
+def get_sync_client() -> httpx.Client:
+    """Get or create the shared sync HTTP client with connection pooling."""
+    global _sync_client
+    if _sync_client is None or _sync_client.is_closed:
+        _sync_client = httpx.Client(
+            timeout=15.0,
+            limits=httpx.Limits(
+                max_keepalive_connections=10,
+                max_connections=20,
+                keepalive_expiry=30.0
+            )
+        )
+    return _sync_client
 
 
 class FREDSource(DataSource):
@@ -59,71 +96,68 @@ class FREDSource(DataSource):
         else:
             start_date = datetime(1950, 1, 1)  # All available data
 
-        # Fetch series info and observations
+        # Fetch series info and observations in PARALLEL for better performance
         try:
-            async with httpx.AsyncClient(timeout=15.0) as client:
-                # Fetch observations
-                obs_url = f"{self.BASE_URL}/series/observations"
-                obs_params = {
-                    'series_id': series_id,
-                    'api_key': self._api_key,
-                    'file_type': 'json',
-                    'observation_start': start_date.strftime('%Y-%m-%d'),
-                    'observation_end': end_date.strftime('%Y-%m-%d'),
-                }
+            client = get_async_client()
 
-                obs_resp = await client.get(obs_url, params=obs_params)
-                obs_data = obs_resp.json()
+            # Build request params
+            obs_url = f"{self.BASE_URL}/series/observations"
+            obs_params = {
+                'series_id': series_id,
+                'api_key': self._api_key,
+                'file_type': 'json',
+                'observation_start': start_date.strftime('%Y-%m-%d'),
+                'observation_end': end_date.strftime('%Y-%m-%d'),
+            }
 
-                if 'error_message' in obs_data:
-                    return SeriesData(
-                        id=series_id,
-                        dates=[],
-                        values=[],
-                        error=obs_data.get('error_message', 'Unknown error')
-                    )
+            info_url = f"{self.BASE_URL}/series"
+            info_params = {
+                'series_id': series_id,
+                'api_key': self._api_key,
+                'file_type': 'json',
+            }
 
-                # Fetch series info
-                info_url = f"{self.BASE_URL}/series"
-                info_params = {
-                    'series_id': series_id,
-                    'api_key': self._api_key,
-                    'file_type': 'json',
-                }
+            # Fetch BOTH endpoints in parallel (saves 500ms-1s per series)
+            obs_task = client.get(obs_url, params=obs_params)
+            info_task = client.get(info_url, params=info_params)
+            obs_resp, info_resp = await asyncio.gather(obs_task, info_task)
 
-                info_resp = await client.get(info_url, params=info_params)
-                info_data = info_resp.json()
+            obs_data = obs_resp.json()
+            info_data = info_resp.json()
 
-                # Parse observations
-                dates = []
-                values = []
-                for obs in obs_data.get('observations', []):
-                    if obs.get('value') and obs['value'] != '.':
-                        try:
-                            dates.append(obs['date'])
-                            values.append(float(obs['value']))
-                        except (ValueError, TypeError):
-                            continue
-
-                # Build info dict
-                series_info = info_data.get('seriess', [{}])[0] if info_data.get('seriess') else {}
-                info = {
-                    'name': series_info.get('title', series_id),
-                    'title': series_info.get('title', series_id),
-                    'unit': series_info.get('units', ''),
-                    'units': series_info.get('units', ''),
-                    'frequency': series_info.get('frequency', 'Monthly'),
-                    'seasonal_adjustment': series_info.get('seasonal_adjustment_short', ''),
-                    'source': 'FRED',
-                    'last_updated': series_info.get('last_updated', ''),
-                }
-
+            if 'error_message' in obs_data:
                 return SeriesData(
                     id=series_id,
-                    dates=dates,
-                    values=values,
-                    info=info
+                    dates=[],
+                    values=[],
+                    error=obs_data.get('error_message', 'Unknown error')
                 )
+
+            # Parse observations
+            dates = []
+            values = []
+            for obs in obs_data.get('observations', []):
+                if obs.get('value') and obs['value'] != '.':
+                    try:
+                        dates.append(obs['date'])
+                        values.append(float(obs['value']))
+                    except (ValueError, TypeError):
+                        continue
+
+            # Build info dict
+            series_info = info_data.get('seriess', [{}])[0] if info_data.get('seriess') else {}
+            info = {
+                'name': series_info.get('title', series_id),
+                'title': series_info.get('title', series_id),
+                'unit': series_info.get('units', ''),
+                'units': series_info.get('units', ''),
+                'frequency': series_info.get('frequency', 'Monthly'),
+            return SeriesData(
+                id=series_id,
+                dates=dates,
+                values=values,
+                info=info
+            )
 
         except httpx.TimeoutException:
             return SeriesData(
@@ -157,69 +191,70 @@ class FREDSource(DataSource):
             start_date = datetime(1950, 1, 1)
 
         try:
-            with httpx.Client(timeout=15.0) as client:
-                # Fetch observations
-                obs_url = f"{self.BASE_URL}/series/observations"
-                obs_params = {
-                    'series_id': series_id,
-                    'api_key': self._api_key,
-                    'file_type': 'json',
-                    'observation_start': start_date.strftime('%Y-%m-%d'),
-                    'observation_end': end_date.strftime('%Y-%m-%d'),
-                }
+            client = get_sync_client()
 
-                obs_resp = client.get(obs_url, params=obs_params)
-                obs_data = obs_resp.json()
+            # Fetch observations
+            obs_url = f"{self.BASE_URL}/series/observations"
+            obs_params = {
+                'series_id': series_id,
+                'api_key': self._api_key,
+                'file_type': 'json',
+                'observation_start': start_date.strftime('%Y-%m-%d'),
+                'observation_end': end_date.strftime('%Y-%m-%d'),
+            }
 
-                if 'error_message' in obs_data:
-                    return SeriesData(
-                        id=series_id,
-                        dates=[],
-                        values=[],
-                        error=obs_data.get('error_message', 'Unknown error')
-                    )
+            obs_resp = client.get(obs_url, params=obs_params)
+            obs_data = obs_resp.json()
 
-                # Fetch series info
-                info_url = f"{self.BASE_URL}/series"
-                info_params = {
-                    'series_id': series_id,
-                    'api_key': self._api_key,
-                    'file_type': 'json',
-                }
-
-                info_resp = client.get(info_url, params=info_params)
-                info_data = info_resp.json()
-
-                # Parse observations
-                dates = []
-                values = []
-                for obs in obs_data.get('observations', []):
-                    if obs.get('value') and obs['value'] != '.':
-                        try:
-                            dates.append(obs['date'])
-                            values.append(float(obs['value']))
-                        except (ValueError, TypeError):
-                            continue
-
-                # Build info dict
-                series_info = info_data.get('seriess', [{}])[0] if info_data.get('seriess') else {}
-                info = {
-                    'name': series_info.get('title', series_id),
-                    'title': series_info.get('title', series_id),
-                    'unit': series_info.get('units', ''),
-                    'units': series_info.get('units', ''),
-                    'frequency': series_info.get('frequency', 'Monthly'),
-                    'seasonal_adjustment': series_info.get('seasonal_adjustment_short', ''),
-                    'source': 'FRED',
-                    'last_updated': series_info.get('last_updated', ''),
-                }
-
+            if 'error_message' in obs_data:
                 return SeriesData(
                     id=series_id,
-                    dates=dates,
-                    values=values,
-                    info=info
+                    dates=[],
+                    values=[],
+                    error=obs_data.get('error_message', 'Unknown error')
                 )
+
+            # Fetch series info
+            info_url = f"{self.BASE_URL}/series"
+            info_params = {
+                'series_id': series_id,
+                'api_key': self._api_key,
+                'file_type': 'json',
+            }
+
+            info_resp = client.get(info_url, params=info_params)
+            info_data = info_resp.json()
+
+            # Parse observations
+            dates = []
+            values = []
+            for obs in obs_data.get('observations', []):
+                if obs.get('value') and obs['value'] != '.':
+                    try:
+                        dates.append(obs['date'])
+                        values.append(float(obs['value']))
+                    except (ValueError, TypeError):
+                        continue
+
+            # Build info dict
+            series_info = info_data.get('seriess', [{}])[0] if info_data.get('seriess') else {}
+            info = {
+                'name': series_info.get('title', series_id),
+                'title': series_info.get('title', series_id),
+                'unit': series_info.get('units', ''),
+                'units': series_info.get('units', ''),
+                'frequency': series_info.get('frequency', 'Monthly'),
+                'seasonal_adjustment': series_info.get('seasonal_adjustment_short', ''),
+                'source': 'FRED',
+                'last_updated': series_info.get('last_updated', ''),
+            }
+
+            return SeriesData(
+                id=series_id,
+                dates=dates,
+                values=values,
+                info=info
+            )
 
         except httpx.TimeoutException:
             return SeriesData(
@@ -252,21 +287,22 @@ class FREDSource(DataSource):
         }
 
         try:
-            async with httpx.AsyncClient(timeout=10.0) as client:
-                resp = await client.get(url, params=params)
-                data = resp.json()
+            client = get_async_client()
+            resp = await client.get(url, params=params)
+            data = resp.json()
 
-                results = []
-                for s in data.get('seriess', []):
-                    results.append({
-                        'series_id': s['id'],
-                        'title': s['title'],
-                        'frequency': s.get('frequency', 'Unknown'),
-                        'units': s.get('units', ''),
-                        'seasonal_adjustment': s.get('seasonal_adjustment_short', ''),
-                        'popularity': s.get('popularity', 0),
-                    })
-                return results
+            results = []
+            for s in data.get('seriess', []):
+                results.append({
+                    'series_id': s['id'],
+                    'title': s['title'],
+                    'frequency': s.get('frequency', 'Unknown'),
+                    'units': s.get('units', ''),
+                    'seasonal_adjustment': s.get('seasonal_adjustment_short', ''),
+                    'popularity': s.get('popularity', 0),
+                })
+            return results
+
         except Exception as e:
             print(f"FRED search error: {e}")
             return []

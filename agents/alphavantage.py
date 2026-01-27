@@ -921,6 +921,61 @@ ALPHAVANTAGE_SERIES = {
 _cache = {}
 _cache_ttl = timedelta(hours=1)
 
+# Rate limiting - Alpha Vantage free tier: 25 requests/day, 5/minute
+_rate_limit_daily = 25
+_rate_limit_minute = 5
+_requests_today = []
+_requests_minute = []
+
+
+def _check_rate_limit() -> bool:
+    """
+    Check if we're within rate limits.
+
+    Returns True if request is allowed, False if rate limited.
+    Cleans up old request timestamps as a side effect.
+    """
+    global _requests_today, _requests_minute
+
+    now = datetime.now()
+
+    # Clean up old requests (older than 24 hours)
+    cutoff_day = now - timedelta(hours=24)
+    _requests_today = [t for t in _requests_today if t > cutoff_day]
+
+    # Clean up minute-level tracking (older than 1 minute)
+    cutoff_minute = now - timedelta(minutes=1)
+    _requests_minute = [t for t in _requests_minute if t > cutoff_minute]
+
+    # Check daily limit
+    if len(_requests_today) >= _rate_limit_daily:
+        return False
+
+    # Check per-minute limit
+    if len(_requests_minute) >= _rate_limit_minute:
+        return False
+
+    return True
+
+
+def _record_request():
+    """Record a request for rate limiting purposes."""
+    now = datetime.now()
+    _requests_today.append(now)
+    _requests_minute.append(now)
+
+
+def get_rate_limit_status() -> dict:
+    """Get current rate limit status for debugging."""
+    _check_rate_limit()  # Clean up old entries
+    return {
+        'daily_used': len(_requests_today),
+        'daily_limit': _rate_limit_daily,
+        'daily_remaining': _rate_limit_daily - len(_requests_today),
+        'minute_used': len(_requests_minute),
+        'minute_limit': _rate_limit_minute,
+    }
+
 
 def _fetch_alphavantage(params: dict) -> dict:
     """
@@ -950,7 +1005,15 @@ def _fetch_alphavantage(params: dict) -> dict:
         if now - cached_time < _cache_ttl:
             return cached_data
 
+    # Check rate limits before making API call
+    if not _check_rate_limit():
+        status = get_rate_limit_status()
+        print(f"[AlphaVantage] Rate limited: {status['daily_used']}/{status['daily_limit']} daily requests used")
+        return {'error': f"Alpha Vantage rate limit reached ({status['daily_used']}/{status['daily_limit']} daily requests). Try again later or use FRED equivalent series."}
+
     try:
+        # Record this request for rate limiting
+        _record_request()
         req = Request(url, headers={'User-Agent': 'EconStats/1.0'})
         with urlopen(req, timeout=30) as response:
             data = json.loads(response.read().decode('utf-8'))

@@ -118,10 +118,11 @@ async def api_search(body: SearchRequest):
     if temporal and temporal.get('years_override'):
         years = temporal['years_override']
 
-    # 3. Fetch data for each series
+    # 3. Fetch data for all series IN PARALLEL (major performance improvement)
+    results = await source_manager.fetch_many(routing_result.series, years)
+
     series_data = []
-    for series_id in routing_result.series:
-        result = source_manager.fetch_sync(series_id, years)
+    for result in results:
         if result.is_valid:
             dates = result.dates
             values = result.values
@@ -134,7 +135,7 @@ async def api_search(body: SearchRequest):
                     dates, values = filter_data_by_dates(dates, values, start_date, end_date)
 
             if dates and values:
-                series_data.append((series_id, dates, values, result.info))
+                series_data.append((result.id, dates, values, result.info))
 
     if not series_data:
         return SearchResponse(
@@ -343,10 +344,11 @@ async def search_html(
     if temporal and temporal.get('years_override'):
         years = temporal['years_override']
 
-    # 3. Fetch data for each series
+    # 3. Fetch data for all series IN PARALLEL
+    results = await source_manager.fetch_many(routing_result.series, years)
+
     series_data = []
-    for series_id in routing_result.series:
-        result = source_manager.fetch_sync(series_id, years)
+    for result in results:
         if result.is_valid:
             dates = result.dates
             values = result.values
@@ -359,7 +361,7 @@ async def search_html(
                     dates, values = filter_data_by_dates(dates, values, start_date, end_date)
 
             if dates and values:
-                series_data.append((series_id, dates, values, result.info))
+                series_data.append((result.id, dates, values, result.info))
 
     if not series_data:
         return templates.TemplateResponse("partials/no_results.html", {

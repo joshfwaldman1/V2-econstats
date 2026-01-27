@@ -1,14 +1,33 @@
 <!-- No results partial -->
-<div class="max-w-5xl mx-auto px-4 py-8 text-center">
+<div class="max-w-5xl mx-auto px-4 py-8 text-center" role="alert" aria-live="polite">
     <div class="mb-6">
-        <svg class="w-16 h-16 mx-auto text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-16 h-16 mx-auto text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                   d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
     </div>
 
     <h2 class="text-xl font-semibold text-slate-700 mb-2">No Results Found</h2>
-    <p class="text-slate-500 mb-6">{{ message }}</p>
+    <p class="text-slate-500 mb-4 max-w-md mx-auto">{{ message }}</p>
+
+    <!-- Helpful suggestions -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 max-w-md mx-auto text-left">
+        <p class="text-sm font-medium text-amber-800 mb-2">Tips for better results:</p>
+        <ul class="text-sm text-amber-700 space-y-1">
+            <li class="flex items-start gap-2">
+                <span class="text-amber-500">-</span>
+                <span>Try using common economic terms (inflation, GDP, unemployment)</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-amber-500">-</span>
+                <span>Ask about specific time periods or trends</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="text-amber-500">-</span>
+                <span>Keep questions focused on U.S. economic data</span>
+            </li>
+        </ul>
+    </div>
 
     <div class="space-y-4">
         <p class="text-sm text-slate-400">Try one of these popular queries:</p>
@@ -18,8 +37,10 @@
                 hx-vals='{"query": "How is inflation?"}'
                 hx-target="#results"
                 hx-swap="innerHTML"
+                aria-label="Search: How is inflation?"
                 class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600
                        hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50
+                       focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
                        transition-all duration-200 cursor-pointer"
             >
                 How is inflation?
@@ -29,8 +50,10 @@
                 hx-vals='{"query": "Job market health"}'
                 hx-target="#results"
                 hx-swap="innerHTML"
+                aria-label="Search: Job market health"
                 class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600
                        hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50
+                       focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
                        transition-all duration-200 cursor-pointer"
             >
                 Job market health
@@ -40,8 +63,10 @@
                 hx-vals='{"query": "GDP growth"}'
                 hx-target="#results"
                 hx-swap="innerHTML"
+                aria-label="Search: GDP growth"
                 class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600
                        hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50
+                       focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
                        transition-all duration-200 cursor-pointer"
             >
                 GDP growth

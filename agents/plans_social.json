@@ -1,0 +1,240 @@
+{
+  "bankruptcy": {
+    "series": [
+      "BKRTCYQ",
+      "BUSLOANS",
+      "DRSFRMACBS"
+    ],
+    "show_yoy": [false, true, false],
+    "combine_chart": false,
+    "explanation": "Bankruptcy filings: BKRTCYQ shows total bankruptcy cases filed quarterly. Business loans (BUSLOANS) provides context on credit conditions. Auto loan delinquencies (DRSFRMACBS) are often a leading indicator of consumer financial stress that precedes bankruptcies. Rising bankruptcies + tightening credit = financial distress spreading."
+  },
+  "bankruptcy filings": {
+    "series": [
+      "BKRTCYQ",
+      "DRCCLACBS",
+      "TDSP"
+    ],
+    "show_yoy": [false, false, false],
+    "combine_chart": false,
+    "explanation": "Bankruptcy context: BKRTCYQ shows quarterly bankruptcy case filings. Credit card delinquencies (DRCCLACBS) often precede consumer bankruptcies. Debt service ratio (TDSP) shows overall household debt burden - high ratios mean more households at risk of bankruptcy."
+  },
+  "foreclosures": {
+    "series": [
+      "DRSFRMACBS",
+      "MORTGAGE30US",
+      "MDSP",
+      "CSUSHPINSA"
+    ],
+    "show_yoy": [false, false, false, true],
+    "combine_chart": false,
+    "explanation": "Foreclosure indicators (FRED lacks direct foreclosure data): Mortgage delinquency rates (DRSFRMACBS) are the best proxy as delinquencies precede foreclosures. Mortgage rates (MORTGAGE30US) show affordability pressure. Mortgage debt service ratio (MDSP) reveals payment burden. Home prices (CSUSHPINSA) affect underwater mortgages. Rising delinquencies + high rates + falling prices = foreclosure risk. For actual foreclosure counts, check ATTOM or RealtyTrac data."
+  },
+  "foreclosure rate": {
+    "series": [
+      "DRSFRMACBS",
+      "MDSP",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Foreclosure proxies: DRSFRMACBS (residential mortgage delinquency rate) is the best available indicator in FRED - delinquencies lead foreclosures by 3-6 months. MDSP (mortgage debt service ratio) shows payment burden. Mortgage rates affect future delinquencies. NOTE: For actual foreclosure rates, see CoreLogic, Black Knight, or ATTOM data."
+  },
+  "home foreclosures": {
+    "series": [
+      "DRSFRMACBS",
+      "MDSP",
+      "CSUSHPINSA",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": [false, false, true, false],
+    "combine_chart": false,
+    "explanation": "Home foreclosure indicators: Mortgage delinquencies (DRSFRMACBS) are the best FRED proxy - delinquencies precede foreclosures. Mortgage debt service (MDSP) shows payment stress. Home prices (CSUSHPINSA) affect negative equity - falling prices increase foreclosure risk. Mortgage rates (MORTGAGE30US) impact affordability. 2008 crisis saw delinquencies spike to 11%; post-crisis reforms and COVID forbearance kept rates low."
+  },
+  "self employment": {
+    "series": [
+      "LNS12032194",
+      "LNS12032197",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Self-employment: LNS12032194 shows unincorporated self-employed workers (freelancers, gig workers, sole proprietors). LNS12032197 shows multiple jobholders, which includes many self-employed with side businesses. Total nonfarm payrolls (PAYEMS) provides context for traditional W-2 employment. Note: These capture formal self-employment; gig economy participation may be undercounted."
+  },
+  "self employed workers": {
+    "series": [
+      "LNS12032194",
+      "LNS12032196",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Self-employed workforce: Unincorporated self-employed (LNS12032194) captures most freelancers, contractors, and gig workers. Incorporated self-employed (LNS12032196) shows those with formal business structures. Compare to total payrolls (PAYEMS) to see self-employment as share of total employment. Self-employment rose during COVID as some chose entrepreneurship over traditional jobs."
+  },
+  "freelancers": {
+    "series": [
+      "LNS12032194",
+      "LNS12032197",
+      "USINFO"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Freelance economy proxies: Unincorporated self-employed (LNS12032194) includes many freelancers. Multiple jobholders (LNS12032197) captures side gig workers. Information sector (USINFO) employment includes many tech freelancers. NOTE: FRED lacks dedicated gig/freelance data - for detailed stats, see BLS Contingent Worker Survey or Upwork/Freelancers Union reports."
+  },
+  "wealth inequality": {
+    "series": [
+      "WFRBLT01026",
+      "WFRBSB50107",
+      "WFRBST01134"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Wealth distribution: WFRBLT01026 shows wealth share held by top 1% of Americans. WFRBSB50107 shows wealth share held by bottom 50%. WFRBST01134 shows wealth held by 50th-90th percentile (middle class). Top 1% owns ~32% of all wealth; bottom 50% owns ~2.6%. This gap has widened dramatically since the 1980s. Combining allows direct comparison of wealth concentration."
+  },
+  "income inequality": {
+    "series": [
+      "WFRBLT01026",
+      "WFRBSB50107",
+      "MEHOINUSA672N"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Income and wealth inequality: While FRED lacks direct income inequality measures like Gini coefficient, wealth shares (WFRBLT01026 for top 1%, WFRBSB50107 for bottom 50%) reveal inequality trends. Median household income (MEHOINUSA672N) shows middle-class experience. For detailed income inequality data, see Census Bureau or World Inequality Database."
+  },
+  "gini coefficient": {
+    "series": [
+      "WFRBLT01026",
+      "WFRBSB50107",
+      "MEHOINUSA672N"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "NOTE: FRED does not publish the Gini coefficient directly. As proxies, we show: Top 1% wealth share (WFRBLT01026), bottom 50% wealth share (WFRBSB50107), and median income (MEHOINUSA672N). For the actual Gini coefficient, see Census Bureau (GINI index ~0.49 for US) or World Bank data."
+  },
+  "top 1 percent": {
+    "series": [
+      "WFRBLT01026",
+      "WFRBST01134",
+      "WFRBSB50107"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Wealth concentration: Top 1% wealth share (WFRBLT01026) shows roughly a third of all US wealth is held by the wealthiest 1%. Compare to middle class (50th-90th percentile, WFRBST01134) and bottom 50% (WFRBSB50107). Stock market gains disproportionately benefit top 1% who hold most equities."
+  },
+  "poverty": {
+    "series": [
+      "PPAAUS00000A156NCEN",
+      "MEHOINUSA672N",
+      "LES1252881600Q"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Poverty indicators: Official poverty rate (PPAAUS00000A156NCEN) shows percentage of Americans below the federal poverty line (~$30K for family of 4). Median household income (MEHOINUSA672N) shows middle-class benchmark. Real wages (LES1252881600Q) indicate whether workers are gaining ground. Poverty rate has ranged from 10-15% over recent decades; expanded safety net during COVID temporarily reduced it to record lows."
+  },
+  "poverty rate": {
+    "series": [
+      "PPAAUS00000A156NCEN"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US poverty rate (PPAAUS00000A156NCEN): Percentage of Americans living below the federal poverty threshold. The threshold varies by family size (~$15K for individual, ~$30K for family of 4). Rate typically rises during recessions and falls during expansions. COVID-era stimulus temporarily pushed rate to historic lows; it has since risen as support ended."
+  },
+  "child poverty": {
+    "series": [
+      "PPAAUS00000A156NCEN",
+      "MEHOINUSA672N"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Child poverty proxies: FRED lacks dedicated child poverty series. Overall poverty rate (PPAAUS00000A156NCEN) provides context. Median household income (MEHOINUSA672N) affects family resources. For detailed child poverty data, see Census Bureau's Current Population Survey - child poverty rate historically runs higher than overall rate (around 16% vs 11%)."
+  },
+  "food insecurity": {
+    "series": [
+      "PCU722511722511",
+      "CUSR0000SAF11",
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Food insecurity proxies (FRED lacks direct food insecurity data): Food away from home prices (PCU722511722511) show restaurant costs. Food at home prices (CUSR0000SAF11) show grocery costs. Real disposable income (DSPIC96) determines affordability. When food prices rise faster than income, food insecurity increases. For actual food insecurity statistics, see USDA Economic Research Service."
+  },
+  "homelessness": {
+    "series": [
+      "CUSR0000SAH1",
+      "MORTGAGE30US",
+      "MSPUS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Housing affordability factors (FRED lacks homelessness data): Shelter inflation (CUSR0000SAH1) shows housing cost pressures. Mortgage rates (MORTGAGE30US) affect homeownership affordability. Median home prices (MSPUS) show purchase costs. Rising shelter costs + high rates + high prices = affordability crisis that drives homelessness. For actual homeless counts, see HUD Point-in-Time Count."
+  },
+  "social safety net": {
+    "series": [
+      "W823RC1Q027SBEA",
+      "PPAAUS00000A156NCEN",
+      "UNRATE"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Social safety net: Government social benefits (W823RC1Q027SBEA) shows transfer payments like Social Security, Medicare, unemployment insurance, and other assistance. Compare to poverty rate (PPAAUS00000A156NCEN) to assess effectiveness. Unemployment rate (UNRATE) drives benefit claims. COVID stimulus caused historic spike in social benefits."
+  },
+  "government benefits": {
+    "series": [
+      "W823RC1Q027SBEA",
+      "A063RC1Q027SBEA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Government benefits: Total government social benefits to persons (W823RC1Q027SBEA) includes Social Security, Medicare, Medicaid, unemployment insurance, SNAP, and other programs. Personal current transfer receipts (A063RC1Q027SBEA) is a broader measure. These programs represent a significant and growing share of household income, especially for retirees and lower-income families."
+  },
+  "economic mobility": {
+    "series": [
+      "WFRBSB50107",
+      "MEHOINUSA672N",
+      "LES1252881600Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Economic mobility proxies (FRED lacks direct mobility data): Bottom 50% wealth share (WFRBSB50107) shows whether lower-income Americans are gaining ground. Median income (MEHOINUSA672N) shows middle-class trajectory. Real wages (LES1252881600Q) indicate whether workers are advancing. Declining bottom 50% share suggests reduced upward mobility. For actual mobility research, see Raj Chetty's Opportunity Insights data."
+  },
+  "minimum wage": {
+    "series": [
+      "FEDMINNFRWG",
+      "AHETPI",
+      "CPIAUCSL"
+    ],
+    "show_yoy": [false, true, true],
+    "combine_chart": false,
+    "explanation": "Minimum wage context: Federal minimum wage (FEDMINNFRWG) has been $7.25/hour since 2009. Average hourly earnings for production workers (AHETPI) shows market wages. CPI inflation (CPIAUCSL) shows how purchasing power has eroded. Real minimum wage (inflation-adjusted) is at multi-decade lows. Note: Many states and cities have higher minimums than federal."
+  },
+  "working poor": {
+    "series": [
+      "PPAAUS00000A156NCEN",
+      "AHETPI",
+      "LNS12032197"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Working poor indicators: Poverty rate (PPAAUS00000A156NCEN) includes many employed individuals. Production worker wages (AHETPI) show lower-wage worker earnings. Multiple jobholders (LNS12032197) may indicate need for additional income. Many full-time workers at minimum wage earn below the poverty line, especially families with children."
+  },
+  "middle class": {
+    "series": [
+      "WFRBST01134",
+      "MEHOINUSA672N",
+      "FIXHAI"
+    ],
+    "show_yoy": [false, true, false],
+    "combine_chart": false,
+    "explanation": "Middle class health: Wealth share of 50th-90th percentile (WFRBST01134) shows middle-class stake in the economy. Median household income (MEHOINUSA672N) is the benchmark middle-class income. Housing affordability (FIXHAI) is crucial for middle-class stability. Middle-class wealth share has shrunk from 35% in 1990 to under 30% today."
+  },
+  "shrinking middle class": {
+    "series": [
+      "WFRBST01134",
+      "WFRBLT01026",
+      "MEHOINUSA672N"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Is the middle class shrinking? Compare wealth shares: Middle class (50th-90th percentile, WFRBST01134) vs top 1% (WFRBLT01026). Middle-class share has declined from ~35% in 1990 to ~28% today, while top 1% rose from ~23% to ~32%. Median income (MEHOINUSA672N) has grown slower than top incomes. The middle class is being squeezed from both directions."
+  }
+}

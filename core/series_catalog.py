@@ -437,6 +437,7 @@ def load_query_plans() -> dict:
         "plans_demographics.json",
         "plans_economy_overview.json",
         "plans_trade_markets.json",
+        "plans_social.json",
     ]
 
     for filename in plan_files:

@@ -892,6 +892,7 @@ class SeriesRegistry:
             'plans_consumer.json',
             'plans_demographics.json',
             'plans_trade_markets.json',
+            'plans_social.json',
         ]
 
         for filename in plan_files:

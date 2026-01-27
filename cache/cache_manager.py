@@ -16,6 +16,8 @@ Tier 3: LLM response cache (1 hour TTL)
 
 import hashlib
 import time
+import random
+import math
 from dataclasses import dataclass, field
 from typing import Optional, Dict, Any, List
 from collections import OrderedDict
@@ -29,26 +31,62 @@ class CacheEntry:
     value: Any
     expires_at: float
     created_at: float = field(default_factory=time.time)
+    ttl: float = 0  # Original TTL for stampede protection
 
 
 class LRUCache:
-    """Simple LRU cache with TTL support."""
+    """
+    LRU cache with TTL support and stampede protection.
 
-    def __init__(self, max_size: int = 10000):
+    Uses probabilistic early expiration (XFetch algorithm) to prevent
+    cache stampedes when popular entries expire simultaneously.
+    """
+
+    def __init__(self, max_size: int = 10000, stampede_beta: float = 1.0):
+        """
+        Initialize LRU cache.
+
+        Args:
+            max_size: Maximum number of entries
+            stampede_beta: Stampede protection factor (higher = earlier recompute)
+                          Set to 0 to disable stampede protection
+        """
         self._cache: OrderedDict[str, CacheEntry] = OrderedDict()
         self._max_size = max_size
+        self._stampede_beta = stampede_beta
 
-    def get(self, key: str) -> Optional[Any]:
-        """Get value if exists and not expired."""
+    def get(self, key: str, stampede_protection: bool = True) -> Optional[Any]:
+        """
+        Get value if exists and not expired.
+
+        Uses XFetch algorithm for stampede protection:
+        - As entry approaches expiration, probability of returning None increases
+        - This allows one request to regenerate cache while others still get cached value
+
+        Args:
+            key: Cache key
+            stampede_protection: If True, use probabilistic early expiration
+        """
         if key not in self._cache:
             return None
 
         entry = self._cache[key]
+        now = time.time()
 
-        # Check expiration
-        if time.time() > entry.expires_at:
+        # Check hard expiration
+        if now > entry.expires_at:
             del self._cache[key]
             return None
+
+        # Stampede protection: probabilistic early expiration
+        if stampede_protection and self._stampede_beta > 0 and entry.ttl > 0:
+            time_remaining = entry.expires_at - now
+            # XFetch algorithm: return None with probability that increases as expiration approaches
+            # Using -log(random) gives exponential distribution, beta controls aggressiveness
+            threshold = self._stampede_beta * entry.ttl * 0.1  # 10% of TTL window
+            if time_remaining < threshold * (-math.log(random.random() + 0.001)):
+                # Early expiration triggered - one request will regenerate
+                return None
 
         # Move to end (most recently used)
         self._cache.move_to_end(key)
@@ -62,7 +100,8 @@ class LRUCache:
 
         self._cache[key] = CacheEntry(
             value=value,
-            expires_at=time.time() + ttl
+            expires_at=time.time() + ttl,
+            ttl=ttl
         )
 
     def delete(self, key: str) -> bool:
