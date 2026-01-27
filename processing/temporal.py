@@ -27,8 +27,20 @@ def extract_temporal_filter(query: str) -> Optional[Dict]:
     now = datetime.now()
     current_year = now.year
 
-    # === Specific year reference ===
-    if match := re.search(r'\b(?:in|during|for|from)?\s*((?:19|20)\d{2})\b', q):
+    # === "Since YYYY" - open-ended range from year to present ===
+    if match := re.search(r'\bsince\s+((?:19|20)\d{2})\b', q):
+        year = int(match.group(1))
+        if 1950 <= year <= current_year:
+            return {
+                'temporal_focus': f'since {year}',
+                'filter_start_date': f'{year}-01-01',
+                # No end date - open-ended to present
+                'years_override': current_year - year + 2,
+                'explanation': f'Showing data from {year} to present.',
+            }
+
+    # === Specific year reference (in/during/for YYYY) ===
+    if match := re.search(r'\b(?:in|during|for)\s+((?:19|20)\d{2})\b', q):
         year = int(match.group(1))
         if 1950 <= year <= current_year:
             return {
