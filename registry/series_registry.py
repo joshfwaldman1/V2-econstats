@@ -320,6 +320,348 @@ SERIES_DB: Dict[str, SeriesInfo] = {
             'Sensitive to mortgage rates and builder confidence.'
         ]
     ),
+    # ==========================================================================
+    # GDP VARIANTS - Very important to distinguish quarterly vs annual
+    # ==========================================================================
+    'A191RL1Q225SBEA': SeriesInfo(
+        id='A191RL1Q225SBEA',
+        name='Real GDP Growth (Quarterly, Annualized)',
+        unit='Percent',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        bullets=[
+            'Quarterly GDP growth expressed at an annualized rate—the standard way GDP is reported in the U.S.',
+            'Shows quarter-to-quarter momentum. Growth above 2% is healthy; negative readings for 2+ quarters suggest recession.'
+        ]
+    ),
+    'PB0000031Q225SBEA': SeriesInfo(
+        id='PB0000031Q225SBEA',
+        name='Core GDP (Final Sales to Private Domestic Purchasers)',
+        unit='Percent',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        bullets=[
+            'Strips out volatile trade, inventories, and government spending—shows underlying private-sector demand.',
+            'Economists often prefer this to headline GDP because it better reflects sustainable economic momentum.'
+        ]
+    ),
+    'A191RL1A225NBEA': SeriesInfo(
+        id='A191RL1A225NBEA',
+        name='Real GDP Growth (Annual)',
+        unit='Percent',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='annual',
+        bullets=[
+            'Year-over-year GDP growth rate—smoother than quarterly data and better for long-term comparisons.',
+            'Average U.S. growth has been ~2% since 2000. Growth above 3% is considered strong.'
+        ]
+    ),
+    'GDPC1': SeriesInfo(
+        id='GDPC1',
+        name='Real GDP Level (Billions of 2017 Dollars)',
+        unit='Billions of Chained 2017 Dollars',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='level',
+        frequency='quarterly',
+        bullets=[
+            'Total economic output in inflation-adjusted dollars—the size of the U.S. economy.',
+            'Currently around $23 trillion. Used to compare economic size over time or across countries.'
+        ]
+    ),
+    # ==========================================================================
+    # ADDITIONAL EMPLOYMENT SERIES
+    # ==========================================================================
+    'JTSJOL': SeriesInfo(
+        id='JTSJOL',
+        name='Job Openings (JOLTS)',
+        unit='Level in Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        bullets=[
+            'Total job openings across the economy—a measure of labor demand and business confidence.',
+            'Peaked at 12 million in 2022; levels above 7 million indicate a tight labor market.'
+        ]
+    ),
+    'LNS11300060': SeriesInfo(
+        id='LNS11300060',
+        name='Prime-Age Labor Force Participation Rate',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        bullets=[
+            'Share of Americans aged 25-54 in the labor force—avoids distortions from retirees and students.',
+            'Has recovered to pre-pandemic levels, suggesting strong labor force attachment.'
+        ]
+    ),
+    'LNS11300000': SeriesInfo(
+        id='LNS11300000',
+        name='Labor Force Participation Rate (All)',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        bullets=[
+            'Share of all adults (16+) either working or seeking work.',
+            'Has declined from 67% in 2000 due to aging population and rising disability.'
+        ]
+    ),
+    'MANEMP': SeriesInfo(
+        id='MANEMP',
+        name='Manufacturing Employment',
+        unit='Thousands of Persons',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        bullets=[
+            'Total jobs in the manufacturing sector—a key indicator of industrial strength.',
+            'Has declined from 19 million in 1979 to around 13 million today due to automation and offshoring.'
+        ]
+    ),
+    'U6RATE': SeriesInfo(
+        id='U6RATE',
+        name='U-6 Unemployment Rate (Broad)',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        bullets=[
+            'The broadest measure of unemployment—includes discouraged workers and involuntary part-time.',
+            'Typically runs 3-4 percentage points higher than the headline U-3 rate.'
+        ]
+    ),
+    # ==========================================================================
+    # INFLATION COMPONENTS
+    # ==========================================================================
+    'CUSR0000SAH1': SeriesInfo(
+        id='CUSR0000SAH1',
+        name='CPI: Shelter',
+        unit='Index',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        yoy_name='Shelter Inflation Rate',
+        yoy_unit='% Change YoY',
+        bullets=[
+            'The largest component of CPI—about 1/3 of the index. Includes rent and owners\' equivalent rent.',
+            'Shelter inflation is "sticky" and lags actual market rents by 6-12 months.'
+        ]
+    ),
+    'CUSR0000SEHA': SeriesInfo(
+        id='CUSR0000SEHA',
+        name='CPI: Rent of Primary Residence',
+        unit='Index',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        yoy_name='Rent Inflation Rate',
+        yoy_unit='% Change YoY',
+        bullets=[
+            'Measures changes in what tenants pay for rent—excludes homeowners.',
+            'A key component for forecasting future shelter inflation trends.'
+        ]
+    ),
+    # ==========================================================================
+    # CONSUMER & RETAIL
+    # ==========================================================================
+    'RSXFS': SeriesInfo(
+        id='RSXFS',
+        name='Retail Sales (Ex. Food Services)',
+        unit='Millions of Dollars',
+        source='U.S. Census Bureau',
+        data_type='level',
+        show_yoy=True,
+        bullets=[
+            'Retail sales excluding restaurants—shows goods spending by consumers.',
+            'Consumer spending drives ~70% of GDP, making this a key economic indicator.'
+        ]
+    ),
+    # ==========================================================================
+    # MARKETS
+    # ==========================================================================
+    'SP500': SeriesInfo(
+        id='SP500',
+        name='S&P 500 Index',
+        unit='Index',
+        source='S&P Dow Jones Indices',
+        data_type='index',
+        sa=False,
+        bullets=[
+            'The benchmark U.S. stock index—tracks 500 of the largest American companies.',
+            'Widely considered the best single gauge of U.S. equity market performance.'
+        ]
+    ),
+    'DCOILWTICO': SeriesInfo(
+        id='DCOILWTICO',
+        name='WTI Crude Oil Price',
+        unit='Dollars per Barrel',
+        source='U.S. Energy Information Administration',
+        data_type='level',
+        sa=False,
+        bullets=[
+            'West Texas Intermediate—the U.S. benchmark crude oil price.',
+            'Oil prices affect gasoline costs, inflation, and energy sector profits.'
+        ]
+    ),
+    'DCOILBRENTEU': SeriesInfo(
+        id='DCOILBRENTEU',
+        name='Brent Crude Oil Price',
+        unit='Dollars per Barrel',
+        source='U.S. Energy Information Administration',
+        data_type='level',
+        sa=False,
+        bullets=[
+            'Brent crude—the global benchmark oil price.',
+            'Typically trades at a small premium to WTI due to global demand dynamics.'
+        ]
+    ),
+    # ==========================================================================
+    # WAGES
+    # ==========================================================================
+    'CES0500000003': SeriesInfo(
+        id='CES0500000003',
+        name='Average Hourly Earnings (Private)',
+        unit='Dollars per Hour',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        show_yoy=True,
+        yoy_name='Wage Growth Rate',
+        yoy_unit='% Change YoY',
+        bullets=[
+            'Average hourly pay for private-sector workers—a key measure of wage growth.',
+            'The Fed watches wage growth closely; sustained gains above 4% may pressure inflation.'
+        ]
+    ),
+    # ==========================================================================
+    # TRADE
+    # ==========================================================================
+    'BOPGSTB': SeriesInfo(
+        id='BOPGSTB',
+        name='Trade Balance (Goods & Services)',
+        unit='Millions of Dollars',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='level',
+        bullets=[
+            'The difference between exports and imports—negative means trade deficit.',
+            'The U.S. has run persistent deficits since the 1970s, recently around $60-80B/month.'
+        ]
+    ),
+    'IMPGS': SeriesInfo(
+        id='IMPGS',
+        name='Imports of Goods & Services',
+        unit='Billions of Dollars',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='level',
+        bullets=[
+            'Total value of goods and services imported into the U.S.',
+            'Strong imports often reflect healthy consumer demand and a strong dollar.'
+        ]
+    ),
+    'EXPGS': SeriesInfo(
+        id='EXPGS',
+        name='Exports of Goods & Services',
+        unit='Billions of Dollars',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='level',
+        bullets=[
+            'Total value of goods and services exported from the U.S.',
+            'Export growth is boosted by global demand and a weaker dollar.'
+        ]
+    ),
+    'IMPCH': SeriesInfo(
+        id='IMPCH',
+        name='Imports from China',
+        unit='Millions of Dollars',
+        source='U.S. Census Bureau',
+        data_type='level',
+        bullets=[
+            'Value of goods imported from China—our largest source of imports.',
+            'Tariffs and supply chain shifts have reduced China\'s share in recent years.'
+        ]
+    ),
+    'EXPCH': SeriesInfo(
+        id='EXPCH',
+        name='Exports to China',
+        unit='Millions of Dollars',
+        source='U.S. Census Bureau',
+        data_type='level',
+        bullets=[
+            'Value of goods exported to China—primarily agricultural products and aircraft.',
+            'Trade tensions have created significant volatility in this relationship.'
+        ]
+    ),
+    # ==========================================================================
+    # INTERNATIONAL (EUROZONE)
+    # ==========================================================================
+    'CLVMNACSCAB1GQEA19': SeriesInfo(
+        id='CLVMNACSCAB1GQEA19',
+        name='Eurozone Real GDP',
+        unit='Millions of Chained 2015 Euros',
+        source='Eurostat',
+        data_type='level',
+        frequency='quarterly',
+        bullets=[
+            'Total economic output of the 19 Eurozone countries.',
+            'Useful for comparing U.S. and European economic performance.'
+        ]
+    ),
+    'LRHUTTTTEZM156S': SeriesInfo(
+        id='LRHUTTTTEZM156S',
+        name='Eurozone Unemployment Rate',
+        unit='Percent',
+        source='OECD',
+        data_type='rate',
+        bullets=[
+            'The unemployment rate across Eurozone countries.',
+            'Historically higher than U.S. due to different labor market structures.'
+        ]
+    ),
+    'EA19CPALTT01GYM': SeriesInfo(
+        id='EA19CPALTT01GYM',
+        name='Eurozone Inflation Rate',
+        unit='Percent',
+        source='OECD',
+        data_type='growth_rate',
+        bullets=[
+            'Year-over-year inflation in the Eurozone.',
+            'The ECB targets 2% inflation, similar to the Fed.'
+        ]
+    ),
+    # ==========================================================================
+    # DEMOGRAPHICS - Employment by group
+    # ==========================================================================
+    'LNS14000002': SeriesInfo(
+        id='LNS14000002',
+        name='Unemployment Rate: Women',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        bullets=[
+            'Unemployment rate for women aged 16 and over.',
+            'Typically tracks closely with the overall rate but can diverge during sector-specific shocks.'
+        ]
+    ),
+    'LNS12300062': SeriesInfo(
+        id='LNS12300062',
+        name='Employment-Population Ratio: Women (Prime Age)',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        bullets=[
+            'Share of prime-age women (25-54) who are employed.',
+            'Has risen steadily as women\'s labor force participation increased.'
+        ]
+    ),
+    'LNS11300002': SeriesInfo(
+        id='LNS11300002',
+        name='Labor Force Participation Rate: Women',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        bullets=[
+            'Share of adult women in the labor force.',
+            'Rose from 43% in 1970 to around 57% today.'
+        ]
+    ),
 }
 
 
