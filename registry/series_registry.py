@@ -34,6 +34,8 @@ class SeriesInfo:
     yoy_name: Optional[str] = None
     yoy_unit: Optional[str] = None
     benchmark: Optional[float] = None  # For threshold indicators like Sahm Rule
+    # Short description explaining what this indicator measures (for metric cards)
+    short_description: Optional[str] = None
 
 
 @dataclass
@@ -60,6 +62,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Bureau of Labor Statistics',
         data_type='level',
         show_absolute_change=True,
+        short_description='Total jobs in the U.S. economy (excluding farms)',
         bullets=[
             'The single most important monthly indicator of labor market health—this is the "jobs number" that moves markets on the first Friday of each month.',
             'Context: The economy now needs only 50-75K new jobs/month to keep pace with slowing population growth. Gains above 150K signal robust hiring; below 50K suggests softening.'
@@ -71,6 +74,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of labor force actively seeking work but unemployed',
         bullets=[
             'The headline unemployment rate—the share of Americans actively looking for work but unable to find it.',
             'Rates below 4% are historically rare and signal a tight labor market. The rate peaked at 10% in 2009 and briefly hit 14.7% in April 2020.'
@@ -82,6 +86,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent Change',
         source='U.S. Bureau of Economic Analysis',
         data_type='growth_rate',
+        short_description='Quarterly growth rate of total economic output (annualized)',
         bullets=[
             'The broadest measure of economic output—real GDP growth shows how fast the economy is expanding or contracting.',
             'Healthy growth is typically 2-3% annually. Two consecutive quarters of negative growth is one common definition of recession.'
@@ -96,6 +101,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='CPI Inflation Rate (Headline)',
         yoy_unit='% Change YoY',
+        short_description='Price changes for a basket of consumer goods and services',
         bullets=[
             'CPI measures the average change in prices paid by urban consumers for a basket of goods and services.',
             'The Fed targets 2% annual inflation. Above 3% raises concerns; sustained rates above 5% typically prompt aggressive Fed action.'
@@ -110,6 +116,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Core CPI Inflation Rate',
         yoy_unit='% Change YoY',
+        short_description='Inflation excluding volatile food and energy prices',
         bullets=[
             'CPI excluding food and energy—shows underlying inflation trends without volatile components.',
             'Markets and policymakers watch core inflation to gauge persistent price pressures.'
@@ -122,6 +129,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Board of Governors of the Federal Reserve System',
         data_type='rate',
         sa=False,
+        short_description='The Fed\'s benchmark interest rate that influences all borrowing costs',
         bullets=[
             'The Fed\'s primary tool for monetary policy—the rate banks charge each other for overnight loans.',
             'When the Fed raises rates, borrowing becomes more expensive throughout the economy, slowing growth and inflation.'
@@ -134,6 +142,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Board of Governors of the Federal Reserve System',
         data_type='rate',
         sa=False,
+        short_description='Long-term borrowing cost benchmark; drives mortgage and corporate bond rates',
         bullets=[
             'The benchmark "risk-free" rate that influences mortgages, corporate bonds, and stock valuations.',
             'Higher 10-year yields mean higher borrowing costs across the economy and typically pressure stock prices.'
@@ -146,6 +155,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Board of Governors of the Federal Reserve System',
         data_type='rate',
         sa=False,
+        short_description='Short-term rate reflecting market expectations for Fed policy',
         bullets=[
             'Reflects market expectations for Fed policy over the next two years.',
             'When the 2-year exceeds the 10-year (yield curve inversion), it has historically preceded recessions.'
@@ -158,6 +168,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Freddie Mac',
         data_type='rate',
         sa=False,
+        short_description='Average rate on a 30-year fixed home loan; key driver of housing affordability',
         bullets=[
             'The rate on a conventional 30-year fixed mortgage—the primary driver of housing affordability.',
             'Each 1% increase in rates reduces buying power by roughly 10%. Rates below 4% are historically low; above 7% is restrictive.'
@@ -170,6 +181,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Federal Reserve Bank of St. Louis',
         data_type='spread',
         sa=False,
+        short_description='Difference between long-term and short-term interest rates; inversion warns of recession',
         bullets=[
             'WHY IT MATTERS: When short-term rates exceed long-term rates (inversion), it signals markets expect tight policy will slow growth—historically a reliable recession warning.',
             'The 2022-2024 inversion was the longest since the 1980s, yet no recession followed—possibly due to post-COVID resilience and strong labor markets.',
@@ -183,6 +195,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='Federal Reserve Bank of St. Louis',
         data_type='spread',
         benchmark=0.5,
+        short_description='Recession signal: triggers at 0.5 when unemployment rises quickly above its recent low',
         bullets=[
             'Created by economist Claudia Sahm—signals recession when the 3-month average unemployment rate rises 0.5 points above its 12-month low.',
             'Has correctly identified every U.S. recession since 1970 with no false positives.'
@@ -195,6 +208,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Employment and Training Administration',
         data_type='level',
         frequency='weekly',
+        short_description='Weekly new filings for unemployment benefits; early warning of labor market stress',
         bullets=[
             'Weekly count of new unemployment insurance filings—the most timely indicator of labor market stress.',
             'Claims below 250K indicate a healthy labor market. Sustained readings above 300K suggest deterioration.'
@@ -206,6 +220,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of adults working or looking for work',
         bullets=[
             'Share of the adult population either working or actively seeking work.',
             'Has declined from 67% in 2000 due to aging demographics, rising disability, and more students pursuing education.'
@@ -217,6 +232,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='% of 25-54 year-olds employed; cleanest measure of labor market health',
         bullets=[
             'Share of Americans aged 25-54 who are employed—avoids distortions from retiring boomers and students.',
             'Many economists consider this the single best measure of labor market health.'
@@ -231,6 +247,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Core PCE Inflation Rate',
         yoy_unit='% Change YoY',
+        short_description='The Fed\'s preferred inflation gauge; excludes food and energy; target is 2%',
         bullets=[
             'The Federal Reserve\'s preferred inflation measure—excludes volatile food and energy prices.',
             'The Fed explicitly targets 2% core PCE inflation over time.'
@@ -245,6 +262,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='PCE Inflation Rate',
         yoy_unit='% Change YoY',
+        short_description='Fed\'s official inflation gauge; broader than CPI',
         bullets=[
             'Personal Consumption Expenditures price index—broader than CPI and the Fed\'s official inflation gauge.',
             'Tends to run slightly lower than CPI because it accounts for consumers substituting cheaper goods.'
@@ -257,6 +275,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='University of Michigan',
         data_type='index',
         sa=False,
+        short_description='Survey of how confident consumers feel about the economy; >90=optimistic, <70=pessimistic',
         bullets=[
             'Survey-based measure of how consumers feel about their finances and the economy.',
             'Readings above 90 indicate optimism; below 70 suggests pessimism. Can lead changes in spending behavior.'
@@ -269,6 +288,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Census Bureau',
         data_type='level',
         show_yoy=True,
+        short_description='Consumer spending at stores—drives ~70% of economic growth',
         bullets=[
             'Total receipts at retail stores—a direct measure of consumer spending, which drives ~70% of GDP.',
             'Closely watched for signs of consumer strength or pullback.'
@@ -280,6 +300,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Economic Analysis',
         data_type='rate',
+        short_description='% of income saved; below 4% suggests stretched consumers',
         bullets=[
             'The share of disposable income that households save rather than spend.',
             'Spiked to 33% during COVID stimulus; rates below 4% suggest consumers may be stretched.'
@@ -291,6 +312,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='Federal Reserve Bank of Atlanta',
         data_type='growth_rate',
+        short_description='Real-time GDP estimate updated daily; most current read on economic momentum',
         bullets=[
             'Real-time estimate of current-quarter GDP growth based on incoming economic data.',
             'Updates frequently as new data releases and provides the most current read on economic momentum.'
@@ -304,6 +326,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         data_type='index',
         show_yoy=True,
         sa=False,
+        short_description='Home prices across 20 major metro areas',
         bullets=[
             'Tracks home prices across 20 major U.S. metro areas.',
             'A key measure of housing market health and household wealth.'
@@ -315,6 +338,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Thousands of Units',
         source='U.S. Census Bureau',
         data_type='level',
+        short_description='New home construction; leading indicator of housing supply',
         bullets=[
             'New residential construction starts—a leading indicator of housing supply and economic activity.',
             'Sensitive to mortgage rates and builder confidence.'
@@ -325,11 +349,12 @@ SERIES_DB: Dict[str, SeriesInfo] = {
     # ==========================================================================
     'A191RL1Q225SBEA': SeriesInfo(
         id='A191RL1Q225SBEA',
-        name='Real GDP Growth (Quarterly, Annualized)',
+        name='Real GDP Growth Rate',
         unit='Percent',
         source='U.S. Bureau of Economic Analysis',
         data_type='growth_rate',
         frequency='quarterly',
+        short_description='Quarterly GDP growth, annualized—2-3% is healthy; negative for 2+ quarters = recession',
         bullets=[
             'Quarterly GDP growth expressed at an annualized rate—the standard way GDP is reported in the U.S.',
             'Shows quarter-to-quarter momentum. Growth above 2% is healthy; negative readings for 2+ quarters suggest recession.'
@@ -342,6 +367,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Bureau of Economic Analysis',
         data_type='growth_rate',
         frequency='quarterly',
+        short_description='GDP minus volatile trade/inventories; shows underlying private demand',
         bullets=[
             'Strips out volatile trade, inventories, and government spending—shows underlying private-sector demand.',
             'Economists often prefer this to headline GDP because it better reflects sustainable economic momentum.'
@@ -354,6 +380,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Bureau of Economic Analysis',
         data_type='growth_rate',
         frequency='annual',
+        short_description='Year-over-year economic growth; ~2% is typical, >3% is strong',
         bullets=[
             'Year-over-year GDP growth rate—smoother than quarterly data and better for long-term comparisons.',
             'Average U.S. growth has been ~2% since 2000. Growth above 3% is considered strong.'
@@ -366,6 +393,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='U.S. Bureau of Economic Analysis',
         data_type='level',
         frequency='quarterly',
+        short_description='Total size of the U.S. economy in 2017 dollars',
         bullets=[
             'Total economic output in inflation-adjusted dollars—the size of the U.S. economy.',
             'Currently around $23 trillion. Used to compare economic size over time or across countries.'
@@ -380,6 +408,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Level in Thousands',
         source='U.S. Bureau of Labor Statistics',
         data_type='level',
+        short_description='Unfilled positions; >7M signals tight labor market',
         bullets=[
             'Total job openings across the economy—a measure of labor demand and business confidence.',
             'Peaked at 12 million in 2022; levels above 7 million indicate a tight labor market.'
@@ -413,6 +442,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Thousands of Persons',
         source='U.S. Bureau of Labor Statistics',
         data_type='level',
+        short_description='Factory jobs; down from 19M in 1979 to ~13M today',
         bullets=[
             'Total jobs in the manufacturing sector—a key indicator of industrial strength.',
             'Has declined from 19 million in 1979 to around 13 million today due to automation and offshoring.'
@@ -424,6 +454,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Percent',
         source='U.S. Bureau of Labor Statistics',
         data_type='rate',
+        short_description='Broadest jobless measure; includes part-timers wanting full-time work',
         bullets=[
             'The broadest measure of unemployment—includes discouraged workers and involuntary part-time.',
             'Typically runs 3-4 percentage points higher than the headline U-3 rate.'
@@ -441,6 +472,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Shelter Inflation Rate',
         yoy_unit='% Change YoY',
+        short_description='Housing costs in CPI; ~1/3 of index; lags market rents by 6-12 months',
         bullets=[
             'The largest component of CPI—about 1/3 of the index. Includes rent and owners\' equivalent rent.',
             'Shelter inflation is "sticky" and lags actual market rents by 6-12 months.'
@@ -455,6 +487,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Rent Inflation Rate',
         yoy_unit='% Change YoY',
+        short_description='What renters pay; key predictor of future shelter inflation',
         bullets=[
             'Measures changes in what tenants pay for rent—excludes homeowners.',
             'A key component for forecasting future shelter inflation trends.'
@@ -485,6 +518,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         source='S&P Dow Jones Indices',
         data_type='index',
         sa=False,
+        short_description='Benchmark U.S. stock index tracking 500 largest companies',
         bullets=[
             'The benchmark U.S. stock index—tracks 500 of the largest American companies.',
             'Widely considered the best single gauge of U.S. equity market performance.'
@@ -526,6 +560,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         show_yoy=True,
         yoy_name='Wage Growth Rate',
         yoy_unit='% Change YoY',
+        short_description='Average hourly pay; growth >4% may fuel inflation',
         bullets=[
             'Average hourly pay for private-sector workers—a key measure of wage growth.',
             'The Fed watches wage growth closely; sustained gains above 4% may pressure inflation.'
@@ -540,6 +575,7 @@ SERIES_DB: Dict[str, SeriesInfo] = {
         unit='Millions of Dollars',
         source='U.S. Bureau of Economic Analysis',
         data_type='level',
+        short_description='Exports minus imports; negative = trade deficit',
         bullets=[
             'The difference between exports and imports—negative means trade deficit.',
             'The U.S. has run persistent deficits since the 1970s, recently around $60-80B/month.'

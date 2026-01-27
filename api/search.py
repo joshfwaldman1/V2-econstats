@@ -18,6 +18,7 @@ from processing import format_chart_data, extract_temporal_filter, get_smart_dat
 from processing.temporal import filter_data_by_dates
 from ai import generate_summary, get_bullets, review_summary, get_summary_text, get_suggestions as get_ai_suggestions, get_chart_descriptions
 from config import config
+from registry import registry
 
 search_router = APIRouter()
 
@@ -38,6 +39,7 @@ class MetricResponse(BaseModel):
     value: str
     change: Optional[str] = None
     changeType: Optional[str] = None  # 'positive', 'negative', 'neutral'
+    description: Optional[str] = None  # Short description of what this metric measures
 
 
 class ChartResponse(BaseModel):
@@ -190,9 +192,13 @@ async def api_search(body: SearchRequest):
     # 7. Build metrics from chart data
     metrics = []
     for chart in charts[:4]:  # Max 4 metrics
+        series_id = chart.get('series_id', '')
+        series_info = registry.get_series(series_id)
+
         metric = MetricResponse(
             label=chart.get('name', chart.get('series_id', 'Unknown')),
             value=f"{chart.get('latest', 0):.1f}" if chart.get('latest') else 'N/A',
+            description=series_info.short_description if series_info and series_info.short_description else None,
         )
         if chart.get('yoy_change') is not None:
             yoy = chart['yoy_change']

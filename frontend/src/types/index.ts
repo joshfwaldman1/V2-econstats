@@ -45,6 +45,7 @@ export interface Metric {
   value: string
   change?: string
   changeType?: 'positive' | 'negative' | 'neutral'
+  description?: string  // Short explanation of what this indicator measures
 }
 
 export interface ConversationMessage {
