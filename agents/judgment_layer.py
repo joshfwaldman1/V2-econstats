@@ -372,8 +372,8 @@ def claude_synthesize(
     ])
 
     if is_uncertain_question:
-        # HUMBLE mode for inherently uncertain questions
-        prompt = f"""You are synthesizing economic data with expert commentary to address a question that involves significant uncertainty.
+        # BALANCED mode for questions with inherent uncertainty
+        prompt = f"""You are synthesizing economic data with expert commentary to address a question that involves uncertainty about future outcomes.
 
 USER QUESTION: {query}
 
@@ -382,34 +382,30 @@ CURRENT DATA:
 {threshold_section}
 {search_section}
 
-Write a BALANCED and HUMBLE response that:
+Write a CLEAR and BALANCED response that:
 
-1. ACKNOWLEDGES UNCERTAINTY UPFRONT
-   - For questions about bubbles, crashes, or future outcomes: these are inherently unpredictable
-   - Reasonable experts disagree on these questions
-   - Historical patterns don't reliably predict timing
+1. STATE WHAT THE DATA SHOWS
+   - Be direct about where we are: "CAPE is at X, in the Yth percentile historically"
+   - Compare to relevant benchmarks (dot-com peak, long-term average)
+   - What have similar levels historically preceded?
 
-2. PRESENTS THE DATA OBJECTIVELY
-   - What the numbers actually show (high/low relative to history)
-   - Avoid implying the data "proves" a prediction
+2. PRESENT BOTH BULL AND BEAR CASES
+   - Bull case: legitimate reasons why current levels might be justified
+   - Bear case: legitimate concerns about current levels
+   - Include specific expert quotes/arguments if available
 
-3. SHOWS BOTH SIDES
-   - Bull case: why things might be fine or justified
-   - Bear case: what concerns exist
-   - Include quotes from experts on both sides if available
+3. BE CLEAR ABOUT WHAT WE DON'T KNOW
+   - Timing: CAPE doesn't predict when corrections happen
+   - "This time is different": sometimes it is, sometimes it isn't
+   - Experts genuinely disagree on interpretation
 
-4. NOTES LIMITATIONS
-   - Bubbles are only obvious in hindsight
-   - High valuations can persist for years (or correct quickly)
-   - Nobody consistently predicts market turning points
+4. GIVE THE USER ACTIONABLE FRAMING
+   - What questions should they be asking?
+   - What would change the picture in either direction?
 
-FORMAT: 4-5 bullet points. Start by acknowledging the uncertainty, then present data and diverse expert views.
+FORMAT: 4-5 bullet points. Lead with clear data, then balanced analysis.
 
-CRITICAL:
-- Do NOT give a definitive prediction or verdict
-- Do NOT say "this IS a bubble" or "this is NOT a bubble"
-- Present information to help the user form their own view
-- If experts disagree, say so explicitly"""
+KEY PRINCIPLE: Be clear about what the data shows (not wishy-washy about facts), while honest about what it doesn't predict (not falsely authoritative about the future). Example: "CAPE is elevated by historical standards" (clear) but "whether this leads to a correction depends on..." (honest about uncertainty)."""
     else:
         # Standard mode for more factual questions
         prompt = f"""You are synthesizing economic data with expert commentary to answer a judgment question.
