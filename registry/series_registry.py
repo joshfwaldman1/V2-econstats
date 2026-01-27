@@ -328,24 +328,51 @@ SERIES_DB: Dict[str, SeriesInfo] = {
 # =============================================================================
 
 QUERY_MAP: Dict[str, dict] = {
-    # Economy overview
+    # Economy overview - show the big picture (annual GDP for stability)
     'economy': {'series': ['A191RO1Q156NBEA', 'UNRATE', 'CPIAUCSL'], 'combine': False},
     'how is the economy': {'series': ['A191RO1Q156NBEA', 'UNRATE', 'CPIAUCSL'], 'combine': False},
     'economic overview': {'series': ['A191RO1Q156NBEA', 'UNRATE', 'CPIAUCSL'], 'combine': False},
     'recession': {'series': ['A191RO1Q156NBEA', 'UNRATE', 'T10Y2Y'], 'combine': False},
 
-    # Jobs
+    # Jobs - start simple with payrolls + unemployment
     'job market': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
     'jobs': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
     'employment': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
     'labor market': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
     'unemployment': {'series': ['UNRATE'], 'combine': False},
+    'hiring': {'series': ['PAYEMS', 'JTSJOL'], 'combine': False},
+    'job openings': {'series': ['JTSJOL'], 'combine': False},
 
-    # Inflation
+    # Labor market health (deeper) - use prime-age
+    'labor market health': {'series': ['LNS12300060', 'UNRATE'], 'combine': False},
+    'labor market tight': {'series': ['LNS12300060', 'JTSJOL', 'UNRATE'], 'combine': False},
+    'participation': {'series': ['LNS11300060', 'LNS11300000'], 'combine': True},
+    'prime age': {'series': ['LNS12300060'], 'combine': False},
+
+    # Inflation - CPI for general, PCE for Fed
     'inflation': {'series': ['CPIAUCSL', 'CPILFESL'], 'combine': True, 'show_yoy': True},
     'cpi': {'series': ['CPIAUCSL'], 'combine': False, 'show_yoy': True},
     'core inflation': {'series': ['CPILFESL'], 'combine': False, 'show_yoy': True},
     'pce': {'series': ['PCEPI', 'PCEPILFE'], 'combine': True, 'show_yoy': True},
+    'fed inflation': {'series': ['PCEPILFE'], 'combine': False, 'show_yoy': True},
+    'rent inflation': {'series': ['CUSR0000SAH1'], 'show_yoy': True, 'combine': False},
+    'shelter': {'series': ['CUSR0000SAH1'], 'show_yoy': True, 'combine': False},
+    'rents': {'series': ['CUSR0000SEHA', 'CUSR0000SAH1'], 'show_yoy': True, 'combine': True},
+    'rent': {'series': ['CUSR0000SEHA', 'CUSR0000SAH1'], 'show_yoy': True, 'combine': True},
+    'how have rents changed': {'series': ['CUSR0000SEHA', 'CUSR0000SAH1'], 'show_yoy': True, 'combine': True},
+    'rental prices': {'series': ['CUSR0000SEHA', 'CUSR0000SAH1'], 'show_yoy': True, 'combine': True},
+
+    # GDP - Annual (YoY), quarterly, core GDP, and GDPNow
+    'gdp': {'series': ['A191RL1Q225SBEA', 'PB0000031Q225SBEA', 'GDPNOW'], 'combine': False},
+    'gdp growth': {'series': ['A191RL1Q225SBEA', 'PB0000031Q225SBEA', 'GDPNOW'], 'combine': False},
+    'economic growth': {'series': ['A191RL1Q225SBEA', 'PB0000031Q225SBEA', 'GDPNOW'], 'combine': False},
+    'real gdp': {'series': ['GDPC1'], 'combine': False},
+    'annual gdp': {'series': ['A191RL1A225NBEA', 'A191RO1Q156NBEA'], 'combine': False},
+    'annual gdp growth': {'series': ['A191RL1A225NBEA', 'A191RO1Q156NBEA'], 'combine': False},
+    'yearly gdp': {'series': ['A191RL1A225NBEA', 'A191RO1Q156NBEA'], 'combine': False},
+    'core gdp': {'series': ['PB0000031Q225SBEA'], 'combine': False},
+    'private demand': {'series': ['PB0000031Q225SBEA'], 'combine': False},
+    'final sales': {'series': ['PB0000031Q225SBEA'], 'combine': False},
 
     # Interest rates
     'interest rates': {'series': ['FEDFUNDS', 'DGS10'], 'combine': True},
@@ -362,20 +389,83 @@ QUERY_MAP: Dict[str, dict] = {
     'housing market': {'series': ['CSUSHPINSA', 'MORTGAGE30US'], 'combine': False},
 
     # Consumer
-    'consumer': {'series': ['RSAFS', 'UMCSENT'], 'combine': False},
+    'consumer': {'series': ['RSXFS', 'UMCSENT'], 'combine': False},
     'consumer sentiment': {'series': ['UMCSENT'], 'combine': False},
-    'retail sales': {'series': ['RSAFS'], 'combine': False, 'show_yoy': True},
+    'retail sales': {'series': ['RSXFS'], 'combine': False, 'show_yoy': True},
 
-    # GDP
-    'gdp': {'series': ['A191RO1Q156NBEA', 'GDPNOW'], 'combine': False},
-    'gdp growth': {'series': ['A191RO1Q156NBEA', 'GDPNOW'], 'combine': False},
-    'economic growth': {'series': ['A191RO1Q156NBEA', 'GDPNOW'], 'combine': False},
+    # Stocks
+    'stock market': {'series': ['SP500'], 'combine': False},
+    'stocks': {'series': ['SP500'], 'combine': False},
 
-    # Trade
+    # Demographics
+    'women': {'series': ['LNS14000002', 'LNS12300062', 'LNS11300002'], 'combine': False},
+    'women labor': {'series': ['LNS14000002', 'LNS12300062', 'LNS11300002'], 'combine': False},
+    'women employment': {'series': ['LNS14000002', 'LNS12300062'], 'combine': False},
+
+    # Trade & Commodities
+    'oil': {'series': ['DCOILWTICO', 'DCOILBRENTEU'], 'combine': True},
+    'oil prices': {'series': ['DCOILWTICO', 'DCOILBRENTEU'], 'combine': True},
+
+    # Trade Overview - show balance, imports, and exports together
     'trade': {'series': ['BOPGSTB', 'IMPGS', 'EXPGS'], 'combine': False, 'show_yoy': False},
-    'trade balance': {'series': ['BOPGSTB', 'IMPGS', 'EXPGS'], 'combine': False},
-    'imports': {'series': ['IMPGS', 'BOPGSTB'], 'combine': False},
-    'exports': {'series': ['EXPGS', 'BOPGSTB'], 'combine': False},
+    'trade balance': {'series': ['BOPGSTB', 'IMPGS', 'EXPGS'], 'combine': False, 'show_yoy': False},
+    'trade deficit': {'series': ['BOPGSTB', 'IMPGS', 'EXPGS'], 'combine': False, 'show_yoy': False},
+    'trade surplus': {'series': ['BOPGSTB', 'IMPGS', 'EXPGS'], 'combine': False, 'show_yoy': False},
+    'imports': {'series': ['IMPGS', 'BOPGSTB'], 'combine': False, 'show_yoy': False},
+    'exports': {'series': ['EXPGS', 'BOPGSTB'], 'combine': False, 'show_yoy': False},
+    'imports and exports': {'series': ['IMPGS', 'EXPGS', 'BOPGSTB'], 'combine': False, 'show_yoy': False},
+
+    # Trade by Category - Goods vs Services
+    'goods trade': {'series': ['BOPGTB', 'IMGION', 'EXGION'], 'combine': False, 'show_yoy': False},
+    'services trade': {'series': ['BOPSTB', 'BOPSTXSVCS', 'BOPSTMSVCS'], 'combine': False, 'show_yoy': False},
+    'trade by category': {'series': ['BOPGTB', 'BOPSTB', 'BOPGSTB'], 'combine': False, 'show_yoy': False},
+
+    # China Trade (bilateral)
+    'china': {'series': ['IMPCH', 'EXPCH', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'china trade': {'series': ['IMPCH', 'EXPCH', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'trade with china': {'series': ['IMPCH', 'EXPCH', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'us china trade': {'series': ['IMPCH', 'EXPCH', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'imports from china': {'series': ['IMPCH'], 'combine': False, 'show_yoy': False},
+    'exports to china': {'series': ['EXPCH'], 'combine': False, 'show_yoy': False},
+
+    # Mexico Trade
+    'mexico trade': {'series': ['IMPMX', 'EXPMX', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'trade with mexico': {'series': ['IMPMX', 'EXPMX', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'imports from mexico': {'series': ['IMPMX'], 'combine': False, 'show_yoy': False},
+    'exports to mexico': {'series': ['EXPMX'], 'combine': False, 'show_yoy': False},
+
+    # Canada Trade
+    'canada trade': {'series': ['IMPCA', 'EXPCA', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'trade with canada': {'series': ['IMPCA', 'EXPCA', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'imports from canada': {'series': ['IMPCA'], 'combine': False, 'show_yoy': False},
+    'exports from canada': {'series': ['EXPCA'], 'combine': False, 'show_yoy': False},
+
+    # Japan Trade
+    'japan trade': {'series': ['IMPJP', 'EXPJP', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'trade with japan': {'series': ['IMPJP', 'EXPJP', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+
+    # EU Trade
+    'eu trade': {'series': ['IMPEU', 'EXPEU', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'trade with europe': {'series': ['IMPEU', 'EXPEU', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+    'trade with eu': {'series': ['IMPEU', 'EXPEU', 'BOPGTB'], 'combine': False, 'show_yoy': False},
+
+    # Major Trading Partners Overview
+    'trading partners': {'series': ['IMPCH', 'IMPMX', 'IMPCA', 'IMPEU'], 'combine': False, 'show_yoy': False},
+    'top trading partners': {'series': ['IMPCH', 'IMPMX', 'IMPCA', 'IMPEU'], 'combine': False, 'show_yoy': False},
+
+    # Wages
+    'wages': {'series': ['CES0500000003'], 'combine': False},
+    'earnings': {'series': ['CES0500000003'], 'combine': False},
+
+    # International comparisons - FRED has this data!
+    'us vs europe': {'series': ['A191RL1Q225SBEA', 'CLVMNACSCAB1GQEA19', 'UNRATE', 'LRHUTTTTEZM156S'], 'show_yoy': False, 'combine': False},
+    'us vs eurozone': {'series': ['A191RL1Q225SBEA', 'CLVMNACSCAB1GQEA19', 'UNRATE', 'LRHUTTTTEZM156S'], 'show_yoy': False, 'combine': False},
+    'us v europe': {'series': ['A191RL1Q225SBEA', 'CLVMNACSCAB1GQEA19', 'UNRATE', 'LRHUTTTTEZM156S'], 'show_yoy': False, 'combine': False},
+    'us v eurozone': {'series': ['A191RL1Q225SBEA', 'CLVMNACSCAB1GQEA19', 'UNRATE', 'LRHUTTTTEZM156S'], 'show_yoy': False, 'combine': False},
+    'europe economy': {'series': ['CLVMNACSCAB1GQEA19', 'LRHUTTTTEZM156S', 'EA19CPALTT01GYM'], 'show_yoy': False, 'combine': False},
+    'eurozone economy': {'series': ['CLVMNACSCAB1GQEA19', 'LRHUTTTTEZM156S', 'EA19CPALTT01GYM'], 'show_yoy': False, 'combine': False},
+    'eurozone': {'series': ['CLVMNACSCAB1GQEA19', 'LRHUTTTTEZM156S', 'EA19CPALTT01GYM'], 'show_yoy': False, 'combine': False},
+    'europe': {'series': ['CLVMNACSCAB1GQEA19', 'LRHUTTTTEZM156S', 'EA19CPALTT01GYM'], 'show_yoy': False, 'combine': False},
 }
 
 
