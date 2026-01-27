@@ -188,7 +188,9 @@ async def api_search(body: SearchRequest):
             charts.append(chart)
 
     # 5. Generate AI summary (returns dict with summary, suggestions, chart_descriptions)
-    summary_result = generate_summary(query, series_data)
+    # Build conversation history from request history for context
+    conversation_history = [{"query": q} for q in history] if history else None
+    summary_result = generate_summary(query, series_data, conversation_history=conversation_history)
 
     # Handle both dict and string returns
     if isinstance(summary_result, dict):
@@ -319,14 +321,11 @@ async def search_html(
     """
     templates = request.app.state.templates
 
-    # Parse conversation history
+    # Parse conversation history (format: [{"query": "...", "summary": "..."}])
     try:
         conv_history = json.loads(history) if history else []
     except json.JSONDecodeError:
         conv_history = []
-
-    # Add current query to history
-    conv_history.append({"role": "user", "content": query})
 
     # 1. Route the query
     routing_result = query_router.route(query)
@@ -404,9 +403,13 @@ async def search_html(
 
             charts.append(chart)
 
-    # 5. Generate AI summary
-    summary_result = generate_summary(query, series_data)
+    # 5. Generate AI summary (with conversation history for context)
+    summary_result = generate_summary(query, series_data, conversation_history=conv_history)
     summary = get_summary_text(summary_result) if isinstance(summary_result, dict) else str(summary_result)
+
+    # Extract AI-generated suggestions and chart descriptions
+    ai_suggestions = summary_result.get('suggestions', []) if isinstance(summary_result, dict) else []
+    chart_descriptions = summary_result.get('chart_descriptions', {}) if isinstance(summary_result, dict) else {}
 
     # Apply economist reviewer if enabled
     if config.enable_economist_reviewer:
@@ -415,8 +418,18 @@ async def search_html(
     # 6. Get Polymarket predictions if relevant
     polymarket_html = query_router.get_polymarket_html(query)
 
-    # 7. Generate follow-up suggestions
-    suggestions = generate_suggestions(query, routing_result.series)
+    # 7. Use AI suggestions if available, otherwise generate static ones
+    suggestions = ai_suggestions if ai_suggestions else generate_suggestions(query, routing_result.series)
+
+    # 8. Apply AI-generated chart descriptions to charts
+    for chart in charts:
+        series_id = chart.get('series_id', '')
+        if series_id in chart_descriptions:
+            chart['description'] = chart_descriptions[series_id]
+
+    # 9. Update conversation history for next request (keep last 5 exchanges)
+    new_history = conv_history + [{"query": query, "summary": summary}]
+    new_history = new_history[-5:]
 
     # Build context for template
     context = {
@@ -425,7 +438,7 @@ async def search_html(
         "summary": summary,
         "charts": charts,
         "suggestions": suggestions,
-        "history": json.dumps(conv_history),
+        "history": json.dumps(new_history),
         "temporal_context": temporal.get('explanation') if temporal else None,
         # Special HTML boxes
         "fed_sep_html": routing_result.fed_sep_html,

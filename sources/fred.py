@@ -152,6 +152,8 @@ class FREDSource(DataSource):
                 'unit': series_info.get('units', ''),
                 'units': series_info.get('units', ''),
                 'frequency': series_info.get('frequency', 'Monthly'),
+            }
+
             return SeriesData(
                 id=series_id,
                 dates=dates,
