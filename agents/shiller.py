@@ -247,19 +247,22 @@ def get_current_cape() -> Dict:
 def _interpret_cape(cape_value: float, percentile: float) -> str:
     """
     Provide a plain-English interpretation of the CAPE level.
+
+    Emphasizes uncertainty - CAPE is a long-term indicator, not a timing tool.
+    High CAPE can persist for years; low CAPE doesn't guarantee gains.
     """
     if percentile >= 95:
-        return f"Extremely elevated - in the top 5% of historical readings. Only exceeded during dot-com bubble."
+        return f"Historically elevated ({percentile:.0f}th percentile). High CAPE has historically preceded lower 10-year returns on average, but markets can stay expensive for extended periods. Not a timing indicator."
     elif percentile >= 85:
-        return f"Very high - in the top 15% historically. Suggests lower expected long-term returns."
+        return f"Above most historical readings ({percentile:.0f}th percentile). Historically associated with more modest long-term returns, though considerable uncertainty remains about any given period."
     elif percentile >= 70:
-        return f"Above average - higher than ~{int(percentile)}% of historical readings."
+        return f"Above historical average ({percentile:.0f}th percentile). Within the range seen during past expansions."
     elif percentile >= 30:
-        return f"Near historical average - typical valuation range."
+        return f"Near long-term average. Historically typical valuation range, though averages mask wide variation."
     elif percentile >= 15:
-        return f"Below average - historically associated with above-average future returns."
+        return f"Below historical average ({percentile:.0f}th percentile). Has historically preceded above-average returns, but past patterns don't guarantee future results."
     else:
-        return f"Very low - in the bottom 15% historically. Rare buying opportunity if fundamentals intact."
+        return f"Well below historical average ({percentile:.0f}th percentile). Rare, but low valuations alone don't ensure gains - fundamentals and timing matter."
 
 
 def get_cape_for_period(start_year: int = None, end_year: int = None) -> Dict:
@@ -347,20 +350,22 @@ def get_bubble_comparison_data() -> Dict:
 def _generate_bubble_summary(current: Dict, dot_com_peak: float) -> str:
     """
     Generate a summary statement for bubble analysis.
+
+    Emphasizes uncertainty - bubbles are only clear in hindsight.
     """
     cape = current['current_value']
     percentile = current['percentile']
 
     if cape > dot_com_peak:
-        return f"CAPE at {cape} exceeds the dot-com peak ({dot_com_peak:.1f}). Historically unprecedented outside of that era."
+        return f"CAPE at {cape} exceeds the dot-com peak ({dot_com_peak:.1f}). This is rare historically, but high valuations alone don't predict timing of any correction. Bubbles are typically only obvious in hindsight."
     elif cape > 35:
-        return f"CAPE at {cape} is extremely elevated ({percentile:.0f}th percentile) but below dot-com peak. Valuations stretched but not at bubble extremes."
+        return f"CAPE at {cape} is elevated ({percentile:.0f}th percentile), below the dot-com peak of {dot_com_peak:.1f}. Whether this represents a bubble depends on future earnings growth and rates - reasonable people disagree."
     elif cape > 30:
-        return f"CAPE at {cape} is high ({percentile:.0f}th percentile). Above long-term average of 17, suggesting modest expected returns."
+        return f"CAPE at {cape} is above the long-term average of 17 ({percentile:.0f}th percentile). Historically associated with lower 10-year returns on average, but with wide variation. Not predictive of short-term moves."
     elif cape > 25:
-        return f"CAPE at {cape} is above average but not extreme. Market fairly valued to slightly expensive."
+        return f"CAPE at {cape} is modestly above historical average. Within the normal range seen during economic expansions."
     else:
-        return f"CAPE at {cape} is near or below historical average. Valuations reasonable."
+        return f"CAPE at {cape} is near or below the long-term average of 17. Historically typical, though valuations alone don't determine returns."
 
 
 # Convenience function for app.py integration

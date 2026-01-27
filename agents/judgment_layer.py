@@ -363,7 +363,17 @@ def claude_synthesize(
     if gemini_search_results:
         search_section = f"\n\nCURRENT EXPERT COMMENTARY (from web search):\n{gemini_search_results}"
 
-    prompt = f"""You are synthesizing economic data with expert commentary to answer a judgment question.
+    # Detect if this is a high-uncertainty question (bubbles, forecasts, etc.)
+    query_lower = query.lower()
+    is_uncertain_question = any(kw in query_lower for kw in [
+        'bubble', 'crash', 'recession coming', 'will there be', 'prediction',
+        'forecast', 'overvalued', 'undervalued', 'going to', 'will the market',
+        'should i', 'timing', 'when will', 'future'
+    ])
+
+    if is_uncertain_question:
+        # HUMBLE mode for inherently uncertain questions
+        prompt = f"""You are synthesizing economic data with expert commentary to address a question that involves significant uncertainty.
 
 USER QUESTION: {query}
 
@@ -372,32 +382,69 @@ CURRENT DATA:
 {threshold_section}
 {search_section}
 
-Write an authoritative answer that:
+Write a BALANCED and HUMBLE response that:
 
-1. DIRECTLY ANSWERS THE QUESTION (is it high/low/concerning/etc.)
-   - Give a clear verdict upfront, not hedging
-   - Use the threshold assessments to ground your answer
+1. ACKNOWLEDGES UNCERTAINTY UPFRONT
+   - For questions about bubbles, crashes, or future outcomes: these are inherently unpredictable
+   - Reasonable experts disagree on these questions
+   - Historical patterns don't reliably predict timing
+
+2. PRESENTS THE DATA OBJECTIVELY
+   - What the numbers actually show (high/low relative to history)
+   - Avoid implying the data "proves" a prediction
+
+3. SHOWS BOTH SIDES
+   - Bull case: why things might be fine or justified
+   - Bear case: what concerns exist
+   - Include quotes from experts on both sides if available
+
+4. NOTES LIMITATIONS
+   - Bubbles are only obvious in hindsight
+   - High valuations can persist for years (or correct quickly)
+   - Nobody consistently predicts market turning points
+
+FORMAT: 4-5 bullet points. Start by acknowledging the uncertainty, then present data and diverse expert views.
+
+CRITICAL:
+- Do NOT give a definitive prediction or verdict
+- Do NOT say "this IS a bubble" or "this is NOT a bubble"
+- Present information to help the user form their own view
+- If experts disagree, say so explicitly"""
+    else:
+        # Standard mode for more factual questions
+        prompt = f"""You are synthesizing economic data with expert commentary to answer a judgment question.
+
+USER QUESTION: {query}
+
+CURRENT DATA:
+{json.dumps(data_summary, indent=2)}
+{threshold_section}
+{search_section}
+
+Write an informed answer that:
+
+1. ANSWERS THE QUESTION with appropriate confidence
+   - For clear-cut questions (is unemployment high?): give a direct answer grounded in data
+   - Use the threshold assessments to frame your answer
 
 2. PROVIDES CONTEXT WITH QUOTES
    - Include at least one relevant expert quote from the thresholds
    - If the web search found useful recent commentary, include it
-   - But prioritize the curated economist quotes for authority
 
 3. EXPLAINS THE REASONING
    - Why is this level considered high/low/normal?
    - How does it compare to historical norms?
 
-4. GIVES FORWARD OUTLOOK
-   - What are experts watching for next?
-   - Any risks or opportunities on the horizon?
+4. NOTES ANY UNCERTAINTY
+   - If experts disagree or outlook is unclear, say so
+   - Avoid false precision about future outcomes
 
-FORMAT: 4-5 bullet points starting with a clear verdict. Include quotes in quotation marks with attribution.
+FORMAT: 4-5 bullet points. Include quotes in quotation marks with attribution.
 
 IMPORTANT:
-- Be authoritative, not wishy-washy
-- If the data clearly shows something is high/low, say so definitively
-- Use the expert quotes to back up your assessment
-- If the web search didn't find anything useful, don't mention it - rely on the curated thresholds"""
+- Be direct when the data supports a clear answer
+- But acknowledge uncertainty for forward-looking questions
+- Use expert quotes to support your assessment"""
 
     try:
         url = 'https://api.anthropic.com/v1/messages'
