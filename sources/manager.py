@@ -9,6 +9,11 @@ import asyncio
 
 from .base import DataSource, SeriesData
 from .fred import FREDSource
+from .alphavantage import AlphaVantageSource
+from .zillow import ZillowSource
+from .eia import EIASource
+from .dbnomics import DBnomicsSource
+from .shiller import ShillerSource
 from cache import cache_manager
 
 
@@ -20,15 +25,32 @@ class DataSourceManager:
     """
 
     def __init__(self):
-        # Register data sources in priority order
-        self._sources: List[DataSource] = [
-            FREDSource(),  # Primary source
-            # Future sources can be added here:
-            # AlphaVantageSource(),
-            # ZillowSource(),
-            # EIASource(),
-            # DBnomicsSource(),
+        # Register data sources in priority order (specialized first, FRED as fallback)
+        self._sources: List[DataSource] = []
+        self._source_status = {}
+        self._initialize_sources()
+
+    def _initialize_sources(self):
+        """Initialize all data sources."""
+        # Specialized sources first (they have explicit support() checks)
+        source_classes = [
+            ('alphavantage', AlphaVantageSource),
+            ('zillow', ZillowSource),
+            ('eia', EIASource),
+            ('dbnomics', DBnomicsSource),
+            ('shiller', ShillerSource),
+            ('fred', FREDSource),  # FRED last as catch-all
         ]
+
+        for name, cls in source_classes:
+            try:
+                source = cls()
+                self._sources.append(source)
+                self._source_status[name] = getattr(source, 'available', True)
+                print(f"[Sources] {source.name}: {'available' if self._source_status[name] else 'not available'}")
+            except Exception as e:
+                print(f"[Sources] {name}: failed to initialize - {e}")
+                self._source_status[name] = False
 
     def get_source(self, series_id: str) -> Optional[DataSource]:
         """Find the data source that handles a series ID."""
@@ -118,9 +140,23 @@ class DataSourceManager:
         """Synchronous version of fetch_many."""
         return [self.fetch_sync(sid, years) for sid in series_ids]
 
-    def available_sources(self) -> List[str]:
-        """Get names of all registered data sources."""
-        return [s.name for s in self._sources]
+    def available_sources(self) -> dict:
+        """Get status of all registered data sources."""
+        return dict(self._source_status)
+
+    def get_shiller_source(self) -> Optional[ShillerSource]:
+        """Get the Shiller source for special CAPE queries."""
+        for source in self._sources:
+            if isinstance(source, ShillerSource):
+                return source
+        return None
+
+    def get_dbnomics_source(self) -> Optional[DBnomicsSource]:
+        """Get the DBnomics source for international query plans."""
+        for source in self._sources:
+            if isinstance(source, DBnomicsSource):
+                return source
+        return None
 
 
 # Global instance

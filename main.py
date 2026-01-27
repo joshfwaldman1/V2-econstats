@@ -4,10 +4,19 @@ EconStats V2 - Modular Economic Data Explorer
 A clean, fast, and maintainable economic data visualization app.
 
 Key improvements over V1:
-- Modular architecture (2,486 lines -> ~200 lines in main.py)
+- Modular architecture (2,486 lines -> ~150 lines in main.py)
 - Single routing decision tree (4 systems -> 1)
 - Three-tier caching
 - 80% fewer LLM calls for common queries
+
+Features:
+- 9 data sources: FRED, Alpha Vantage, Zillow, EIA, DBnomics, Shiller
+- 608 pre-built query plans
+- Special handlers: Fed SEP, recession scorecard, Polymarket, CAPE
+- AI summaries with optional economist reviewer
+- Dynamic or static chart bullets
+- Temporal filtering ("in 2022", "during covid")
+- Streaming SSE support
 """
 
 import subprocess
@@ -58,14 +67,28 @@ async def startup():
     print("EconStats V2 Starting Up")
     print("=" * 60)
 
-    # Load registry
+    # Load registry (query plans, series metadata)
     registry.load()
 
     # Log configuration
-    print(f"FRED_API_KEY: {'SET' if config.fred_api_key else 'NOT SET'}")
-    print(f"ANTHROPIC_API_KEY: {'SET' if config.anthropic_api_key else 'NOT SET'}")
-    print(f"Economist reviewer: {'ON' if config.enable_economist_reviewer else 'OFF'}")
-    print(f"Dynamic bullets: {'ON' if config.enable_dynamic_bullets else 'OFF'}")
+    print("-" * 60)
+    print("API Keys:")
+    print(f"  FRED: {'SET' if config.fred_api_key else 'NOT SET'}")
+    print(f"  Anthropic: {'SET' if config.anthropic_api_key else 'NOT SET'}")
+    print(f"  Google: {'SET' if config.google_api_key else 'NOT SET'}")
+    print(f"  Alpha Vantage: {'SET' if config.alphavantage_api_key else 'NOT SET'}")
+
+    print("-" * 60)
+    print("Features:")
+    print(f"  Economist reviewer: {'ON' if config.enable_economist_reviewer else 'OFF'}")
+    print(f"  Dynamic bullets: {'ON' if config.enable_dynamic_bullets else 'OFF'}")
+
+    # Data sources are initialized when source_manager is imported
+    # Special routes are initialized when special_router is imported
+    # These will print their own status messages
+
+    print("=" * 60)
+    print("Ready to serve requests")
     print("=" * 60)
 
 
