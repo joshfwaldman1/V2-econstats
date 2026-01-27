@@ -154,10 +154,12 @@ async def api_search(body: SearchRequest):
 
     # 4. Format chart data
     charts = []
+    use_separate_charts = True  # Default to separate charts
 
     # Check if we should combine series into one chart
     if routing_result.combine_chart and len(series_data) > 1:
-        # Create a single combined chart with multiple traces
+        # Try to create a single combined chart with multiple traces
+        # Returns empty {} if series have incompatible frequencies/units (chart crime prevention)
         combined = format_combined_chart(
             series_data,
             show_yoy=routing_result.show_yoy,
@@ -165,8 +167,10 @@ async def api_search(body: SearchRequest):
         )
         if combined:
             charts.append(combined)
-    else:
-        # Create separate charts for each series
+            use_separate_charts = False
+
+    # Fall back to separate charts if combination was refused or not requested
+    if use_separate_charts:
         for series_id, dates, values, info in series_data:
             chart = format_chart_data(
                 series_id, dates, values, info,
@@ -366,10 +370,12 @@ async def search_html(
 
     # 4. Format chart data
     charts = []
+    use_separate_charts = True  # Default to separate charts
 
     # Check if we should combine series into one chart
     if routing_result.combine_chart and len(series_data) > 1:
-        # Create a single combined chart with multiple traces
+        # Try to create a single combined chart with multiple traces
+        # Returns empty {} if series have incompatible frequencies/units (chart crime prevention)
         combined = format_combined_chart(
             series_data,
             show_yoy=routing_result.show_yoy,
@@ -377,8 +383,10 @@ async def search_html(
         )
         if combined:
             charts.append(combined)
-    else:
-        # Create separate charts for each series
+            use_separate_charts = False
+
+    # Fall back to separate charts if combination was refused or not requested
+    if use_separate_charts:
         for series_id, dates, values, info in series_data:
             chart = format_chart_data(
                 series_id, dates, values, info,

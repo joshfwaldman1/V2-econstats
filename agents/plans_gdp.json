@@ -316,8 +316,8 @@
       "CFNAI"
     ],
     "show_yoy": false,
-    "combine_chart": true,
-    "explanation": "Economic momentum is best captured by the Real GDP growth rate (A191RL1Q225SBEA) which shows the quarterly annualized pace of economic expansion, combined with the Chicago Fed National Activity Index (CFNAI) which is specifically designed to gauge the overall economic momentum by synthesizing 85 economic indicators. The CFNAI is particularly valuable for momentum analysis as positive values indicate above-trend growth while negative values suggest below-trend growth. Together, these provide both the headline growth measure and a comprehensive momentum gauge."
+    "combine_chart": false,
+    "explanation": "Economic momentum is best captured by the Real GDP growth rate (A191RL1Q225SBEA) which shows the quarterly annualized pace of economic expansion, combined with the Chicago Fed National Activity Index (CFNAI) which is specifically designed to gauge the overall economic momentum by synthesizing 85 economic indicators. The CFNAI is particularly valuable for momentum analysis as positive values indicate above-trend growth while negative values suggest below-trend growth. Shown separately because GDP is quarterly while CFNAI is monthly."
   },
   "gdp components": {
     "series": [
@@ -529,9 +529,9 @@
       "PAYEMS"
     ],
     "show_yoy": true,
-    "combine_chart": true,
+    "combine_chart": false,
     "is_comparison": true,
-    "explanation": "GDP growth vs employment growth shows the productivity story. When GDP grows faster than employment, productivity is rising (getting more output per worker). When employment grows faster than GDP, we're adding workers but not getting proportional output - productivity is falling. The gap also signals whether growth is job-rich or jobless."
+    "explanation": "GDP growth vs employment growth shows the productivity story. When GDP grows faster than employment, productivity is rising (getting more output per worker). When employment grows faster than GDP, we're adding workers but not getting proportional output - productivity is falling. Shown separately because GDP is quarterly while employment is monthly."
   },
   "real vs nominal gdp": {
     "series": [
@@ -549,8 +549,8 @@
       "CPIAUCSL"
     ],
     "show_yoy": true,
-    "combine_chart": true,
+    "combine_chart": false,
     "is_comparison": true,
-    "explanation": "GDP growth vs inflation shows the real growth story. When GDP growth exceeds inflation, the economy is genuinely expanding in real terms. When inflation exceeds GDP growth, we're in 'stagflation' territory - nominal growth but shrinking in real terms. The gap shows whether growth is real or illusory."
+    "explanation": "GDP growth vs inflation shows the real growth story. When GDP growth exceeds inflation, the economy is genuinely expanding in real terms. When inflation exceeds GDP growth, we're in 'stagflation' territory - nominal growth but shrinking in real terms. Shown separately because GDP is quarterly while CPI is monthly."
   }
 }

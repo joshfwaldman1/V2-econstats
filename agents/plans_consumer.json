@@ -38,8 +38,8 @@
       "PCEC96"
     ],
     "show_yoy": true,
-    "combine_chart": true,
-    "explanation": "RSXFS (retail sales excluding food services) provides the cleanest measure of core consumer spending without volatile restaurant sales, while PCEC96 (real personal consumption expenditures) gives the broadest inflation-adjusted view of total consumer spending including services. Together they show both retail purchasing patterns and comprehensive spending behavior. Year-over-year growth rates reveal spending momentum trends."
+    "combine_chart": false,
+    "explanation": "RSXFS (retail sales excluding food services) provides the cleanest measure of core consumer spending without volatile restaurant sales, while PCEC96 (real personal consumption expenditures) gives the broadest inflation-adjusted view of total consumer spending including services. Shown separately because retail sales is monthly while consumption data is quarterly."
   },
   "consumption": {
     "series": [
@@ -47,8 +47,8 @@
       "RSXFS"
     ],
     "show_yoy": false,
-    "combine_chart": true,
-    "explanation": "PCEC96 (Real Personal Consumption Expenditures) is the most comprehensive measure of consumption, capturing all consumer spending adjusted for inflation. RSXFS (Retail Sales ex Food Services) complements this by showing the retail component specifically, which is timelier and a key subset of total consumption. Together they provide both the broad consumption picture and retail-specific trends."
+    "combine_chart": false,
+    "explanation": "PCEC96 (Real Personal Consumption Expenditures) is the most comprehensive measure of consumption, capturing all consumer spending adjusted for inflation. RSXFS (Retail Sales ex Food Services) complements this by showing the retail component specifically, which is timelier and a key subset of total consumption. Shown separately because consumption data is quarterly while retail sales is monthly."
   },
   "personal spending": {
     "series": [
@@ -279,8 +279,8 @@
       "PCEC96"
     ],
     "show_yoy": true,
-    "combine_chart": true,
-    "explanation": "RSXFS (retail sales excluding food services) provides the cleanest measure of consumer goods spending without the volatility of restaurants. PCEC96 (real personal consumption expenditures) captures total consumer spending including services, adjusted for inflation. Together they show both retail momentum and broader spending patterns. Year-over-year growth rates reveal the underlying spending trend beyond seasonal variations."
+    "combine_chart": false,
+    "explanation": "RSXFS (retail sales excluding food services) provides the cleanest measure of consumer goods spending without the volatility of restaurants. PCEC96 (real personal consumption expenditures) captures total consumer spending including services, adjusted for inflation. Shown separately because retail sales is monthly while consumption data is quarterly."
   },
   "consumer strength": {
     "series": [

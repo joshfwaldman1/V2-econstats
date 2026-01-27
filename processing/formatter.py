@@ -221,6 +221,11 @@ def format_combined_chart(
     Useful for comparing related series like CPI vs Core CPI, or
     Fed Funds vs 10-Year Treasury.
 
+    CHART CRIME PREVENTION:
+    - Will NOT combine series with different frequencies (e.g., quarterly + monthly)
+    - Will NOT combine series with incompatible units (e.g., percent + dollars)
+    - Returns empty dict if combination would be misleading
+
     Args:
         series_data: List of (series_id, dates, values, info) tuples
         show_yoy: Whether to show YoY transformation
@@ -229,9 +234,59 @@ def format_combined_chart(
 
     Returns:
         Single chart dict with multiple traces in 'traces' field
+        Empty dict if series can't be safely combined
     """
     if not series_data:
         return {}
+
+    # ==========================================================================
+    # CHART CRIME PREVENTION: Check frequency compatibility
+    # ==========================================================================
+    frequencies = []
+    units = []
+    for series_id, dates, values, info in series_data:
+        freq = info.get('frequency', 'monthly').lower()
+        # Normalize frequency names
+        if 'quarter' in freq:
+            freq = 'quarterly'
+        elif 'annual' in freq or 'year' in freq:
+            freq = 'annual'
+        elif 'week' in freq:
+            freq = 'weekly'
+        elif 'daily' in freq or 'day' in freq:
+            freq = 'daily'
+        else:
+            freq = 'monthly'
+        frequencies.append(freq)
+
+        # Get unit for compatibility check
+        unit = info.get('units', '').lower()
+        units.append(unit)
+
+    # Check if all frequencies match
+    if len(set(frequencies)) > 1:
+        print(f"[Chart] REFUSING to combine series with different frequencies: {frequencies}")
+        return {}  # Return empty - caller will fall back to separate charts
+
+    # Check for grossly incompatible units (percent vs dollars, index vs level)
+    # Allow: percent + percent, index + index, dollars + dollars
+    # Disallow: percent + dollars, etc.
+    unit_categories = []
+    for unit in units:
+        if 'percent' in unit or 'rate' in unit or '%' in unit:
+            unit_categories.append('percent')
+        elif 'dollar' in unit or '$' in unit or 'usd' in unit:
+            unit_categories.append('dollars')
+        elif 'index' in unit:
+            unit_categories.append('index')
+        elif 'thousand' in unit or 'million' in unit or 'billion' in unit:
+            unit_categories.append('count')
+        else:
+            unit_categories.append('other')
+
+    if len(set(unit_categories)) > 1 and 'other' not in unit_categories:
+        print(f"[Chart] REFUSING to combine series with incompatible units: {units}")
+        return {}  # Return empty - caller will fall back to separate charts
 
     # Build traces for each series
     traces = []
