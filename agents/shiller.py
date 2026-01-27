@@ -1,8 +1,9 @@
 """
 Shiller CAPE (Cyclically Adjusted P/E) Data Integration
 
-Source: Robert Shiller's "Irrational Exuberance" dataset
-URL: http://www.econ.yale.edu/~shiller/data.htm
+Sources:
+- Historical data: Robert Shiller's "Irrational Exuberance" dataset (Yale)
+- Current data: multpl.com (updated daily)
 
 The CAPE ratio divides the S&P 500 price by the 10-year average of inflation-adjusted
 earnings. It's the gold standard for long-term market valuation.
@@ -11,14 +12,21 @@ Historical context:
 - Long-term average (1881-present): ~17
 - Dot-com peak (2000): 44.2
 - 2008 financial crisis low: 13.3
-- Current (2025): ~38-40
+- Current (Jan 2026): ~41
 """
 
 import pandas as pd
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 import logging
+import re
+
+try:
+    from urllib.request import urlopen, Request
+    from urllib.error import URLError
+except ImportError:
+    urlopen = None
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +44,67 @@ CAPE_BENCHMARKS = {
     "black_monday_1987": 18.3,
     "1929_peak": 32.6,
 }
+
+# Cache for live CAPE data
+_live_cape_cache = {
+    'value': None,
+    'date': None,
+    'fetched_at': None,
+}
+_LIVE_CACHE_TTL = timedelta(hours=1)
+
+
+def fetch_current_cape_from_multpl() -> Optional[Dict]:
+    """
+    Fetch the current CAPE ratio from multpl.com.
+
+    Returns dict with 'value' and 'date' keys, or None on error.
+    Caches results for 1 hour.
+    """
+    global _live_cape_cache
+
+    # Check cache
+    if (_live_cape_cache['fetched_at'] and
+        datetime.now() - _live_cape_cache['fetched_at'] < _LIVE_CACHE_TTL and
+        _live_cape_cache['value'] is not None):
+        return {
+            'value': _live_cape_cache['value'],
+            'date': _live_cape_cache['date'],
+        }
+
+    if urlopen is None:
+        return None
+
+    try:
+        url = "https://www.multpl.com/shiller-pe"
+        req = Request(url, headers={'User-Agent': 'EconStats/1.0'})
+        with urlopen(req, timeout=10) as response:
+            html = response.read().decode('utf-8')
+
+            # Parse the current value - look for the big number display
+            # The page has format like "41.03" prominently displayed
+            value_match = re.search(r'<div[^>]*id="current"[^>]*>[\s\S]*?(\d+\.?\d*)', html)
+            if not value_match:
+                # Try alternative pattern
+                value_match = re.search(r'>(\d{2}\.\d{2})\s*[<\+\-]', html)
+
+            if value_match:
+                cape_value = float(value_match.group(1))
+
+                # Update cache
+                _live_cape_cache['value'] = cape_value
+                _live_cape_cache['date'] = datetime.now().strftime('%Y-%m')
+                _live_cape_cache['fetched_at'] = datetime.now()
+
+                return {
+                    'value': cape_value,
+                    'date': _live_cape_cache['date'],
+                }
+
+    except Exception as e:
+        logger.warning(f"Could not fetch live CAPE from multpl.com: {e}")
+
+    return None
 
 
 def load_shiller_data() -> pd.DataFrame:
@@ -111,17 +180,31 @@ def get_current_cape() -> Dict:
     """
     Get the most recent CAPE value with historical context.
 
+    Uses live data from multpl.com if available, otherwise falls back
+    to the historical data file.
+
     Returns:
         Dict with current value, percentile, and historical comparisons
     """
     df = load_shiller_data()
     df = df[df['cape'].notna()]
 
-    current = df.iloc[-1]
-    current_cape = current['cape']
-    current_date = current['date']
+    # Try to get live CAPE from multpl.com
+    live_data = fetch_current_cape_from_multpl()
+
+    if live_data and live_data.get('value'):
+        current_cape = live_data['value']
+        current_date = datetime.now()
+        data_source = 'live'
+    else:
+        # Fall back to historical file
+        current = df.iloc[-1]
+        current_cape = current['cape']
+        current_date = current['date']
+        data_source = 'historical'
 
     # Calculate percentile (what % of historical readings are below current)
+    # Use historical data for percentile calculation
     percentile = (df['cape'] < current_cape).mean() * 100
 
     # Find historical comparisons
@@ -139,6 +222,7 @@ def get_current_cape() -> Dict:
     return {
         'current_value': round(current_cape, 1),
         'current_date': current_date.strftime('%Y-%m'),
+        'data_source': data_source,  # 'live' or 'historical'
         'percentile': round(percentile, 1),
         'vs_average': {
             'long_term_avg': round(avg, 1),
