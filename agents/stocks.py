@@ -186,9 +186,18 @@ def get_market_series_info(series_id: str) -> Optional[dict]:
 def is_market_query(query: str) -> bool:
     """Check if query is about stock markets."""
     query_lower = query.lower()
+
+    # Exclude non-stock-market uses of "market"
+    non_stock_markets = [
+        "housing market", "job market", "labor market", "bond market",
+        "real estate market", "mortgage market", "credit market",
+    ]
+    if any(term in query_lower for term in non_stock_markets):
+        return False
+
     market_indicators = [
-        "stock", "market", "s&p", "sp500", "dow", "nasdaq", "vix",
-        "volatility", "equities", "wall street", "trading", "index",
+        "stock", "stock market", "s&p", "sp500", "dow", "nasdaq", "vix",
+        "volatility", "equities", "wall street", "trading",
         "yield curve", "treasury", "gold", "oil price", "crude",
     ]
     return any(indicator in query_lower for indicator in market_indicators)
