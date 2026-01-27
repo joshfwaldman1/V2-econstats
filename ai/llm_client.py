@@ -6,6 +6,9 @@ Consolidates:
 - Query classification
 - Optional streaming support
 - Chart descriptions for each series
+
+NOTE: All math is done with pandas in processing/analytics.py.
+The LLM receives pre-computed values - it should NEVER calculate.
 """
 
 import json
@@ -14,6 +17,7 @@ from datetime import datetime
 
 from config import config
 from cache import cache_manager
+from processing.analytics import compute_series_analytics, analytics_to_text
 
 # Lazy import Anthropic to avoid startup issues
 _client = None
@@ -165,60 +169,70 @@ def build_rich_data_context(series_data: List[tuple]) -> str:
     """
     Build a rich data context string for the LLM.
 
+    All math is computed by pandas in processing/analytics.py.
+    The LLM receives pre-computed values - it should NEVER calculate.
+
     Includes:
     - Latest value with date
     - YoY change (absolute and percentage)
-    - 3-month trend
-    - 52-week high/low
+    - Short-term trend
+    - 1-year and 5-year range
+    - Momentum direction
     """
     lines = []
     for series_id, dates, values, info in series_data:
         if not values or len(values) < 2:
             continue
 
+        # Determine frequency from metadata
+        freq = info.get('frequency', 'monthly').lower()
+        if 'quarter' in freq:
+            frequency = 'quarterly'
+        elif 'daily' in freq or 'day' in freq:
+            frequency = 'daily'
+        elif 'week' in freq:
+            frequency = 'weekly'
+        else:
+            frequency = 'monthly'
+
+        # Compute all analytics with pandas (deterministic, no LLM math)
+        analytics = compute_series_analytics(dates, values, series_id, frequency)
+
+        if 'error' in analytics:
+            continue
+
+        # Build context from pre-computed values
         name = info.get('name', info.get('title', series_id))
         unit = info.get('unit', info.get('units', ''))
-        latest = values[-1]
-        latest_date = dates[-1] if dates else 'N/A'
 
-        # Format latest date
-        try:
-            dt = datetime.strptime(latest_date, '%Y-%m-%d')
-            date_str = dt.strftime('%B %Y')
-        except:
-            date_str = latest_date
+        context_parts = [
+            f"{name} ({series_id}): {analytics['latest_value']:.2f} {unit} as of {analytics['latest_date_formatted']}"
+        ]
 
-        context_parts = [f"{name} ({series_id}): {latest:.2f} {unit} as of {date_str}"]
+        # YoY (pre-computed)
+        if 'yoy' in analytics:
+            yoy = analytics['yoy']
+            context_parts.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
 
-        # YoY change (if enough data)
-        if len(values) >= 13:
-            year_ago = values[-13]
-            yoy_change = latest - year_ago
-            if year_ago != 0:
-                yoy_pct = ((latest - year_ago) / abs(year_ago)) * 100
-                context_parts.append(f"YoY: {yoy_change:+.2f} ({yoy_pct:+.1f}%)")
+        # Short-term trend (pre-computed)
+        if 'short_term' in analytics:
+            st = analytics['short_term']
+            context_parts.append(f"Recent: {st['direction'].capitalize()} ({st['change_pct']:+.1f}%)")
 
-        # 3-month trend (if enough data)
-        if len(values) >= 4:
-            three_mo_ago = values[-4]
-            if three_mo_ago != 0:
-                three_mo_change = ((latest - three_mo_ago) / abs(three_mo_ago)) * 100
-                if three_mo_change > 2:
-                    trend = "Rising"
-                elif three_mo_change < -2:
-                    trend = "Falling"
-                else:
-                    trend = "Flat"
-                context_parts.append(f"3-month: {trend} ({three_mo_change:+.1f}%)")
+        # 1-year range (pre-computed)
+        if 'range_1y' in analytics:
+            r = analytics['range_1y']
+            context_parts.append(f"1Y range: {r['low']:.2f} - {r['high']:.2f} ({r['pct_from_high']:+.1f}% from high)")
 
-        # 52-week high/low (if enough data)
-        if len(values) >= 52:
-            recent_52 = values[-52:]
-            high_52 = max(recent_52)
-            low_52 = min(recent_52)
-            pct_from_high = ((latest - high_52) / high_52) * 100 if high_52 != 0 else 0
-            pct_from_low = ((latest - low_52) / low_52) * 100 if low_52 != 0 else 0
-            context_parts.append(f"52-wk range: {low_52:.2f} - {high_52:.2f} ({pct_from_high:+.1f}% from high)")
+        # 5-year stats (pre-computed)
+        if 'range_5y' in analytics:
+            r5 = analytics['range_5y']
+            context_parts.append(f"5Y avg: {r5['mean']:.2f}, std: {r5['std']:.2f}")
+
+        # Momentum (pre-computed)
+        if 'momentum' in analytics:
+            m = analytics['momentum']
+            context_parts.append(f"Momentum: {m['direction']}")
 
         # FRED notes (if available)
         notes = info.get('notes', '')

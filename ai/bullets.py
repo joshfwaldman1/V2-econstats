@@ -3,6 +3,9 @@ Dynamic AI Bullets - AI-generated chart insights.
 
 Generates contextual, data-aware bullets that reference actual values
 and are tailored to the user's specific question.
+
+NOTE: All math is done with pandas in processing/analytics.py.
+The LLM receives pre-computed values - it should NEVER calculate.
 """
 
 import json
@@ -12,6 +15,7 @@ from datetime import datetime
 from config import config
 from cache import cache_manager
 from registry import registry
+from processing.analytics import compute_series_analytics, analytics_to_text
 
 
 def generate_dynamic_bullets(
@@ -23,6 +27,9 @@ def generate_dynamic_bullets(
 ) -> List[str]:
     """
     Generate AI-powered bullets using Claude.
+
+    All math is computed by pandas in processing/analytics.py.
+    The LLM receives pre-computed values - it should NEVER calculate.
 
     Args:
         series_id: The series identifier
@@ -47,55 +54,35 @@ def generate_dynamic_bullets(
     if cached:
         return cached
 
-    # Build context
-    series_info = registry.get_series(series_id)
+    # Determine frequency from metadata
+    freq = info.get('frequency', 'monthly').lower()
+    if 'quarter' in freq:
+        frequency = 'quarterly'
+    elif 'daily' in freq or 'day' in freq:
+        frequency = 'daily'
+    elif 'week' in freq:
+        frequency = 'weekly'
+    else:
+        frequency = 'monthly'
+
+    # Compute all analytics with pandas (deterministic, no LLM math)
+    analytics = compute_series_analytics(dates, values, series_id, frequency)
+
+    if 'error' in analytics:
+        return get_static_bullets(series_id)
+
+    # Build context from pre-computed values
     name = info.get('name', info.get('title', series_id))
     unit = info.get('unit', info.get('units', ''))
-    latest = values[-1]
-    frequency = info.get('frequency', 'Monthly').lower()
 
-    # Format date (frequency-aware)
-    try:
-        latest_date_obj = datetime.strptime(latest_date, '%Y-%m-%d')
-        if 'quarter' in frequency:
-            quarter = (latest_date_obj.month - 1) // 3 + 1
-            date_str = f"Q{quarter} {latest_date_obj.year}"
-        else:
-            date_str = latest_date_obj.strftime('%B %Y')
-    except:
-        date_str = latest_date
+    # Use pandas-computed text summary
+    analytics_text = analytics_to_text(analytics)
 
-    # Calculate trends (frequency-aware)
-    trend_info = ""
-    if len(values) >= 13:
-        # Use appropriate lookback for frequency
-        if 'quarter' in frequency:
-            year_ago = values[-5] if len(values) >= 5 else values[0]
-        else:
-            year_ago = values[-13]
-        yoy_change = latest - year_ago
-        if year_ago != 0:
-            yoy_pct = ((latest - year_ago) / abs(year_ago)) * 100
-            trend_info = f"Year-over-year change: {yoy_change:+.2f} ({yoy_pct:+.1f}%)"
-
-    recent_trend = ""
-    if len(values) >= 4:
-        three_mo_ago = values[-4]
-        if three_mo_ago != 0:
-            recent_change = ((latest - three_mo_ago) / abs(three_mo_ago)) * 100
-            if recent_change > 2:
-                recent_trend = "Rising over past 3 months"
-            elif recent_change < -2:
-                recent_trend = "Falling over past 3 months"
-            else:
-                recent_trend = "Roughly flat over past 3 months"
-
-    # 5-year historical context (key for substantive bullets)
+    # Get 5-year context from pre-computed values
     historical_context = ""
-    if len(values) >= 60:
-        five_yr_high = max(values[-60:])
-        five_yr_low = min(values[-60:])
-        historical_context = f"5-year range: {five_yr_low:.2f} to {five_yr_high:.2f}"
+    if 'range_5y' in analytics:
+        r5 = analytics['range_5y']
+        historical_context = f"5-year range: {r5['low']:.2f} to {r5['high']:.2f} (mean: {r5['mean']:.2f})"
 
     # Get static bullets for context
     static_bullets = get_static_bullets(series_id)
@@ -104,9 +91,7 @@ def generate_dynamic_bullets(
     prompt = f"""Generate 2 insightful bullet points that INTERPRET what this economic data means.
 
 SERIES: {name} ({series_id})
-CURRENT VALUE: {latest:.2f} {unit} as of {date_str}
-{trend_info}
-{recent_trend}
+PRE-COMPUTED ANALYTICS: {analytics_text}
 {historical_context}
 
 {f"DOMAIN CONTEXT: {static_guidance}" if static_guidance else ""}
@@ -116,6 +101,8 @@ Write 2 bullets that:
 1. INTERPRET what the trend means (e.g., "wages rising faster than inflation means workers gaining purchasing power")
 2. Explain the "SO WHAT" - what this means for workers, consumers, or the economy
 3. Keep each bullet to 1 sentence max
+
+IMPORTANT: Use the pre-computed values above. DO NOT calculate any numbers yourself.
 
 Format: Return ONLY a JSON array of strings, like: ["First bullet.", "Second bullet."]"""
 
