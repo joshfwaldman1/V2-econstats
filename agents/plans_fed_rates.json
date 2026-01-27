@@ -1,0 +1,762 @@
+{
+  "interest rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "DGS10",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The interest rate landscape:\n\n\u2022 **Fed Funds (FEDFUNDS)**: The rate the Fed directly controls. This is THE policy rate - when the Fed 'raises rates,' this is what moves. Currently the Fed's primary tool to fight inflation.\n\n\u2022 **2-Year Treasury (DGS2)**: Market's best guess of Fed policy over the next 2 years. If higher than Fed Funds, markets expect more hikes. If lower, they expect cuts.\n\n\u2022 **10-Year Treasury (DGS10)**: THE benchmark long-term rate. Affects mortgages (30-year mortgage rates track this), corporate borrowing, and housing affordability. Not directly controlled by Fed - reflects inflation expectations + economic outlook.\n\n\u2022 **Yield Curve (T10Y2Y)**: 10-year minus 2-year spread. Normally positive (long rates > short rates). When negative (inverted), it has preceded every recession since 1970. The market's recession warning signal."
+  },
+  "rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For a general 'rates' query, I'm showing the two most important benchmark rates: the Federal funds rate (FEDFUNDS) which is the Fed's policy rate controlling short-term rates, and the 10-year Treasury yield (DGS10) which is the key long-term benchmark rate that influences mortgages, corporate bonds, and other long-term financing costs. Together, these capture the short-end and long-end of the interest rate spectrum and show the overall interest rate environment."
+  },
+  "fed": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Shows the Federal Reserve's policy rate implementation: FEDFUNDS is the actual effective federal funds rate (the key policy rate), while DFEDTARU and DFEDTARL show the target upper and lower bounds set by the FOMC. This gives a complete picture of Fed monetary policy stance and how well the effective rate tracks within the target range."
+  },
+  "federal reserve": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These three series show the complete picture of Federal Reserve monetary policy: FEDFUNDS is the actual effective federal funds rate (the primary policy tool), while DFEDTARU and DFEDTARL show the upper and lower bounds of the Fed's target range. Together they reveal both the Fed's policy intentions and how effectively they're being implemented in the market."
+  },
+  "fed funds rate": {
+    "series": [
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "FEDFUNDS is the federal funds effective rate - the actual rate at which banks lend to each other overnight and the Federal Reserve's primary monetary policy tool. This is THE policy rate that the Fed directly influences through its Federal Open Market Committee (FOMC) decisions."
+  },
+  "federal funds rate": {
+    "series": [
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "FEDFUNDS is the federal funds effective rate - the actual rate at which banks lend reserves to each other overnight. This is THE key monetary policy rate that the Federal Reserve uses to implement monetary policy. It's the rate that gets adjusted when the Fed 'raises' or 'cuts' rates, and it influences all other interest rates in the economy."
+  },
+  "fed policy": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These three series show the complete picture of Fed monetary policy: FEDFUNDS is the actual federal funds effective rate (the main policy tool), while DFEDTARU and DFEDTARL show the target upper and lower bounds set by the FOMC. Together they reveal policy changes, target ranges, and how effectively the Fed is controlling the policy rate within its intended band."
+  },
+  "monetary policy": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These three series best capture monetary policy dynamics: FEDFUNDS is the Fed's primary policy tool, DGS2 reflects market expectations of near-term Fed policy changes, and DGS10 shows longer-term economic expectations and transmission to broader financial conditions. Together they illustrate the Fed's policy stance and its transmission through the yield curve."
+  },
+  "rate hikes": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "FEDFUNDS shows the actual Fed policy rate changes (rate hikes), while DGS2 (2-year Treasury) is the best predictor of Fed policy and reflects market expectations of future rate hikes. Together they show both realized and anticipated rate hike cycles."
+  },
+  "rate cuts": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "To analyze rate cuts, we need the federal funds effective rate (FEDFUNDS) which shows actual Fed policy changes, plus the target upper and lower bounds (DFEDTARU, DFEDTARL) to see the Fed's intended policy range. Rate cuts appear as downward movements in these series, showing both when cuts occurred and their magnitude."
+  },
+  "will the fed cut rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "To assess Fed rate cut probability, we need: 1) FEDFUNDS shows current policy rate level, 2) DGS2 (2-year Treasury) is the best predictor of Fed policy as it reflects market expectations of future rate moves, 3) T10Y2Y (yield curve spread) indicates recession risk - when inverted, it often precedes Fed cuts. The 2-year yield trading below fed funds suggests markets expect cuts. Cannot combine charts due to T10Y2Y being a spread while others are levels."
+  },
+  "treasury yields": {
+    "series": [
+      "DGS2",
+      "DGS5",
+      "DGS10",
+      "DGS30"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Treasury yields across the maturity spectrum show the term structure of interest rates. Short rates (2Y) are most sensitive to Fed policy expectations. Long rates (10Y, 30Y) reflect inflation expectations and growth outlook. The shape of the curve tells a story about where markets think the economy and Fed policy are headed."
+  },
+  "10 year treasury": {
+    "series": [
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "DGS10 is the 10-year Treasury constant maturity rate, which is the benchmark long-term interest rate in the U.S. economy. It's widely watched as it influences mortgage rates, corporate borrowing costs, and serves as a key indicator of long-term economic expectations and inflation outlook."
+  },
+  "2 year treasury": {
+    "series": [
+      "DGS2"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "DGS2 is the 2-year Treasury constant maturity rate, which is widely considered the best predictor of Federal Reserve policy changes. The 2-year Treasury is highly sensitive to near-term Fed expectations and is a key benchmark for understanding market expectations of monetary policy over the next 1-2 years."
+  },
+  "yield curve": {
+    "series": [
+      "DGS3MO",
+      "DGS2",
+      "DGS10",
+      "DGS30"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "**WHY IT MATTERS:** The yield curve shows Treasury yields across maturities. Normally it slopes UP (longer = higher yield for locking up money longer). When INVERTED (short rates exceed long), it signals tight Fed policy + weak growth expectations—a recipe that preceded every recession since 1970.\n\n**IMPORTANT CAVEAT:** The 2022-2024 inversion was the deepest and longest since the 1980s, yet no recession followed. Post-COVID labor market strength and excess savings may have changed the signal's reliability."
+  },
+  "inverted yield curve": {
+    "series": [
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "**WHY INVERSION SIGNALS RECESSION:** When short-term rates exceed long-term rates, it means: (1) The Fed has raised rates aggressively (pushing up the short end), and (2) Markets expect this tight policy will slow growth/inflation (keeping long rates low). This combination historically caused recessions.\n\n**THE 2022-2024 EXCEPTION:** The curve inverted for nearly 2 years—the longest since the 1980s—yet no recession followed. Strong labor markets, excess pandemic savings, and fiscal stimulus may have broken the pattern. Some argue it's 'different this time'; others say the lag is just longer."
+  },
+  "bond yields": {
+    "series": [
+      "DGS2",
+      "DGS10",
+      "DGS30"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Bond yields refer to Treasury securities across different maturities. The 2-year (DGS2) represents short-term rates and Fed policy expectations, the 10-year (DGS10) is the benchmark bond rate used for pricing mortgages and corporate bonds, and the 30-year (DGS30) represents long-term interest rate expectations. These three maturities provide a comprehensive view of the bond yield landscape across the yield curve."
+  },
+  "mortgage rates": {
+    "series": [
+      "MORTGAGE30US",
+      "MORTGAGE15US"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The 30-year fixed rate is America's most common mortgage. Small rate changes have big affordability impacts: at 3%, a $400K home costs ~$1,686/month; at 7%, the same home costs ~$2,661/month (+58%). The 15-year rate is typically 0.5-0.75% lower but with higher payments. Current rates affect both homebuyers and existing owners considering refinancing."
+  },
+  "30 year mortgage": {
+    "series": [
+      "MORTGAGE30US"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The 30-year fixed mortgage rate determines home affordability for most Americans. Example: at 3%, a $400K home costs ~$1,686/month in principal and interest; at 7%, it costs ~$2,661/month. Rates above 7% are historically normal (pre-2008 average) but feel high after the 2020-21 lows of 2.7%."
+  },
+  "borrowing costs": {
+    "series": [
+      "FEDFUNDS",
+      "DPRIME",
+      "MORTGAGE30US",
+      "BAMLC0A0CM"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Borrowing costs span multiple rate categories: FEDFUNDS shows the baseline Fed policy rate that influences all borrowing costs; DPRIME represents the rate banks charge their best customers (basis for many business loans); MORTGAGE30US captures consumer mortgage costs; and BAMLC0A0CM shows the credit spread for investment-grade corporate bonds, indicating how much companies pay above Treasuries to borrow. Together these provide a comprehensive view of borrowing costs across the economy."
+  },
+  "credit conditions": {
+    "series": [
+      "BAMLC0A0CM",
+      "BAMLH0A0HYM2",
+      "DPRIME",
+      "TERMCBCCALLNS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Credit conditions are best measured by credit spreads and lending rates. Investment grade corporate spread (BAMLC0A0CM) and high yield spread (BAMLH0A0HYM2) show how much extra yield investors demand for credit risk - widening spreads indicate tightening credit conditions. Bank prime rate (DPRIME) shows the rate banks charge their best customers, while credit card rates (TERMCBCCALLNS) reflect consumer credit conditions. Together these capture both corporate and consumer credit markets across the risk spectrum."
+  },
+  "financial conditions": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10",
+      "BAMLC0A0CM",
+      "BAMLH0A0HYM2"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Financial conditions encompass the ease or tightness of credit access across the economy. I'm showing: (1) FEDFUNDS - the Fed's primary policy tool that anchors all other rates, (2) DGS10 - the benchmark 10-year Treasury that influences long-term borrowing costs, (3) BAMLC0A0CM - investment grade corporate credit spreads showing conditions for high-quality borrowers, and (4) BAMLH0A0HYM2 - high yield spreads indicating risk appetite and conditions for riskier borrowers. Together, these capture the full spectrum from risk-free rates to credit risk premiums that define overall financial conditions. When spreads widen and rates rise, conditions tighten; when spreads narrow, conditions ease."
+  },
+  "tight money": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "To assess 'tight money' conditions, I'm showing: (1) FEDFUNDS - the Fed's policy rate, which is the primary tool for tightening monetary policy, (2) DGS10 - the 10-year Treasury yield showing long-term borrowing costs across the economy, and (3) T10Y2Y - the yield curve spread, as tight monetary policy often flattens or inverts the yield curve when short rates rise faster than long rates. High fed funds rates and compressed yield spreads are classic signs of restrictive monetary policy."
+  },
+  "easy money": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Easy money refers to periods when the Federal Reserve keeps interest rates low to stimulate economic activity. The federal funds rate (FEDFUNDS) shows the Fed's policy stance directly, while the 10-year Treasury yield (DGS10) reflects longer-term market expectations. When both rates are low (especially fed funds near zero), monetary conditions are considered 'easy' - making borrowing cheap and encouraging investment and spending. Comparing these two rates shows both the Fed's current policy and how markets expect that policy to affect longer-term rates."
+  },
+  "quantitative easing": {
+    "series": [
+      "WALCL",
+      "FEDFUNDS",
+      "DGS10",
+      "BAMLC0A0CM"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Quantitative easing (QE) is unconventional monetary policy where the Fed purchases securities to expand its balance sheet. WALCL (Fed total assets) is the direct measure of QE - balance sheet expansion IS quantitative easing. FEDFUNDS shows when conventional policy hit zero bound (necessitating QE), DGS10 shows QE's primary transmission mechanism (lowering long-term Treasury yields), and corporate credit spreads (BAMLC0A0CM) demonstrate portfolio balance effects as investors moved into riskier assets."
+  },
+  "quantitative tightening": {
+    "series": [
+      "WALCL",
+      "FEDFUNDS",
+      "DGS10",
+      "BAMLC0A0CM"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Quantitative tightening (QT) involves the Fed reducing its balance sheet to tighten monetary conditions. WALCL (Fed total assets) is the direct measure of QT - balance sheet reduction IS quantitative tightening. FEDFUNDS shows rate hikes that typically accompany QT, DGS10 captures how QT affects long-term borrowing costs, and BAMLC0A0CM (investment grade credit spreads) shows the impact on corporate borrowing conditions."
+  },
+  "fed balance sheet": {
+    "series": [
+      "WALCL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "WALCL (All Federal Reserve Banks - Total Assets) is the definitive measure of the Fed's balance sheet size. This series shows the total assets held by the Federal Reserve, which expanded dramatically during QE programs (2008-2014) and again during COVID-19 (2020-2022). The balance sheet reflects the Fed's asset purchases (Treasury bonds, mortgage-backed securities) used for quantitative easing when rates hit the zero lower bound. Balance sheet expansion is stimulative monetary policy, while 'quantitative tightening' (QT) shrinks the balance sheet."
+  },
+  "fomc": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The FOMC (Federal Open Market Committee) sets the federal funds rate target range. FEDFUNDS shows the effective rate (actual market rate), while DFEDTARU and DFEDTARL show the upper and lower bounds of the target range set by the FOMC. This displays the committee's policy decisions and how well the market rate tracks their target."
+  },
+  "fed meeting": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For Fed meeting analysis, I'm showing the federal funds effective rate (FEDFUNDS) along with the Fed's target upper and lower bounds (DFEDTARU, DFEDTARL). This reveals the Fed's policy decisions from FOMC meetings - you can see exactly when they changed rates, the target range they set, and how the effective rate tracks within that range. The target bounds show the Fed's intended policy stance from each meeting, while the effective rate shows the actual market rate."
+  },
+  "prime rate": {
+    "series": [
+      "DPRIME",
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The prime rate (DPRIME) is the base rate banks charge their most creditworthy customers and directly tracks the federal funds rate. Including FEDFUNDS shows how the Fed's policy rate drives prime rate changes - banks typically set prime at fed funds + 3 percentage points. This comparison illustrates the direct transmission mechanism of monetary policy to consumer and business lending rates."
+  },
+  "credit card rates": {
+    "series": [
+      "TERMCBCCALLNS",
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "TERMCBCCALLNS shows commercial bank credit card interest rates - the actual rates consumers pay on credit cards. Including FEDFUNDS provides crucial context since credit card rates typically move with Fed policy but maintain a significant spread above the federal funds rate due to credit risk and bank margins. This comparison shows both the level of credit card rates and how they respond to monetary policy changes."
+  },
+  "loan rates": {
+    "series": [
+      "DPRIME",
+      "MORTGAGE30US",
+      "TERMCBCCALLNS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These three series capture the main consumer lending rates: DPRIME (bank prime rate - the benchmark for most variable-rate loans like credit lines and some business loans), MORTGAGE30US (30-year fixed mortgage rate - the most common home loan), and TERMCBCCALLNS (credit card rates). Together they show how borrowing costs have evolved across the major consumer credit markets."
+  },
+  "treasury bills": {
+    "series": [
+      "DGS3MO",
+      "DGS6MO",
+      "DGS1"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Treasury bills are short-term government securities with maturities of one year or less. The 3-month, 6-month, and 1-year Treasury rates represent the core Treasury bill market. These rates move closely together and are the most liquid short-term government securities, serving as benchmarks for money market rates and short-term funding costs."
+  },
+  "short term rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS3MO",
+      "DGS6MO",
+      "DGS1"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Short-term rates include the Fed funds rate (the primary policy tool) and Treasury securities with maturities up to 1 year. The Fed funds rate drives other short-term rates, while the 3-month, 6-month, and 1-year Treasury yields show how short-term market rates respond to Fed policy and expectations. These rates move closely together and are all quoted in percentage terms, making them ideal for comparison on a single chart."
+  },
+  "long term rates": {
+    "series": [
+      "DGS10",
+      "DGS30"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Long-term rates are best represented by the 10-year and 30-year Treasury yields. The 10-year is the benchmark long-term rate that influences mortgages, corporate bonds, and other long-term borrowing costs. The 30-year Treasury represents the longest standard maturity and shows how the market views very long-term inflation expectations and economic growth. Together, they capture the full spectrum of long-term interest rate dynamics."
+  },
+  "real interest rates": {
+    "series": [
+      "FEDFUNDS",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Real interest rates are nominal rates adjusted for inflation. I'm showing the federal funds rate (nominal policy rate) alongside CPI inflation (year-over-year). The real fed funds rate is approximately the nominal rate minus the inflation rate. When inflation exceeds the fed funds rate, real rates are negative, which is highly stimulative. Real rates are crucial for understanding the true cost of borrowing and Fed policy stance."
+  },
+  "neutral rate": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10",
+      "T10YFF"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The neutral rate (r*) is the theoretical fed funds rate that neither stimulates nor restricts the economy when inflation is at target. While we can't directly observe r*, we can assess it by examining: 1) FEDFUNDS - the actual policy rate set by the Fed, 2) DGS10 - the 10-year Treasury which reflects long-term neutral rate expectations, and 3) T10YFF - the term spread between 10-year and fed funds, which shows the relationship between current policy and long-term rates. When the fed funds rate is near neutral, the term spread typically normalizes. Current Fed estimates put r* around 2.5%, but market-based measures (like 10-year Treasury minus expected inflation) provide real-time assessments."
+  },
+  "r star": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "R* (r-star) is the neutral real interest rate that neither stimulates nor restrains the economy when inflation is at target. While r* itself isn't directly observable, we can assess Fed policy stance by comparing the current fed funds rate (FEDFUNDS) to longer-term rates like the 10-year Treasury (DGS10). When the fed funds rate is well below long-term rates, policy is likely accommodative relative to r*. When it's at or above long-term rates, policy may be at or above the neutral rate. The yield curve relationship helps gauge whether current policy is restrictive or accommodative relative to the unobservable neutral rate."
+  },
+  "terminal rate": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DGS2"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Terminal rate refers to the peak Fed funds rate in the current tightening cycle. FEDFUNDS shows the actual policy rate, DFEDTARU shows the Fed's target upper bound (where they're heading), and DGS2 (2-year Treasury) is the best market-based predictor of where the Fed funds rate will be - it effectively shows what markets expect the terminal rate to be. The 2-year yield often leads Fed policy and reflects market expectations of the peak rate."
+  },
+  "yield curve inversion": {
+    "series": [
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "**THE MECHANISM:** When 2-year yields exceed 10-year yields (negative spread), it means markets expect the Fed's aggressive rate hikes will eventually force rate CUTS—typically because they expect the tight policy to cause a recession. The 2-year is sensitive to Fed policy; the 10-year reflects growth/inflation outlook.\n\n**TRACK RECORD:** Preceded every recession since 1970 with a 12-18 month lead time.\n\n**2022-2024 EXCEPTION:** The curve inverted in July 2022 and stayed inverted for nearly 2 years—the longest since the 1980s. Yet as of early 2025, no recession materialized. Strong jobs, excess savings, and fiscal stimulus may have broken the historical pattern."
+  },
+  "10-year vs 2-year treasury": {
+    "series": [
+      "DGS10",
+      "DGS2",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "10-year Treasury (DGS10) vs 2-year Treasury (DGS2) comparison with their spread (T10Y2Y). The 2-year reflects near-term Fed policy expectations while the 10-year reflects long-term economic and inflation expectations. The spread (T10Y2Y) shows the yield curve shape - negative values indicate inversion, which has historically preceded recessions."
+  },
+  "10 year vs 2 year": {
+    "series": [
+      "DGS10",
+      "DGS2",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "10-year Treasury (DGS10) vs 2-year Treasury (DGS2) comparison with their spread (T10Y2Y). The 2-year reflects near-term Fed policy expectations while the 10-year reflects long-term economic and inflation expectations. The spread (T10Y2Y) shows the yield curve shape - negative values indicate inversion, which has historically preceded recessions."
+  },
+  "fed projections": {
+    "series": [
+      "FEDTARMD",
+      "UNRATEMD",
+      "GDPC1MD",
+      "PCECTPIMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Fed's Summary of Economic Projections (SEP) shows FOMC participants' median forecasts: FEDTARMD (fed funds rate path), UNRATEMD (unemployment rate), GDPC1MD (real GDP growth), and PCECTPIMD (PCE inflation). These projections, released quarterly, reveal where the Fed expects the economy to go and guide market expectations of policy."
+  },
+  "fed forecast": {
+    "series": [
+      "FEDTARMD",
+      "UNRATEMD",
+      "GDPC1MD",
+      "PCECTPIMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Fed's Summary of Economic Projections (SEP) shows FOMC participants' median forecasts: FEDTARMD (fed funds rate path), UNRATEMD (unemployment rate), GDPC1MD (real GDP growth), and PCECTPIMD (PCE inflation). These projections, released quarterly, reveal where the Fed expects the economy to go and guide market expectations of policy."
+  },
+  "sep": {
+    "series": [
+      "FEDTARMD",
+      "UNRATEMD",
+      "GDPC1MD",
+      "PCECTPIMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Summary of Economic Projections (SEP) includes FOMC participants' median forecasts: FEDTARMD (fed funds rate), UNRATEMD (unemployment), GDPC1MD (real GDP growth), and PCECTPIMD (PCE inflation). Released after March, June, September, and December FOMC meetings, the SEP reveals Fed expectations for economic conditions and the policy rate path."
+  },
+  "summary of economic projections": {
+    "series": [
+      "FEDTARMD",
+      "UNRATEMD",
+      "GDPC1MD",
+      "PCECTPIMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Summary of Economic Projections (SEP) includes FOMC participants' median forecasts: FEDTARMD (fed funds rate), UNRATEMD (unemployment), GDPC1MD (real GDP growth), and PCECTPIMD (PCE inflation). Released after March, June, September, and December FOMC meetings, the SEP reveals Fed expectations for economic conditions and the policy rate path."
+  },
+  "dot plot": {
+    "series": [
+      "FEDTARMD",
+      "FEDTARCTL",
+      "FEDTARCTH"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The Fed's 'dot plot' shows FOMC participants' projections for the federal funds rate. FEDTARMD is the median projection, while FEDTARCTL and FEDTARCTH show the central tendency (middle 10 of 19 participants, excluding 3 highest and 3 lowest). The dot plot signals the expected path of rate hikes or cuts and is closely watched by markets."
+  },
+  "fed rate forecast": {
+    "series": [
+      "FEDTARMD",
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Comparing the Fed's rate projection (FEDTARMD - median dot plot) with the actual federal funds rate (FEDFUNDS). This shows where the Fed expects rates to go versus where they are now. The gap between projection and current rate indicates expected policy changes."
+  },
+  "fed rate projection": {
+    "series": [
+      "FEDTARMD",
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Comparing the Fed's rate projection (FEDTARMD - median dot plot) with the actual federal funds rate (FEDFUNDS). This shows where the Fed expects rates to go versus where they are now. The gap between projection and current rate indicates expected policy changes."
+  },
+  "fed unemployment forecast": {
+    "series": [
+      "UNRATEMD",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Comparing the Fed's unemployment projection (UNRATEMD - median SEP forecast) with the actual unemployment rate (UNRATE). If the Fed projects higher unemployment than current levels, they expect labor market softening. If projections are stable or declining, they see a soft landing as achievable."
+  },
+  "fed unemployment projection": {
+    "series": [
+      "UNRATEMD",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Comparing the Fed's unemployment projection (UNRATEMD - median SEP forecast) with the actual unemployment rate (UNRATE). If the Fed projects higher unemployment than current levels, they expect labor market softening. If projections are stable or declining, they see a soft landing as achievable."
+  },
+  "fed inflation forecast": {
+    "series": [
+      "PCECTPIMD",
+      "JCXFEMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The Fed's inflation projections: PCECTPIMD (headline PCE inflation median) and JCXFEMD (core PCE inflation median, excluding food and energy). The Fed targets 2% PCE inflation. Projections above 2% suggest the Fed sees persistent inflation; projections converging to 2% signal confidence in achieving their target."
+  },
+  "fed inflation projection": {
+    "series": [
+      "PCECTPIMD",
+      "JCXFEMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The Fed's inflation projections: PCECTPIMD (headline PCE inflation median) and JCXFEMD (core PCE inflation median, excluding food and energy). The Fed targets 2% PCE inflation. Projections above 2% suggest the Fed sees persistent inflation; projections converging to 2% signal confidence in achieving their target."
+  },
+  "fed gdp forecast": {
+    "series": [
+      "GDPC1MD",
+      "GDPC1CTL",
+      "GDPC1CTH"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The Fed's GDP growth projections: GDPC1MD (median), GDPC1CTL (central tendency low), GDPC1CTH (central tendency high). These show expected Q4/Q4 real GDP growth. Projections near trend (1.8-2%) suggest stable growth; below-trend projections signal expected slowdown; above-trend indicates economic strength."
+  },
+  "fed gdp projection": {
+    "series": [
+      "GDPC1MD",
+      "GDPC1CTL",
+      "GDPC1CTH"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The Fed's GDP growth projections: GDPC1MD (median), GDPC1CTL (central tendency low), GDPC1CTH (central tendency high). These show expected Q4/Q4 real GDP growth. Projections near trend (1.8-2%) suggest stable growth; below-trend projections signal expected slowdown; above-trend indicates economic strength."
+  },
+  "unemployment forecast vs actual": {
+    "series": [
+      "UNRATEMD",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Fed unemployment projection (UNRATEMD) versus actual unemployment rate (UNRATE). This comparison reveals whether the Fed's forecasts have been accurate and whether current conditions are better or worse than expected. Actual below projection = labor market stronger than Fed expected."
+  },
+  "inflation forecast vs actual": {
+    "series": [
+      "PCECTPIMD",
+      "PCEPI"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "chart_groups": [
+      {
+        "series": [
+          "PCECTPIMD",
+          "PCEPI"
+        ],
+        "title": "PCE Inflation: Fed Projection vs Actual",
+        "show_yoy": true
+      }
+    ],
+    "explanation": "Fed PCE inflation projection (PCECTPIMD) versus actual PCE inflation (PCEPI, shown as YoY change). This reveals forecast accuracy and whether inflation is running hotter or cooler than the Fed expected. Actual above projection = inflation more persistent than Fed anticipated."
+  },
+  "gdp forecast vs actual": {
+    "series": [
+      "GDPC1MD",
+      "A191RL1Q225SBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Fed real GDP growth projection (GDPC1MD) versus actual real GDP growth (A191RL1Q225SBEA - quarterly annualized). This shows whether economic growth is meeting, exceeding, or falling short of Fed expectations. Sustained outperformance may lead to tighter policy; underperformance may prompt easing."
+  },
+  "long run projections": {
+    "series": [
+      "FEDTARMDLR",
+      "UNRATEMDLR",
+      "GDPC1MDLR",
+      "PCECTPIMDLR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Fed's long-run projections represent FOMC participants' view of where the economy settles in the long term: FEDTARMDLR (neutral fed funds rate, ~2.5%), UNRATEMDLR (natural unemployment rate, ~4%), GDPC1MDLR (potential GDP growth, ~1.8%), PCECTPIMDLR (inflation target, 2%). These are structural estimates, not forecasts."
+  },
+  "neutral rate projection": {
+    "series": [
+      "FEDTARMDLR",
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The Fed's long-run fed funds rate projection (FEDTARMDLR) represents their estimate of the neutral rate - where policy is neither stimulative nor restrictive. Comparing to actual FEDFUNDS shows whether current policy is above neutral (restrictive) or below (accommodative). The neutral rate has been revised up recently from ~2.5% toward ~3%."
+  },
+  "where does the fed see rates going": {
+    "series": [
+      "FEDTARMD",
+      "FEDFUNDS",
+      "DGS2"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Three views of future Fed policy: FEDTARMD (the Fed's own median projection from the dot plot), FEDFUNDS (current policy rate), and DGS2 (2-year Treasury, reflecting market expectations). When DGS2 diverges from FEDTARMD, markets disagree with the Fed's guidance - often markets prove more accurate."
+  },
+  "what is the fed expecting": {
+    "series": [
+      "FEDTARMD",
+      "UNRATEMD",
+      "PCECTPIMD",
+      "GDPC1MD"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Fed's current expectations from the Summary of Economic Projections: their rate path (FEDTARMD), unemployment forecast (UNRATEMD), inflation forecast (PCECTPIMD), and GDP growth forecast (GDPC1MD). Together these reveal the Fed's baseline economic scenario and policy intentions."
+  },
+  "when will rates go down": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "PCEPILFE"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Rate cut conditions: Current fed funds rate (FEDFUNDS) is where policy stands. 2-year Treasury (DGS2) reflects market expectations - if it's below fed funds, markets expect cuts. Core PCE (PCEPILFE) must fall toward 2% for the Fed to cut. Fed typically cuts when inflation is controlled AND growth is slowing. Check if 2yr yield < fed funds = markets expect cuts."
+  },
+  "are interest rates going up or down": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Rate direction: Fed funds (FEDFUNDS) is current policy. 2-year Treasury (DGS2) is the best predictor of near-term Fed moves - if above fed funds, markets expect hikes; if below, expect cuts. Yield curve (T10Y2Y) shows long vs short rate expectations. Rising rates = tightening, falling = easing."
+  },
+  "how high will rates go": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DGS2",
+      "FEDTARMD"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Terminal rate expectations: Current fed funds (FEDFUNDS) and target (DFEDTARU) show where we are. 2-year Treasury (DGS2) reflects market expectations of peak rate. Fed's own projection (FEDTARMD) shows their expected rate path. Compare DGS2 to fed funds - if DGS2 is higher, markets expect more hikes; if lower, the peak is likely behind us."
+  },
+  "why are rates high": {
+    "series": [
+      "FEDFUNDS",
+      "CPIAUCSL",
+      "PCEPILFE"
+    ],
+    "show_yoy": [
+      false,
+      true,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "The Fed raised rates to fight inflation. Fed funds (FEDFUNDS) shows policy rate. Headline CPI (CPIAUCSL) and core PCE (PCEPILFE) show inflation - the Fed's 2% target. When inflation is above target, the Fed keeps rates high to slow demand and reduce price pressures. Rates will stay high until inflation durably returns to 2%."
+  },
+  "2 year vs 10 year": {
+    "series": [
+      "DGS2",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "The 2-year vs 10-year Treasury spread is the most-watched yield curve indicator. When 2Y exceeds 10Y (inversion), it signals markets expect the Fed to cut rates - historically preceding recessions by 12-18 months. The depth and duration of inversion matters more than just the fact of it."
+  },
+  "fed funds vs 10 year": {
+    "series": [
+      "FEDFUNDS",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Fed Funds (what the Fed controls) vs 10-year Treasury (what markets determine) shows the transmission of monetary policy. When Fed Funds exceeds 10Y, the Fed is 'restrictive' - trying to slow the economy. When 10Y exceeds Fed Funds, policy is 'accommodative.' The gap shows how tight financial conditions are."
+  },
+  "mortgage rates vs fed funds": {
+    "series": [
+      "MORTGAGE30US",
+      "FEDFUNDS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Mortgage rates don't move 1:1 with the Fed Funds rate - they're more closely tied to 10-year Treasuries plus a spread for credit/prepayment risk. But Fed policy still influences them. The gap shows how much 'extra' homebuyers pay beyond the risk-free rate. This spread widened significantly in 2022-2023."
+  },
+  "short vs long rates": {
+    "series": [
+      "DGS3MO",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "3-month vs 10-year Treasury spread is the NY Fed's preferred recession indicator. When 3-month exceeds 10-year, the yield curve is inverted and recession probability rises. This spread has predicted every recession since 1968, though with variable lead times (6-24 months)."
+  },
+  "quantitative tightening": {
+    "series": [
+      "WALCL",
+      "FEDFUNDS",
+      "DGS10"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Quantitative tightening (QT) is the Fed reducing its balance sheet to tighten monetary conditions. Fed total assets (WALCL) is the direct measure - declining balance sheet IS QT. The Fed expanded WALCL to $9 trillion during COVID QE; QT began in 2022, shrinking it by ~$1.5 trillion. Fed funds rate (FEDFUNDS) shows the rate hikes that accompanied QT. 10-year Treasury (DGS10) captures how QT affects long-term borrowing costs. QT works by draining liquidity from the financial system, pushing up rates and tightening financial conditions."
+  },
+  "qt": {
+    "series": [
+      "WALCL",
+      "FEDFUNDS",
+      "DGS10"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "QT (quantitative tightening) = Fed shrinking its balance sheet. Fed assets (WALCL) peaked at $9T in 2022, declined to ~$7.5T by 2024. Fed funds rate (FEDFUNDS) shows parallel rate hikes. 10-year yield (DGS10) reflects the impact on long-term rates. QT drains liquidity, complementing rate hikes to tighten monetary policy. Opposite of QE (quantitative easing) which expanded the balance sheet to stimulate."
+  },
+  "pivot": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DGS2",
+      "PCEPILFE"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "'Pivot' refers to when the Fed switches from hiking to cutting rates. Fed funds (FEDFUNDS) and target (DFEDTARU) show actual policy. 2-year Treasury (DGS2) reflects market expectations of the pivot - when 2Y falls below fed funds, markets expect cuts. Core PCE (PCEPILFE) is the trigger - Fed pivots when inflation approaches 2% target AND/OR unemployment rises. The 2022-2023 cycle: Fed hiked to 5.5%, paused, then pivoted to cuts in late 2024 as inflation cooled. Markets often anticipate the pivot months ahead."
+  },
+  "higher for longer": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DGS2",
+      "PCEPILFE"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "'Higher for longer' means the Fed keeps rates elevated for an extended period to ensure inflation durably returns to 2%. Fed funds (FEDFUNDS) and target (DFEDTARU) show policy staying high. 2-year Treasury (DGS2) reflects market beliefs about the rate path - if DGS2 stays near fed funds, markets believe 'higher for longer.' Core PCE (PCEPILFE) is the reason - if inflation stays above 2%, the Fed maintains restrictive policy. The phrase became prominent in 2023 when Fed signaled rates would stay at 5%+ longer than markets initially expected."
+  }}

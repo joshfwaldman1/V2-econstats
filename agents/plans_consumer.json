@@ -1,0 +1,367 @@
+{
+  "consumer spending": {
+    "series": [
+      "PCE",
+      "RSXFS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PCE (Personal Consumption Expenditures) is the comprehensive measure of consumer spending covering all goods and services - this is what economists use for total consumer spending. RSXFS (Retail Sales Excluding Food Services) provides timelier monthly data focused on goods purchases. Together they show both the complete spending picture (PCE) and the timely retail indicator (RSXFS)."
+  },
+  "retail sales": {
+    "series": [
+      "RSXFS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "RSXFS (Retail Sales Excluding Food Services) is the cleanest measure of retail sales as it removes the volatile food services component, providing a better view of core retail spending trends on goods. This series is widely used by economists and policymakers to gauge consumer spending patterns."
+  },
+  "consumer sentiment": {
+    "series": [
+      "UMCSENT"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "UMCSENT (University of Michigan Consumer Sentiment Index) is the most widely cited and comprehensive measure of consumer sentiment. This monthly survey captures consumers' attitudes about current economic conditions and future expectations, making it the gold standard for tracking consumer confidence and sentiment trends."
+  },
+  "consumer confidence": {
+    "series": [
+      "UMCSENT"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "UMCSENT (University of Michigan Consumer Sentiment Index) is the most widely cited and authoritative measure of consumer confidence. This survey-based index captures consumers' attitudes about current economic conditions and future expectations, making it the gold standard for measuring consumer confidence. The index is released monthly and is closely watched by policymakers, economists, and markets as a leading indicator of consumer spending behavior."
+  },
+  "spending": {
+    "series": [
+      "RSXFS",
+      "PCEC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "RSXFS (retail sales excluding food services) provides the cleanest measure of core consumer spending without volatile restaurant sales, while PCEC96 (real personal consumption expenditures) gives the broadest inflation-adjusted view of total consumer spending including services. Together they show both retail purchasing patterns and comprehensive spending behavior. Year-over-year growth rates reveal spending momentum trends."
+  },
+  "consumption": {
+    "series": [
+      "PCEC96",
+      "RSXFS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "PCEC96 (Real Personal Consumption Expenditures) is the most comprehensive measure of consumption, capturing all consumer spending adjusted for inflation. RSXFS (Retail Sales ex Food Services) complements this by showing the retail component specifically, which is timelier and a key subset of total consumption. Together they provide both the broad consumption picture and retail-specific trends."
+  },
+  "personal spending": {
+    "series": [
+      "PCEC96",
+      "RSXFS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PCEC96 (Real Personal Consumption Expenditures) is the most comprehensive measure of personal spending, capturing all household purchases including services, durables, and nondurables adjusted for inflation. RSXFS (Retail Sales excluding Food Services) provides a complementary view focusing specifically on goods purchases, which is more timely and granular. Together they give a complete picture of personal spending patterns - PCE for breadth and economic significance, retail sales for timeliness and goods-specific trends."
+  },
+  "consumer": {
+    "series": [
+      "UMCSENT",
+      "RSXFS",
+      "PSAVERT"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These three series provide the most comprehensive view of overall consumer health: UMCSENT (University of Michigan Consumer Sentiment) captures consumer confidence and expectations, RSXFS (retail sales excluding food services) measures actual spending behavior as the cleanest retail metric, and PSAVERT (personal saving rate) indicates financial cushion and spending sustainability. Together they show both the psychological and behavioral aspects of consumer activity."
+  },
+  "michigan consumer sentiment": {
+    "series": [
+      "UMCSENT"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "UMCSENT is the University of Michigan Consumer Sentiment Index, the most widely cited and followed measure of consumer sentiment. This monthly survey captures consumer attitudes about current economic conditions and future expectations, making it the definitive measure for tracking consumer confidence trends."
+  },
+  "conference board": {
+    "series": [
+      "CSCICP03USM665S"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "CSCICP03USM665S is the Conference Board Consumer Confidence Index, which measures consumers' degree of optimism about the state of the economy based on their saving and spending activity. This is distinct from the University of Michigan Consumer Sentiment Index and provides an alternative perspective on consumer attitudes and expectations."
+  },
+  "consumer outlook": {
+    "series": [
+      "UMCSENT",
+      "UMCSENT1",
+      "UMCSENT5"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Consumer outlook is best captured by the University of Michigan Consumer Sentiment Index (UMCSENT) along with its components: current conditions (UMCSENT1) and expectations (UMCSENT5). The expectations component is particularly important for 'outlook' as it measures how consumers view the future economic environment. Combining all three shows whether consumer pessimism/optimism is driven by current circumstances or future concerns, providing the most comprehensive view of consumer outlook."
+  },
+  "savings rate": {
+    "series": [
+      "PSAVERT"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "PSAVERT is the personal saving rate, which measures the percentage of disposable personal income that households save rather than spend. This is the standard metric for tracking consumer savings behavior and financial cushion building over time."
+  },
+  "personal savings": {
+    "series": [
+      "PSAVERT"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "PSAVERT (Personal Saving Rate) is the definitive measure of personal savings, showing what percentage of disposable income Americans are saving. This rate is already expressed as a percentage and doesn't need year-over-year comparison since the level itself is meaningful - rates above 10% indicate high savings behavior while rates below 5% suggest low savings rates."
+  },
+  "consumer debt": {
+    "series": [
+      "TOTALSL",
+      "REVOLSL",
+      "TDSP",
+      "BOGZ1FL073164003Q"
+    ],
+    "show_yoy": [true, true, false, false],
+    "combine_chart": false,
+    "explanation": "Debt levels and stress indicators: TOTALSL and REVOLSL (credit cards) show debt amounts. TDSP (total debt service ratio) shows what percentage of income goes to ALL debt payments (mortgage + consumer). BOGZ1FL073164003Q (household debt service ratio from Flow of Funds) is a complementary measure from the Fed's Financial Accounts. Rising debt service ratios signal financial stress even if debt levels look manageable; falling ratios mean households have room to borrow or spend."
+  },
+  "household debt": {
+    "series": [
+      "TOTALSL",
+      "REVOLSL",
+      "TDSP",
+      "BOGZ1FL073164003Q"
+    ],
+    "show_yoy": [true, true, false, false],
+    "combine_chart": false,
+    "explanation": "Debt levels and sustainability: TOTALSL and REVOLSL (credit cards) show debt amounts. TDSP (total debt service ratio) and BOGZ1FL073164003Q (household debt service ratio from Fed Flow of Funds) show debt burden as share of income - this is what matters for financial stress. Rising debt service ratios signal households are strained; low ratios mean debt is sustainable even if absolute levels are high."
+  },
+  "credit card debt": {
+    "series": [
+      "REVOLSL",
+      "DRCCLACBS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "REVOLSL shows the total outstanding revolving consumer credit (primarily credit cards) to track debt levels, while DRCCLACBS shows the credit card delinquency rate to assess payment stress. Together they provide a complete picture of credit card debt volume and quality. Year-over-year growth helps identify concerning trends in debt accumulation."
+  },
+  "auto loans": {
+    "series": [
+      "MVLOAS",
+      "DRSFRMACBS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "MVLOAS shows the total outstanding motor vehicle loans and leases held by commercial banks, providing the volume/amount of auto lending. DRSFRMACBS shows the auto loan delinquency rate (30+ days past due), indicating the credit quality and stress in auto lending. Together these give both the quantity and quality picture of auto loan markets. Year-over-year changes help show lending trends and whether auto loan stress is increasing or decreasing."
+  },
+  "student loans": {
+    "series": [
+      "SLOAS",
+      "NONREVSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "SLOAS (Student Loans Owned and Securitized by Federal Government) captures the vast majority of student loan debt since federal loans dominate this market. NONREVSL (Nonrevolving Consumer Credit) provides broader context as it includes student loans plus auto loans and other installment debt. Showing year-over-year changes reveals growth trends in student borrowing, while combining charts allows comparison of student loans against total nonrevolving credit to see their relative importance in household debt burdens."
+  },
+  "consumer credit": {
+    "series": [
+      "TOTALSL",
+      "REVOLSL",
+      "NONREVSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "TOTALSL shows overall consumer credit trends, while REVOLSL (credit cards) and NONREVSL (auto/student loans) reveal the composition. Credit card debt indicates discretionary spending patterns, while nonrevolving credit reflects major purchases. YoY growth rates show borrowing momentum, and combining on one chart reveals how different credit types move together during economic cycles."
+  },
+  "personal income": {
+    "series": [
+      "PI",
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PI shows total personal income in nominal terms, while DSPIC96 shows real disposable personal income (inflation-adjusted and after taxes) - the amount households actually have available to spend or save. Both perspectives are crucial: nominal income shows the raw dollars flowing to consumers, while real disposable income shows their actual purchasing power and financial capacity."
+  },
+  "disposable income": {
+    "series": [
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "DSPIC96 (Real Disposable Personal Income) is the most relevant measure for disposable income as it shows what consumers actually have available to spend after taxes, adjusted for inflation. This provides the clearest picture of household purchasing power over time. Year-over-year growth rates help identify trends in consumer financial capacity."
+  },
+  "real income": {
+    "series": [
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "DSPIC96 (Real Disposable Personal Income) is the best measure for real income as it represents personal income after taxes, adjusted for inflation. This shows the actual purchasing power of household income, which is the most relevant metric for consumer spending capacity and financial health. Year-over-year growth helps identify trends in real income gains or losses."
+  },
+  "income growth": {
+    "series": [
+      "PI",
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "PI (Personal Income) shows nominal income growth trends, while DSPIC96 (Real Disposable Personal Income) shows inflation-adjusted income that households actually have available to spend after taxes. Comparing both reveals whether income growth is keeping pace with inflation and improving households' purchasing power. Year-over-year changes best capture growth rates, and combining on one chart shows the inflation impact on real spending power."
+  },
+  "consumer financial health": {
+    "series": [
+      "UMCSENT",
+      "PSAVERT",
+      "TDSP",
+      "BOGZ1FL073164003Q",
+      "DSPIC96"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Consumer financial health requires a multi-dimensional view: UMCSENT (consumer sentiment) shows how consumers perceive their financial situation. PSAVERT (personal saving rate) indicates financial cushion and spending discipline. TDSP and BOGZ1FL073164003Q (debt service ratios) measure debt burden relative to income - critical for spotting financial stress. DSPIC96 (real disposable income) shows actual purchasing power after inflation and taxes. Together these capture confidence, savings capacity, debt sustainability, and real income growth."
+  },
+  "household balance sheet": {
+    "series": [
+      "BOGZ1FL192090005Q",
+      "TDSP",
+      "BOGZ1FL073164003Q"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Household net worth (BOGZ1FL192090005Q) shows the asset side and overall financial position. TDSP (total debt service ratio) and BOGZ1FL073164003Q (household debt service ratio from Flow of Funds) show liability burden as share of income. Together these provide comprehensive balance sheet health - what families own, what they owe, and whether they can service their debt."
+  },
+  "debt service ratio": {
+    "series": [
+      "TDSP",
+      "BOGZ1FL073164003Q",
+      "MDSP"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Debt service ratios measure what percentage of household income goes to debt payments. TDSP (total household debt service ratio) includes both mortgage and consumer debt. BOGZ1FL073164003Q is the household debt service ratio from the Fed's Flow of Funds data. MDSP (mortgage debt service ratio) isolates just housing debt. Rising ratios signal financial stress; falling ratios mean households have room to spend or borrow. Pre-2008 crisis levels peaked around 13%; post-crisis ratios fell to historic lows around 9-10%."
+  },
+  "consumer health": {
+    "series": [
+      "UMCSENT",
+      "RSXFS",
+      "TDSP",
+      "BOGZ1FL073164003Q",
+      "PSAVERT"
+    ],
+    "show_yoy": [false, true, false, false, false],
+    "combine_chart": false,
+    "explanation": "Consumer health dashboard: Sentiment (UMCSENT) shows confidence. Spending (RSXFS) shows actual behavior. Debt service ratios (TDSP, BOGZ1FL073164003Q) show financial stress - rising ratios = trouble, falling = healthy. Savings rate (PSAVERT) shows financial cushion. High sentiment + strong spending + low debt burden + healthy savings = consumers doing well."
+  },
+  "net worth": {
+    "series": [
+      "BOGZ1FL192090005Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "BOGZ1FL192090005Q is the Federal Reserve's measure of total household net worth from the Flow of Funds accounts. This represents the difference between household assets (real estate, financial assets, etc.) and liabilities (mortgages, consumer debt). It's the most comprehensive measure of household wealth and is reported quarterly. Year-over-year growth shows how household wealth is changing over time, which is crucial for understanding consumer financial capacity and spending potential."
+  },
+  "consumer delinquencies": {
+    "series": [
+      "DRCCLACBS",
+      "DRSFRMACBS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Credit card delinquency rates (DRCCLACBS) and auto loan delinquency rates (DRSFRMACBS) are the key measures of consumer delinquencies. Credit cards represent the largest portion of revolving consumer debt and are most sensitive to financial stress, while auto loans are the largest component of nonrevolving credit. Together they provide comprehensive coverage of consumer payment difficulties across the two major credit categories. Combining them allows for easy comparison of delinquency trends across credit types."
+  },
+  "credit card delinquencies": {
+    "series": [
+      "DRCCLACBS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "DRCCLACBS is the credit card delinquency rate, which measures the percentage of credit card loans that are 30+ days past due at commercial banks. This is the most direct and specific measure of credit card payment stress among consumers. Delinquency rates are typically shown as levels (percentages) rather than year-over-year changes, as the absolute level indicates the current stress in the credit card market."
+  },
+  "are consumers spending": {
+    "series": [
+      "RSXFS",
+      "PCEC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "RSXFS (retail sales excluding food services) provides the cleanest measure of consumer goods spending without the volatility of restaurants. PCEC96 (real personal consumption expenditures) captures total consumer spending including services, adjusted for inflation. Together they show both retail momentum and broader spending patterns. Year-over-year growth rates reveal the underlying spending trend beyond seasonal variations."
+  },
+  "consumer strength": {
+    "series": [
+      "UMCSENT",
+      "RSXFS",
+      "PSAVERT"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Consumer strength requires examining three key pillars: confidence (UMCSENT - University of Michigan Consumer Sentiment shows how optimistic consumers feel), spending power (RSXFS - retail sales excluding food services captures discretionary spending strength), and financial resilience (PSAVERT - personal saving rate indicates buffer for future spending). Together these reveal whether consumers are confident, actively spending, and financially positioned for sustained consumption. YoY shows momentum and trends in consumer strength over time."
+  },
+  "household spending": {
+    "series": [
+      "PCE",
+      "RSXFS",
+      "DSPIC96",
+      "UMCSENT"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Household spending comprehensively: Personal consumption expenditures (PCE) is the broadest spending measure covering goods and services. Retail sales (RSXFS) shows goods spending more frequently. Real disposable income (DSPIC96) shows the income supporting spending. Consumer sentiment (UMCSENT) indicates willingness to spend. Together they reveal both actual spending and capacity to sustain it."
+  },
+  "personal consumption": {
+    "series": [
+      "PCEC96",
+      "RSXFS",
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Personal consumption: Real PCE (PCEC96) is the comprehensive measure of consumer spending on goods and services, inflation-adjusted. Retail sales (RSXFS) provides monthly goods spending data. Real disposable income (DSPIC96) shows the income available to support consumption. Consumption is ~70% of GDP, so these trends drive overall economic growth."
+  },
+  "median household income": {
+    "series": [
+      "MEHOINUSA672N",
+      "DSPIC96",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Median household income (MEHOINUSA672N) shows the middle-class benchmark - half of households earn more, half less. Real disposable income (DSPIC96) shows purchasing power after taxes and inflation. CPI (CPIAUCSL) shows inflation eating into nominal income gains. Note: Median income is annual, updated with lag."
+  },
+  "how are consumers doing": {
+    "series": [
+      "UMCSENT",
+      "RSXFS",
+      "DSPIC96",
+      "PSAVERT"
+    ],
+    "show_yoy": [false, true, true, false],
+    "combine_chart": false,
+    "explanation": "Consumer health dashboard: Sentiment (UMCSENT) shows confidence. Retail sales (RSXFS) show actual spending. Real disposable income (DSPIC96) shows purchasing power. Savings rate (PSAVERT) indicates financial cushion. High sentiment + strong spending + rising income + healthy savings = consumers doing well."
+  },
+  "are people spending money": {
+    "series": [
+      "RSXFS",
+      "PCE",
+      "UMCSENT"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Spending indicators: Retail sales (RSXFS) shows goods purchases. Personal consumption (PCE) captures total spending including services. Consumer sentiment (UMCSENT) indicates willingness to spend. Rising retail sales + positive PCE growth + stable sentiment = yes, people are spending."
+  },
+  "can people afford things": {
+    "series": [
+      "LES1252881600Q",
+      "CPIAUCSL",
+      "TDSP"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Affordability indicators: Real wages (LES1252881600Q) show purchasing power - if rising, people can afford more. Compare to inflation (CPIAUCSL) to see if wages keep up. Debt service ratio (TDSP) shows what share of income goes to debt - high TDSP means less money for other purchases. Rising real wages + low debt burden = good affordability."
+  },
+  "consumer spending vs inflation": {
+    "series": [
+      "RSXFS",
+      "CPIAUCSL",
+      "LES1252881600Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Spending vs inflation: Retail sales growth (RSXFS) vs inflation (CPIAUCSL). If nominal spending rises slower than inflation, real consumption is falling. Real wages (LES1252881600Q) show whether consumers can maintain spending power. Ideally, spending and wages both grow faster than inflation."
+  }
+}

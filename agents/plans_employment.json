@@ -1,0 +1,1151 @@
+{
+  "jobs": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "JTSJOL",
+      "LNS12300060"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Four key labor market views: (1) Nonfarm payrolls shows monthly job gains/losses - THE jobs number. (2) Unemployment rate is the headline jobless measure. (3) Job openings (JOLTS) shows labor demand - high openings signal a tight market. (4) Prime-age employment ratio (25-54) is the best measure of labor market health, avoiding distortions from retirement and school enrollment."
+  },
+  "job market": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "JTSJOL",
+      "LNS12300060"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Comprehensive job market view: (1) Payrolls show monthly job creation. (2) Unemployment rate shows joblessness. (3) Job openings reveal employer demand for workers. (4) Prime-age employment-population ratio is economists' preferred measure of true labor market strength - it shows what share of prime working-age adults are actually employed."
+  },
+  "employment": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "JTSJOL",
+      "LNS12300060"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Four angles on employment: (1) Nonfarm payrolls - the headline job creation number. (2) Unemployment rate - standard measure of joblessness. (3) JOLTS job openings - shows how many positions employers are trying to fill. (4) Prime-age employment ratio - the most comprehensive measure of labor utilization for working-age adults."
+  },
+  "unemployment": {
+    "series": [
+      "UNRATE",
+      "U6RATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "UNRATE is the headline U-3 unemployment rate that everyone watches. U6RATE includes discouraged workers and those working part-time for economic reasons, giving a fuller picture of labor market slack. Together they show both the standard measure and broader unemployment conditions."
+  },
+  "unemployment rate": {
+    "series": [
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "UNRATE is the official U-3 unemployment rate - the headline unemployment statistic that measures the percentage of labor force that is jobless and actively seeking employment. This is the primary metric when someone asks about 'the unemployment rate'."
+  },
+  "how is the job market": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "LNS12300060",
+      "ICSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "PAYEMS shows monthly job gains (the headline jobs number). UNRATE is the unemployment rate. LNS12300060 (prime-age employment ratio, ages 25-54) is the gold standard for labor market health. ICSA (initial jobless claims) shows layoffs in real-time - rising claims signal trouble before it shows up in unemployment."
+  },
+  "labor market": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "LNS12300060",
+      "ICSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For a comprehensive labor market overview: PAYEMS (total nonfarm payrolls) shows job creation momentum, UNRATE provides the headline unemployment rate, LNS12300060 (prime-age employment ratio) is the best single measure of labor market health, and ICSA (initial claims) shows layoffs in real-time - a leading indicator of labor market trouble."
+  },
+  "hiring": {
+    "series": [
+      "JTSHIR",
+      "JTSJOL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "JTSHIR (JOLTS Hires) directly measures actual hiring activity - the number of people hired each month. JTSJOL (Job Openings) shows hiring demand and complements the hiring picture by indicating available opportunities. Together they show both realized hiring and potential hiring capacity. YoY helps identify hiring trends vs seasonal patterns."
+  },
+  "job growth": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PAYEMS (Total nonfarm payrolls) is THE definitive measure of job growth. This establishment survey tracks the monthly change in employment across all non-farm sectors and is the headline 'jobs number' that markets and policymakers focus on. Year-over-year view shows the growth trend clearly, filtering out monthly volatility."
+  },
+  "job openings": {
+    "series": [
+      "JTSJOL",
+      "JTSQUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "JTSJOL is the primary job openings data from JOLTS survey - the definitive measure of labor demand. Adding JTSQUR (quits rate) provides crucial context since high quits indicate worker confidence and tight labor markets where people feel secure leaving jobs, which complements job openings data to show full demand picture."
+  },
+  "jolts": {
+    "series": [
+      "JTSJOL",
+      "JTSQUR",
+      "JTSHIR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "JOLTS (Job Openings and Labor Turnover Survey) provides the best view of labor market dynamics beyond just hiring/firing. JTSJOL shows job openings (demand for workers), JTSQUR shows quits rate (worker confidence to leave jobs), and JTSHIR shows actual hiring activity. Together these reveal labor market tightness, worker bargaining power, and employment flows that payrolls data misses."
+  },
+  "payrolls": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "payems_show_level": true,
+    "combine_chart": false,
+    "explanation": "PAYEMS is total nonfarm payrolls - the total number of paid U.S. workers excluding farm employees. This level chart shows how total employment has grown over time, from about 50 million in the 1940s to nearly 160 million today."
+  },
+  "nonfarm payrolls": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "payems_show_level": true,
+    "combine_chart": false,
+    "explanation": "PAYEMS is THE nonfarm payrolls series - the total count of paid employees in the U.S. This level shows the size of the employed workforce over time, which is useful for understanding the scale of the U.S. labor market."
+  },
+  "total payrolls": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "payems_show_level": true,
+    "combine_chart": false,
+    "explanation": "Total nonfarm payrolls shows the aggregate number of paid U.S. workers. This level chart reveals the long-term growth of the American workforce and is useful for understanding the overall size and scale of employment."
+  },
+  "total employment": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "payems_show_level": true,
+    "combine_chart": false,
+    "explanation": "PAYEMS shows total nonfarm employment - the count of all paid U.S. workers excluding farm workers. This level chart shows the size of the U.S. workforce over time."
+  },
+  "how many people are employed": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "payems_show_level": true,
+    "combine_chart": false,
+    "explanation": "About 159.5 million Americans are currently employed on nonfarm payrolls. This chart shows how total U.S. employment has grown over time."
+  },
+  "jobs report": {
+    "series": [
+      "PAYEMS",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The jobs report refers to the monthly Employment Situation Summary. PAYEMS (total nonfarm payrolls) is THE jobs number - the headline figure showing monthly job gains/losses from the establishment survey. UNRATE is the headline unemployment rate from the household survey. These two series form the core of every jobs report analysis and give the clearest picture of employment trends."
+  },
+  "employment rate": {
+    "series": [
+      "LNS12300060",
+      "EMRATIO"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Prime-age employment-population ratio (LNS12300060) is the gold standard for employment rate health as it excludes retirement/school effects. Overall employment-population ratio (EMRATIO) provides broader context. These are the two key 'employment rate' measures - NOT unemployment rate."
+  },
+  "jobless rate": {
+    "series": [
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "UNRATE is the official U-3 unemployment rate - the headline 'jobless rate' that measures the percentage of the labor force that is unemployed and actively seeking work. This is the standard measure reported in media and policy discussions when referring to the jobless rate."
+  },
+  "weekly jobless claims": {
+    "series": [
+      "ICSA",
+      "CCSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "ICSA (Initial Claims) shows new unemployment insurance filings each week - the timeliest labor market indicator. CCSA (Continuing Claims) shows ongoing claims, indicating duration of unemployment spells. Together they provide complete picture of unemployment insurance flows and labor market stress in real-time."
+  },
+  "initial claims": {
+    "series": [
+      "ICSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "ICSA is the primary weekly series for initial unemployment insurance claims - the most timely indicator of layoffs and labor market stress. This high-frequency data provides real-time insight into job losses before monthly employment reports. YoY not needed as weekly volatility and recent trends are more relevant for this leading indicator."
+  },
+  "continuing claims": {
+    "series": [
+      "CCSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "CCSA (Continuing Claims Seasonally Adjusted) is the direct measure of the number of people receiving unemployment benefits after their initial claim. This weekly series shows how many people remain unemployed and are continuing to collect benefits, making it a key real-time indicator of labor market stress and the duration of unemployment spells."
+  },
+  "labor force participation": {
+    "series": [
+      "LNS11300000",
+      "LNS11300060"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "LNS11300000 is the overall labor force participation rate - the core metric showing what percentage of the civilian population is either working or actively looking for work. LNS11300060 is the prime-age (25-54) participation rate, which filters out demographic effects from aging and schooling. The prime-age measure is crucial because it shows labor market engagement of people in their peak working years, unaffected by retirement or education decisions. Comparing both reveals whether participation changes are structural (prime-age) or demographic (overall)."
+  },
+  "participation rate": {
+    "series": [
+      "CIVPART",
+      "LNS11300060"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "CIVPART shows overall civilian labor force participation rate trends, while LNS11300060 (prime-age 25-54 participation) is the cleaner measure since it excludes demographic effects from aging population and student enrollment changes. Prime-age participation is the better indicator of underlying labor market conditions."
+  },
+  "prime age employment": {
+    "series": [
+      "LNS12300060",
+      "LNS11300060"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Prime-age (25-54) employment-population ratio is THE best measure of labor market health - it excludes retirement/education distortions. Combined with prime-age labor force participation to show both employment strength and worker engagement. These are the gold standard metrics economists use to assess true labor market conditions."
+  },
+  "employment to population ratio": {
+    "series": [
+      "EMRATIO",
+      "LNS12300060"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "EMRATIO shows the overall employment-to-population ratio for all civilians 16+, while LNS12300060 shows the prime-age (25-54) employment-population ratio. The prime-age measure is superior for assessing labor market health as it excludes demographic effects from aging populations, students, and early retirees. Combining both provides the complete picture of employment rates across age groups."
+  },
+  "underemployment": {
+    "series": [
+      "U6RATE",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "U6RATE is the definitive underemployment measure - it includes unemployed, marginally attached workers, and those working part-time for economic reasons. Comparing it to the headline unemployment rate (UNRATE) shows the gap between official unemployment and true labor underutilization. The spread between U6 and U3 widens during recessions when underemployment becomes more prevalent."
+  },
+  "u6 unemployment": {
+    "series": [
+      "U6RATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "U6RATE is the broadest unemployment measure (U-6) that includes not just the unemployed but also marginally attached workers and those employed part-time for economic reasons. This gives a more comprehensive view of labor market slack than the headline U-3 rate."
+  },
+  "long term unemployment": {
+    "series": [
+      "LNS13023621",
+      "LNS13000000"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "LNS13023621 tracks unemployed persons jobless for 27+ weeks (the official long-term unemployment definition). LNS13000000 provides total unemployment level for context and calculating the long-term share. This shows both the absolute number of long-term unemployed and how it compares to overall unemployment levels."
+  },
+  "job quits": {
+    "series": [
+      "JTSQUR",
+      "JTSJOL"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "JTSQUR (quits rate) directly measures job quits - the rate at which people voluntarily leave their jobs, which indicates worker confidence and labor market tightness. JTSJOL (job openings) provides crucial context since high quits typically coincide with abundant job opportunities. Together they show the 'Great Resignation' pattern and current quit dynamics relative to job availability."
+  },
+  "quit rate": {
+    "series": [
+      "JTSQUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "JTSQUR is the official quits rate from the Job Openings and Labor Turnover Survey (JOLTS). The quits rate measures voluntary separations as a percent of total employment and is a key indicator of labor market confidence - workers quit more when they're confident about finding better jobs elsewhere."
+  },
+  "layoffs": {
+    "series": [
+      "JTSLDL",
+      "ICSA",
+      "CCSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "JTSLDL (JOLTS Layoffs and Discharges) is the definitive monthly measure of layoffs from the Job Openings and Labor Turnover Survey. ICSA (initial jobless claims) provides the most timely weekly indicator of new layoffs as they happen. CCSA (continuing claims) shows the persistence of unemployment from layoffs. Together these capture both the official layoffs count and real-time labor market stress."
+  },
+  "job cuts": {
+    "series": [
+      "ICSA",
+      "CCSA",
+      "LNS13000000"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Job cuts are best measured by: ICSA (initial jobless claims - weekly new layoffs, most timely indicator), CCSA (continuing claims - shows persistence of job losses), and LNS13000000 (unemployment level - shows cumulative effect). Initial claims spike immediately when cuts happen, continuing claims show if cuts are leading to sustained unemployment, and unemployment level captures the overall impact."
+  },
+  "is the labor market tight": {
+    "series": [
+      "LNS12300060",
+      "JTSJOL",
+      "JTSQUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Prime-age employment-population ratio (LNS12300060) is the BEST measure of labor market tightness - it shows how many prime working-age adults actually have jobs, avoiding demographic distortions. Job openings (JTSJOL) shows demand for workers, while quits rate (JTSQUR) indicates worker confidence to leave jobs - both key tightness indicators. High prime-age employment + high openings + high quits = tight market."
+  },
+  "labor market slack": {
+    "series": [
+      "U6RATE",
+      "LNS12300060",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Labor market slack requires comprehensive underutilization measures: U6RATE captures unemployed + marginally attached + part-time for economic reasons (broadest slack measure), LNS12300060 shows prime-age employment-population ratio (if below trend, indicates slack capacity), and JTSJOL shows job openings (low openings = more slack, high openings = tight). These three series together provide the complete slack picture from different angles."
+  },
+  "full employment": {
+    "series": [
+      "LNS12300060",
+      "UNRATE",
+      "U6RATE",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Full employment requires multiple indicators: Prime-age employment-population ratio (LNS12300060) is the gold standard for labor market health - shows how many prime working-age adults are actually employed. UNRATE provides the headline unemployment rate context. U6RATE captures broader unemployment including underemployment and discouraged workers - critical since full employment means minimal slack. JTSJOL (job openings) indicates labor demand - high openings suggest employers can't find workers, a key full employment signal. Together these show both supply-side (how many want/have jobs) and demand-side (employer needs) of full employment."
+  },
+  "natural rate of unemployment": {
+    "series": [
+      "UNRATE",
+      "LNS13023621",
+      "U6RATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The natural rate of unemployment (NAIRU) isn't directly observable but can be estimated by analyzing unemployment patterns over business cycles. UNRATE shows the headline rate to identify cyclical lows that approximate natural rate levels. LNS13023621 (long-term unemployed 27+ weeks) is crucial because structural unemployment - a key component of natural rate - manifests as persistent long-term joblessness. U6RATE captures broader labor market slack including underemployment. During periods of low inflation and stable growth, when unemployment reaches cyclical troughs (especially when long-term unemployment is minimal), we're likely near the natural rate. Most estimates currently place it around 4-4.5%."
+  },
+  "job creation": {
+    "series": [
+      "PAYEMS",
+      "JTSHIR"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PAYEMS (nonfarm payrolls) is the primary measure of net job creation - the monthly change shows jobs added/lost. JTSHIR (JOLTS hires) complements this by showing gross hiring activity. Year-over-year changes help smooth monthly volatility and show underlying job creation trends."
+  },
+  "employment growth": {
+    "series": [
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PAYEMS (Total nonfarm payrolls) is THE definitive measure of employment growth. This establishment survey data shows month-over-month and year-over-year job creation/destruction across the economy. Year-over-year view is essential to see the growth trend clearly and smooth out monthly volatility. This is the 'jobs number' that moves markets and policy."
+  },
+  "are people getting hired": {
+    "series": [
+      "JTSHIR",
+      "PAYEMS",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "JTSHIR (hires rate) directly measures hiring activity - this is the most direct answer to your question. PAYEMS (total nonfarm payrolls) shows net job creation, which reflects successful hiring minus separations. JTSJOL (job openings) indicates employer demand and hiring intentions. Together, these three series paint the complete picture of hiring dynamics in the labor market."
+  },
+  "hiring rate": {
+    "series": [
+      "JTSHIR",
+      "JTSQUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "JTSHIR is the direct measure of hiring rate from JOLTS data. JTSQUR (quits rate) is included because hiring and quits move together in healthy labor markets - when workers are confident about finding new jobs, they quit more, and when employers need workers, they hire more. These two rates together show labor market dynamism and worker mobility."
+  },
+  "job losses": {
+    "series": [
+      "PAYEMS",
+      "ICSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "PAYEMS (nonfarm payrolls) shows monthly net job changes - the definitive measure of job losses/gains from the establishment survey. ICSA (initial jobless claims) provides weekly real-time data on new unemployment filings, serving as the most immediate indicator of job losses as they happen."
+  },
+  "weekly hours worked": {
+    "series": [
+      "CES0500000011"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "CES0500000011 is average weekly hours for all employees on private nonfarm payrolls - the primary measure of weekly hours worked. This series tracks labor intensity and is a key leading indicator of employment changes. YoY comparison helps show whether employers are adjusting hours (easier than hiring/firing) in response to economic conditions."
+  },
+  "wages vs prices since feb 2020": {
+    "series": [
+      "CES0500000003",
+      "AHETPI",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Compare wage growth to inflation: CES0500000003 (all employees) and AHETPI (production workers) show nominal wage growth rates, while CPIAUCSL shows inflation. When wage growth exceeds inflation, workers gain purchasing power. When inflation exceeds wage growth, workers lose purchasing power. All shown as year-over-year rates for direct comparison."
+  },
+  "are wages keeping up with inflation": {
+    "series": [
+      "LES1252881600Q",
+      "CES0500000003",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "\u2022 **Real Median Weekly Earnings** (LES1252881600Q): The definitive measure of whether wages are keeping up with inflation. When this rises, workers' purchasing power is genuinely increasing.\n\u2022 **Wages vs Inflation (YoY)**: Compares nominal wage growth (Average Hourly Earnings) directly against CPI inflation. When the wage line is above inflation, workers are gaining ground.\n\u2022 **Wages vs Inflation (Indexed)**: Both series indexed to the same starting point to show cumulative gains. If wages stay above inflation, purchasing power has increased over the period.",
+    "chart_groups": [
+      {
+        "series": [
+          "LES1252881600Q"
+        ],
+        "show_yoy": true,
+        "title": "Real Wages (Inflation-Adjusted)"
+      },
+      {
+        "series": [
+          "CES0500000003",
+          "CPIAUCSL"
+        ],
+        "show_yoy": true,
+        "title": "Wage Growth vs Inflation (YoY %)"
+      },
+      {
+        "series": [
+          "CES0500000003",
+          "CPIAUCSL"
+        ],
+        "normalize": true,
+        "title": "Wages vs Inflation (Indexed to 100)"
+      }
+    ]
+  },
+  "wages vs inflation": {
+    "series": [
+      "LES1252881600Q",
+      "CES0500000003",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "\u2022 **Real Median Weekly Earnings** (LES1252881600Q): The definitive measure of whether wages are keeping up with inflation. When this rises, workers' purchasing power is genuinely increasing.\n\u2022 **Wages vs Inflation (YoY)**: Compares nominal wage growth (Average Hourly Earnings) directly against CPI inflation. When the wage line is above inflation, workers are gaining ground.\n\u2022 **Wages vs Inflation (Indexed)**: Both series indexed to 100 at the same starting point to show cumulative gains. If wages stay above inflation, purchasing power has increased over the period.",
+    "chart_groups": [
+      {
+        "series": [
+          "LES1252881600Q"
+        ],
+        "show_yoy": true,
+        "title": "Real Wages (Inflation-Adjusted)"
+      },
+      {
+        "series": [
+          "CES0500000003",
+          "CPIAUCSL"
+        ],
+        "show_yoy": true,
+        "title": "Wage Growth vs Inflation (YoY %)"
+      },
+      {
+        "series": [
+          "CES0500000003",
+          "CPIAUCSL"
+        ],
+        "normalize": true,
+        "title": "Wages vs Inflation (Indexed to 100)"
+      }
+    ]
+  },
+  "real wages": {
+    "series": [
+      "LES1252881600Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LES1252881600Q is real (inflation-adjusted) median weekly earnings for full-time workers, in constant 1982-84 dollars. This quarterly series from the BLS directly measures purchasing power - when it rises, workers can buy more with their earnings. Year-over-year change shows the pace of real wage growth."
+  },
+  "real hourly earnings": {
+    "series": [
+      "CES0500000003",
+      "CPIAUCSL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "derived": {
+      "formula": "CES0500000003 / CPIAUCSL * 326",
+      "name": "Real Average Hourly Earnings",
+      "unit": "2025 Dollars",
+      "show_components": true
+    },
+    "explanation": "**Real Hourly Earnings = Nominal Wages / CPI \u00d7 326**\n\nThis shows average hourly earnings adjusted for inflation, expressed in 2025 dollars. When real earnings rise, workers' purchasing power increases. The chart includes nominal wages (CES0500000003) and CPI (CPIAUCSL) for context.\n\nNote: The multiplier (326) is based on the 2025 CPI level to express values in current dollars."
+  },
+  "real average hourly earnings": {
+    "series": [
+      "CES0500000003",
+      "CPIAUCSL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "derived": {
+      "formula": "CES0500000003 / CPIAUCSL * 326",
+      "name": "Real Average Hourly Earnings",
+      "unit": "2025 Dollars",
+      "show_components": true
+    },
+    "explanation": "**Real Hourly Earnings = Nominal Wages / CPI \u00d7 326**\n\nAverage hourly earnings adjusted for inflation, in 2025 dollars. Calculated by dividing nominal wages by CPI and scaling to current price levels. Rising values mean workers' purchasing power is increasing."
+  },
+  "wage growth": {
+    "series": [
+      "CES0500000003",
+      "ECIWAG"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Two complementary wage growth measures: CES0500000003 (Average Hourly Earnings) is the monthly headline number but can be distorted by compositional shifts (e.g., if low-wage workers lose jobs, average wages rise even if no one got a raise). ECIWAG (Employment Cost Index: Wages) is the gold standard - it tracks the same jobs over time to measure true wage increases, released quarterly. When they diverge, ECI is more reliable for underlying wage trends."
+  },
+  "real wage growth": {
+    "series": [
+      "LES1252881600Q",
+      "ECIWAG",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Real wage growth from multiple angles: LES1252881600Q is real (inflation-adjusted) median weekly earnings - the direct measure of purchasing power. ECIWAG (Employment Cost Index: Wages) compared to CPIAUCSL shows whether wage growth is outpacing inflation. ECI is superior to average hourly earnings because it controls for job composition changes. When real earnings rise OR when ECI exceeds CPI, workers are gaining ground."
+  },
+  "sahm rule": {
+    "series": [
+      "SAHMREALTIME",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Sahm Rule (SAHMREALTIME) is a real-time recession indicator created by economist Claudia Sahm. It triggers when the 3-month moving average of unemployment rises 0.5 percentage points or more above its low from the prior 12 months. When SAHMREALTIME crosses above 0.5, it signals a recession has likely begun. Shown alongside unemployment rate for context."
+  },
+  "sahm recession indicator": {
+    "series": [
+      "SAHMREALTIME"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Sahm Rule recession indicator triggers when it rises above 0.5 (shown by benchmark line). This happens when unemployment rises sufficiently fast - specifically when the 3-month average unemployment rate exceeds its 12-month low by 0.5 percentage points or more. It has accurately identified every recession since 1970 with no false positives."
+  },
+  "jobless claims": {
+    "series": [
+      "ICSA",
+      "CCSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Initial Claims (ICSA) shows new unemployment filings each week - the most timely indicator of layoffs. Continuing Claims (CCSA) shows ongoing claims - how many remain unemployed. Together they provide a real-time view of labor market stress. Spikes in initial claims often signal recession onset."
+  },
+  "unemployment claims": {
+    "series": [
+      "ICSA",
+      "CCSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Initial unemployment claims (ICSA) measure new filings for unemployment benefits - the timeliest labor market indicator. Continuing claims (CCSA) show how many people remain on unemployment. Rising claims signal weakening labor market; falling claims indicate improvement."
+  },
+  "manufacturing employment": {
+    "series": [
+      "MANEMP",
+      "IPMAN"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "MANEMP shows manufacturing employment (factory jobs), while IPMAN shows industrial production in manufacturing (output). Together they reveal whether manufacturing is creating jobs and how productive the sector is. YoY growth shows the trend."
+  },
+  "manufacturing jobs": {
+    "series": [
+      "MANEMP",
+      "IPMAN",
+      "NEWORDER",
+      "TCU"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Manufacturing employment (MANEMP) alongside production context: Industrial production in manufacturing (IPMAN) shows factory output, new orders (NEWORDER) signal demand, and capacity utilization (TCU) indicates if factories are running hot or have slack. Together these reveal whether manufacturing is creating jobs due to demand growth or shedding them due to weakness."
+  },
+  "construction employment": {
+    "series": [
+      "USCONS",
+      "HOUST",
+      "PERMIT",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": [
+      true,
+      true,
+      true,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Construction employment (USCONS) with demand drivers: Housing starts (HOUST) and permits (PERMIT) show residential building activity, while mortgage rates (MORTGAGE30US) indicate affordability - the key rate sensitivity of construction hiring. When rates rise, building slows and construction jobs follow."
+  },
+  "construction jobs": {
+    "series": [
+      "USCONS",
+      "HOUST",
+      "PERMIT",
+      "TLRESCONS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Construction employment (USCONS) with full pipeline context: Housing starts (HOUST) show new projects beginning, permits (PERMIT) indicate future activity, and total residential construction spending (TLRESCONS) shows the dollar volume driving labor demand."
+  },
+  "healthcare employment": {
+    "series": [
+      "USHCS",
+      "CES0500000003",
+      "CUSR0000SAM"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Healthcare employment (USHCS) with wage and cost context: Average hourly earnings (CES0500000003) shows whether healthcare is competing for workers with higher wages, while medical care CPI (CUSR0000SAM) indicates the cost pressures driving healthcare spending and hiring. Healthcare has been one of the most reliable job creators, with consistent growth even during recessions."
+  },
+  "healthcare jobs": {
+    "series": [
+      "USHCS",
+      "CPIMEDSL",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Healthcare sector employment (USHCS) compared to overall job growth (PAYEMS), with medical services CPI (CPIMEDSL) showing the cost pressures driving healthcare expansion. Healthcare rarely loses jobs even during downturns, often accounting for a large share of total job creation."
+  },
+  "tech employment": {
+    "series": [
+      "USINFO",
+      "DGORDER",
+      "GPDIC1",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Information sector employment (USINFO) with business investment context: Durable goods orders (DGORDER) and gross private domestic investment (GPDIC1) signal business spending cycles that drive tech hiring. Compared to total payrolls (PAYEMS) to show tech's relative performance vs the broader job market."
+  },
+  "tech jobs": {
+    "series": [
+      "USINFO",
+      "ICSA",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Information sector employment (USINFO) - tech, media, telecom - alongside initial jobless claims (ICSA) to show real-time layoff trends, and total payrolls (PAYEMS) for context. Tech layoffs make headlines but this shows the actual magnitude relative to the broader economy."
+  },
+  "restaurant employment": {
+    "series": [
+      "USLAH",
+      "RSXFS",
+      "UMCSENT",
+      "CUSR0000SEFV"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Leisure and hospitality employment (USLAH) with demand drivers: Retail sales ex food services (RSXFS) shows consumer spending strength, consumer sentiment (UMCSENT) indicates willingness to spend on dining out, and food away from home CPI (CUSR0000SEFV) shows restaurant price inflation. Together these reveal whether restaurant hiring is driven by consumer demand or constrained by costs."
+  },
+  "hospitality jobs": {
+    "series": [
+      "USLAH",
+      "UMCSENT",
+      "RSXFS",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Leisure and hospitality employment (USLAH) with consumer demand context: Consumer sentiment (UMCSENT) and retail sales (RSXFS) indicate consumer willingness to spend on travel, dining, and entertainment. Compared to total payrolls (PAYEMS) to show hospitality's recovery relative to the overall job market."
+  },
+  "government employment": {
+    "series": [
+      "USGOVT",
+      "FGEXPND",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Government employment (USGOVT) with fiscal context: Federal government expenditures (FGEXPND) show the spending that drives public sector hiring, compared to total nonfarm payrolls (PAYEMS) to show public vs private sector job creation. Government hiring is less cyclical but responds to budget constraints and policy priorities."
+  },
+  "retail employment": {
+    "series": [
+      "USTRADE",
+      "RSXFS",
+      "ECOMPCTNSA",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Trade/transportation/utilities employment (USTRADE) with demand drivers: Retail sales (RSXFS) shows consumer spending, e-commerce share (ECOMPCTNSA) reveals the structural shift from stores to warehouses, and total payrolls (PAYEMS) provides context. E-commerce has shifted retail jobs from store clerks to warehouse workers and delivery drivers."
+  },
+  "veterans employment": {
+    "series": [
+      "LNS14049526",
+      "UNRATE",
+      "LNS14000001",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Post-9/11 veteran unemployment (LNS14049526) compared to overall unemployment (UNRATE) and male unemployment (LNS14000001) for demographic context. Total payrolls (PAYEMS) shows overall job market conditions. When veteran unemployment exceeds the overall rate, it signals transition challenges."
+  },
+  "how are veterans doing": {
+    "series": [
+      "LNS14049526",
+      "UNRATE",
+      "CIVPART"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Post-9/11 veteran unemployment rate compared to overall unemployment (UNRATE) and labor force participation (CIVPART). This comparison shows whether veterans face unique challenges or track the broader labor market."
+  },
+  "employment by sector": {
+    "series": [
+      "MANEMP",
+      "USCONS",
+      "USHCS",
+      "USLAH"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Employment across key sectors: Manufacturing (MANEMP), Construction (USCONS), Healthcare/Education (USHCS), and Leisure/Hospitality (USLAH). Year-over-year growth rates on one chart reveal which sectors are leading job creation and which are lagging."
+  },
+  "sector employment": {
+    "series": [
+      "MANEMP",
+      "USCONS",
+      "USHCS",
+      "USTRADE"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Major sector employment comparison: Manufacturing (MANEMP), Construction (USCONS), Healthcare/Education (USHCS), and Trade/Transport/Utilities (USTRADE). These four sectors together represent a large share of total employment and show divergent cyclical patterns."
+  },
+  "which sectors are growing": {
+    "series": [
+      "USHCS",
+      "USCONS",
+      "USLAH",
+      "MANEMP"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Sector employment growth comparison: Healthcare (USHCS) typically leads, Construction (USCONS) is cyclical, Leisure/Hospitality (USLAH) is consumer-driven, Manufacturing (MANEMP) is trade-sensitive. Shown as YoY growth rates to directly compare which sectors are adding jobs fastest."
+  },
+  "which sectors are losing jobs": {
+    "series": [
+      "MANEMP",
+      "USTRADE",
+      "USINFO",
+      "ICSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Sectors vulnerable to job losses: Manufacturing (MANEMP), Trade/Transport (USTRADE), and Information/Tech (USINFO) are most cyclical. Initial jobless claims (ICSA) provides real-time signal of where layoffs are occurring across the economy."
+  },
+  "sector job growth": {
+    "series": [
+      "MANEMP",
+      "USHCS",
+      "USCONS",
+      "USLAH"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Year-over-year job growth by sector: Manufacturing (MANEMP), Healthcare (USHCS), Construction (USCONS), and Leisure/Hospitality (USLAH). Combined chart shows relative performance - healthcare typically outpaces other sectors while manufacturing is more volatile."
+  },
+  "unemployment rate vs job openings": {
+    "series": [
+      "UNRATE",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Beveridge Curve relationship: Unemployment rate (UNRATE) vs job openings (JTSJOL). In a healthy labor market, when job openings are high, unemployment should be low. The ratio of openings to unemployed workers shows labor market tightness - values above 1 indicate more jobs than job seekers. Post-COVID this relationship shifted, with high openings coexisting with elevated unemployment initially."
+  },
+  "unemployment vs job openings": {
+    "series": [
+      "UNRATE",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The Beveridge Curve relationship: Unemployment rate (UNRATE) vs job openings (JTSJOL). In a healthy labor market, when job openings are high, unemployment should be low. The ratio of openings to unemployed workers shows labor market tightness - values above 1 indicate more jobs than job seekers."
+  },
+  "gdp vs employment": {
+    "series": [
+      "A191RL1Q225SBEA",
+      "PAYEMS",
+      "UNRATE"
+    ],
+    "show_yoy": [
+      false,
+      true,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "GDP growth (A191RL1Q225SBEA) vs employment metrics: Nonfarm payrolls (PAYEMS) and unemployment rate (UNRATE). Okun's Law suggests roughly 2% GDP growth is needed to keep unemployment stable. Payrolls shown as YoY to compare job growth with GDP growth rates."
+  },
+  "inflation vs wage growth": {
+    "series": [
+      "CPIAUCSL",
+      "ECIWAG",
+      "CES0500000003",
+      "LES1252881600Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Inflation (CPIAUCSL) vs wages: ECIWAG (Employment Cost Index: Wages) is the gold standard for wage trends - it tracks the same jobs over time, unlike average hourly earnings (CES0500000003) which can be distorted by composition shifts. Real median weekly earnings (LES1252881600Q) shows the bottom line - actual purchasing power. When ECI and AHE exceed CPI, workers are gaining; when they lag, living standards erode."
+  },
+  "employment cost index": {
+    "series": [
+      "ECIWAG",
+      "ECIALLCIV"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "The Employment Cost Index (ECI) is the gold standard for measuring labor cost trends. ECIWAG tracks wages and salaries only - the cleaner measure of what workers are paid. ECIALLCIV includes total compensation (wages + benefits). ECI is superior to average hourly earnings because it tracks the SAME jobs over time, controlling for compositional shifts. If low-wage workers are laid off, AHE rises artificially but ECI doesn't. Released quarterly by BLS."
+  },
+  "eci": {
+    "series": [
+      "ECIWAG",
+      "ECIALLCIV"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "The Employment Cost Index (ECI) is the gold standard for measuring labor cost trends. ECIWAG tracks wages and salaries only. ECIALLCIV includes total compensation (wages + benefits like healthcare). ECI controls for job composition changes that can distort average hourly earnings - it's what the Fed watches most closely for wage inflation pressures."
+  },
+  "labor costs": {
+    "series": [
+      "ECIWAG",
+      "ECIALLCIV",
+      "OPHNFB",
+      "ULCNFB"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Labor costs from multiple angles: ECIWAG (wage ECI) and ECIALLCIV (total compensation ECI) show what employers pay for labor - ECI controls for job mix changes. OPHNFB (output per hour, nonfarm business) shows productivity. ULCNFB (unit labor costs) is the key inflation indicator - it shows labor cost per unit of output. When productivity growth matches wage growth, unit labor costs stay flat and don't push inflation. Rising unit labor costs = inflationary wage pressure."
+  },
+  "unit labor costs": {
+    "series": [
+      "ULCNFB",
+      "OPHNFB",
+      "ECIWAG"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Unit labor costs (ULCNFB) = compensation / productivity. This is THE key measure of labor cost inflation pressure. When productivity (OPHNFB) grows as fast as wages (ECIWAG), unit labor costs stay flat and aren't inflationary. Rising unit labor costs signal wage gains exceeding productivity, which businesses must pass through as higher prices or absorb as lower margins."
+  },
+  "total compensation": {
+    "series": [
+      "ECIALLCIV",
+      "ECIWAG"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Total compensation includes both wages and benefits (healthcare, retirement, etc.). ECIALLCIV is the ECI for total compensation; ECIWAG is wages only. The gap between them shows how much of compensation growth comes from benefits vs wages. When healthcare costs rise, benefits cost growth outpaces wage growth, squeezing take-home pay even as total compensation rises."
+  },
+  "employee benefits": {
+    "series": [
+      "ECIALLCIV",
+      "ECIWAG"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Comparing total compensation (ECIALLCIV) to wages only (ECIWAG) reveals benefit cost trends. When total comp grows faster than wages, employers are spending more on benefits like healthcare and retirement contributions. When they grow at similar rates, benefit costs are stable. Benefits are ~30% of total compensation on average."
+  },
+  "how's the job market": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "LNS12300060",
+      "ICSA"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Job market snapshot: Monthly job gains (PAYEMS) show hiring momentum, unemployment rate (UNRATE) shows joblessness, prime-age employment ratio (LNS12300060) is the gold standard for labor market health, and initial claims (ICSA) provide real-time layoff data. Strong job gains + low unemployment + high prime-age employment = healthy market."
+  },
+  "jobs last month": {
+    "series": [
+      "PAYEMS",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "The latest jobs report: nonfarm payrolls (PAYEMS) shows how many jobs were added/lost last month - this is THE jobs number. Unemployment rate (UNRATE) shows the share of workers actively looking for jobs. The chart will show the most recent monthly data."
+  },
+  "am i going to get laid off": {
+    "series": [
+      "ICSA",
+      "CCSA",
+      "JTSLDL"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Layoff indicators: Initial claims (ICSA) show new unemployment filings weekly - rising claims signal trouble. Continuing claims (CCSA) show how many remain unemployed. JOLTS layoffs (JTSLDL) show monthly layoff activity. Low and stable claims = low layoff risk; rising claims = elevated risk. Compare to historical levels - claims under 250K are typically healthy."
+  },
+  "is it a good time to find a job": {
+    "series": [
+      "JTSJOL",
+      "UNRATE",
+      "JTSQUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job-finding conditions: Job openings (JTSJOL) show how many positions are available - high openings = easier to find work. Unemployment rate (UNRATE) indicates competition for jobs. Quits rate (JTSQUR) shows worker confidence - high quits mean workers believe they can find better jobs. Many openings + low unemployment + high quits = great time to job search."
+  },
+  "can i get a raise": {
+    "series": [
+      "ECIWAG",
+      "CES0500000003",
+      "JTSJOL",
+      "JTSQUR",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Wage bargaining power: ECIWAG (Employment Cost Index: Wages) is the best measure of what employers are actually paying for the same jobs - use this to benchmark your raise request. CES0500000003 (average hourly earnings) is the monthly headline. Job openings (JTSJOL) indicate employer desperation - high openings = leverage. Quits rate (JTSQUR) shows if others are leaving for better pay. Compare wage growth to inflation (CPIAUCSL) - if wages lag inflation, you have a case for a raise."
+  },
+  "job openings vs unemployed": {
+    "series": [
+      "JTSJOL",
+      "LNS13000000"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Job openings (JTSJOL) vs total unemployed (LNS13000000). When openings exceed unemployed, there are more jobs than job-seekers - a very tight labor market giving workers bargaining power. When unemployed exceeds openings, workers compete for scarce jobs. The ratio of openings to unemployed is a key labor market tightness indicator."
+  },
+  "wages vs rent": {
+    "series": [
+      "CES0500000003",
+      "CUSR0000SEHA",
+      "LES1252881600Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Wages (CES0500000003) vs rent inflation (CUSR0000SEHA). When rent inflation exceeds wage growth, housing becomes less affordable. Real wages (LES1252881600Q) show purchasing power after all inflation. If rent consistently outpaces wages, workers need to spend more of their income on housing."
+  },
+  "job market pre-pandemic": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "LNS12300060",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Comparing current job market to pre-pandemic (Feb 2020): Payrolls, unemployment rate, prime-age employment ratio, and job openings. Feb 2020 was the pre-COVID peak before the pandemic recession.",
+    "synonyms": [
+      "compare job market to pre-pandemic",
+      "jobs vs pre-pandemic",
+      "job market compared to before covid",
+      "labor market pre-pandemic"
+    ]
+  },
+  "compare jobs pre-pandemic": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "LNS12300060",
+      "JTSJOL"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Key job market indicators to compare with pre-pandemic levels (Feb 2020)."
+  },
+  "employment vs pre-covid": {
+    "series": [
+      "PAYEMS",
+      "UNRATE",
+      "LNS12300060",
+      "CIVPART"
+    ],
+    "show_yoy": false,
+    "show_payroll_changes": true,
+    "combine_chart": false,
+    "explanation": "Employment metrics compared to pre-COVID: payrolls, unemployment, prime-age employment ratio, and labor force participation."
+  },
+  "unemployment vs underemployment": {
+    "series": [
+      "UNRATE",
+      "U6RATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "U3 (UNRATE) is the official unemployment rate - people without jobs who are actively looking. U6 (U6RATE) is broader - includes part-timers who want full-time work and discouraged workers. When U6 is much higher than U3, there's hidden slack in the labor market. The gap narrowing signals genuine tightness."
+  },
+  "u3 vs u6": {
+    "series": [
+      "UNRATE",
+      "U6RATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "U3 (UNRATE) is the official unemployment rate - people without jobs who are actively looking. U6 (U6RATE) is broader - includes part-timers who want full-time work and discouraged workers. When U6 is much higher than U3, there's hidden slack in the labor market. The gap narrowing signals genuine tightness."
+  },
+  "black vs white unemployment": {
+    "series": [
+      "LNS14000006",
+      "LNS14000003"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Black unemployment has historically run about 2x White unemployment - a persistent disparity reflecting structural barriers in the labor market. The ratio narrowing during tight labor markets shows that strong demand helps reduce inequality. Watch the gap as an indicator of labor market inclusiveness."
+  },
+  "unemployment by race": {
+    "series": [
+      "UNRATE",
+      "LNS14000003",
+      "LNS14000006",
+      "LNS14000009"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rates by race show persistent disparities. White unemployment is typically lowest, with Hispanic somewhat higher, and Black unemployment highest (often 2x White). During recessions, minority unemployment spikes more. During tight labor markets like 2023, the gaps narrowed to historic lows."
+  },
+  "job openings vs unemployment": {
+    "series": [
+      "JTSJOL",
+      "UNEMPLOY"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Job openings vs unemployed workers shows labor market tightness. When openings exceed unemployed (as in 2022-2023), employers compete for workers and wages rise. When unemployed exceeds openings, workers compete for jobs. The ratio of openings to unemployed is a key indicator of labor market conditions."
+  },
+  "quits vs layoffs": {
+    "series": [
+      "JTSQUR",
+      "JTSLDL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Quits rate vs layoffs rate shows worker vs employer power. High quits = workers confident they can find better jobs (hot market). High layoffs = employers cutting staff (cooling market). When quits fall and layoffs rise, the balance shifts from workers to employers."
+  },
+  "manufacturing vs services employment": {
+    "series": [
+      "MANEMP",
+      "SRVPRD"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Manufacturing vs services employment shows the structural shift in the US economy. Manufacturing has been flat-to-declining for decades while services grow steadily. Recessions hit manufacturing harder (goods demand drops first), while services are more stable. The divergence shows the 'servicification' of the economy."
+  },
+  "prime age vs overall employment": {
+    "series": [
+      "LNS12300060",
+      "EMRATIO"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Prime-age (25-54) employment ratio vs overall employment ratio shows whether demographic shifts (aging population) are distorting the aggregate picture. When prime-age is rising faster than overall, the labor market is genuinely strengthening but aging is dragging down the headline number."
+  },
+  "labor shortage": {
+    "series": [
+      "JTSJOL",
+      "UNRATE",
+      "LNS13000000"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Labor shortage indicators: Job openings (JTSJOL) show unfilled positions - high levels signal shortage. When job openings vastly exceed unemployed workers (LNS13000000), employers struggle to find workers. Low unemployment (UNRATE) means fewer available workers. The ratio of openings to unemployed is the key metric: above 1.5 indicates severe shortage; below 1.0 indicates slack. Wage growth (not shown) typically accelerates during shortages."
+  },
+  "great resignation": {
+    "series": [
+      "JTSQUR",
+      "JTSJOL",
+      "CES0500000003"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "The 'Great Resignation' refers to the record-high quits rate in 2021-2022 when workers voluntarily left jobs en masse. Quits rate (JTSQUR) peaked at 3.0% in late 2021 - the highest on record since 2000. Job openings (JTSJOL) show abundant opportunities that gave workers leverage. Wage growth (CES0500000003 YoY) accelerated as employers competed for workers. High quits + high openings + rising wages = peak worker power. The resignation wave has since normalized as labor market cooled."
+  },
+  "gig economy": {
+    "series": [
+      "LNS12032194",
+      "LNS12026620",
+      "PAYEMS"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Gig economy proxies (FRED lacks direct gig worker data): Unincorporated self-employed workers (LNS12032194) captures independent contractors and freelancers. Multiple jobholders (LNS12026620) includes those with gig work as second jobs. Comparing to total payrolls (PAYEMS) shows traditional employment context. Note: These are imperfect proxies - true gig workers (Uber, DoorDash, etc.) are undercounted in official stats. For comprehensive gig data, see BLS Contingent Worker Survey (every few years)."
+  },
+  "ai impact on jobs": {
+    "series": [
+      "USINFO",
+      "CES6054000001",
+      "OPHNFB",
+      "CES6500000001",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "AI's Impact on the Labor Market:\n\n• **Information Sector** (USINFO): Tech jobs - software, data, AI companies.\n• **Computer Systems Design** (CES6054000001): Jobs building/deploying AI systems.\n• **Productivity** (OPHNFB): If AI works, productivity should rise faster than employment.\n• **Professional Services** (CES6500000001): White-collar work potentially disrupted by AI.\n• **Total Employment** (PAYEMS): Net job creation.\n\n**What to watch**: Rising productivity + flat white-collar employment = AI displacement underway. History: ATMs didn't kill bank tellers - they shifted to customer service. AI may do the same."
+  },
+  "ai impact on jobs and labor market": {
+    "series": [
+      "USINFO",
+      "CES6054000001",
+      "OPHNFB",
+      "USFIRE",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "AI and Jobs - The Big Picture:\n\n• **Tech Employment** (USINFO): Where AI jobs live - growing or shrinking?\n• **Computer Systems Design** (CES6054000001): Building AI - should grow with AI investment.\n• **Productivity** (OPHNFB): The AI promise - more output per worker hour.\n• **Finance/Insurance** (USFIRE): White-collar sector most exposed to AI automation.\n• **Total Jobs** (PAYEMS): Net employment - is AI creating more jobs than it destroys?\n\n**Key insight**: Watch for productivity rising faster than employment - that's automation working. If tech jobs grow while finance/admin jobs shrink, displacement is happening."
+  },
+  "automation and jobs": {
+    "series": [
+      "OPHNFB",
+      "MANEMP",
+      "USINFO",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Automation's employment impact:\n\n• **Productivity** (OPHNFB): Rising productivity with flat employment = automation at work.\n• **Manufacturing Jobs** (MANEMP): Most automated sector - lost 5M+ jobs since 2000.\n• **Tech Employment** (USINFO): Creates automation tools, also benefits from them.\n• **Total Jobs** (PAYEMS): Net employment growth.\n\nPattern: Automation eliminates specific tasks but creates new jobs. Speed matters - slow change = adaptation; fast = disruption."
+  }
+}

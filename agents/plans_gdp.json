@@ -1,0 +1,556 @@
+{
+  "gdp": {
+    "series": [
+      "A191RO1Q156NBEA",
+      "A191RL1Q225SBEA",
+      "PB0000031Q225SBEA",
+      "GDPNOW"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Four views of GDP: (1) Year-over-year growth is the most stable and meaningful measure of economic performance. (2) Quarterly annualized rate is the headline number but can be volatile. (3) Core GDP (Final Sales to Private Domestic Purchasers) strips out volatile government, trade, and inventories\u2014the CEA considers it a better predictor of underlying growth. (4) GDPNow is the Atlanta Fed's real-time estimate of current-quarter growth.",
+    "chart_groups": [
+      {
+        "series": [
+          "A191RL1Q225SBEA"
+        ],
+        "title": "Quarterly GDP Growth (Annualized)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "A191RO1Q156NBEA"
+        ],
+        "title": "Annual GDP Growth (Year-over-Year)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "PB0000031Q225SBEA"
+        ],
+        "title": "Core GDP (Private Domestic Demand)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "GDPNOW"
+        ],
+        "title": "GDPNow Real-Time Estimate",
+        "show_yoy": false
+      }
+    ]
+  },
+  "gdp growth": {
+    "series": [
+      "A191RO1Q156NBEA",
+      "A191RL1Q225SBEA",
+      "PB0000031Q225SBEA",
+      "GDPNOW"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Four complementary GDP measures: (1) Annual growth (YoY) shows the stable underlying trend. (2) Quarterly annualized rate is timely but volatile. (3) Core GDP focuses on private domestic demand, excluding volatile components\u2014a better predictor of future growth. (4) GDPNow provides the Atlanta Fed's real-time tracking estimate. Together they give a complete picture. Trend growth is ~2%.",
+    "chart_groups": [
+      {
+        "series": [
+          "A191RL1Q225SBEA"
+        ],
+        "title": "Quarterly GDP Growth (Annualized)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "A191RO1Q156NBEA"
+        ],
+        "title": "Annual GDP Growth (Year-over-Year)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "PB0000031Q225SBEA"
+        ],
+        "title": "Core GDP (Private Domestic Demand)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "GDPNOW"
+        ],
+        "title": "GDPNow Real-Time Estimate",
+        "show_yoy": false
+      }
+    ]
+  },
+  "economic growth": {
+    "series": [
+      "A191RO1Q156NBEA",
+      "A191RL1Q225SBEA",
+      "PB0000031Q225SBEA",
+      "GDPNOW"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Comprehensive GDP analysis: (1) Year-over-year growth is the most reliable measure of economic momentum. (2) Quarterly annualized rate is the headline number but swings widely. (3) Core GDP (private domestic demand) is what the CEA watches as a leading indicator. (4) GDPNow shows where current-quarter growth is tracking in real-time. Trend U.S. growth is ~2%; above 3% is strong.",
+    "chart_groups": [
+      {
+        "series": [
+          "A191RL1Q225SBEA"
+        ],
+        "title": "Quarterly GDP Growth (Annualized)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "A191RO1Q156NBEA"
+        ],
+        "title": "Annual GDP Growth (Year-over-Year)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "PB0000031Q225SBEA"
+        ],
+        "title": "Core GDP (Private Domestic Demand)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "GDPNOW"
+        ],
+        "title": "GDPNow Real-Time Estimate",
+        "show_yoy": false
+      }
+    ]
+  },
+  "real gdp": {
+    "series": [
+      "GDPC1"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "GDPC1 is real GDP in billions of chained 2017 dollars. Shown as year-over-year % change since the level ($28T+) is less meaningful than growth trends. YoY growth of ~2% is healthy; above 3% is strong; negative signals recession."
+  },
+  "gdp report": {
+    "series": [
+      "A191RL1Q225SBEA",
+      "GDPC1"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For a GDP report, you need the headline growth rate (A191RL1Q225SBEA) which shows quarterly annualized real GDP growth - this is the key number everyone focuses on. GDPC1 shows the level of real GDP to provide context on the overall size and trend of the economy. Together these give you both the growth momentum and absolute output level."
+  },
+  "quarterly gdp": {
+    "series": [
+      "A191RL1Q225SBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "A191RL1Q225SBEA is the quarterly real GDP growth rate (annualized), which is the standard measure for tracking quarterly GDP performance. This series shows the percentage change in economic output from quarter to quarter, which is what economists and markets focus on for quarterly GDP analysis."
+  },
+  "growth rate": {
+    "series": [
+      "A191RL1Q225SBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "A191RL1Q225SBEA is the Real GDP growth rate (quarterly, annualized) - this is THE headline growth rate measure that economists and policymakers focus on. It's already expressed as a growth rate, so no additional year-over-year calculation is needed."
+  },
+  "output": {
+    "series": [
+      "INDPRO"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Industrial Production Index (INDPRO) measures output in the industrial sector (manufacturing, mining, and utilities), which represents roughly 20% of GDP. This is the standard metric for tracking industrial output trends. For total US economic output, see GDP (GDPC1) which captures all sectors including services."
+  },
+  "production": {
+    "series": [
+      "INDPRO"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Industrial Production Index (INDPRO) is the primary measure of production activity in the US economy, covering manufacturing, mining, and utilities sectors. This index provides the most comprehensive view of actual production output and is a key indicator of economic activity and business cycle conditions."
+  },
+  "industrial production": {
+    "series": [
+      "INDPRO"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "INDPRO is the primary measure of industrial production, covering manufacturing, mining, and utilities output. This index directly measures the physical volume of production in the industrial sector and is the standard metric economists use to track industrial activity and capacity."
+  },
+  "manufacturing": {
+    "series": [
+      "IPMAN",
+      "TCU"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "IPMAN (Industrial Production: Manufacturing) measures the physical output of the manufacturing sector, while TCU (Total Capacity Utilization) shows how much of manufacturing capacity is being used. Together they provide a comprehensive view of manufacturing activity - both absolute production levels and efficiency of resource utilization."
+  },
+  "factory output": {
+    "series": [
+      "IPMAN"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "IPMAN (Industrial Production: Manufacturing) is the definitive measure of factory output in the US. This index tracks the real output of the manufacturing sector, covering all types of factories and production facilities. Year-over-year comparison shows the growth trend in factory production, which is essential for understanding manufacturing sector health and economic momentum."
+  },
+  "capacity utilization": {
+    "series": [
+      "TCU"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "TCU (Total Capacity Utilization) is the primary measure of how intensively firms are using their productive capacity across all industries. This metric shows the percentage of total industrial capacity currently in use, providing insight into economic slack and potential inflationary pressures. High capacity utilization suggests strong demand and potential supply constraints, while low utilization indicates economic weakness and available productive slack."
+  },
+  "productivity": {
+    "series": [
+      "OPHNFB",
+      "PRS85006092"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "OPHNFB (nonfarm business sector output per hour) is the primary measure of labor productivity, showing how much output workers produce per hour worked. PRS85006092 (nonfarm business unit labor costs) provides the complementary view - when productivity rises, unit labor costs typically fall, making this pair essential for comprehensive productivity analysis. These are the key metrics economists use to assess whether the economy is becoming more efficient at producing goods and services."
+  },
+  "economic expansion": {
+    "series": [
+      "A191RL1Q225SBEA",
+      "CFNAI"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Real GDP growth rate (A191RL1Q225SBEA) is the primary measure of economic expansion - positive values indicate expansion, negative values indicate contraction. The Chicago Fed National Activity Index (CFNAI) provides additional confirmation as a broad-based indicator that measures economic activity relative to trend - positive values support expansion while negative values suggest below-trend growth."
+  },
+  "economic contraction": {
+    "series": [
+      "A191RL1Q225SBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Economic contraction is measured by negative real GDP growth rates. A191RL1Q225SBEA shows the quarterly annualized real GDP growth rate - when this turns negative, the economy is contracting. Two consecutive quarters of negative growth is the traditional definition of recession. This series is already a growth rate so no YoY calculation is needed."
+  },
+  "durable goods": {
+    "series": [
+      "DGORDER"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "DGORDER (Durable Goods Orders) is the primary indicator for durable goods activity. This measures new orders placed with domestic manufacturers for durable goods - items expected to last at least 3 years like machinery, aircraft, automobiles, and appliances. It's a key leading indicator of manufacturing activity and business investment trends. Showing year-over-year changes helps identify underlying trends beyond seasonal fluctuations."
+  },
+  "business investment": {
+    "series": [
+      "GPDIC1"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "GPDIC1 (Real Gross Private Domestic Investment) is the definitive measure of business investment in the economy. This series captures all private sector investment in equipment, structures, and inventories - the core component of GDP that represents business capital formation. Year-over-year growth shows investment trends and business confidence in economic expansion."
+  },
+  "capital spending": {
+    "series": [
+      "GPDIC1",
+      "DGORDER"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Capital spending is best measured by real gross private domestic investment (GPDIC1), which captures business investment in equipment, structures, and intellectual property. Durable goods orders (DGORDER) provides a forward-looking indicator of business capital spending intentions, as many durable goods orders represent business equipment purchases. Together, these series show both current capital investment levels and future spending signals."
+  },
+  "corporate investment": {
+    "series": [
+      "GPDIC1"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "GPDIC1 (Real gross private domestic investment) is the comprehensive measure of corporate investment in the GDP accounts. It includes business fixed investment in equipment, structures, and intellectual property, plus residential investment and inventory changes. This captures all forms of private sector investment spending, which is what drives future productive capacity and economic growth. Year-over-year growth shows the investment trend clearly."
+  },
+  "manufacturing orders": {
+    "series": [
+      "NEWORDER",
+      "DGORDER"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "NEWORDER (Manufacturers' new orders) provides the broadest measure of new manufacturing demand, while DGORDER (Durable goods orders) captures the more volatile capital goods sector that's crucial for business investment trends. Together they give a comprehensive view of manufacturing order flow - both are key leading indicators of industrial activity and economic momentum."
+  },
+  "factory orders": {
+    "series": [
+      "DGORDER",
+      "NEWORDER"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "DGORDER (durable goods orders) and NEWORDER (manufacturers' new orders) provide the most comprehensive view of factory orders. Durable goods orders are the most closely watched factory orders indicator, while manufacturers' new orders gives broader coverage of all manufacturing orders. Together they show both the key headline number and the broader manufacturing demand picture."
+  },
+  "leading indicators": {
+    "series": [
+      "BBKMLEIX",
+      "CFNAI"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These are the two premier leading indicators for the US economy. The BBK Leading Index (BBKMLEIX) from the Chicago Fed forecasts economic growth using dynamic factor analysis of 490 indicators, while the Chicago Fed National Activity Index (CFNAI) measures economic activity relative to trend. Both are forward-looking measures that help anticipate future economic conditions - negative readings signal slowdown ahead."
+  },
+  "economic activity": {
+    "series": [
+      "A191RL1Q225SBEA",
+      "CFNAI",
+      "INDPRO"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For broad economic activity assessment, I'm providing three complementary measures: A191RL1Q225SBEA (Real GDP growth rate) as the primary headline measure of overall economic expansion/contraction, CFNAI (Chicago Fed National Activity Index) which synthesizes 85 monthly indicators into a single measure of national economic activity relative to trend, and INDPRO (Industrial Production Index) to capture real-time production activity across manufacturing, mining, and utilities sectors. These three series together provide a comprehensive view of current economic momentum."
+  },
+  "business activity": {
+    "series": [
+      "INDPRO",
+      "RSXFS",
+      "DGORDER"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "These three series provide a comprehensive view of business activity across key sectors: INDPRO captures industrial production (manufacturing, mining, utilities), RSXFS shows retail sales excluding food services (consumer-facing business activity), and DGORDER reflects durable goods orders (forward-looking business investment demand). Together they span production, consumption, and investment aspects of business activity."
+  },
+  "economic momentum": {
+    "series": [
+      "A191RL1Q225SBEA",
+      "CFNAI"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Economic momentum is best captured by the Real GDP growth rate (A191RL1Q225SBEA) which shows the quarterly annualized pace of economic expansion, combined with the Chicago Fed National Activity Index (CFNAI) which is specifically designed to gauge the overall economic momentum by synthesizing 85 economic indicators. The CFNAI is particularly valuable for momentum analysis as positive values indicate above-trend growth while negative values suggest below-trend growth. Together, these provide both the headline growth measure and a comprehensive momentum gauge."
+  },
+  "gdp components": {
+    "series": [
+      "PCEC96",
+      "GPDIC1",
+      "GCEC1",
+      "NETEXP"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "The four components of GDP: Consumption (PCEC96), Investment (GPDIC1), Government (GCEC1), and Net Exports (NETEXP). Shown together to see which component is driving growth. Consumer spending dominates at ~70% of GDP, but investment and net exports are more volatile and often explain quarterly swings."
+  },
+  "consumer spending share of gdp": {
+    "series": [
+      "PCECC96",
+      "GDPC1"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "To calculate consumer spending's share of GDP, we need real personal consumption expenditures (PCECC96) and real GDP (GDPC1). Both are in the same units (billions of chained 2017 dollars), allowing for accurate percentage calculation. Consumer spending typically represents about 70% of US GDP, making this ratio a key indicator of the economy's consumption dependence. The separate charts will show the levels of each component, and the ratio can be calculated by dividing PCE by GDP."
+  },
+  "investment spending": {
+    "series": [
+      "GPDIC1"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "GPDIC1 (Real Gross Private Domestic Investment) is the definitive measure of investment spending in the economy. This captures business investment in equipment, structures, and residential construction, plus changes in inventories - all measured in real terms. Showing year-over-year changes will reveal investment trends and cyclical patterns, which are crucial since investment is the most volatile component of GDP and a key driver of economic cycles."
+  },
+  "government spending": {
+    "series": [
+      "GCEC1"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "GCEC1 (Real Government Consumption Expenditures and Gross Investment) is the comprehensive measure of government spending in the GDP accounts. This captures all government purchases of goods and services at federal, state, and local levels in real terms. Year-over-year growth shows the trend in government fiscal activity and its contribution to economic growth."
+  },
+  "annual gdp growth": {
+    "series": [
+      "A191RL1A225NBEA",
+      "A191RO1Q156NBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Two views of annual GDP growth: The annual series (A191RL1A225NBEA, bar chart) shows the official year-over-year growth for completed years\u2014the definitive measure economists use when comparing economic performance across years. The quarterly series (A191RO1Q156NBEA, line) shows each quarter vs the same quarter a year ago\u2014its Q4 value approximates annual growth and provides a more current estimate. Trend U.S. growth is ~2%."
+  },
+  "core gdp": {
+    "series": [
+      "PB0000031Q225SBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "synonyms": [
+      "private demand",
+      "final sales to private domestic purchasers",
+      "final sales"
+    ],
+    "explanation": "Real Final Sales to Private Domestic Purchasers (also called 'core GDP' or 'private demand') strips out volatile components (government spending, exports, inventories) to focus on consumer spending plus business fixed investment. The CEA considers it a better predictor of future growth than headline GDP."
+  },
+  "yearly gdp": {
+    "series": [
+      "A191RL1A225NBEA",
+      "A191RO1Q156NBEA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Annual real GDP growth shown two ways: The official annual series (A191RL1A225NBEA) for completed calendar years, and the quarterly year-ago comparison (A191RO1Q156NBEA) for a more current read. The Q4 reading of the quarterly series approximates the full-year annual growth rate. Trend growth is approximately 2% annually."
+  },
+  "real gdp vs nominal gdp": {
+    "series": [
+      "GDPC1",
+      "GDP"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Real GDP (GDPC1) removes inflation effects using chained 2017 dollars - this measures actual economic output growth. Nominal GDP (GDP) includes inflation - it grows faster when prices rise. The difference between nominal and real GDP growth is essentially inflation. Real GDP is what economists use to measure true economic growth.",
+    "chart_groups": [
+      {
+        "series": [
+          "GDPC1",
+          "GDP"
+        ],
+        "show_yoy": true,
+        "title": "Real vs Nominal GDP Growth (YoY %)"
+      },
+      {
+        "series": [
+          "GDPC1",
+          "GDP"
+        ],
+        "normalize": true,
+        "title": "Real vs Nominal GDP (Indexed to 100)"
+      }
+    ]
+  },
+  "nominal vs real gdp": {
+    "series": [
+      "GDPC1",
+      "GDP"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Real GDP (GDPC1) removes inflation effects using chained 2017 dollars - this measures actual economic output growth. Nominal GDP (GDP) includes inflation - it grows faster when prices rise. The difference between nominal and real GDP growth is essentially inflation. Real GDP is what economists use to measure true economic growth.",
+    "chart_groups": [
+      {
+        "series": [
+          "GDPC1",
+          "GDP"
+        ],
+        "show_yoy": true,
+        "title": "Real vs Nominal GDP Growth (YoY %)"
+      },
+      {
+        "series": [
+          "GDPC1",
+          "GDP"
+        ],
+        "normalize": true,
+        "title": "Nominal vs Real GDP (Indexed to 100)"
+      }
+    ]
+  },
+  "exports vs imports": {
+    "series": [
+      "EXPGSC1",
+      "IMPGSC1",
+      "NETEXP"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "U.S. trade flows: Exports (EXPGSC1) are goods and services sold abroad, Imports (IMPGSC1) are purchased from abroad. Net Exports (NETEXP) = Exports - Imports. The U.S. typically runs a trade deficit (negative net exports), meaning we import more than we export. This deficit subtracts from GDP.",
+    "chart_groups": [
+      {
+        "series": [
+          "EXPGSC1",
+          "IMPGSC1"
+        ],
+        "show_yoy": false,
+        "title": "Exports vs Imports (Real, Billions $)"
+      },
+      {
+        "series": [
+          "NETEXP"
+        ],
+        "show_yoy": false,
+        "title": "Net Exports (Trade Balance)"
+      }
+    ]
+  },
+  "imports vs exports": {
+    "series": [
+      "EXPGSC1",
+      "IMPGSC1",
+      "NETEXP"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "U.S. trade flows: Exports (EXPGSC1) are goods and services sold abroad, Imports (IMPGSC1) are purchased from abroad. Net Exports (NETEXP) = Exports - Imports. The U.S. typically runs a trade deficit (negative net exports), meaning we import more than we export. This deficit subtracts from GDP.",
+    "chart_groups": [
+      {
+        "series": [
+          "EXPGSC1",
+          "IMPGSC1"
+        ],
+        "show_yoy": false,
+        "title": "Imports vs Exports (Real, Billions $)"
+      },
+      {
+        "series": [
+          "NETEXP"
+        ],
+        "show_yoy": false,
+        "title": "Net Exports (Trade Balance)"
+      }
+    ]
+  },
+  "trade deficit": {
+    "series": [
+      "NETEXP",
+      "BOPGSTB"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Two views of the trade deficit: NETEXP shows net exports from the GDP accounts (real, quarterly), while BOPGSTB shows the goods and services trade balance from balance of payments data (nominal, monthly). Negative values indicate a deficit - the U.S. imports more than it exports. Large deficits can drag on GDP growth."
+  },
+  "trade balance": {
+    "series": [
+      "BOPGSTB",
+      "NETEXP"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "BOPGSTB is the monthly trade balance (goods and services) from balance of payments data - the most timely trade indicator. NETEXP is quarterly net exports from GDP accounts. Negative values = trade deficit, positive = surplus. The U.S. has run persistent deficits since the 1970s."
+  },
+  "gdp composition": {
+    "series": [
+      "PCEC96",
+      "GPDIC1",
+      "GCEC1",
+      "NETEXP"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "GDP composition breakdown: Consumer spending (PCEC96) is ~70% of GDP - the main driver. Business investment (GPDIC1) is ~17% and most volatile. Government spending (GCEC1) is ~17%. Net exports (NETEXP) typically subtracts from GDP as the US runs trade deficits. Understanding which components are growing/shrinking reveals the nature of economic expansion."
+  },
+  "gdp vs employment": {
+    "series": [
+      "A191RO1Q156NBEA",
+      "PAYEMS"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "GDP growth vs employment growth shows the productivity story. When GDP grows faster than employment, productivity is rising (getting more output per worker). When employment grows faster than GDP, we're adding workers but not getting proportional output - productivity is falling. The gap also signals whether growth is job-rich or jobless."
+  },
+  "real vs nominal gdp": {
+    "series": [
+      "GDPC1",
+      "GDP"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Real GDP (GDPC1) strips out inflation to show actual economic output growth. Nominal GDP (GDP) includes price increases. The gap between them is essentially inflation. When nominal far exceeds real, inflation is eating into purchasing power even as dollar values rise."
+  },
+  "gdp growth vs inflation": {
+    "series": [
+      "A191RO1Q156NBEA",
+      "CPIAUCSL"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "GDP growth vs inflation shows the real growth story. When GDP growth exceeds inflation, the economy is genuinely expanding in real terms. When inflation exceeds GDP growth, we're in 'stagflation' territory - nominal growth but shrinking in real terms. The gap shows whether growth is real or illusory."
+  }
+}

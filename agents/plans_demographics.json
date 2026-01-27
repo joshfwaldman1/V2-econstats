@@ -1,0 +1,442 @@
+{
+  "women": {
+    "series": [
+      "LNS12300062",
+      "LNS14000002",
+      "LNS11300002"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Women's labor market metrics:\n\n\u2022 **Prime-Age Employment-Population Ratio (25-54)**: THE key metric - share of prime working-age women with jobs. Avoids distortions from students/retirees. Hit all-time high of 75.3% in 2024.\n\n\u2022 **Unemployment Rate (16+)**: Share of women in labor force who are jobless.\n\n\u2022 **Labor Force Participation (16+)**: Share of women either working or looking for work.\n\nNote: EPOP uses prime-age (25-54) as it's the cleanest measure; unemployment and LFPR shown for all ages (16+).",
+    "chart_groups": [
+      {
+        "series": [
+          "LNS12300062"
+        ],
+        "title": "Prime-Age Women Employment-Population Ratio (25-54)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "LNS14000002"
+        ],
+        "title": "Women's Unemployment Rate (16+)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "LNS11300002"
+        ],
+        "title": "Women's Labor Force Participation Rate (16+)",
+        "show_yoy": false
+      }
+    ]
+  },
+  "women employment": {
+    "series": [
+      "LNS12300062",
+      "LNS14000002",
+      "LNS11300002"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Women's labor market metrics:\n\n\u2022 **Prime-Age Employment-Population Ratio (25-54)**: THE key metric - share of prime working-age women with jobs. Avoids distortions from students/retirees. Hit all-time high of 75.3% in 2024.\n\n\u2022 **Unemployment Rate (16+)**: Share of women in labor force who are jobless.\n\n\u2022 **Labor Force Participation (16+)**: Share of women either working or looking for work.\n\nNote: EPOP uses prime-age (25-54) as it's the cleanest measure; unemployment and LFPR shown for all ages (16+).",
+    "chart_groups": [
+      {
+        "series": [
+          "LNS12300062"
+        ],
+        "title": "Prime-Age Women Employment-Population Ratio (25-54)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "LNS14000002"
+        ],
+        "title": "Women's Unemployment Rate (16+)",
+        "show_yoy": false
+      },
+      {
+        "series": [
+          "LNS11300002"
+        ],
+        "title": "Women's Labor Force Participation Rate (16+)",
+        "show_yoy": false
+      }
+    ]
+  },
+  "women unemployment": {
+    "series": [
+      "LNS14000002",
+      "LNS14000026",
+      "LNS12300062"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For women's unemployment, I'm using LNS14000002 (unemployment rate for all women 16+) as the primary measure, LNS14000026 (unemployment rate for prime-age women 25-54) for the most economically meaningful metric, and LNS12300062 (employment-population ratio for prime-age women) to show the broader employment picture. The prime-age metrics are particularly important as they exclude students and early retirees, giving a clearer view of women's labor market conditions."
+  },
+  "women in the workforce": {
+    "series": [
+      "LNS12300062",
+      "LNS11300002",
+      "LNS14000002"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For women in the workforce, I'm using three key demographic-specific series: LNS12300062 (employment-population ratio for women 25-54, the best measure of labor market attachment for prime working age), LNS11300002 (labor force participation rate for all women 16+, showing willingness to work), and LNS14000002 (unemployment rate for women 16+, showing job market success). These three metrics together provide a complete picture of women's workforce participation and employment outcomes."
+  },
+  "women labor force": {
+    "series": [
+      "LNS12300062",
+      "LNS11300002",
+      "LNS14000002"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For women's labor force status, I'm using three key demographic-specific series: LNS12300062 (employment-population ratio for women 25-54, the best measure of labor market health), LNS11300002 (labor force participation rate for all women 16+), and LNS14000002 (unemployment rate for women 16+). These three metrics together provide a complete picture of women's labor force engagement - how many are working relative to population, how many are participating in the labor force, and how many of those participating are unemployed."
+  },
+  "female employment": {
+    "series": [
+      "LNS12300062",
+      "LNS11300002",
+      "LNS14000002"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For female employment analysis, I'm using three key demographic-specific series: LNS12300062 (Employment-population ratio for women 25-54) which is the best single measure of women's labor market attachment as it shows the share of prime-age women who are actually working; LNS11300002 (Labor force participation rate for all women 16+) which shows women's willingness to work; and LNS14000002 (Unemployment rate for women 16+) which shows job-finding difficulties among women seeking work. These three metrics together provide a comprehensive view of women's employment status - participation, success in finding work, and actual employment levels."
+  },
+  "female unemployment": {
+    "series": [
+      "LNS14000002",
+      "LNS14000026",
+      "LNS12300062"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For female unemployment, I'm providing three complementary demographic-specific series: LNS14000002 shows the overall unemployment rate for women 16+, LNS14000026 shows the unemployment rate for prime-age women (25-54) which is less volatile and a better indicator of labor market conditions, and LNS12300062 shows the employment-population ratio for prime-age women, which gives the complete picture by showing what percentage of women are actually employed rather than just the unemployment rate among those actively seeking work."
+  },
+  "women's jobs": {
+    "series": [
+      "LNS12300062",
+      "LNS14000002",
+      "LNS11300002"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "For women's employment status, I'm using three key demographic-specific series: LNS12300062 (employment-population ratio for women 25-54) which is the best measure of labor market health as it shows the share of prime-age women actually working; LNS14000002 (unemployment rate for women 16+) to show joblessness among women in the labor force; and LNS11300002 (labor force participation rate for women) to show women's overall engagement with the labor market. These three metrics together provide a comprehensive view of women's employment situation."
+  },
+  "working women": {
+    "series": [
+      "LNS12300062",
+      "LNS11300002",
+      "LNS14000026"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For working women analysis, I'm using three key demographic-specific series: LNS12300062 (employment-population ratio for women 25-54) which is the BEST measure of women's workforce participation as it shows the share actually working; LNS11300002 (women's labor force participation rate) showing willingness to work; and LNS14000026 (unemployment rate for women 25-54) showing job market success. The 25-54 age group captures prime working years and avoids distortions from education/retirement decisions. These three metrics together provide a comprehensive view of women's labor market position."
+  },
+  "gender employment gap": {
+    "series": [
+      "LNS12300062",
+      "LNS12300061"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "The employment-population ratio for prime-age workers (25-54) is the best measure for comparing gender employment gaps. LNS12300062 shows women's employment-to-population ratio and LNS12300061 shows men's ratio for ages 25-54. This prime-age group eliminates distortions from education/retirement choices and gives the clearest picture of gender differences in employment rates. The gap between these two series directly measures the gender employment gap."
+  },
+  "how are women doing in the economy": {
+    "series": [
+      "LNS12300062",
+      "LNS14000002",
+      "LNS11300002"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess how women are doing in the economy, I'm using three key demographic-specific series: LNS12300062 (employment-population ratio for women aged 25-54, the best measure of labor market health), LNS14000002 (unemployment rate for women 16+), and LNS11300002 (labor force participation rate for women). The prime-age employment ratio is particularly important as it captures both employment strength and labor force attachment without being distorted by demographic trends like aging or schooling decisions."
+  },
+  "women's labor force participation": {
+    "series": [
+      "LNS11300002",
+      "LNS12300062",
+      "LNS14000002"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For women's labor force participation, I'm using three complementary demographic-specific series: LNS11300002 (women's labor force participation rate) is the direct answer to your question, LNS12300062 (employment-population ratio for women 25-54) provides the best measure of prime-age women's labor market engagement, and LNS14000002 (women's unemployment rate) gives context on labor market conditions for women. Together these show the full picture of women's workforce participation patterns."
+  },
+  "men employment": {
+    "series": [
+      "LNS12300061",
+      "LNS14000001",
+      "LNS11300001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For men's employment, I'm using three key demographic-specific series: LNS12300061 (employment-population ratio for prime-age men 25-54, the best measure of labor market health), LNS14000001 (unemployment rate for men 16+), and LNS11300001 (labor force participation rate for men). These provide a comprehensive view of men's employment status - how many are working relative to population, how many are unemployed, and how many are participating in the labor force."
+  },
+  "men unemployment": {
+    "series": [
+      "LNS14000001",
+      "LNS14000025"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "LNS14000001 shows the overall unemployment rate for men 16+, while LNS14000025 shows unemployment for prime-age men 25-54, which is the most economically meaningful measure as it excludes students and early retirees. Together they provide a complete view of male unemployment across age groups."
+  },
+  "male employment": {
+    "series": [
+      "LNS12300061",
+      "LNS14000001",
+      "LNS11300001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For male employment analysis, I'm using three complementary demographic-specific series: LNS12300061 (employment-population ratio for prime-age men 25-54, the best single measure of employment health), LNS14000001 (unemployment rate for all men 16+), and LNS11300001 (labor force participation rate for men). Together these provide a complete picture of male labor market performance - how many are working relative to population, how many seeking work are unemployed, and overall workforce engagement."
+  },
+  "black unemployment": {
+    "series": [
+      "LNS14000006",
+      "LNS14000003"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "LNS14000006 is the unemployment rate specifically for Black or African American workers. Including LNS14000003 (White unemployment rate) provides crucial context since Black unemployment rates are historically about 2x higher than White rates. This comparison reveals the persistent racial employment gap that is a key feature of US labor markets."
+  },
+  "african american unemployment": {
+    "series": [
+      "LNS14000006",
+      "LNS14000003"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "LNS14000006 is the unemployment rate specifically for Black or African American workers. I'm including LNS14000003 (White unemployment rate) for comparison, as the Black-White unemployment gap is a key measure of labor market disparities. These demographic-specific series provide the exact data needed rather than aggregate measures that mask group differences."
+  },
+  "black employment": {
+    "series": [
+      "LNS14000006",
+      "LNS12300006",
+      "LNS11300006"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For Black employment analysis, I'm using three key demographic-specific series: LNS14000006 (unemployment rate for Black workers), LNS12300006 (employment-population ratio for Black workers - the best measure of employment strength), and LNS11300006 (labor force participation rate for Black workers). These three metrics together provide a comprehensive view of Black labor market outcomes - unemployment shows job-seeking success, employment-pop ratio shows actual employment relative to population, and LFPR shows labor market engagement. Never use aggregate employment data like PAYEMS as it tells us nothing about specific demographic groups."
+  },
+  "how are black workers doing": {
+    "series": [
+      "LNS14000006",
+      "LNS12300006",
+      "LNS11300006"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess how Black workers are doing in the economy, I'm using three key demographic-specific series: LNS14000006 (unemployment rate for Black workers), LNS12300006 (employment-population ratio for Black workers - the best measure of labor market health), and LNS11300006 (labor force participation rate for Black workers). Together these show unemployment levels, actual employment relative to population, and overall labor market engagement among Black workers."
+  },
+  "how are black americans doing": {
+    "series": [
+      "LNS14000006",
+      "LNS12300006",
+      "LNS11300006"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess how Black Americans are faring economically, these three demographic-specific series provide a comprehensive view: unemployment rate, employment-population ratio (best measure of actual employment), and labor force participation rate for Black workers."
+  },
+  "hispanic unemployment": {
+    "series": [
+      "LNS14000009"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LNS14000009 is the official unemployment rate for Hispanic or Latino workers (16+ years). This demographic-specific series directly measures joblessness within the Hispanic community. Including year-over-year changes will show how Hispanic unemployment has evolved over time and highlight cyclical patterns or structural changes affecting this population."
+  },
+  "latino unemployment": {
+    "series": [
+      "LNS14000009"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LNS14000009 is the official unemployment rate for Hispanic or Latino workers (16 years and older). This demographic-specific series directly measures unemployment within the Latino community, showing both current levels and year-over-year changes to identify trends in labor market conditions for this population."
+  },
+  "hispanic employment": {
+    "series": [
+      "LNS14000009",
+      "LNS12300009",
+      "LNS11300009"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For Hispanic employment analysis, I'm using three demographic-specific series: LNS14000009 (Hispanic unemployment rate) shows job market difficulties, LNS12300009 (Hispanic employment-population ratio) is the best measure of actual employment strength as it shows the share of Hispanic population that is working, and LNS11300009 (Hispanic labor force participation rate) shows workforce engagement. These Hispanic-specific series provide the complete picture of Hispanic labor market performance that aggregate employment data cannot show."
+  },
+  "how are hispanic workers doing": {
+    "series": [
+      "LNS14000009",
+      "LNS12300009",
+      "LNS11300009"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess how Hispanic workers are doing in the economy, I'm using three demographic-specific series: unemployment rate, employment-population ratio (the best measure of labor market health), and labor force participation rate for Hispanic workers. These show the complete picture of Hispanic labor market outcomes."
+  },
+  "how are latino workers doing": {
+    "series": [
+      "LNS14000009",
+      "LNS12300009",
+      "LNS11300009"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess how Latino workers are faring economically, these demographic-specific series provide unemployment rate, employment-population ratio, and labor force participation for Hispanic/Latino workers."
+  },
+  "how are immigrants doing": {
+    "series": [
+      "LNU04073395",
+      "LNU02073395",
+      "LNU01073395"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess how immigrants are doing in the economy, I'm using foreign-born worker specific series: LNU04073395 (unemployment rate), LNU02073395 (employment level), and LNU01073395 (labor force). These show how immigrant workers are faring in the US labor market."
+  },
+  "how are immigrant workers doing": {
+    "series": [
+      "LNU04073395",
+      "LNU02073395",
+      "LNU01073395"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To assess immigrant workers' economic situation, these foreign-born specific series show unemployment rate, employment levels, and labor force participation for foreign-born workers in the US."
+  },
+  "white unemployment": {
+    "series": [
+      "LNS14000003"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LNS14000003 is the official unemployment rate for White workers (16 years and older). This demographic-specific series provides the most direct answer to your query about white unemployment rates, showing both current levels and year-over-year changes to identify trends."
+  },
+  "asian unemployment": {
+    "series": [
+      "LNS14000004"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "LNS14000004 is the unemployment rate for Asian workers (16+ years). This is the most direct measure of Asian unemployment in the labor market. While I don't have the Asian prime-age (25-54) specific series in my immediate reference, this provides the comprehensive view of Asian unemployment trends."
+  },
+  "youth unemployment": {
+    "series": [
+      "LNS14000012",
+      "LNS14000036"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Youth unemployment requires age-specific series: LNS14000012 captures teenagers (16-19 years) who have the highest unemployment rates and face unique labor market challenges, while LNS14000036 covers young adults (20-24 years) who are typically finishing education and entering careers. These two series together provide the complete picture of youth unemployment trends, which are consistently higher and more volatile than overall unemployment rates."
+  },
+  "teen unemployment": {
+    "series": [
+      "LNS14000012"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "LNS14000012 is the unemployment rate for 16-19 year olds, which is the specific demographic measure for teen unemployment. Teen unemployment is typically much higher and more volatile than overall unemployment, making the demographic-specific series essential rather than using aggregate measures."
+  },
+  "young workers": {
+    "series": [
+      "LNS14000012",
+      "LNS14000036",
+      "LNS14000089"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These three unemployment rate series capture the full spectrum of young workers: teens (16-19), early twenties (20-24), and young adults (25-34). Teen unemployment is typically highest due to lack of experience and education requirements. The 20-24 group shows the transition from school to career. The 25-34 group represents established young workers but may still face experience-related challenges compared to older cohorts. Combining these charts allows direct comparison of how labor market conditions affect different stages of young worker development."
+  },
+  "older workers": {
+    "series": [
+      "LNS14000095",
+      "LNS14000097",
+      "LNS11300012",
+      "LNS11300013"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For older workers analysis, I'm using unemployment rates for 55-64 years (LNS14000095) and 65+ years (LNS14000097) to show joblessness among older age groups, plus labor force participation rates for 55-64 years (LNS11300012) and 65+ years (LNS11300013). LFPR is especially critical for older workers since many transition out of the labor force entirely rather than remaining unemployed. The 55-64 group captures pre-retirement workers, while 65+ shows those working past traditional retirement age. Combining these charts allows direct comparison of how these two older cohorts fare in the labor market."
+  },
+  "workers over 55": {
+    "series": [
+      "LNS14000095",
+      "LNS14000097",
+      "LNS11300012",
+      "LNS12300012"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For workers over 55, I'm using LNS14000095 (unemployment rate 55-64) and LNS14000097 (unemployment rate 65+) to show joblessness by age cohort. LNS11300012 (labor force participation 55+) and LNS12300012 (employment-population ratio 55+) provide the broader labor market engagement picture for older workers. The 55+ group has unique labor market dynamics including early retirement decisions, age discrimination, and different job search patterns compared to prime-age workers."
+  },
+  "college educated unemployment": {
+    "series": [
+      "LNS14027689"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LNS14027689 is the unemployment rate for workers with a bachelor's degree and higher, which directly measures college-educated unemployment. This demographic-specific series shows how the most educated segment of the workforce fares in the job market. Year-over-year changes help identify trends in demand for college-educated workers and whether economic conditions are affecting this group differently than others."
+  },
+  "high school unemployment": {
+    "series": [
+      "LNS14027660",
+      "LNS14027659",
+      "LNS14027689"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "LNS14027660 is the unemployment rate for high school graduates (no college), which directly answers your question. I'm also including LNS14027659 (less than high school) and LNS14027689 (bachelor's degree and higher) for comparison to show how unemployment varies by educational attainment. This gives you the full picture of how high school graduates fare in the labor market relative to those with less and more education."
+  },
+  "employment by education": {
+    "series": [
+      "LNS14027659",
+      "LNS14027660",
+      "LNS14027689"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "These are the unemployment rates by educational attainment: less than high school, high school graduates, and bachelor's degree and higher. Lower unemployment rates indicate better employment outcomes. This shows the clear education premium in the labor market - higher education typically correlates with lower unemployment rates. Using combine_chart to easily compare employment outcomes across education levels."
+  },
+  "racial unemployment gap": {
+    "series": [
+      "LNS14000003",
+      "LNS14000006",
+      "LNS14000009"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "To analyze the racial unemployment gap, I'm using unemployment rates for the three main racial/ethnic groups: White (LNS14000003), Black or African American (LNS14000006), and Hispanic or Latino (LNS14000009). These demographic-specific series allow direct comparison of unemployment rates across racial groups to identify disparities. The combined chart will clearly show the persistent gaps between groups, with Black unemployment typically running significantly higher than White unemployment, and Hispanic unemployment generally falling between the two. This is the standard approach for measuring racial labor market disparities."
+  },
+  "gender pay gap": {
+    "series": [
+      "LES1252881600Q",
+      "LES1252881500Q"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "I don't have access to the specific wage/earnings series needed to analyze the gender pay gap. The gender pay gap requires comparing median weekly earnings or hourly wages between men and women, typically measured by series like 'Median weekly earnings - Women' vs 'Median weekly earnings - Men' from the Bureau of Labor Statistics. The series I have access to focus on employment rates, labor force participation, and unemployment rates by demographic groups, but not compensation data. To properly analyze the gender pay gap, you would need BLS series that track earnings by gender, such as those from the Current Population Survey's earnings data."
+  },
+  "prime age workers": {
+    "series": [
+      "LNS12300060",
+      "LNS11300060",
+      "LNS14000025"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Prime age workers (25-54) are the core of the labor force and best indicator of labor market health. LNS12300060 (employment-population ratio) is the most comprehensive measure showing the share actually working. LNS11300060 (labor force participation rate) shows engagement with the job market. LNS14000025 (unemployment rate for 25-54) shows joblessness among this group. The 25-54 age group avoids distortions from students (younger) and retirees (older), making it the gold standard for labor market analysis."
+  },
+  "working age population": {
+    "series": [
+      "LNS11300060",
+      "LNS12300060",
+      "LNS14000060"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "For working age population analysis, I'm using prime-age (25-54) metrics which represent the core working population. LNS11300060 shows labor force participation rate for ages 25-54, LNS12300060 shows the employment-population ratio for this group (the best single measure of labor market health), and LNS14000060 captures unemployment rate for prime-age workers. This age group excludes students and early retirees, giving the clearest picture of actual working-age labor market conditions."
+  }
+}

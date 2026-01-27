@@ -1,0 +1,641 @@
+{
+  "housing": {
+    "series": [
+      "CSUSHPINSA",
+      "EXHOSLUSM495S",
+      "MORTGAGE30US",
+      "HOUST"
+    ],
+    "show_yoy": [
+      true,
+      true,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Four angles on housing: (1) Case-Shiller home prices show property values. (2) Existing home sales reveal actual transaction volume and demand. (3) 30-year mortgage rates determine affordability - high rates crush sales even when prices stay elevated. (4) Housing starts show new construction and future supply. Together they capture price, demand, affordability, and supply."
+  },
+  "housing market": {
+    "series": [
+      "CSUSHPINSA",
+      "EXHOSLUSM495S",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": [
+      true,
+      true,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Case-Shiller (CSUSHPINSA) shows home prices. Existing home sales (EXHOSLUSM495S) shows actual market activity and demand. 30-year mortgage rates (MORTGAGE30US) determine affordability. High rates crush sales even if prices stay elevated - these three together show the full picture of price, demand, and affordability."
+  },
+  "home prices": {
+    "series": [
+      "CSUSHPINSA",
+      "MSPUS",
+      "MORTGAGE30US",
+      "DSPIC96"
+    ],
+    "show_yoy": [
+      true,
+      false,
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Home prices comprehensively: Case-Shiller index (CSUSHPINSA) shows price appreciation trends. Median sale price (MSPUS) shows actual dollar prices. Mortgage rates (MORTGAGE30US) affect affordability and buying power. Disposable income (DSPIC96) shows whether incomes are keeping pace with prices. When prices outpace income growth, affordability deteriorates."
+  },
+  "house prices": {
+    "series": [
+      "CSUSHPINSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "CSUSHPINSA is the S&P/Case-Shiller National Home Price Index, which is the gold standard for tracking U.S. house prices. It measures the change in value of residential real estate nationally and is widely regarded as the most reliable indicator of home price trends. Showing year-over-year changes will reveal the price appreciation rate, which is crucial for understanding housing market dynamics."
+  },
+  "real estate": {
+    "series": [
+      "CSUSHPINSA",
+      "HOUST"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For a broad 'real estate' query, these two series provide the essential overview: CSUSHPINSA (Case-Shiller National Home Price Index) shows price trends - the most watched real estate metric - while HOUST (Housing Starts) captures market activity and supply dynamics. Together they give a comprehensive view of real estate market health, showing both valuation and construction activity."
+  },
+  "home sales": {
+    "series": [
+      "EXHOSLUSM495S",
+      "HSN1F"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "EXHOSLUSM495S captures existing home sales, which represent about 85-90% of the total housing market and is the primary indicator of home sales activity. HSN1F shows new single-family home sales, providing a complete picture of both existing and new home market activity. Combined, these series give the most comprehensive view of overall home sales performance."
+  },
+  "existing home sales": {
+    "series": [
+      "EXHOSLUSM495S"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "EXHOSLUSM495S measures existing home sales, which represents the vast majority of the housing market (typically 85-90% of all home sales). This series tracks the monthly volume of previously owned homes sold, providing the most direct measure of existing home sales activity and market liquidity."
+  },
+  "new home sales": {
+    "series": [
+      "HSN1F"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "HSN1F (New single-family homes sold) is the primary measure for new home sales activity. This series tracks the monthly sales of newly constructed single-family homes, which represents the vast majority of new home sales. Showing year-over-year changes helps identify trends and seasonal patterns in the new home market."
+  },
+  "housing starts": {
+    "series": [
+      "HOUST"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "HOUST is the total housing starts series, measuring when new residential construction begins. This is the most direct and comprehensive measure of housing starts activity, capturing all types of residential construction (single-family, multi-family, condos, etc.). Housing starts are a key leading indicator of future housing supply and construction activity."
+  },
+  "building permits": {
+    "series": [
+      "PERMIT",
+      "HOUST"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Building permits (PERMIT) are the leading indicator for future construction activity, as developers must obtain permits before breaking ground. I've paired this with housing starts (HOUST) to show the complete pipeline from permits to actual construction beginning. Year-over-year growth shows the momentum in construction activity, which is important for understanding housing supply dynamics."
+  },
+  "housing affordability": {
+    "series": [
+      "FIXHAI",
+      "MORTGAGE30US",
+      "CSUSHPINSA",
+      "DSPIC96"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Four dimensions of housing affordability:\n\n\u2022 **Affordability Index (FIXHAI)**: Measures whether a median-income family qualifies for a median-priced home. Above 100 = affordable (family income exceeds qualifying income). Below 100 = median family can't afford median home. Historical average is around 150-160.\n\n\u2022 **Mortgage Rates (MORTGAGE30US)**: Each 1% rate increase reduces buying power by ~10%. Rates at 7% vs 3% means monthly payments are roughly 40% higher for the same house. This is the lever the Fed pulls.\n\n\u2022 **Home Prices (CSUSHPINSA)**: Case-Shiller index shows price trends. Prices can rise even when rates are high if inventory is tight. The 2020-2022 surge was historic.\n\n\u2022 **Incomes (DSPIC96)**: Disposable income growth matters for affordability. If incomes grow faster than home prices + rate increases, affordability improves. In recent years, the opposite happened."
+  },
+  "can i afford a house": {
+    "series": [
+      "FIXHAI",
+      "MORTGAGE30US",
+      "CSUSHPINSA",
+      "DSPIC96"
+    ],
+    "show_yoy": [
+      false,
+      false,
+      true,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Four dimensions of housing affordability:\n\n\u2022 **Affordability Index (FIXHAI)**: Measures whether a median-income family qualifies for a median-priced home. Above 100 = affordable (family income exceeds qualifying income). Below 100 = median family can't afford median home. Historical average is around 150-160.\n\n\u2022 **Mortgage Rates (MORTGAGE30US)**: Each 1% rate increase reduces buying power by ~10%. Rates at 7% vs 3% means monthly payments are roughly 40% higher for the same house. This is the lever the Fed pulls.\n\n\u2022 **Home Prices (CSUSHPINSA)**: Case-Shiller index shows price trends. Prices can rise even when rates are high if inventory is tight. The 2020-2022 surge was historic.\n\n\u2022 **Incomes (DSPIC96)**: Disposable income growth matters for affordability. If incomes grow faster than home prices + rate increases, affordability improves. In recent years, the opposite happened."
+  },
+  "rent prices": {
+    "series": [
+      "zillow_rent_yoy",
+      "CUSR0000SEHA"
+    ],
+    "show_yoy": [false, true],
+    "combine_chart": true,
+    "explanation": "Zillow rent growth (leading) vs CPI rent inflation (lagging) - both as YoY %. Zillow captures real-time asking rents; CPI rent lags by 12+ months due to slow lease turnover. The gap between them shows how much rent disinflation is 'in the pipeline' waiting to hit official statistics. When Zillow peaked and fell in 2022, CPI didn't follow until late 2023."
+  },
+  "market rents": {
+    "series": [
+      "zillow_zori_national",
+      "zillow_rent_yoy"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Zillow Observed Rent Index (ZORI) tracks actual asking rents in real-time - much more current than CPI rent data which lags by 12+ months. The YoY growth rate shows rent inflation trends before they appear in official statistics. This is what landlords are actually charging for new leases."
+  },
+  "zillow rent": {
+    "series": [
+      "zillow_zori_national",
+      "zillow_rent_yoy"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Zillow Observed Rent Index (ZORI) - the national index of asking rents from Zillow's listings data. More timely than CPI rent which lags by 12+ months. Shows what new renters are actually paying in the current market."
+  },
+  "actual rents": {
+    "series": [
+      "zillow_rent_yoy",
+      "CUSR0000SEHA"
+    ],
+    "show_yoy": [false, true],
+    "combine_chart": true,
+    "explanation": "Zillow rent growth (real-time) vs CPI rent inflation (lags 12+ months). Both shown as YoY % for direct comparison. The gap reveals how much rent disinflation is 'in the pipeline' waiting to show up in official CPI data."
+  },
+  "zillow vs cpi rent": {
+    "series": [
+      "zillow_rent_yoy",
+      "CUSR0000SEHA"
+    ],
+    "show_yoy": [false, true],
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "The crucial rent comparison: Zillow (leading indicator) vs CPI rent (lagging indicator). Zillow tracks asking rents in real-time; CPI rent reflects leases signed 12+ months ago. In 2022-2023, Zillow peaked at 17% YoY then fell to 3%, but CPI rent kept rising to 8% before finally turning. This lag is why shelter inflation stays sticky even when the rental market has cooled."
+  },
+  "rent leading indicator": {
+    "series": [
+      "zillow_rent_yoy",
+      "CUSR0000SEHA"
+    ],
+    "show_yoy": [false, true],
+    "combine_chart": true,
+    "explanation": "Zillow rent growth leads CPI rent by 12-18 months. When Zillow turns, it signals where CPI rent is heading. This is critical for Fed policy - by the time CPI rent falls, the rental market has already cooled significantly."
+  },
+  "case shiller": {
+    "series": [
+      "CSUSHPINSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "The S&P/Case-Shiller National Home Price Index (CSUSHPINSA) is the gold standard for tracking U.S. home price trends. Showing year-over-year changes will display the home price appreciation rate, which is how Case-Shiller data is most commonly analyzed and reported."
+  },
+  "home values": {
+    "series": [
+      "zillow_zhvi_national",
+      "zillow_home_value_yoy",
+      "CSUSHPINSA"
+    ],
+    "show_yoy": [false, false, true],
+    "combine_chart": false,
+    "explanation": "Zillow Home Value Index (ZHVI) shows current typical home values (~$360K nationally) updated monthly. Zillow YoY shows appreciation rate. Case-Shiller (CSUSHPINSA) is the gold standard for long-term trends but lags by 2-3 months. Zillow gives you the current snapshot; Case-Shiller confirms the trend."
+  },
+  "zillow home values": {
+    "series": [
+      "zillow_zhvi_national",
+      "zillow_home_value_yoy"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Zillow Home Value Index (ZHVI) - typical home values based on Zillow's proprietary algorithm. Updated monthly with current market conditions. More timely than Case-Shiller which has a 2-3 month lag."
+  },
+  "zhvi": {
+    "series": [
+      "zillow_zhvi_national",
+      "zillow_home_value_yoy"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Zillow Home Value Index (ZHVI) - tracks typical home values nationally. The YoY change shows home price appreciation trends in real-time."
+  },
+  "zori": {
+    "series": [
+      "zillow_zori_national",
+      "zillow_rent_yoy"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Zillow Observed Rent Index (ZORI) - tracks asking rents from Zillow's listings. More current than CPI rent data. Shows what landlords are actually charging for new leases."
+  },
+  "housing inventory": {
+    "series": [
+      "MNMFS",
+      "MSACSR"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Housing inventory is best measured by months' supply metrics: MNMFS (months' supply of new homes) and MSACSR (months' supply of existing homes). These indicators show how long it would take to sell current inventory at the current sales pace. Lower months' supply indicates tight inventory (seller's market), while higher supply indicates looser inventory (buyer's market). The existing home supply (MSACSR) is particularly important as it represents the much larger segment of the market. Both series can be combined on one chart as they measure the same concept (months of supply) for different market segments."
+  },
+  "housing supply": {
+    "series": [
+      "MSACSR",
+      "MNMFS"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Housing supply is best measured by inventory levels relative to sales pace. MSACSR (months' supply of existing homes) and MNMFS (months' supply of new homes) directly quantify how many months it would take to exhaust current inventory at the current sales rate. Lower months' supply indicates tight supply conditions, while higher levels suggest abundant supply. These are the standard metrics used by housing economists and the National Association of Realtors to assess supply constraints in housing markets."
+  },
+  "housing demand": {
+    "series": [
+      "EXHOSLUSM495S",
+      "HSN1F",
+      "MORTGAGE30US",
+      "UMCSENT"
+    ],
+    "show_yoy": [
+      true,
+      true,
+      false,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Housing demand from multiple angles: Existing home sales (EXHOSLUSM495S) show actual transaction volume. New home sales (HSN1F) show builder demand. Mortgage rates (MORTGAGE30US) are the key rate sensitivity - high rates crush demand even when prices stable. Consumer sentiment (UMCSENT) indicates willingness to make major purchases like homes."
+  },
+  "homeownership": {
+    "series": [
+      "RHORUSQ156N",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "RHORUSQ156N is the homeownership rate - the primary metric showing what percentage of households own their homes. MORTGAGE30US (30-year mortgage rate) is included as it's the key financial factor that drives homeownership accessibility and trends over time."
+  },
+  "homeownership rate": {
+    "series": [
+      "RHORUSQ156N"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "RHORUSQ156N is the homeownership rate for the United States, which directly measures the percentage of housing units that are owner-occupied. This is the primary metric for tracking homeownership trends over time and is published quarterly by the Census Bureau as part of the Housing Vacancy Survey."
+  },
+  "first time homebuyers": {
+    "series": [
+      "FIXHAI",
+      "MORTGAGE30US",
+      "MSPUS",
+      "PSAVERT"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "First-time homebuyer conditions: Affordability Index (FIXHAI) shows if median families qualify - above 100 = yes. Mortgage rates (MORTGAGE30US) determine monthly payments. Median home price (MSPUS) shows the target price point. Savings rate (PSAVERT) indicates ability to accumulate down payments. First-time buyers need all four favorable: affordable prices, low rates, ability to save for down payment."
+  },
+  "housing construction": {
+    "series": [
+      "HOUST",
+      "PERMIT"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Housing starts (HOUST) measures when construction actually begins, while building permits (PERMIT) is a leading indicator showing approved future construction. Together they provide the complete picture of housing construction activity - permits show what's planned and starts show what's actively being built."
+  },
+  "residential construction": {
+    "series": [
+      "TLRESCONS",
+      "HOUST"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "TLRESCONS shows total residential construction spending (the dollar value of all residential construction activity), while HOUST shows housing starts (the number of new residential construction projects beginning). Together, these provide a comprehensive view of residential construction from both value and volume perspectives - spending captures the economic scale while starts indicate the pace of new project initiation."
+  },
+  "housing bubble": {
+    "series": [
+      "CSUSHPINSA",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To analyze housing bubble conditions, we need the Case-Shiller National Home Price Index (the gold standard for tracking home price bubbles) with year-over-year changes to see price appreciation rates, combined with 30-year mortgage rates which are a key driver of housing bubbles. Rapid price appreciation (high YoY growth in CSUSHPINSA) combined with low mortgage rates often indicates bubble conditions, while high rates can deflate bubbles."
+  },
+  "housing crash": {
+    "series": [
+      "CSUSHPINSA",
+      "HOUST",
+      "EXHOSLUSM495S"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "A housing crash involves dramatic declines in home prices, construction activity, and sales volumes. The Case-Shiller National Home Price Index (CSUSHPINSA) with year-over-year changes will show price appreciation turning negative during crashes like 2008-2012. Housing starts (HOUST) reveal construction activity collapse as builders halt projects. Existing home sales (EXHOSLUSM495S) capture transaction volume drops as buyers disappear and sellers withdraw from market. Together, these three series provide the clearest picture of housing market distress across prices, supply, and demand."
+  },
+  "mortgage applications": {
+    "series": [
+      "MORTGAGE30US"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "While mortgage applications data (MBA's weekly applications index) isn't directly available in FRED's most common housing series, the 30-year mortgage rate is the primary driver of mortgage application activity. When rates fall, applications typically surge; when rates rise, applications drop significantly. This rate series will show the underlying trend affecting mortgage demand and application volumes."
+  },
+  "home equity": {
+    "series": [
+      "CSUSHPINSA",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Home equity is primarily driven by home price appreciation (CSUSHPINSA with year-over-year changes showing equity gains) and mortgage rates (MORTGAGE30US), which affect both refinancing opportunities to access equity and the cost of home equity loans/HELOCs. Rising home prices build equity while lower rates make equity extraction more affordable."
+  },
+  "housing wealth": {
+    "series": [
+      "CSUSHPINSA",
+      "HOUST"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Housing wealth is primarily driven by home price appreciation, which the Case-Shiller National Home Price Index captures as the gold standard measure. Showing year-over-year changes reveals the wealth accumulation rate for homeowners. Housing starts provides context on supply dynamics that influence future price trends and wealth effects. Together, these series show both current housing wealth trends and supply factors affecting future wealth accumulation."
+  },
+  "rental market": {
+    "series": [
+      "CUSR0000SEHA",
+      "RRVRUSQ156N",
+      "PERMIT",
+      "UMCSENT"
+    ],
+    "show_yoy": [
+      true,
+      false,
+      true,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Rental market comprehensively: Rent CPI (CUSR0000SEHA) shows price trends. Vacancy rate (RRVRUSQ156N) measures market tightness - low vacancy = landlord pricing power. Building permits (PERMIT) indicate future supply that could ease rents. Consumer sentiment (UMCSENT) affects household formation and rental demand. Note: CPI rent lags actual market rents by 12+ months."
+  },
+  "apartment rents": {
+    "series": [
+      "CUSR0000SEHA",
+      "CUSR0000SEHC"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "CUSR0000SEHA measures rent of primary residence (what renters actually pay) while CUSR0000SEHC captures owners' equivalent rent (what homeowners would pay to rent their homes). Together they provide comprehensive rental market trends. Year-over-year shows rent inflation rates, which is crucial for understanding apartment rent dynamics."
+  },
+  "vacancy rates": {
+    "series": [
+      "RRVRUSQ156N",
+      "RHVRUSQ156N"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "RRVRUSQ156N (rental vacancy rate) and RHVRUSQ156N (homeowner vacancy rate) are the two primary measures of housing vacancy rates in the US. The rental vacancy rate shows the percentage of rental housing units that are vacant and available for rent, while the homeowner vacancy rate shows the percentage of homeowner housing units that are vacant and for sale. Both are quarterly data and combining them provides a complete picture of housing market tightness across both rental and ownership markets. Lower vacancy rates indicate tighter housing supply, while higher rates suggest more available housing stock."
+  },
+  "average home price": {
+    "series": [
+      "ASPUS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "ASPUS is the average sales price of houses sold in the United States. Note that the average is pulled higher by expensive homes and tends to exceed the median."
+  },
+  "chicago housing": {
+    "series": [
+      "CHXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "CHXRSA is the Case-Shiller Home Price Index for Chicago\u2014more moderate price levels than coastal cities."
+  },
+  "construction pipeline": {
+    "series": [
+      "PERMIT",
+      "HOUST",
+      "UNDCONTSA",
+      "COMPUTSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The full construction pipeline: Permits (PERMIT) are approved future projects, Starts (HOUST) are projects beginning construction, Under Construction (UNDCONTSA) shows active building, and Completions (COMPUTSA) are finished units. This shows housing supply from planning through delivery."
+  },
+  "dallas housing": {
+    "series": [
+      "DAXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "DAXRSA is the Case-Shiller Home Price Index for Dallas\u2014avoided the 2008 crash and has seen strong growth from corporate relocations."
+  },
+  "la home prices": {
+    "series": [
+      "LXXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LXXRSA is the Case-Shiller Home Price Index for Los Angeles, tracking price changes using the repeat-sales methodology."
+  },
+  "los angeles housing": {
+    "series": [
+      "LXXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "LXXRSA is the Case-Shiller Home Price Index for Los Angeles\u2014one of the least affordable major markets due to high prices relative to local incomes."
+  },
+  "median home price": {
+    "series": [
+      "MSPUS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "MSPUS is the median sales price of houses sold in the United States\u2014the most intuitive price measure showing what typical homes actually sell for. Half of homes sell above this price, half below. More relatable than Case-Shiller index values."
+  },
+  "median house price": {
+    "series": [
+      "MSPUS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "MSPUS is the median sales price of houses sold in the United States\u2014the most intuitive price measure showing what typical homes actually sell for. Half of homes sell above this price, half below."
+  },
+  "miami housing": {
+    "series": [
+      "MIXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "MIXRSA is the Case-Shiller Home Price Index for Miami\u2014experienced extreme boom-bust in 2008 and strong appreciation since 2020 from pandemic migration."
+  },
+  "new york housing": {
+    "series": [
+      "NYXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "NYXRSA is the Case-Shiller Home Price Index for New York\u2014prices tend to be more stable than other coastal metros with smaller boom-bust swings."
+  },
+  "nyc home prices": {
+    "series": [
+      "NYXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "NYXRSA is the Case-Shiller Home Price Index for New York City metro area."
+  },
+  "phoenix housing": {
+    "series": [
+      "PHXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "PHXRSA is the Case-Shiller Home Price Index for Phoenix\u2014experienced the most extreme boom-bust of any major market in 2008, rapid appreciation since 2020."
+  },
+  "san francisco housing": {
+    "series": [
+      "SFXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "SFXRSA is the Case-Shiller Home Price Index for San Francisco\u2014one of the most expensive and volatile housing markets in the country, driven by tech industry wealth."
+  },
+  "seattle housing": {
+    "series": [
+      "SEXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "SEXRSA is the Case-Shiller Home Price Index for Seattle\u2014driven by tech wealth from Amazon and Microsoft."
+  },
+  "sf home prices": {
+    "series": [
+      "SFXRSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "SFXRSA is the Case-Shiller Home Price Index for San Francisco, tracking price changes using the repeat-sales methodology."
+  },
+  "rental vacancy": {
+    "series": [
+      "RRVRUSQ156N"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "RRVRUSQ156N is the rental vacancy rate\u2014the percentage of rental units that are vacant. Low vacancy gives landlords pricing power and pushes rents higher."
+  },
+  "vacancy rate": {
+    "series": [
+      "RHVRUSQ156N",
+      "RRVRUSQ156N"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "RHVRUSQ156N is the homeowner vacancy rate (for-sale homes), RRVRUSQ156N is the rental vacancy rate. Both at historic lows indicating severe housing shortage."
+  },
+  "rent vs income": {
+    "series": [
+      "CUSR0000SEHA",
+      "CES0500000003",
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Rent inflation (CUSR0000SEHA) vs wage growth (CES0500000003) and real disposable income (DSPIC96). When rent rises faster than wages, housing becomes less affordable. Compare the YoY growth rates - if rent consistently outpaces income growth, renters are getting squeezed."
+  },
+  "is rent too high": {
+    "series": [
+      "CUSR0000SEHA",
+      "CES0500000003",
+      "RRVRUSQ156N"
+    ],
+    "show_yoy": [
+      true,
+      true,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Rent affordability: Rent inflation (CUSR0000SEHA) vs wage growth (CES0500000003) shows if rent is outpacing incomes. Rental vacancy rate (RRVRUSQ156N) indicates market tightness - low vacancy gives landlords pricing power. If rent inflation exceeds wage growth and vacancies are low, rent IS too high for many."
+  },
+  "housing prices vs wages": {
+    "series": [
+      "CSUSHPINSA",
+      "CES0500000003",
+      "DSPIC96"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Home price appreciation (CSUSHPINSA) vs wage growth (CES0500000003) and real disposable income (DSPIC96). When home prices rise faster than incomes, housing becomes less attainable. The gap between home price growth and income growth indicates worsening or improving affordability over time."
+  },
+  "why is housing so expensive": {
+    "series": [
+      "CSUSHPINSA",
+      "MORTGAGE30US",
+      "HOUST",
+      "RRVRUSQ156N"
+    ],
+    "show_yoy": [
+      true,
+      false,
+      true,
+      false
+    ],
+    "combine_chart": false,
+    "explanation": "Housing cost drivers: Price appreciation (CSUSHPINSA) shows value growth. Mortgage rates (MORTGAGE30US) affect monthly payments - low rates inflate prices as buyers can afford more. Housing starts (HOUST) indicate supply - low construction = shortage. Rental vacancy (RRVRUSQ156N) shows rental tightness. Combination of limited supply + strong demand + low rates drives prices up."
+  },
+  "can i afford rent": {
+    "series": [
+      "CUSR0000SEHA",
+      "CES0500000003",
+      "LES1252881600Q"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "explanation": "Rent affordability: Compare rent inflation (CUSR0000SEHA) to wage growth (CES0500000003). Real median weekly earnings (LES1252881600Q) shows actual purchasing power. If wages grow faster than rents, affordability improves. If rent outpaces wages, you're getting squeezed. The rule of thumb is rent should be under 30% of income."
+  },
+  "home prices vs mortgage rates": {
+    "series": [
+      "CSUSHPINSA",
+      "MORTGAGE30US"
+    ],
+    "show_yoy": [
+      true,
+      false
+    ],
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Home prices (Case-Shiller YoY) vs mortgage rates shows the affordability squeeze. Normally, higher rates should slow price growth. But 2022-2024 showed 'rate lock-in' - homeowners with 3% mortgages won't sell, limiting supply and keeping prices high despite 7% rates. The divergence signals a frozen market."
+  },
+  "housing starts vs permits": {
+    "series": [
+      "HOUST",
+      "PERMIT"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Building permits (leading) vs housing starts (concurrent) shows the construction pipeline. Permits lead starts by 1-2 months since builders get permits before breaking ground. A widening gap (permits falling faster than starts) signals future construction slowdown."
+  },
+  "new vs existing home sales": {
+    "series": [
+      "HSN1F",
+      "EXHOSLUSM495S"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New home sales vs existing home sales shows which market is driving activity. In 2022-2024, existing home sales cratered (owners locked into low rates won't sell) while new construction held up better. Builders can offer rate buydowns that existing sellers can't match."
+  },
+  "rent vs home price growth": {
+    "series": [
+      "CUSR0000SEHA",
+      "CSUSHPINSA"
+    ],
+    "show_yoy": true,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Rent growth vs home price growth shows the housing market tension. When home prices outpace rents, buying becomes less attractive vs renting (lower yield for landlords, worse affordability for buyers). When rents outpace prices, buying becomes more attractive. The gap signals whether to rent or buy."
+  }
+}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-full">
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="text-xl font-bold text-slate-900 tracking-tight">
+                    EconStats
+                </a>
+                <a href="/" class="text-sm text-primary-600 hover:underline">
+                    ← Back to search
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-slate-900 mb-6">About EconStats</h1>
+
+        <div class="prose prose-slate max-w-none">
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                Government economic data is free—but too hard for most people to access and understand.
+                EconStats uses AI to change that, helping anyone draw insights directly from the numbers.
+            </p>
+
+            <p class="text-slate-600 leading-relaxed mb-6">
+                We're starting with FRED's API and working to add more data sources: productivity
+                statistics buried in the back pages of the BLS website, prices of specific consumer
+                items, consumer credit data, and beyond.
+            </p>
+
+            <p class="text-slate-800 font-semibold mb-6">
+                This is just the beginning.
+            </p>
+
+            <p class="text-slate-600 leading-relaxed">
+                Contact <a href="mailto:waldman1@stanford.edu" class="text-primary-600 hover:underline">waldman1@stanford.edu</a> with feedback or ideas.
+            </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-slate-200">
+            <a href="/" class="inline-flex items-center gap-2 text-primary-600 hover:underline">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to search
+            </a>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,557 @@
+{
+  "trade": {
+    "series": ["BOPGSTB", "IMPGS", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The full picture of US trade: BOPGSTB (trade balance) shows the net position - negative means we import more than we export. IMPGS (total imports) and EXPGS (total exports) show the absolute flows. The US typically runs a goods deficit but a services surplus."
+  },
+  "trade deficit": {
+    "series": ["BOPGSTB", "IMPGS", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The trade deficit is captured by BOPGSTB (trade balance) - negative values indicate a deficit. Showing imports (IMPGS) and exports (EXPGS) alongside reveals what's driving the deficit - typically a large goods deficit partially offset by services surplus."
+  },
+  "trade balance": {
+    "series": ["BOPGSTB", "IMPGS", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "BOPGSTB is the comprehensive trade balance (goods + services). Negative = deficit, positive = surplus. Showing imports and exports alongside provides context for what's driving the balance."
+  },
+  "trade surplus": {
+    "series": ["BOPGSTB", "BOPSTB", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The US runs an overall trade deficit (BOPGSTB) but a services surplus (BOPSTB). Total exports (EXPGS) shows what we sell to the world. The services surplus from tech, finance, and tourism partially offsets the goods deficit."
+  },
+  "imports": {
+    "series": ["IMPGS", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "IMPGS (total imports of goods & services) shows what the US buys from the world, measured in billions. The trade balance (BOPGSTB) provides context - when imports rise faster than exports, the deficit widens."
+  },
+  "exports": {
+    "series": ["EXPGS", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "EXPGS (total exports of goods & services) shows what the US sells to the world, measured in billions. The trade balance (BOPGSTB) shows whether exports are keeping pace with imports."
+  },
+  "imports and exports": {
+    "series": ["IMPGS", "EXPGS", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Complete trade picture: imports (IMPGS), exports (EXPGS), and the resulting balance (BOPGSTB). The gap between imports and exports is the trade deficit."
+  },
+  "china trade": {
+    "series": ["IMPCH", "EXPCH", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-China bilateral trade: IMPCH (imports from China, ~$500B/year) dwarfs EXPCH (exports to China, ~$150B/year). This ~$350B bilateral deficit is the largest with any single country. The overall trade balance (BOPGSTB) provides context."
+  },
+  "trade with china": {
+    "series": ["IMPCH", "EXPCH", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-China trade relationship: imports from China (IMPCH) far exceed exports to China (EXPCH), creating a large bilateral deficit. Overall trade balance (BOPGSTB) shows China's contribution to the total deficit."
+  },
+  "us china trade": {
+    "series": ["IMPCH", "EXPCH", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-China trade: IMPCH (imports from China) and EXPCH (exports to China) show the bilateral flows. China is typically the largest source of US imports. The overall balance (BOPGSTB) provides context."
+  },
+  "imports from china": {
+    "series": ["IMPCH", "IMPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "IMPCH shows US imports from China in billions. Comparing to total imports (IMPGS) reveals China's share of US import market - typically 15-20%."
+  },
+  "exports to china": {
+    "series": ["EXPCH", "EXPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "EXPCH shows US exports to China in billions. Comparing to total exports (EXPGS) shows China's importance as an export destination - typically 7-8% of US exports."
+  },
+  "mexico trade": {
+    "series": ["IMPMX", "EXPMX", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Mexico bilateral trade: Mexico is often the #1 US trading partner (swapping with China and Canada). IMPMX and EXPMX are much more balanced than China trade, reflecting integrated North American supply chains. USMCA (formerly NAFTA) governs this relationship."
+  },
+  "trade with mexico": {
+    "series": ["IMPMX", "EXPMX", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Mexico trade flows: imports (IMPMX) and exports (EXPMX) are relatively balanced, reflecting deep supply chain integration. Auto parts, machinery, and agricultural goods dominate. Overall balance (BOPGSTB) for context."
+  },
+  "canada trade": {
+    "series": ["IMPCA", "EXPCA", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Canada bilateral trade: Our largest trading partner by total volume. Trade is relatively balanced (IMPCA vs EXPCA). Energy, autos, and manufacturing dominate. USMCA governs this relationship."
+  },
+  "trade with canada": {
+    "series": ["IMPCA", "EXPCA", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Canada trade: imports (IMPCA) and exports (EXPCA) are relatively balanced. Canada is often our #1 trading partner by total volume. Oil, auto parts, and manufactured goods dominate."
+  },
+  "japan trade": {
+    "series": ["IMPJP", "EXPJP", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Japan bilateral trade: historically one of our largest trading relationships. Japan exports autos and electronics to the US; we export agricultural products and machinery. The deficit has narrowed since the 1980s-90s."
+  },
+  "trade with japan": {
+    "series": ["IMPJP", "EXPJP", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Japan trade flows: IMPJP (imports from Japan) and EXPJP (exports to Japan). Japan remains a major trading partner though less dominant than in the 1980s-90s."
+  },
+  "eu trade": {
+    "series": ["IMPEU", "EXPEU", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-EU trade: as a bloc, the EU is one of America's largest trading partners. Trade is relatively balanced. Major categories include machinery, pharmaceuticals, and vehicles."
+  },
+  "trade with europe": {
+    "series": ["IMPEU", "EXPEU", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-Europe trade flows: IMPEU (imports from EU) and EXPEU (exports to EU). The EU as a bloc is among our largest trading partners with relatively balanced flows."
+  },
+  "trade with eu": {
+    "series": ["IMPEU", "EXPEU", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US-EU bilateral trade: imports (IMPEU) and exports (EXPEU) with the European Union. Trade is relatively balanced, covering machinery, pharmaceuticals, vehicles, and services."
+  },
+  "trading partners": {
+    "series": ["IMPCH", "IMPMX", "IMPCA", "IMPEU"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Top US import sources: China (IMPCH), Mexico (IMPMX), Canada (IMPCA), and EU (IMPEU). These four account for the majority of US imports. Rankings shift year-to-year, but these are consistently the largest."
+  },
+  "top trading partners": {
+    "series": ["IMPCH", "IMPMX", "IMPCA", "IMPEU"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Imports from top US trading partners: China, Mexico, Canada, and EU. These four dominate US trade. Note: this shows imports only - export patterns differ (e.g., Canada and Mexico receive more US exports than China does)."
+  },
+  "goods trade": {
+    "series": ["BOPGTB", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "BOPGTB is the goods-only trade balance (physical merchandise). The US runs a large goods deficit. BOPGSTB (total balance including services) shows how services surplus partially offsets the goods deficit."
+  },
+  "services trade": {
+    "series": ["BOPSTB", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "BOPSTB is the services trade balance - the US runs a SURPLUS in services (tech, finance, tourism, IP royalties). This surplus partially offsets the goods deficit. BOPGSTB shows the overall position."
+  },
+  "trade by category": {
+    "series": ["BOPGTB", "BOPSTB", "BOPGSTB"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Trade split by category: BOPGTB (goods balance - deficit), BOPSTB (services balance - surplus), and BOPGSTB (total). The US imports more goods than it exports but exports more services than it imports."
+  },
+  "tariffs impact": {
+    "series": [
+      "BOPGSTB",
+      "IMPGS",
+      "DTWEXBGS",
+      "PPIACO"
+    ],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "To analyze tariffs impact, we need: (1) BOPGSTB - trade balance to see if tariffs reduce the deficit, (2) IMPGS - total imports to measure tariff effects on import volumes, (3) DTWEXBGS - dollar strength which affects trade and can be influenced by trade policy, and (4) PPIACO - producer prices to capture inflationary effects of tariffs on input costs. YoY changes help identify policy impact periods."
+  },
+  "tariff rate": {
+    "series": ["B235RC1Q027SBEA", "IMPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "derived": {
+      "formula": "B235RC1Q027SBEA / IMPGS * 100",
+      "name": "Effective Tariff Rate",
+      "unit": "%",
+      "show_components": true
+    },
+    "explanation": "**Effective Tariff Rate = Customs Duties / Imports × 100**\n\nThis chart shows the calculated effective tariff rate - the average tax on imports. The rate hovered around 1-3% for decades after trade liberalization but has risen recently due to tariff increases on Chinese goods and other trade policy changes.\n\nComponents: B235RC1Q027SBEA (federal customs duties) and IMPGS (total imports of goods & services)."
+  },
+  "effective tariff rate": {
+    "series": ["B235RC1Q027SBEA", "IMPGS"],
+    "show_yoy": false,
+    "combine_chart": false,
+    "derived": {
+      "formula": "B235RC1Q027SBEA / IMPGS * 100",
+      "name": "Effective Tariff Rate",
+      "unit": "%",
+      "show_components": true
+    },
+    "explanation": "**Effective Tariff Rate = Customs Duties / Imports × 100**\n\nThis is the average tax rate on imports, calculated by dividing federal customs duties revenue by total import value.\n\nHistorically the rate dropped from ~60% under Smoot-Hawley (1930s) to 1-3% after GATT/WTO trade liberalization. Recent tariff increases (especially on China) have pushed the rate higher."
+  },
+  "tariffs": {
+    "series": ["BOPGSTB", "IMPGS", "PPIACO", "MANEMP"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Tariff economic effects (FRED doesn't have tariff rates directly): Trade balance (BOPGSTB) shows if tariffs reduce the deficit. Total imports (IMPGS) indicates tariff impacts on import volumes. Producer prices (PPIACO) reveal cost pressures from tariffs on inputs. Manufacturing employment (MANEMP) shows if tariffs protect US factory jobs - a primary goal of tariff policy."
+  },
+  "how are tariffs affecting the economy": {
+    "series": ["BOPGSTB", "IMPGS", "PPIACO", "MANEMP"],
+    "show_yoy": true,
+    "combine_chart": false,
+    "explanation": "Tariff economic impact: (1) Trade balance - did tariffs reduce the deficit? (2) Total imports - are tariffs reducing import volumes? (3) Producer prices - are tariffs raising business input costs? (4) Manufacturing employment - are tariffs protecting US factory jobs? Note: FRED doesn't have tariff rates directly; these series show tariff EFFECTS on the economy."
+  },
+  "dollar": {
+    "series": [
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "DTWEXBGS is the trade-weighted dollar index (broad), which measures the dollar's strength against a basket of major trading partner currencies. This is the most comprehensive measure of dollar performance and what economists refer to when discussing 'the dollar'."
+  },
+  "us dollar": {
+    "series": [
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "DTWEXBGS is the trade-weighted US dollar index (broad basket), which is the most comprehensive measure of the dollar's strength against major trading partners. This is the standard metric for tracking overall US dollar performance in international markets."
+  },
+  "exchange rate": {
+    "series": [
+      "DTWEXBGS",
+      "DEXUSEU",
+      "DEXJPUS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "For exchange rates, I'm showing the trade-weighted dollar index (DTWEXBGS) which measures the dollar's strength against a broad basket of currencies, plus the two most important bilateral rates: USD/EUR and JPY/USD. These capture both the dollar's overall performance and its movement against major trading partners. Exchange rate data doesn't need YoY transformation as the levels themselves are what matter for currency analysis."
+  },
+  "dollar strength": {
+    "series": [
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The trade-weighted dollar index (broad) is the best measure of overall dollar strength as it tracks the dollar against a comprehensive basket of trading partner currencies, weighted by trade volumes. This gives the most accurate picture of the dollar's global purchasing power and competitive position."
+  },
+  "strong dollar": {
+    "series": [
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "DTWEXBGS (Trade-weighted dollar index - broad) is the most comprehensive measure of dollar strength as it tracks the USD against a broad basket of trading partner currencies, weighted by trade volumes. This gives the best overall picture of whether the dollar is strong or weak in international markets."
+  },
+  "weak dollar": {
+    "series": [
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "DTWEXBGS is the broad trade-weighted dollar index, which measures the dollar's strength against a basket of major trading partner currencies. This is the most comprehensive measure to assess whether the dollar is weak or strong relative to other currencies."
+  },
+  "currency": {
+    "series": [
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The trade-weighted dollar index (broad) is the most comprehensive measure of USD strength against a basket of trading partner currencies. Financial market data like exchange rates typically don't need YoY transformation as the levels themselves are most meaningful for currency analysis."
+  },
+  "stock market": {
+    "series": [
+      "SP500",
+      "VIXCLS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "S&P 500 index level and VIX (volatility/fear index). Note: FRED has limited stock data - no real-time quotes, earnings, valuations, or sector breakdowns. FRED updates daily with a lag. For detailed market analysis, real-time data, or individual stocks, use Yahoo Finance, Bloomberg, or a brokerage platform."
+  },
+  "stocks": {
+    "series": [
+      "SP500"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The S&P 500 is the most comprehensive and widely-followed US stock market index, representing about 80% of total US equity market capitalization. It's the best single indicator for overall stock market performance and what most people mean when they ask about 'stocks'."
+  },
+  "s&p 500": {
+    "series": [
+      "SP500"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "SP500 is the S&P 500 stock market index, which directly answers your query. This is the most widely followed US stock market benchmark, representing the performance of 500 large-cap US companies. Financial market data like stock indices are typically viewed in levels rather than year-over-year changes to see actual price movements and trends."
+  },
+  "sp500": {
+    "series": [
+      "SP500"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "SP500 is the most commonly referenced broad U.S. stock market index, tracking the performance of 500 large-cap companies. Financial market data like stock indices are typically viewed in levels rather than year-over-year changes to see actual market performance and trends."
+  },
+  "dow jones": {
+    "series": [
+      "DJIA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "DJIA is the Dow Jones Industrial Average index. While the S&P 500 is generally more representative of the broader market, you specifically asked for the Dow Jones, so that's what I'm providing. Stock market data is shown in levels rather than year-over-year changes since investors typically focus on index levels and recent performance."
+  },
+  "nasdaq": {
+    "series": [
+      "NASDAQCOM"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "NASDAQCOM is the NASDAQ Composite index, which tracks the performance of all stocks listed on the NASDAQ exchange. This is the primary measure for NASDAQ performance that investors and analysts reference."
+  },
+  "market performance": {
+    "series": [
+      "SP500",
+      "NASDAQCOM",
+      "VIXCLS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Market performance is best captured by the S&P 500 (broad market benchmark), NASDAQ Composite (tech-heavy index), and VIX (volatility/fear gauge). These three together provide a comprehensive view of equity market performance and investor sentiment. Financial market data doesn't need YoY transformation as absolute levels and trends are more meaningful."
+  },
+  "equities": {
+    "series": [
+      "SP500"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "S&P 500 is the most comprehensive and widely-followed equity market index, representing about 80% of total US stock market capitalization. For equity market analysis, absolute price levels and trends are more important than year-over-year changes."
+  },
+  "stock prices": {
+    "series": [
+      "SP500"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The S&P 500 is the best single measure of U.S. stock market performance, representing 500 of the largest publicly traded companies and serving as the primary benchmark for equity markets. Stock price levels are more meaningful than year-over-year changes for market analysis."
+  },
+  "market volatility": {
+    "series": [
+      "VIXCLS",
+      "SP500"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The VIX (VIXCLS) is the primary measure of market volatility, often called the 'fear gauge' as it reflects expected S&P 500 volatility. Including the S&P 500 (SP500) provides context by showing the underlying market performance that the VIX is measuring volatility for. Financial market data like these are typically analyzed in levels rather than year-over-year changes to capture immediate market sentiment and volatility patterns."
+  },
+  "vix": {
+    "series": [
+      "VIXCLS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "VIX (VIXCLS) is the CBOE Volatility Index, measuring market expectations of near-term volatility conveyed by S&P 500 stock index option prices. Often called the 'fear gauge', it spikes during market stress and falls during calm periods. Financial market indicators like VIX are shown in levels rather than year-over-year changes since traders focus on current volatility levels."
+  },
+  "oil": {
+    "series": [
+      "DCOILWTICO",
+      "DCOILBRENTEU"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "WTI (West Texas Intermediate) is the US benchmark, Brent is the global benchmark. WTI reflects US supply/demand while Brent tracks international markets. The spread between them can indicate US export competitiveness. Oil prices directly affect gasoline costs, inflation, and energy sector health."
+  },
+  "oil prices": {
+    "series": [
+      "eia_wti_crude",
+      "eia_brent_crude"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "WTI and Brent crude oil prices from EIA (weekly data). WTI is the US benchmark, Brent is the global benchmark used for ~2/3 of world oil pricing. EIA provides more timely updates than FRED's daily data."
+  },
+  "crude oil prices": {
+    "series": [
+      "eia_wti_crude",
+      "eia_brent_crude",
+      "eia_crude_stocks"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Crude oil prices (WTI and Brent) plus US crude inventories from EIA. Inventory levels affect price direction - rising stocks tend to push prices down, falling stocks push them up."
+  },
+  "wti crude": {
+    "series": [
+      "eia_wti_crude"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "West Texas Intermediate (WTI) crude oil spot price from EIA. The US benchmark for oil pricing."
+  },
+  "brent crude": {
+    "series": [
+      "eia_brent_crude"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Brent crude oil price from EIA. The global benchmark used for pricing ~2/3 of world oil."
+  },
+  "crude oil": {
+    "series": [
+      "DCOILWTICO",
+      "DCOILBRENTEU"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "WTI crude is the US benchmark, Brent crude is the global benchmark. Combined they show both US and international oil market conditions. Oil prices are shown in levels (not YoY) because traders focus on absolute price for trading decisions and economic impact."
+  },
+  "gas prices": {
+    "series": [
+      "eia_gasoline_retail",
+      "eia_wti_crude"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Retail gasoline prices from EIA (what you pay at the pump) and WTI crude oil (the upstream driver). Gas prices typically follow oil with a 2-3 week lag. EIA provides weekly updates."
+  },
+  "gasoline": {
+    "series": [
+      "eia_gasoline_retail"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US retail gasoline prices from EIA. Weekly national average of what consumers pay at the pump."
+  },
+  "gasoline prices": {
+    "series": [
+      "eia_gasoline_retail",
+      "eia_diesel_retail"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Retail fuel prices from EIA: regular gasoline and diesel. Both affect consumer costs and inflation - gas for commuters, diesel for trucking and shipping."
+  },
+  "diesel prices": {
+    "series": [
+      "eia_diesel_retail"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "US retail diesel prices from EIA. Diesel is critical for trucking and shipping - higher diesel raises costs throughout the supply chain."
+  },
+  "fuel prices": {
+    "series": [
+      "eia_gasoline_retail",
+      "eia_diesel_retail",
+      "eia_natural_gas_henry_hub"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Major fuel prices from EIA: gasoline (consumer), diesel (commercial), and natural gas (heating/industrial). Together they show energy cost pressures across the economy."
+  },
+  "gold price": {
+    "series": [
+      "GOLDAMGBD228NLBM"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "GOLDAMGBD228NLBM provides the gold price in USD per troy ounce from the London Bullion Market. Financial market data like commodity prices are typically analyzed in levels rather than year-over-year changes, as investors care about the actual price level for trading and investment decisions."
+  },
+  "commodities": {
+    "series": [
+      "DCOILWTICO",
+      "GOLDAMGBD228NLBM",
+      "GASREGW",
+      "PPIACO"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "This gives a comprehensive view of key commodities markets: WTI crude oil as the benchmark energy commodity, gold as the primary precious metal and inflation hedge, gasoline prices which affect consumers directly, and the Producer Price Index for commodities which captures broader commodity price trends across multiple sectors."
+  },
+  "commodity prices": {
+    "series": [
+      "DCOILWTICO",
+      "GOLDAMGBD228NLBM",
+      "PPIACO"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "These three series provide a comprehensive view of commodity prices: WTI crude oil represents energy commodities (the most important traded commodity globally), gold represents precious metals and safe-haven assets, and the Producer Price Index for commodities captures broad commodity price movements across multiple categories including agricultural products, metals, and energy."
+  },
+  "current account": {
+    "series": [
+      "BOPGSTB"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "The current account is primarily driven by the trade balance of goods and services (BOPGSTB). While the full current account also includes income flows and transfers, the trade balance is the largest and most volatile component that determines current account trends. A negative BOPGSTB indicates a trade deficit, which typically corresponds to a current account deficit."
+  },
+  "trade war": {
+    "series": [
+      "BOPGSTB",
+      "IMPCH",
+      "DTWEXBGS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Trade wars primarily impact the overall trade balance (BOPGSTB), imports from China which is the main trade war focus (IMPCH), and the dollar's strength which affects trade competitiveness (DTWEXBGS). These three series capture the key economic dimensions of trade war effects: bilateral trade flows, overall trade performance, and currency impacts."
+  },
+  "us automakers": {
+    "series": [
+      "TOTALSA",
+      "IPG3361T3S",
+      "CES3133600101",
+      "CES4244100001"
+    ],
+    "show_yoy": [false, true, false, false],
+    "combine_chart": false,
+    "explanation": "TOTALSA (Total Vehicle Sales) is the most-watched number for overall auto industry health. IPG3361T3S shows industrial production of motor vehicles and parts. CES3133600101 tracks employment in motor vehicles & parts manufacturing, while CES4244100001 covers auto dealer employment - together showing both the production and retail sides of the industry."
+  },
+  "auto industry": {
+    "series": [
+      "TOTALSA",
+      "IPG3361T3S",
+      "CES3133600101",
+      "CES4244100001"
+    ],
+    "show_yoy": [false, true, false, false],
+    "combine_chart": false,
+    "explanation": "TOTALSA (Total Vehicle Sales) is the most-watched number for overall auto industry health. IPG3361T3S shows industrial production of motor vehicles and parts. CES3133600101 tracks employment in motor vehicles & parts manufacturing, while CES4244100001 covers auto dealer employment - together showing both the production and retail sides of the industry."
+  },
+  "car sales": {
+    "series": [
+      "TOTALSA",
+      "IPG3361T3S"
+    ],
+    "show_yoy": [false, true],
+    "combine_chart": false,
+    "explanation": "TOTALSA (Total Vehicle Sales, seasonally adjusted annual rate in millions of units) is THE key metric for car sales - this is what analysts and media report monthly. IPG3361T3S shows industrial production of motor vehicles and parts, indicating how much automakers are producing to meet that demand."
+  },
+  "auto sales": {
+    "series": [
+      "TOTALSA",
+      "IPG3361T3S"
+    ],
+    "show_yoy": [false, true],
+    "combine_chart": false,
+    "explanation": "TOTALSA (Total Vehicle Sales, seasonally adjusted annual rate in millions of units) is THE key metric for auto sales - this is what analysts and media report monthly. IPG3361T3S shows industrial production of motor vehicles and parts, indicating how much automakers are producing to meet that demand."
+  },
+  "vehicle sales": {
+    "series": [
+      "TOTALSA"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "TOTALSA (Total Vehicle Sales) shows the seasonally adjusted annual rate of vehicle sales in millions of units. This is the most-watched indicator for the auto industry - when you hear 'auto sales came in at 15 million units', this is the series being cited."
+  },
+  "auto manufacturing": {
+    "series": [
+      "IPG3361T3S",
+      "CES3133600101",
+      "MANEMP"
+    ],
+    "show_yoy": [true, false, false],
+    "combine_chart": false,
+    "explanation": "IPG3361T3S tracks industrial production of motor vehicles and parts (index). CES3133600101 shows employment specifically in motor vehicles & parts manufacturing. MANEMP provides broader manufacturing employment context to see how auto manufacturing compares to the sector overall."
+  }
+}
