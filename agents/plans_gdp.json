@@ -181,12 +181,14 @@
   },
   "manufacturing": {
     "series": [
+      "MANEMP",
       "IPMAN",
-      "TCU"
+      "AWHMAN",
+      "DGORDER"
     ],
-    "show_yoy": true,
+    "show_yoy": false,
     "combine_chart": false,
-    "explanation": "IPMAN (Industrial Production: Manufacturing) measures the physical output of the manufacturing sector, while TCU (Total Capacity Utilization) shows how much of manufacturing capacity is being used. Together they provide a comprehensive view of manufacturing activity - both absolute production levels and efficiency of resource utilization."
+    "explanation": "Manufacturing overview: employment (MANEMP), industrial production (IPMAN), weekly hours (AWHMAN), and durable goods orders (DGORDER). Together these show labor, output, and forward-looking indicators."
   },
   "factory output": {
     "series": [
