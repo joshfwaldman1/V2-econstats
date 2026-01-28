@@ -64,6 +64,22 @@ app.include_router(search_router)
 app.include_router(health_router)
 
 
+# Exception handler for debugging
+@app.exception_handler(Exception)
+async def debug_exception_handler(request: Request, exc: Exception):
+    import traceback
+    print("=" * 60)
+    print("UNHANDLED EXCEPTION:")
+    print("=" * 60)
+    traceback.print_exc()
+    print("=" * 60)
+    from fastapi.responses import JSONResponse
+    return JSONResponse(
+        status_code=500,
+        content={"detail": str(exc), "type": type(exc).__name__}
+    )
+
+
 # =============================================================================
 # REACT STATIC FILE SERVING
 # =============================================================================

@@ -201,12 +201,18 @@ def analytics_to_text(analytics: Dict) -> str:
     # YoY
     if 'yoy' in analytics:
         yoy = analytics['yoy']
-        lines.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
+        if yoy.get('change_pct') is not None:
+            lines.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
+        else:
+            lines.append(f"YoY: {yoy['change']:+.2f}")
 
     # Short-term trend
     if 'short_term' in analytics:
         st = analytics['short_term']
-        lines.append(f"Recent trend: {st['direction']} ({st['change_pct']:+.1f}% over {st['periods']} periods)")
+        if st.get('change_pct') is not None:
+            lines.append(f"Recent trend: {st['direction']} ({st['change_pct']:+.1f}% over {st['periods']} periods)")
+        else:
+            lines.append(f"Recent trend: {st['direction']}")
 
     # Range
     if 'range_1y' in analytics:

@@ -212,12 +212,18 @@ def build_rich_data_context(series_data: List[tuple]) -> str:
         # YoY (pre-computed)
         if 'yoy' in analytics:
             yoy = analytics['yoy']
-            context_parts.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
+            if yoy.get('change_pct') is not None:
+                context_parts.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
+            else:
+                context_parts.append(f"YoY: {yoy['change']:+.2f}")
 
         # Short-term trend (pre-computed)
         if 'short_term' in analytics:
             st = analytics['short_term']
-            context_parts.append(f"Recent: {st['direction'].capitalize()} ({st['change_pct']:+.1f}%)")
+            if st.get('change_pct') is not None:
+                context_parts.append(f"Recent: {st['direction'].capitalize()} ({st['change_pct']:+.1f}%)")
+            else:
+                context_parts.append(f"Recent: {st['direction'].capitalize()}")
 
         # 1-year range (pre-computed)
         if 'range_1y' in analytics:
