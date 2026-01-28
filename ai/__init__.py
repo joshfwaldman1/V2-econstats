@@ -10,6 +10,14 @@ from .summarizer import (
 )
 from .bullets import generate_dynamic_bullets, get_static_bullets, get_bullets
 from .economist_reviewer import review_summary
+from .economist_analysis import (
+    generate_economist_analysis,
+    apply_economic_reasoning,
+    extract_data_context,
+    EconomistAnalysis,
+    IndicatorSnapshot,
+    ECONOMIC_RELATIONSHIPS
+)
 
 # Gemini audit layer (optional - requires GEMINI_API_KEY)
 try:
@@ -32,6 +40,7 @@ __all__ = [
     'classify_query',
     'stream_summary',
     'build_rich_data_context',
+    'build_dynamic_plan',
     'generate_summary',
     'generate_fallback_summary',
     'get_summary_text',
@@ -41,6 +50,13 @@ __all__ = [
     'get_static_bullets',
     'get_bullets',
     'review_summary',
+    # Premium Economist Analysis
+    'generate_economist_analysis',
+    'apply_economic_reasoning',
+    'extract_data_context',
+    'EconomistAnalysis',
+    'IndicatorSnapshot',
+    'ECONOMIC_RELATIONSHIPS',
     # Gemini audit
     'audit_summary',
     'audit_routing',

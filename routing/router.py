@@ -47,6 +47,14 @@ class QueryRouter:
     Master router that consolidates all routing logic.
 
     Uses a single decision tree to route queries efficiently.
+
+    Architecture (V2 "Thinking First"):
+    1. Query understanding - deeply analyze query BEFORE routing
+    2. Special routes - Fed SEP, recession scorecard, CAPE
+    3. Exact plan match - O(1) lookup
+    4. Validation layer - gut check that proposed series match query
+    5. Fuzzy match - for typos
+    6. LLM semantic routing - fallback with dynamic plan building
     """
 
     def __init__(self):
@@ -54,16 +62,20 @@ class QueryRouter:
         self._query_router_module = None
         self._rag_module = None
         self._stocks_module = None
+        self._validation_module = None  # New: validation layer
         self._load_advanced_modules()
 
     def _load_advanced_modules(self):
         """Load advanced routing modules."""
-        # Query understanding
+        # Query understanding ("thinking first" layer)
         try:
-            from agents.query_understanding import understand_query, get_routing_recommendation
+            from agents.query_understanding import understand_query, get_routing_recommendation, validate_series_for_query
             self._query_understanding = {
                 'understand': understand_query,
                 'get_routing': get_routing_recommendation,
+            }
+            self._validation_module = {
+                'validate': validate_series_for_query
             }
             print("[Router] Query understanding: available")
         except Exception as e:
@@ -109,6 +121,19 @@ class QueryRouter:
         Route a query to appropriate data series.
 
         This is the main entry point for all query routing.
+
+        V2 "Thinking First" Architecture:
+        1. Check cache
+        2. Run query understanding (Gemini analyzes query BEFORE routing)
+        3. Check special routes
+        4. Check market queries
+        5. Check comparison queries
+        6. Exact plan match
+        7. Deep understanding routing
+        8. RAG-based retrieval
+        9. Fuzzy match
+        10. LLM fallback with dynamic plan building
+        11. VALIDATION LAYER - gut check that series match query intent
         """
         # 1. Check routing cache
         cached = cache_manager.get_routing(query)
@@ -125,81 +150,109 @@ class QueryRouter:
             )
             return result
 
-        # 2. Check special routes (Fed SEP, recession, health check)
+        # 2. Run query understanding FIRST ("thinking first" layer)
+        # This deeply analyzes the query to understand demographics, sectors, etc.
+        query_understanding = None
+        if self._query_understanding:
+            try:
+                query_understanding = self._query_understanding['understand'](query)
+            except Exception as e:
+                print(f"[Router] Query understanding error: {e}")
+
+        # 3. Check special routes (Fed SEP, recession, health check)
         special_result = special_router.check(query)
         if special_result and special_result.matched:
             result = self._special_to_routing_result(special_result)
             self._cache_result(query, result)
             return result
 
-        # 3. Check market queries (stocks, indices)
+        # 4. Check market queries (stocks, indices)
         if self._stocks_module and self._stocks_module['is_market'](query):
             market_plan = self._stocks_module['find_plan'](query)
             if market_plan:
                 result = self._plan_to_result(market_plan, 'market')
+                result = self._validate_and_correct(result, query_understanding)
                 self._cache_result(query, result)
                 return result
 
-        # 4. Check comparison queries (both domestic and international)
+        # 5. Check comparison queries (both domestic and international)
         if self._query_router_module and self._query_router_module['is_comparison'](query):
             # Use smart_route which handles both domestic and international comparisons
             comparison_plan = self._query_router_module['smart_route'](query)
             if comparison_plan and comparison_plan.get('series'):
                 result = self._plan_to_result(comparison_plan, 'comparison')
                 result.is_comparison = True
+                result = self._validate_and_correct(result, query_understanding)
                 self._cache_result(query, result)
                 return result
 
-        # 5. Exact plan match (O(1) lookup)
+        # 6. Exact plan match (O(1) lookup)
         plan = registry.get_plan(query)
         if plan:
             result = self._plan_to_result(plan, 'exact')
+            result = self._validate_and_correct(result, query_understanding)
             self._cache_result(query, result)
             return result
 
-        # 6. Deep query understanding (if available)
-        if self._query_understanding:
+        # 7. Deep query understanding routing (if available)
+        if query_understanding:
             try:
-                understanding = self._query_understanding['understand'](query)
-                if understanding:
-                    routing = self._query_understanding['get_routing'](understanding)
-                    if routing and routing.get('suggested_topic'):
-                        topic = routing['suggested_topic']
-                        plan = registry.get_plan(topic)
-                        if plan:
-                            result = self._plan_to_result(plan, 'understanding')
-                            if routing.get('show_yoy') is not None:
-                                result.show_yoy = routing['show_yoy']
-                            self._cache_result(query, result)
-                            return result
+                routing = self._query_understanding['get_routing'](query_understanding)
+                if routing and routing.get('suggested_topic'):
+                    topic = routing['suggested_topic']
+                    plan = registry.get_plan(topic)
+                    if plan:
+                        result = self._plan_to_result(plan, 'understanding')
+                        if routing.get('show_yoy') is not None:
+                            result.show_yoy = routing['show_yoy']
+                        result = self._validate_and_correct(result, query_understanding)
+                        self._cache_result(query, result)
+                        return result
             except Exception as e:
                 print(f"[Router] Understanding error: {e}")
 
-        # 7. RAG-based retrieval
+        # 8. RAG-based retrieval
         if self._rag_module:
             try:
                 rag_plan = self._rag_module['query_plan'](query)
                 if rag_plan and rag_plan.get('series'):
                     result = self._plan_to_result(rag_plan, 'rag')
+                    result = self._validate_and_correct(result, query_understanding)
                     self._cache_result(query, result)
                     return result
             except Exception as e:
                 print(f"[Router] RAG error: {e}")
 
-        # 8. Fuzzy match (for typos, close variations)
+        # 9. Fuzzy match (for typos, close variations)
         plan = registry.fuzzy_match(query, threshold=0.7)
         if plan:
             result = self._plan_to_result(plan, 'fuzzy')
+            result = self._validate_and_correct(result, query_understanding)
             self._cache_result(query, result)
             return result
 
-        # 9. LLM semantic routing (fallback)
+        # 10. LLM semantic routing (fallback with dynamic plan building)
         result = self._llm_route(query)
         if result and result.series:
+            result = self._validate_and_correct(result, query_understanding)
             self._cache_result(query, result)
             return result
 
-        # 10. No match found - return empty result
+        # 11. FINAL FALLBACK: Use validation layer to override with correct series
+        # This catches cases where routing failed but we know what data is needed
+        if self._validation_module and query_understanding:
+            validation = self._validation_module['validate'](query_understanding, [])
+            if not validation.get('valid') and validation.get('corrected_series'):
+                print(f"[Router] Validation override: {validation['reason']}")
+                result = RoutingResult(
+                    series=validation['corrected_series'],
+                    route_type='validation_override',
+                    explanation=validation.get('reason', '')
+                )
+                self._cache_result(query, result)
+                return result
+
+        # 12. No match found - return empty result
         return RoutingResult(
             series=[],
             route_type='none',
@@ -242,6 +295,50 @@ class QueryRouter:
             is_comparison=plan.get('is_comparison', False),
             route_type=route_type
         )
+
+    def _validate_and_correct(self, result: RoutingResult, query_understanding: dict) -> RoutingResult:
+        """
+        Validate that proposed series match the query intent.
+
+        This is the "gut check" layer - if query understanding detected specific
+        entities (demographics, sectors, regions) but routing returned generic
+        series, we override with the correct specific series.
+
+        Args:
+            result: The routing result to validate
+            query_understanding: The Gemini analysis of the query
+
+        Returns:
+            Corrected RoutingResult if validation failed, otherwise original
+        """
+        if not self._validation_module or not query_understanding:
+            return result
+
+        try:
+            validation = self._validation_module['validate'](query_understanding, result.series)
+
+            if not validation.get('valid') and validation.get('corrected_series'):
+                print(f"[Router] Validation correction: {validation['reason']}")
+                # Create corrected result
+                return RoutingResult(
+                    series=validation['corrected_series'],
+                    show_yoy=result.show_yoy,
+                    combine_chart=result.combine_chart,
+                    explanation=validation.get('reason', result.explanation),
+                    chart_groups=result.chart_groups,
+                    is_comparison=result.is_comparison,
+                    route_type=f"{result.route_type}_validated",
+                    fed_guidance=result.fed_guidance,
+                    fed_sep_html=result.fed_sep_html,
+                    recession_html=result.recession_html,
+                    cape_html=result.cape_html,
+                    polymarket_html=result.polymarket_html,
+                    temporal_context=result.temporal_context,
+                )
+        except Exception as e:
+            print(f"[Router] Validation error: {e}")
+
+        return result
 
     def _llm_route(self, query: str) -> Optional[RoutingResult]:
         """

@@ -188,12 +188,16 @@ class SpecialRouter:
         if not config:
             return None
 
+        # HealthCheckConfig is a dataclass, not a dict
+        series = getattr(config, 'primary_series', [])
+        show_yoy = getattr(config, 'show_yoy', [False])[0] if hasattr(config, 'show_yoy') else False
+
         return SpecialRouteResult(
             matched=True,
             route_type='health_check',
-            series=config.get('series', []),
-            show_yoy=config.get('show_yoy', False),
-            extra_data={'entity': entity, 'config': config}
+            series=series,
+            show_yoy=show_yoy,
+            extra_data={'entity': entity, 'explanation': getattr(config, 'explanation', '')}
         )
 
     def _handle_cape_query(self, query: str) -> SpecialRouteResult:
