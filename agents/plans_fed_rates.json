@@ -142,7 +142,7 @@
     "show_yoy": false,
     "combine_chart": true,
     "is_comparison": true,
-    "explanation": "**WHY IT MATTERS:** The yield curve shows Treasury yields across maturities. Normally it slopes UP (longer = higher yield for locking up money longer). When INVERTED (short rates exceed long), it signals tight Fed policy + weak growth expectations—a recipe that preceded every recession since 1970.\n\n**IMPORTANT CAVEAT:** The 2022-2024 inversion was the deepest and longest since the 1980s, yet no recession followed. Post-COVID labor market strength and excess savings may have changed the signal's reliability."
+    "explanation": "**WHY IT MATTERS:** The yield curve shows Treasury yields across maturities. Normally it slopes UP (longer = higher yield for locking up money longer). When INVERTED (short rates exceed long), it signals tight Fed policy + weak growth expectations\u2014a recipe that preceded every recession since 1970.\n\n**IMPORTANT CAVEAT:** The 2022-2024 inversion was the deepest and longest since the 1980s, yet no recession followed. Post-COVID labor market strength and excess savings may have changed the signal's reliability."
   },
   "inverted yield curve": {
     "series": [
@@ -150,7 +150,7 @@
     ],
     "show_yoy": false,
     "combine_chart": true,
-    "explanation": "**WHY INVERSION SIGNALS RECESSION:** When short-term rates exceed long-term rates, it means: (1) The Fed has raised rates aggressively (pushing up the short end), and (2) Markets expect this tight policy will slow growth/inflation (keeping long rates low). This combination historically caused recessions.\n\n**THE 2022-2024 EXCEPTION:** The curve inverted for nearly 2 years—the longest since the 1980s—yet no recession followed. Strong labor markets, excess pandemic savings, and fiscal stimulus may have broken the pattern. Some argue it's 'different this time'; others say the lag is just longer."
+    "explanation": "**WHY INVERSION SIGNALS RECESSION:** When short-term rates exceed long-term rates, it means: (1) The Fed has raised rates aggressively (pushing up the short end), and (2) Markets expect this tight policy will slow growth/inflation (keeping long rates low). This combination historically caused recessions.\n\n**THE 2022-2024 EXCEPTION:** The curve inverted for nearly 2 years\u2014the longest since the 1980s\u2014yet no recession followed. Strong labor markets, excess pandemic savings, and fiscal stimulus may have broken the pattern. Some argue it's 'different this time'; others say the lag is just longer."
   },
   "bond yields": {
     "series": [
@@ -246,12 +246,15 @@
     "series": [
       "WALCL",
       "FEDFUNDS",
-      "DGS10",
-      "BAMLC0A0CM"
+      "DGS10"
     ],
-    "show_yoy": false,
+    "show_yoy": [
+      false,
+      false,
+      false
+    ],
     "combine_chart": false,
-    "explanation": "Quantitative tightening (QT) involves the Fed reducing its balance sheet to tighten monetary conditions. WALCL (Fed total assets) is the direct measure of QT - balance sheet reduction IS quantitative tightening. FEDFUNDS shows rate hikes that typically accompany QT, DGS10 captures how QT affects long-term borrowing costs, and BAMLC0A0CM (investment grade credit spreads) shows the impact on corporate borrowing conditions."
+    "explanation": "Quantitative tightening (QT) is the Fed reducing its balance sheet to tighten monetary conditions. Fed total assets (WALCL) is the direct measure - declining balance sheet IS QT. The Fed expanded WALCL to $9 trillion during COVID QE; QT began in 2022, shrinking it by ~$1.5 trillion. Fed funds rate (FEDFUNDS) shows the rate hikes that accompanied QT. 10-year Treasury (DGS10) captures how QT affects long-term borrowing costs. QT works by draining liquidity from the financial system, pushing up rates and tightening financial conditions."
   },
   "fed balance sheet": {
     "series": [
@@ -383,7 +386,7 @@
     ],
     "show_yoy": false,
     "combine_chart": true,
-    "explanation": "**THE MECHANISM:** When 2-year yields exceed 10-year yields (negative spread), it means markets expect the Fed's aggressive rate hikes will eventually force rate CUTS—typically because they expect the tight policy to cause a recession. The 2-year is sensitive to Fed policy; the 10-year reflects growth/inflation outlook.\n\n**TRACK RECORD:** Preceded every recession since 1970 with a 12-18 month lead time.\n\n**2022-2024 EXCEPTION:** The curve inverted in July 2022 and stayed inverted for nearly 2 years—the longest since the 1980s. Yet as of early 2025, no recession materialized. Strong jobs, excess savings, and fiscal stimulus may have broken the historical pattern."
+    "explanation": "**THE MECHANISM:** When 2-year yields exceed 10-year yields (negative spread), it means markets expect the Fed's aggressive rate hikes will eventually force rate CUTS\u2014typically because they expect the tight policy to cause a recession. The 2-year is sensitive to Fed policy; the 10-year reflects growth/inflation outlook.\n\n**TRACK RECORD:** Preceded every recession since 1970 with a 12-18 month lead time.\n\n**2022-2024 EXCEPTION:** The curve inverted in July 2022 and stayed inverted for nearly 2 years\u2014the longest since the 1980s. Yet as of early 2025, no recession materialized. Strong jobs, excess savings, and fiscal stimulus may have broken the historical pattern."
   },
   "10-year vs 2-year treasury": {
     "series": [
@@ -700,20 +703,6 @@
     "is_comparison": true,
     "explanation": "3-month vs 10-year Treasury spread is the NY Fed's preferred recession indicator. When 3-month exceeds 10-year, the yield curve is inverted and recession probability rises. This spread has predicted every recession since 1968, though with variable lead times (6-24 months)."
   },
-  "quantitative tightening": {
-    "series": [
-      "WALCL",
-      "FEDFUNDS",
-      "DGS10"
-    ],
-    "show_yoy": [
-      false,
-      false,
-      false
-    ],
-    "combine_chart": false,
-    "explanation": "Quantitative tightening (QT) is the Fed reducing its balance sheet to tighten monetary conditions. Fed total assets (WALCL) is the direct measure - declining balance sheet IS QT. The Fed expanded WALCL to $9 trillion during COVID QE; QT began in 2022, shrinking it by ~$1.5 trillion. Fed funds rate (FEDFUNDS) shows the rate hikes that accompanied QT. 10-year Treasury (DGS10) captures how QT affects long-term borrowing costs. QT works by draining liquidity from the financial system, pushing up rates and tightening financial conditions."
-  },
   "qt": {
     "series": [
       "WALCL",
@@ -759,4 +748,58 @@
     ],
     "combine_chart": false,
     "explanation": "'Higher for longer' means the Fed keeps rates elevated for an extended period to ensure inflation durably returns to 2%. Fed funds (FEDFUNDS) and target (DFEDTARU) show policy staying high. 2-year Treasury (DGS2) reflects market beliefs about the rate path - if DGS2 stays near fed funds, markets believe 'higher for longer.' Core PCE (PCEPILFE) is the reason - if inflation stays above 2%, the Fed maintains restrictive policy. The phrase became prominent in 2023 when Fed signaled rates would stay at 5%+ longer than markets initially expected."
-  }}
+  },
+  "fed rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "DGS10",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Fed rates overview: Federal funds rate (FEDFUNDS) is the Fed's policy rate, 2-year Treasury (DGS2) shows market expectations of near-term policy, 10-year Treasury (DGS10) is the benchmark long-term rate, and the yield curve spread (T10Y2Y) shows the relationship between short and long rates."
+  },
+  "fed interest rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "DGS10",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Federal Reserve interest rate landscape showing policy rate (FEDFUNDS), market expectations (DGS2), long-term benchmark (DGS10), and yield curve shape (T10Y2Y)."
+  },
+  "what are fed rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "DGS10"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Current Federal Reserve interest rates: the fed funds rate (FEDFUNDS) which the Fed directly controls, plus key market rates (2-year and 10-year Treasury) that reflect expectations of Fed policy."
+  },
+  "current fed rates": {
+    "series": [
+      "FEDFUNDS",
+      "DFEDTARU",
+      "DFEDTARL"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Current Fed policy rate: the effective federal funds rate (FEDFUNDS) and the Fed's target range (DFEDTARU upper, DFEDTARL lower bound)."
+  },
+  "how are fed rates": {
+    "series": [
+      "FEDFUNDS",
+      "DGS2",
+      "DGS10",
+      "T10Y2Y"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Fed rate assessment: policy rate (FEDFUNDS), market expectations (DGS2), long-term rates (DGS10), and yield curve shape (T10Y2Y)."
+  }
+}

@@ -595,112 +595,99 @@
     "series": [
       "USCONS",
       "HOUST",
-      "PERMIT",
-      "MORTGAGE30US"
+      "PERMIT"
     ],
-    "show_yoy": [
-      true,
-      true,
-      true,
-      false
-    ],
+    "show_yoy": false,
     "combine_chart": false,
-    "explanation": "Construction employment (USCONS) with demand drivers: Housing starts (HOUST) and permits (PERMIT) show residential building activity, while mortgage rates (MORTGAGE30US) indicate affordability - the key rate sensitivity of construction hiring. When rates rise, building slows and construction jobs follow."
+    "explanation": "Construction sector employment (USCONS) alongside housing activity indicators."
   },
   "construction jobs": {
     "series": [
       "USCONS",
       "HOUST",
-      "PERMIT",
-      "TLRESCONS"
+      "PERMIT"
     ],
-    "show_yoy": true,
+    "show_yoy": false,
     "combine_chart": false,
-    "explanation": "Construction employment (USCONS) with full pipeline context: Housing starts (HOUST) show new projects beginning, permits (PERMIT) indicate future activity, and total residential construction spending (TLRESCONS) shows the dollar volume driving labor demand."
+    "explanation": "Construction employment (USCONS) with leading indicators - housing starts (HOUST) and permits (PERMIT) predict future construction hiring."
   },
   "healthcare employment": {
     "series": [
-      "USHCS",
-      "CES0500000003",
-      "CUSR0000SAM"
+      "CES6562000001",
+      "CES6561000001"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Healthcare employment (USHCS) with wage and cost context: Average hourly earnings (CES0500000003) shows whether healthcare is competing for workers with higher wages, while medical care CPI (CUSR0000SAM) indicates the cost pressures driving healthcare spending and hiring. Healthcare has been one of the most reliable job creators, with consistent growth even during recessions."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Healthcare employment has been a consistent job growth engine."
   },
   "healthcare jobs": {
     "series": [
-      "USHCS",
-      "CPIMEDSL",
-      "PAYEMS"
+      "CES6562000001",
+      "CES6561000001"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Healthcare sector employment (USHCS) compared to overall job growth (PAYEMS), with medical services CPI (CPIMEDSL) showing the cost pressures driving healthcare expansion. Healthcare rarely loses jobs even during downturns, often accounting for a large share of total job creation."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Healthcare sector employment - hospitals and outpatient care."
   },
   "tech employment": {
     "series": [
       "USINFO",
-      "DGORDER",
-      "GPDIC1",
-      "PAYEMS"
+      "CES5000000001"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Information sector employment (USINFO) with business investment context: Durable goods orders (DGORDER) and gross private domestic investment (GPDIC1) signal business spending cycles that drive tech hiring. Compared to total payrolls (PAYEMS) to show tech's relative performance vs the broader job market."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Information sector employment - includes tech, telecom, and media."
   },
   "tech jobs": {
     "series": [
       "USINFO",
-      "ICSA",
-      "PAYEMS"
+      "CES5000000001"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Information sector employment (USINFO) - tech, media, telecom - alongside initial jobless claims (ICSA) to show real-time layoff trends, and total payrolls (PAYEMS) for context. Tech layoffs make headlines but this shows the actual magnitude relative to the broader economy."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Technology/Information sector employment."
   },
   "restaurant employment": {
     "series": [
-      "USLAH",
-      "RSXFS",
-      "UMCSENT",
-      "CUSR0000SEFV"
+      "CES7072200001",
+      "USLAH"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Leisure and hospitality employment (USLAH) with demand drivers: Retail sales ex food services (RSXFS) shows consumer spending strength, consumer sentiment (UMCSENT) indicates willingness to spend on dining out, and food away from home CPI (CUSR0000SEFV) shows restaurant price inflation. Together these reveal whether restaurant hiring is driven by consumer demand or constrained by costs."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Restaurant and food service employment within leisure/hospitality."
   },
   "hospitality jobs": {
     "series": [
       "USLAH",
-      "UMCSENT",
-      "RSXFS",
-      "PAYEMS"
+      "CES7072200001"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Leisure and hospitality employment (USLAH) with consumer demand context: Consumer sentiment (UMCSENT) and retail sales (RSXFS) indicate consumer willingness to spend on travel, dining, and entertainment. Compared to total payrolls (PAYEMS) to show hospitality's recovery relative to the overall job market."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Hospitality employment - restaurants, hotels, and entertainment."
   },
   "government employment": {
     "series": [
       "USGOVT",
-      "FGEXPND",
-      "PAYEMS"
+      "CES9091000001",
+      "CES9092000001"
     ],
-    "show_yoy": true,
-    "combine_chart": false,
-    "explanation": "Government employment (USGOVT) with fiscal context: Federal government expenditures (FGEXPND) show the spending that drives public sector hiring, compared to total nonfarm payrolls (PAYEMS) to show public vs private sector job creation. Government hiring is less cyclical but responds to budget constraints and policy priorities."
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Public sector employment at federal, state, and local levels."
   },
   "retail employment": {
     "series": [
       "USTRADE",
-      "RSXFS",
-      "ECOMPCTNSA",
-      "PAYEMS"
+      "CES4200000001",
+      "RSXFS"
     ],
-    "show_yoy": true,
+    "show_yoy": [
+      false,
+      false,
+      true
+    ],
     "combine_chart": false,
-    "explanation": "Trade/transportation/utilities employment (USTRADE) with demand drivers: Retail sales (RSXFS) shows consumer spending, e-commerce share (ECOMPCTNSA) reveals the structural shift from stores to warehouses, and total payrolls (PAYEMS) provides context. E-commerce has shifted retail jobs from store clerks to warehouse workers and delivery drivers."
+    "explanation": "Retail trade employment with sales data to show sector health."
   },
   "veterans employment": {
     "series": [
@@ -1036,73 +1023,112 @@
     "explanation": "Unemployment rates by race show persistent disparities. White unemployment is typically lowest, with Hispanic somewhat higher, and Black unemployment highest (often 2x White). During recessions, minority unemployment spikes more. During tight labor markets like 2023, the gaps narrowed to historic lows."
   },
   "black unemployment": {
-    "series": ["LNS14000006", "UNRATE"],
+    "series": [
+      "LNS14000006",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Black unemployment rate (LNS14000006) compared to overall unemployment (UNRATE). Black unemployment typically runs about 2x the overall rate - a persistent disparity that narrows during tight labor markets."
   },
   "black unemployment rate": {
-    "series": ["LNS14000006", "UNRATE"],
+    "series": [
+      "LNS14000006",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Black unemployment rate (LNS14000006) compared to overall unemployment (UNRATE). Black unemployment typically runs about 2x the overall rate - a persistent disparity that narrows during tight labor markets."
   },
   "african american unemployment": {
-    "series": ["LNS14000006", "UNRATE"],
+    "series": [
+      "LNS14000006",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "African American unemployment rate (LNS14000006) compared to overall unemployment (UNRATE). This disparity is a key measure of labor market inclusiveness."
   },
   "hispanic unemployment": {
-    "series": ["LNS14000009", "UNRATE"],
+    "series": [
+      "LNS14000009",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Hispanic unemployment rate (LNS14000009) compared to overall unemployment (UNRATE). Hispanic unemployment typically runs somewhat above the overall rate but below Black unemployment."
   },
   "hispanic unemployment rate": {
-    "series": ["LNS14000009", "UNRATE"],
+    "series": [
+      "LNS14000009",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Hispanic unemployment rate (LNS14000009) compared to overall unemployment (UNRATE)."
   },
   "latino unemployment": {
-    "series": ["LNS14000009", "UNRATE"],
+    "series": [
+      "LNS14000009",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Latino/Hispanic unemployment rate (LNS14000009) compared to overall unemployment (UNRATE)."
   },
   "hispanic workers": {
-    "series": ["LNS14000009", "LNS12300089", "UNRATE"],
+    "series": [
+      "LNS14000009",
+      "LNS12300089",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": false,
     "explanation": "Hispanic labor market: unemployment rate (LNS14000009), employment-population ratio (LNS12300089), compared to overall unemployment (UNRATE)."
   },
   "latino workers": {
-    "series": ["LNS14000009", "LNS12300089", "UNRATE"],
+    "series": [
+      "LNS14000009",
+      "LNS12300089",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": false,
     "explanation": "Latino/Hispanic labor market: unemployment rate (LNS14000009), employment-population ratio (LNS12300089), compared to overall unemployment (UNRATE)."
   },
   "asian unemployment": {
-    "series": ["LNS14032183", "UNRATE"],
+    "series": [
+      "LNS14032183",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Asian unemployment rate (LNS14032183) compared to overall unemployment (UNRATE). Asian unemployment typically runs below the overall rate."
   },
   "white unemployment": {
-    "series": ["LNS14000003", "UNRATE"],
+    "series": [
+      "LNS14000003",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "White unemployment rate (LNS14000003) compared to overall unemployment (UNRATE). White unemployment typically runs below the overall rate."
   },
   "teenage unemployment": {
-    "series": ["LNS14000012", "UNRATE"],
+    "series": [
+      "LNS14000012",
+      "UNRATE"
+    ],
     "show_yoy": false,
     "combine_chart": true,
     "explanation": "Teenage unemployment rate (ages 16-19) compared to overall unemployment. Teen unemployment is always much higher due to limited experience and part-time/seasonal work patterns."
   },
   "senior employment": {
-    "series": ["LNS12300091", "LNS14000091", "CIVPART"],
+    "series": [
+      "LNS12300091",
+      "LNS14000091",
+      "CIVPART"
+    ],
     "show_yoy": false,
     "combine_chart": false,
     "explanation": "Employment for older workers (55+): employment-population ratio (LNS12300091), unemployment rate (LNS14000091), and overall labor force participation (CIVPART) for context."
@@ -1195,7 +1221,7 @@
     ],
     "show_yoy": true,
     "combine_chart": false,
-    "explanation": "AI's Impact on the Labor Market:\n\n• **Information Sector** (USINFO): Tech jobs - software, data, AI companies.\n• **Computer Systems Design** (CES6054000001): Jobs building/deploying AI systems.\n• **Productivity** (OPHNFB): If AI works, productivity should rise faster than employment.\n• **Professional Services** (CES6500000001): White-collar work potentially disrupted by AI.\n• **Total Employment** (PAYEMS): Net job creation.\n\n**What to watch**: Rising productivity + flat white-collar employment = AI displacement underway. History: ATMs didn't kill bank tellers - they shifted to customer service. AI may do the same."
+    "explanation": "AI's Impact on the Labor Market:\n\n\u2022 **Information Sector** (USINFO): Tech jobs - software, data, AI companies.\n\u2022 **Computer Systems Design** (CES6054000001): Jobs building/deploying AI systems.\n\u2022 **Productivity** (OPHNFB): If AI works, productivity should rise faster than employment.\n\u2022 **Professional Services** (CES6500000001): White-collar work potentially disrupted by AI.\n\u2022 **Total Employment** (PAYEMS): Net job creation.\n\n**What to watch**: Rising productivity + flat white-collar employment = AI displacement underway. History: ATMs didn't kill bank tellers - they shifted to customer service. AI may do the same."
   },
   "ai impact on jobs and labor market": {
     "series": [
@@ -1207,7 +1233,7 @@
     ],
     "show_yoy": true,
     "combine_chart": false,
-    "explanation": "AI and Jobs - The Big Picture:\n\n• **Tech Employment** (USINFO): Where AI jobs live - growing or shrinking?\n• **Computer Systems Design** (CES6054000001): Building AI - should grow with AI investment.\n• **Productivity** (OPHNFB): The AI promise - more output per worker hour.\n• **Finance/Insurance** (USFIRE): White-collar sector most exposed to AI automation.\n• **Total Jobs** (PAYEMS): Net employment - is AI creating more jobs than it destroys?\n\n**Key insight**: Watch for productivity rising faster than employment - that's automation working. If tech jobs grow while finance/admin jobs shrink, displacement is happening."
+    "explanation": "AI and Jobs - The Big Picture:\n\n\u2022 **Tech Employment** (USINFO): Where AI jobs live - growing or shrinking?\n\u2022 **Computer Systems Design** (CES6054000001): Building AI - should grow with AI investment.\n\u2022 **Productivity** (OPHNFB): The AI promise - more output per worker hour.\n\u2022 **Finance/Insurance** (USFIRE): White-collar sector most exposed to AI automation.\n\u2022 **Total Jobs** (PAYEMS): Net employment - is AI creating more jobs than it destroys?\n\n**Key insight**: Watch for productivity rising faster than employment - that's automation working. If tech jobs grow while finance/admin jobs shrink, displacement is happening."
   },
   "automation and jobs": {
     "series": [
@@ -1218,6 +1244,182 @@
     ],
     "show_yoy": true,
     "combine_chart": false,
-    "explanation": "Automation's employment impact:\n\n• **Productivity** (OPHNFB): Rising productivity with flat employment = automation at work.\n• **Manufacturing Jobs** (MANEMP): Most automated sector - lost 5M+ jobs since 2000.\n• **Tech Employment** (USINFO): Creates automation tools, also benefits from them.\n• **Total Jobs** (PAYEMS): Net employment growth.\n\nPattern: Automation eliminates specific tasks but creates new jobs. Speed matters - slow change = adaptation; fast = disruption."
+    "explanation": "Automation's employment impact:\n\n\u2022 **Productivity** (OPHNFB): Rising productivity with flat employment = automation at work.\n\u2022 **Manufacturing Jobs** (MANEMP): Most automated sector - lost 5M+ jobs since 2000.\n\u2022 **Tech Employment** (USINFO): Creates automation tools, also benefits from them.\n\u2022 **Total Jobs** (PAYEMS): Net employment growth.\n\nPattern: Automation eliminates specific tasks but creates new jobs. Speed matters - slow change = adaptation; fast = disruption."
+  },
+  "manufacturing": {
+    "series": [
+      "MANEMP",
+      "IPMAN",
+      "AWHMAN",
+      "ISM/PMI"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Manufacturing overview: employment (MANEMP), industrial production (IPMAN), weekly hours (AWHMAN). Together these show both the labor and output sides of manufacturing."
+  },
+  "how is manufacturing": {
+    "series": [
+      "MANEMP",
+      "IPMAN",
+      "DGORDER",
+      "NEWORDER"
+    ],
+    "show_yoy": [
+      false,
+      true,
+      true,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Manufacturing health check: employment (MANEMP), production (IPMAN), durable goods orders (DGORDER), and new orders (NEWORDER). Shows both current activity and forward-looking indicators."
+  },
+  "manufacturing sector": {
+    "series": [
+      "MANEMP",
+      "IPMAN",
+      "DGORDER",
+      "AWHMAN"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Manufacturing sector indicators: employment (MANEMP), industrial production (IPMAN), durable goods orders (DGORDER), and average weekly hours (AWHMAN)."
+  },
+  "construction": {
+    "series": [
+      "USCONS",
+      "HOUST",
+      "PERMIT",
+      "TTLCONS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Construction sector: employment (USCONS), housing starts (HOUST), building permits (PERMIT), and total construction spending (TTLCONS)."
+  },
+  "retail": {
+    "series": [
+      "USTRADE",
+      "RSXFS",
+      "RETAILSMNSA"
+    ],
+    "show_yoy": [
+      false,
+      true,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Retail sector: employment (USTRADE) and retail sales (RSXFS shows actual consumer spending)."
+  },
+  "retail jobs": {
+    "series": [
+      "USTRADE",
+      "RSXFS"
+    ],
+    "show_yoy": [
+      false,
+      true
+    ],
+    "combine_chart": false,
+    "explanation": "Retail employment and sales - when sales fall, job cuts follow."
+  },
+  "tech": {
+    "series": [
+      "USINFO",
+      "CES5000000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Tech/Information sector employment (USINFO). Note: This is a broad measure including telecom - pure tech employment is harder to isolate."
+  },
+  "restaurants": {
+    "series": [
+      "CES7072200001",
+      "USLAH"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Restaurant/food service employment (CES7072200001) within broader leisure & hospitality (USLAH). Restaurants are a key indicator of consumer spending on services."
+  },
+  "restaurant jobs": {
+    "series": [
+      "CES7072200001",
+      "USLAH"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Restaurant employment - a leading indicator of consumer spending."
+  },
+  "healthcare": {
+    "series": [
+      "CES6562000001",
+      "CES6561000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Healthcare employment: hospitals (CES6562000001) and ambulatory care (CES6561000001). Healthcare has been one of the most consistent job growth sectors."
+  },
+  "hospitality": {
+    "series": [
+      "USLAH",
+      "CES7072200001",
+      "CES7072100001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Leisure & hospitality employment (USLAH) including restaurants and hotels. This sector was devastated by COVID and recovery took years."
+  },
+  "leisure employment": {
+    "series": [
+      "USLAH",
+      "CES7072200001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Leisure and hospitality sector employment."
+  },
+  "government jobs": {
+    "series": [
+      "USGOVT",
+      "CES9091000001",
+      "CES9092000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Government employment: total (USGOVT), federal (CES9091000001), and state/local (CES9092000001)."
+  },
+  "finance jobs": {
+    "series": [
+      "USFIRE",
+      "CES5500000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Financial activities employment (USFIRE) - banking, insurance, real estate."
+  },
+  "financial employment": {
+    "series": [
+      "USFIRE",
+      "CES5500000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Finance, insurance, and real estate employment."
+  },
+  "education jobs": {
+    "series": [
+      "CES6561000001",
+      "CES9093000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Education employment: private education services and local government education."
+  },
+  "transportation jobs": {
+    "series": [
+      "USTPU",
+      "CES4300000001"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "explanation": "Transportation and utilities employment."
   }
 }
