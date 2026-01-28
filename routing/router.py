@@ -306,6 +306,10 @@ class QueryRouter:
         entities (demographics, sectors, regions) but routing returned generic
         series, we override with the correct specific series.
 
+        IMPORTANT: Only overrides when routing returned GENERIC series for a
+        SPECIFIC query. Does NOT override when routing already has specific
+        series (e.g., state-level MNUR, demographic LNS14000006, sector MANEMP).
+
         Args:
             result: The routing result to validate
             query_understanding: The Gemini analysis of the query
@@ -315,6 +319,23 @@ class QueryRouter:
         """
         if not self._validation_module or not query_understanding:
             return result
+
+        # Skip validation for exact plan matches that already have specific series.
+        # The validation layer is designed to catch GENERIC data returned for SPECIFIC
+        # queries — not to override already-specific series from curated plans.
+        if result.route_type == 'exact' and result.series:
+            # Check if the plan already has specific (non-generic) series.
+            # Generic series are things like UNRATE, PAYEMS, CPIAUCSL etc.
+            # Specific series are state-level (e.g., MNUR), demographic (LNS14000006),
+            # or sector-specific (MANEMP, USCONS, etc.)
+            GENERIC_NATIONAL = {'UNRATE', 'PAYEMS', 'CPIAUCSL', 'CPILFESL', 'GDPC1',
+                                'A191RL1Q225SBEA', 'FEDFUNDS', 'DGS10', 'CIVPART',
+                                'LNS12300060', 'EMRATIO', 'PCE', 'PCEPILFE'}
+            series_set = set(result.series)
+            has_specific = bool(series_set - GENERIC_NATIONAL)
+            if has_specific:
+                # Plan already has specific series — trust it
+                return result
 
         try:
             validation = self._validation_module['validate'](query_understanding, result.series)
