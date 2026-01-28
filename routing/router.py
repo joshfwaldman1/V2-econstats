@@ -159,14 +159,24 @@ class QueryRouter:
             except Exception as e:
                 print(f"[Router] Query understanding error: {e}")
 
-        # 3. Check special routes (Fed SEP, recession, health check)
+        # 3. EXACT PLAN MATCH FIRST (O(1) lookup) - before special routes!
+        # This ensures specific plans like "fed rates" take precedence over generic routes
+        plan = registry.get_plan(query)
+        if plan:
+            result = self._plan_to_result(plan, 'exact')
+            result = self._validate_and_correct(result, query_understanding)
+            self._cache_result(query, result)
+            return result
+
+        # 4. Check special routes (Fed SEP, recession, health check)
+        # Only runs if no exact plan match - special routes are broader/generic
         special_result = special_router.check(query)
         if special_result and special_result.matched:
             result = self._special_to_routing_result(special_result)
             self._cache_result(query, result)
             return result
 
-        # 4. Check market queries (stocks, indices)
+        # 5. Check market queries (stocks, indices)
         if self._stocks_module and self._stocks_module['is_market'](query):
             market_plan = self._stocks_module['find_plan'](query)
             if market_plan:
@@ -175,7 +185,7 @@ class QueryRouter:
                 self._cache_result(query, result)
                 return result
 
-        # 5. Check comparison queries (both domestic and international)
+        # 6. Check comparison queries (both domestic and international)
         if self._query_router_module and self._query_router_module['is_comparison'](query):
             # Use smart_route which handles both domestic and international comparisons
             comparison_plan = self._query_router_module['smart_route'](query)
@@ -185,14 +195,6 @@ class QueryRouter:
                 result = self._validate_and_correct(result, query_understanding)
                 self._cache_result(query, result)
                 return result
-
-        # 6. Exact plan match (O(1) lookup)
-        plan = registry.get_plan(query)
-        if plan:
-            result = self._plan_to_result(plan, 'exact')
-            result = self._validate_and_correct(result, query_understanding)
-            self._cache_result(query, result)
-            return result
 
         # 7. Deep query understanding routing (if available)
         if query_understanding:
