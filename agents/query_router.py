@@ -37,6 +37,9 @@ REGIONS = {
 #   - measure_type: "real" or "nominal" or "rate"
 #   - change_type: "yoy", "qoq", "level"
 #   - transform: what to do with FRED level data ("yoy_pct" = calculate YoY % change)
+#
+# FRED has extensive international data — we prefer FRED over DBnomics for reliability.
+# fred_intl_series maps region keys to FRED series IDs for international data.
 INDICATORS = {
     "gdp": {
         "keywords": ["gdp", "growth", "economic growth", "output", "economy"],
@@ -49,6 +52,15 @@ INDICATORS = {
                 "transform": "yoy_pct",  # Transform to YoY % change for comparison
                 "display_as": "yoy",     # After transform, it's YoY growth
             }
+        },
+        # FRED international GDP series (preferred over DBnomics for reliability)
+        "fred_intl_series": {
+            "eurozone": "CLVMNACSCAB1GQEA19",  # Euro Area Real GDP
+            "uk": "CLVMNACSCAB1GQUK",           # UK Real GDP
+            "japan": "JPNRGDPEXP",               # Japan Real GDP
+            "china": "RGDPNACNA666NRUG",         # China Real GDP
+            "germany": "CLVMNACSCAB1GQDE",       # Germany Real GDP
+            "canada": "NGDPRSAXDCCAQ",           # Canada Real GDP
         },
         "dbnomics_series": {
             "eurozone": "eurozone_gdp",
@@ -75,6 +87,14 @@ INDICATORS = {
                 "display_as": "yoy",
             }
         },
+        # FRED international inflation series
+        "fred_intl_series": {
+            "eurozone": "CP0000EZ19M086NEST",    # Euro Area HICP
+            "uk": "CPGRLE01GBM659N",             # UK CPI
+            "japan": "JPNCPIALLMINMEI",           # Japan CPI
+            "germany": "DEUCPIALLMINMEI",         # Germany CPI
+            "canada": "CANCPIALLMINMEI",          # Canada CPI
+        },
         "dbnomics_series": {
             "eurozone": "eurozone_inflation",
             "uk": "uk_inflation",
@@ -94,6 +114,14 @@ INDICATORS = {
                 "display_as": "level",
             }
         },
+        # FRED international unemployment series
+        "fred_intl_series": {
+            "eurozone": "LRHUTTTTEZA156S",       # Euro Area Unemployment Rate
+            "uk": "LMUNRRTTGBM156S",             # UK Unemployment Rate
+            "japan": "LRUNTTTTJPM156S",           # Japan Unemployment Rate
+            "germany": "LMUNRRTTDEM156S",         # Germany Unemployment Rate
+            "canada": "LRUNTTTTCAM156S",          # Canada Unemployment Rate
+        },
         "dbnomics_series": {
             "eurozone": "eurozone_unemployment",
             "germany": "germany_unemployment",
@@ -110,6 +138,12 @@ INDICATORS = {
                 "transform": None,
                 "display_as": "level",
             }
+        },
+        # FRED international interest rate series
+        "fred_intl_series": {
+            "eurozone": "ECBMRRFR",              # ECB Main Refinancing Rate
+            "uk": "BOERUKM",                      # Bank of England Rate
+            "japan": "INTDSRJPM193N",             # Japan Discount Rate
         },
         "dbnomics_series": {
             "eurozone": "ecb_rate",
@@ -541,16 +575,16 @@ def route_comparison_query(query: str) -> Optional[dict]:
     """
     Route a comparison query to appropriate data sources.
 
+    Prefers FRED international series over DBnomics for reliability.
+    Returns a result with flat 'series' list (FRED IDs) for direct fetching.
+
     Returns:
         {
             "is_comparison": True,
-            "regions": [{"key": "us", ...}, {"key": "eurozone", ...}],
-            "indicator": {"key": "gdp", ...},
-            "series_to_fetch": {
-                "fred": ["GDPC1"],
-                "dbnomics": ["eurozone_gdp"]
-            },
-            "explanation": "Comparing US and Eurozone GDP growth."
+            "series": ["GDPC1", "CLVMNACSCAB1GQEA19"],
+            "show_yoy": True,
+            "combine_chart": True,
+            "explanation": "Comparing United States and Eurozone GDP.",
         }
     """
     if not is_comparison_query(query):
@@ -569,41 +603,56 @@ def route_comparison_query(query: str) -> Optional[dict]:
         # Default to GDP for general economy comparisons
         indicator = {"key": "gdp", **INDICATORS["gdp"]}
 
-    # Build series to fetch from each source
-    fred_series = []
-    dbnomics_series = []
+    # Build flat series list — prefer FRED international series over DBnomics
+    all_series = []
+    dbnomics_fallback = []  # Only used if no FRED intl series available
 
     for region in regions:
         if region["source"] == "fred":
-            fred_series.extend(indicator.get("fred_series", []))
+            # US data from FRED
+            all_series.extend(indicator.get("fred_series", []))
         else:
-            series_key = indicator.get("dbnomics_series", {}).get(region["key"])
-            if series_key:
-                dbnomics_series.append(series_key)
+            # International data — try FRED first (more reliable), fall back to DBnomics
+            fred_intl = indicator.get("fred_intl_series", {}).get(region["key"])
+            if fred_intl:
+                all_series.append(fred_intl)
+            else:
+                # Fall back to DBnomics plan key
+                dbnomics_key = indicator.get("dbnomics_series", {}).get(region["key"])
+                if dbnomics_key:
+                    dbnomics_fallback.append(dbnomics_key)
 
-    if not fred_series and not dbnomics_series:
+    if not all_series and not dbnomics_fallback:
         return None
 
     region_names = [r["name"] for r in regions]
     indicator_name = indicator["key"].upper()
 
-    return {
+    # Determine show_yoy based on comparison type
+    comparison_type = indicator.get("comparison_type", "")
+    show_yoy = comparison_type in ("yoy_real", "yoy_rate")
+
+    result = {
         "is_comparison": True,
-        "regions": regions,
-        "indicator": indicator,
-        "series_to_fetch": {
-            "fred": fred_series,
-            "dbnomics": dbnomics_series,
-        },
+        "series": all_series,
+        "show_yoy": show_yoy,
+        "combine_chart": True,
         "explanation": f"Comparing {' and '.join(region_names)} {indicator_name}.",
     }
+
+    # Include DBnomics fallback info if needed (for api/search.py to resolve)
+    if dbnomics_fallback:
+        result["dbnomics_series"] = dbnomics_fallback
+
+    return result
 
 
 def smart_route_query(query: str) -> dict:
     """
     Main entry point for smart query routing.
 
-    Returns routing instructions for the query.
+    Returns routing instructions with a flat 'series' list of FRED IDs.
+    The master router expects result.get('series') to be a list.
 
     Routing priority:
     1. Domestic comparisons (Black unemployment vs overall, inflation vs wages)
@@ -616,14 +665,10 @@ def smart_route_query(query: str) -> dict:
     # Examples: "Black unemployment vs overall", "inflation vs wages"
     domestic = route_domestic_comparison(query)
     if domestic:
-        # Return in a format compatible with the app's comparison handling
         return {
             "is_comparison": True,
             "is_domestic_comparison": True,
-            "series_to_fetch": {
-                "fred": domestic["series"],
-                "dbnomics": [],  # No international data needed
-            },
+            "series": domestic["series"],
             "explanation": domestic["explanation"],
             "combine_chart": domestic["combine_chart"],
             "units_compatible": domestic.get("units_compatible", True),
@@ -631,7 +676,7 @@ def smart_route_query(query: str) -> dict:
         }
 
     # 2. Check for INTERNATIONAL comparison queries
-    # These compare US to other countries (FRED + DBnomics)
+    # These compare US to other countries (FRED international series preferred)
     comparison = route_comparison_query(query)
     if comparison:
         return comparison
@@ -641,9 +686,26 @@ def smart_route_query(query: str) -> dict:
     intl_regions = [r for r in regions if r["source"] == "dbnomics"]
 
     if intl_regions and not any(r["key"] == "us" for r in regions):
-        # Pure international query
+        # Pure international query — try FRED international series first
         indicator = extract_indicator(query)
         if indicator:
+            fred_intl = indicator.get("fred_intl_series", {})
+            series = []
+            for region in intl_regions:
+                fred_id = fred_intl.get(region["key"])
+                if fred_id:
+                    series.append(fred_id)
+
+            if series:
+                show_yoy = indicator.get("comparison_type", "") in ("yoy_real", "yoy_rate")
+                return {
+                    "is_comparison": False,
+                    "series": series,
+                    "show_yoy": show_yoy,
+                    "explanation": f"{intl_regions[0]['name']} {indicator['key']}.",
+                }
+
+            # Fall back to DBnomics
             dbnomics_series = []
             for region in intl_regions:
                 series_key = indicator.get("dbnomics_series", {}).get(region["key"])

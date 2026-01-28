@@ -15,7 +15,8 @@ def compute_series_analytics(
     dates: List[str],
     values: List[float],
     series_id: str = '',
-    frequency: str = 'monthly'
+    frequency: str = 'monthly',
+    data_type: str = ''
 ) -> Dict:
     """
     Compute comprehensive analytics for a data series using pandas.
@@ -28,6 +29,7 @@ def compute_series_analytics(
         values: List of numeric values
         series_id: Optional series identifier
         frequency: 'monthly', 'quarterly', 'daily', 'weekly'
+        data_type: 'rate', 'index', 'level', 'growth_rate', 'spread'
 
     Returns:
         Dict with all computed analytics
@@ -71,6 +73,7 @@ def compute_series_analytics(
         'latest_date_formatted': _format_date(latest_date, frequency),
         'data_points': len(df),
         'frequency': frequency,
+        'data_type': data_type,
     }
 
     # Year-over-year change
@@ -189,40 +192,95 @@ def analytics_to_text(analytics: Dict) -> str:
     Convert computed analytics to plain text for LLM context.
 
     The LLM receives this text - no raw numbers to calculate.
+
+    CRITICAL: Output must be unambiguous. LLMs will misread numbers if
+    the text is unclear about units. For example, "YoY: +9.04 (+3.0%)"
+    causes the LLM to cite "9.04% inflation" when the actual rate is 3.0%.
+
+    Rules by data_type:
+    - index: Suppress raw point changes (meaningless). Only show YoY %.
+    - rate: Show point changes as "X.XX percentage points" (explicit units).
+    - growth_rate: Show the value directly (it IS the rate).
+    - level/other: Show both raw change and percentage.
     """
     if 'error' in analytics:
         return f"Data error: {analytics['error']}"
 
+    data_type = analytics.get('data_type', '')
     lines = []
 
-    # Latest value
-    lines.append(f"Latest: {analytics['latest_value']} as of {analytics['latest_date_formatted']}")
+    # Latest value — context-dependent
+    if data_type == 'index':
+        # For indexes, the raw value is meaningless to users.
+        # Lead with YoY % if available, mention index value only for reference.
+        if 'yoy' in analytics and analytics['yoy'].get('change_pct') is not None:
+            yoy_pct = analytics['yoy']['change_pct']
+            lines.append(
+                f"Latest YoY change: {yoy_pct:+.1f}% as of {analytics['latest_date_formatted']}"
+                f" (index level: {analytics['latest_value']:.1f})"
+            )
+        else:
+            lines.append(f"Latest: {analytics['latest_value']} as of {analytics['latest_date_formatted']}")
+    elif data_type == 'rate':
+        lines.append(f"Latest: {analytics['latest_value']:.1f}% as of {analytics['latest_date_formatted']}")
+    elif data_type == 'growth_rate':
+        lines.append(f"Latest: {analytics['latest_value']:.1f}% as of {analytics['latest_date_formatted']}")
+    else:
+        lines.append(f"Latest: {analytics['latest_value']} as of {analytics['latest_date_formatted']}")
 
-    # YoY
+    # YoY — format depends on data_type
     if 'yoy' in analytics:
         yoy = analytics['yoy']
-        if yoy.get('change_pct') is not None:
-            lines.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
+        if data_type == 'index':
+            # For indexes: ONLY show percentage change, NEVER raw point change.
+            # Raw point change (e.g., +9.04 index points) is meaningless and
+            # causes LLMs to hallucinate "9.04% inflation".
+            if yoy.get('change_pct') is not None:
+                lines.append(f"YoY: {yoy['change_pct']:+.1f}%")
+            # Don't append anything if no percentage available
+        elif data_type == 'rate':
+            # For rates: show change in percentage POINTS (explicit unit).
+            # "Up 0.5 percentage points" not "up 0.5" (which LLMs read as 0.5%).
+            lines.append(f"YoY change: {yoy['change']:+.2f} percentage points")
         else:
-            lines.append(f"YoY: {yoy['change']:+.2f}")
+            # For levels/other: show both
+            if yoy.get('change_pct') is not None:
+                lines.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
+            else:
+                lines.append(f"YoY: {yoy['change']:+.2f}")
 
     # Short-term trend
     if 'short_term' in analytics:
         st = analytics['short_term']
-        if st.get('change_pct') is not None:
-            lines.append(f"Recent trend: {st['direction']} ({st['change_pct']:+.1f}% over {st['periods']} periods)")
+        if data_type == 'index':
+            # For indexes: only show percentage, not raw point change
+            if st.get('change_pct') is not None:
+                lines.append(f"Recent trend: {st['direction']} ({st['change_pct']:+.1f}% over {st['periods']} periods)")
+            else:
+                lines.append(f"Recent trend: {st['direction']}")
+        elif data_type == 'rate':
+            lines.append(f"Recent trend: {st['direction']} ({st['change']:+.2f} percentage points over {st['periods']} periods)")
         else:
-            lines.append(f"Recent trend: {st['direction']}")
+            if st.get('change_pct') is not None:
+                lines.append(f"Recent trend: {st['direction']} ({st['change_pct']:+.1f}% over {st['periods']} periods)")
+            else:
+                lines.append(f"Recent trend: {st['direction']}")
 
     # Range
     if 'range_1y' in analytics:
         r = analytics['range_1y']
-        lines.append(f"1Y range: {r['low']:.2f} - {r['high']:.2f} (currently {r['pct_from_high']:+.1f}% from high)")
+        if data_type == 'rate':
+            lines.append(f"1Y range: {r['low']:.1f}% - {r['high']:.1f}%")
+        else:
+            lines.append(f"1Y range: {r['low']:.2f} - {r['high']:.2f} (currently {r['pct_from_high']:+.1f}% from high)")
 
     # 5Y stats
     if 'range_5y' in analytics:
         r5 = analytics['range_5y']
-        lines.append(f"5Y avg: {r5['mean']:.2f}, median: {r5['median']:.2f}")
+        if data_type == 'rate':
+            lines.append(f"5Y avg: {r5['mean']:.1f}%, median: {r5['median']:.1f}%")
+        else:
+            lines.append(f"5Y avg: {r5['mean']:.2f}, median: {r5['median']:.2f}")
 
     # Momentum
     if 'momentum' in analytics:
@@ -253,6 +311,7 @@ def compute_comparison_analytics(
         else:
             freq = 'monthly'
 
-        results[series_id] = compute_series_analytics(dates, values, series_id, freq)
+        data_type = info.get('data_type', '')
+        results[series_id] = compute_series_analytics(dates, values, series_id, freq, data_type)
 
     return results

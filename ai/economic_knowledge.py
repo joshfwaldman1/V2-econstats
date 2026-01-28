@@ -170,6 +170,28 @@ SERIES_BY_TOPIC = {
             {"id": "VIXCLS", "name": "VIX", "use_for": "Stock market volatility / fear gauge."},
         ],
     },
+
+    "international": {
+        "description": "International economic data (available on FRED)",
+        "primary": [
+            {"id": "CLVMNACSCAB1GQEA19", "name": "Euro Area Real GDP", "use_for": "Eurozone economic output. Show as YoY % for comparison with US."},
+            {"id": "CP0000EZ19M086NEST", "name": "Euro Area HICP (Inflation)", "use_for": "Eurozone consumer prices. Show as YoY % for comparison with US CPI."},
+            {"id": "LRHUTTTTEZA156S", "name": "Euro Area Unemployment Rate", "use_for": "Eurozone jobless rate."},
+            {"id": "CLVMNACSCAB1GQUK", "name": "UK Real GDP", "use_for": "UK economic output."},
+            {"id": "CPGRLE01GBM659N", "name": "UK CPI", "use_for": "UK consumer prices."},
+            {"id": "JPNRGDPEXP", "name": "Japan Real GDP", "use_for": "Japan economic output."},
+            {"id": "JPNCPIALLMINMEI", "name": "Japan CPI", "use_for": "Japan consumer prices."},
+        ],
+        "secondary": [
+            {"id": "CLVMNACSCAB1GQDE", "name": "Germany Real GDP", "use_for": "Germany economic output."},
+            {"id": "ECBMRRFR", "name": "ECB Main Refinancing Rate", "use_for": "European Central Bank policy rate."},
+            {"id": "LMUNRRTTGBM156S", "name": "UK Unemployment Rate", "use_for": "UK jobless rate."},
+            {"id": "LRUNTTTTJPM156S", "name": "Japan Unemployment Rate", "use_for": "Japan jobless rate."},
+            {"id": "LRUNTTTTCAM156S", "name": "Canada Unemployment Rate", "use_for": "Canada jobless rate."},
+            {"id": "CANCPIALLMINMEI", "name": "Canada CPI", "use_for": "Canada consumer prices."},
+            {"id": "NGDPRSAXDCCAQ", "name": "Canada Real GDP", "use_for": "Canada economic output."},
+        ]
+    },
 }
 
 # =============================================================================

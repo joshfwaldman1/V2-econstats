@@ -200,8 +200,16 @@ def build_rich_data_context(series_data: List[tuple]) -> str:
         else:
             frequency = 'monthly'
 
+        # Determine data_type from series info or registry
+        data_type = info.get('data_type', '')
+        if not data_type:
+            from registry import registry as _registry
+            _series_info = _registry.get_series(series_id)
+            if _series_info:
+                data_type = _series_info.data_type or ''
+
         # Compute all analytics with pandas (deterministic, no LLM math)
-        analytics = compute_series_analytics(dates, values, series_id, frequency)
+        analytics = compute_series_analytics(dates, values, series_id, frequency, data_type)
 
         if 'error' in analytics:
             continue
@@ -210,35 +218,17 @@ def build_rich_data_context(series_data: List[tuple]) -> str:
         name = info.get('name', info.get('title', series_id))
         unit = info.get('unit', info.get('units', ''))
 
-        context_parts = [
-            f"{name} ({series_id}): {analytics['latest_value']:.2f} {unit} as of {analytics['latest_date_formatted']}"
-        ]
+        # Use analytics_to_text for unambiguous formatting (handles index vs rate vs level)
+        analytics_summary = analytics_to_text(analytics)
+        context_parts = [f"{name} ({series_id}): {analytics_summary}"]
 
-        # YoY (pre-computed)
-        if 'yoy' in analytics:
-            yoy = analytics['yoy']
-            if yoy.get('change_pct') is not None:
-                context_parts.append(f"YoY: {yoy['change']:+.2f} ({yoy['change_pct']:+.1f}%)")
-            else:
-                context_parts.append(f"YoY: {yoy['change']:+.2f}")
-
-        # Short-term trend (pre-computed)
-        if 'short_term' in analytics:
-            st = analytics['short_term']
-            if st.get('change_pct') is not None:
-                context_parts.append(f"Recent: {st['direction'].capitalize()} ({st['change_pct']:+.1f}%)")
-            else:
-                context_parts.append(f"Recent: {st['direction'].capitalize()}")
-
-        # 1-year range (pre-computed)
-        if 'range_1y' in analytics:
-            r = analytics['range_1y']
-            context_parts.append(f"1Y range: {r['low']:.2f} - {r['high']:.2f} ({r['pct_from_high']:+.1f}% from high)")
-
-        # 5-year stats (pre-computed)
+        # 5-year stats (pre-computed) — not in analytics_to_text std deviation
         if 'range_5y' in analytics:
             r5 = analytics['range_5y']
-            context_parts.append(f"5Y avg: {r5['mean']:.2f}, std: {r5['std']:.2f}")
+            if data_type == 'rate':
+                context_parts.append(f"5Y avg: {r5['mean']:.1f}%, std: {r5['std']:.1f}")
+            else:
+                context_parts.append(f"5Y avg: {r5['mean']:.2f}, std: {r5['std']:.2f}")
 
         # Momentum (pre-computed)
         if 'momentum' in analytics:

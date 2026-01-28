@@ -66,8 +66,15 @@ def generate_dynamic_bullets(
     else:
         frequency = 'monthly'
 
+    # Determine data_type from series info or registry
+    data_type = info.get('data_type', '')
+    if not data_type:
+        series_info = registry.get_series(series_id)
+        if series_info:
+            data_type = series_info.data_type or ''
+
     # Compute all analytics with pandas (deterministic, no LLM math)
-    analytics = compute_series_analytics(dates, values, series_id, frequency)
+    analytics = compute_series_analytics(dates, values, series_id, frequency, data_type)
 
     if 'error' in analytics:
         return get_static_bullets(series_id)
