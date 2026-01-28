@@ -323,6 +323,17 @@ def is_health_check_query(query: str) -> bool:
     """
     query_lower = query.lower().strip()
 
+    # Exclude comparison queries — these should go to the comparison router,
+    # not the health check handler. Without this guard, "How is US growth
+    # compared to Europe?" matches the broad "^how (is|are) .+\??$" pattern
+    # and returns US-only health check data instead of a US vs Europe comparison.
+    comparison_keywords = [
+        "compared to", "vs", "versus", "compare", "comparison",
+        "relative to", "against", "between",
+    ]
+    if any(kw in query_lower for kw in comparison_keywords):
+        return False
+
     health_check_patterns = [
         r"^how (is|are) .+ doing\??$",
         r"^how('s| is) .+ (looking|performing|faring)\??$",
