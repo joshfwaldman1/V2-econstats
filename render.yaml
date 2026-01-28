@@ -7,3 +7,19 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
+      # Required API keys - set these in Render dashboard
+      - key: FRED_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: ALPHAVANTAGE_API_KEY
+        sync: false
+      - key: EIA_API_KEY
+        sync: false
+      # Feature flags
+      - key: ENABLE_DYNAMIC_BULLETS
+        value: "true"
+      - key: ENABLE_GEMINI_AUDIT
+        value: "true"
