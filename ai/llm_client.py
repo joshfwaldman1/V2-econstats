@@ -81,7 +81,7 @@ def get_ai_summary(
             if exchange.get('summary'):
                 conv_context += f"Assistant: {exchange['summary'][:200]}...\n"
 
-    prompt = f"""You are an expert economist providing clear, insightful analysis of economic data.
+    prompt = f"""You are an expert economist providing clear, insightful analysis of economic data for a general audience.
 
 USER QUESTION: "{query}"
 {conv_context}
@@ -94,18 +94,25 @@ CURRENT DATA:
 1. "summary": A 3-4 sentence expert summary that:
    - Directly answers the user's question with specific numbers
    - Explains what trends MEAN for workers, consumers, or the economy
-   - Puts current values in context (vs historical average, pre-pandemic, etc.)
-   - Uses plain language accessible to non-economists
+   - Puts current values in context (vs historical average, pre-pandemic, vs national average for state data)
+   - Uses plain language accessible to non-economists - NO jargon like "U-6" or "basis points"
+   - For STATE data: always compare to the national rate (e.g., "Minnesota's 3.2% is below the national 4.1%")
 
 2. "suggestions": Array of 3 follow-up questions the user might want to ask
 
 3. "chart_descriptions": Object mapping series_id to a 1-sentence description for EACH chart
 
-## CHART DESCRIPTION RULES (CRITICAL):
-- NEVER reference ancient base periods (e.g., "CPI is 312" means nothing - say "up 3.2% from a year ago")
-- For JOBS/PAYROLL data: NEVER use YoY percentage change. Say "added 175K jobs" not "up 1.2%"
+## CRITICAL DISPLAY RULES:
+- NEVER reference raw index values (e.g., "CPI is 326" means nothing - say "up 3.0% from a year ago")
+- NEVER emphasize obscure indicators. Use what normal people understand:
+  - "unemployment" = standard unemployment rate. NOT U-6 or U-4 unless asked
+  - "inflation" = year-over-year price change. NOT raw CPI level
+  - "jobs" = payrolls number. Say "added 175K jobs" NOT "up 1.2%"
+- For RATES (unemployment %, interest rates): use percentage POINT changes
+  - GOOD: "up 0.7 percentage points from a year ago"
+  - BAD: "rising 9.1% year-over-year" (this is the % change OF the rate - confusing!)
+- For STATE data: always mention whether the state is above or below the national average
 - Put values in context of 1-5 years, NOT decades
-- For rates, describe the trajectory with percentage POINT changes (e.g., "down 0.3 pp from peak")
 - Good: "Gas prices are down 8% from a year ago, offering relief to consumers"
 - Bad: "The gasoline index is 238.5"
 
