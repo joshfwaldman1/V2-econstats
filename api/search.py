@@ -14,7 +14,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from routing import router as query_router
 from sources import source_manager
-from processing import format_chart_data, format_combined_chart, extract_temporal_filter, get_smart_date_range
+from processing import format_chart_data, format_combined_chart, extract_temporal_filter, get_smart_date_range, auto_group_series
 from processing.temporal import filter_data_by_dates
 from ai import generate_summary, get_bullets, review_summary, get_summary_text, get_suggestions as get_ai_suggestions, get_chart_descriptions
 from config import config
@@ -161,38 +161,32 @@ async def api_search(body: SearchRequest):
             error="Unable to fetch data for the requested series. Please try again."
         )
 
-    # 4. Format chart data
+    # 4. Format chart data using auto-grouping
     charts = []
-    use_separate_charts = True  # Default to separate charts
+    groups = auto_group_series(series_data, routing_result)
 
-    # Check if we should combine series into one chart
-    if routing_result.combine_chart and len(series_data) > 1:
-        # Try to create a single combined chart with multiple traces
-        # Returns empty {} if series have incompatible frequencies/units (chart crime prevention)
-        combined = format_combined_chart(
-            series_data,
-            show_yoy=routing_result.show_yoy,
-            user_query=query
-        )
-        if combined:
-            charts.append(combined)
-            use_separate_charts = False
-
-    # Fall back to separate charts if combination was refused or not requested
-    if use_separate_charts:
-        for series_id, dates, values, info in series_data:
-            chart = format_chart_data(
-                series_id, dates, values, info,
-                show_yoy=routing_result.show_yoy,
-                user_query=query
+    for group in groups:
+        if len(group.series_data) > 1:
+            # Multi-series group → combined chart with multiple traces
+            combined = format_combined_chart(
+                group.series_data,
+                show_yoy=group.show_yoy,
+                user_query=query,
+                chart_title=group.title,
             )
-
-            # Get bullets (AI or static)
-            chart['bullets'] = get_bullets(
-                series_id, dates, values, info,
-                user_query=query
-            )
-
+            if combined:
+                charts.append(combined)
+            else:
+                # Combination refused by chart crime prevention → separate charts
+                for sid, d, v, inf in group.series_data:
+                    chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
+                    chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
+                    charts.append(chart)
+        else:
+            # Single series → individual chart
+            sid, d, v, inf = group.series_data[0]
+            chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
+            chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
             charts.append(chart)
 
     # 5. Generate AI summary (returns dict with summary, suggestions, chart_descriptions)
@@ -391,38 +385,32 @@ async def search_html(
             "message": "Unable to fetch data for the requested series. Please try again."
         })
 
-    # 4. Format chart data
+    # 4. Format chart data using auto-grouping
     charts = []
-    use_separate_charts = True  # Default to separate charts
+    groups = auto_group_series(series_data, routing_result)
 
-    # Check if we should combine series into one chart
-    if routing_result.combine_chart and len(series_data) > 1:
-        # Try to create a single combined chart with multiple traces
-        # Returns empty {} if series have incompatible frequencies/units (chart crime prevention)
-        combined = format_combined_chart(
-            series_data,
-            show_yoy=routing_result.show_yoy,
-            user_query=query
-        )
-        if combined:
-            charts.append(combined)
-            use_separate_charts = False
-
-    # Fall back to separate charts if combination was refused or not requested
-    if use_separate_charts:
-        for series_id, dates, values, info in series_data:
-            chart = format_chart_data(
-                series_id, dates, values, info,
-                show_yoy=routing_result.show_yoy,
-                user_query=query
+    for group in groups:
+        if len(group.series_data) > 1:
+            # Multi-series group → combined chart with multiple traces
+            combined = format_combined_chart(
+                group.series_data,
+                show_yoy=group.show_yoy,
+                user_query=query,
+                chart_title=group.title,
             )
-
-            # Get bullets (AI or static)
-            chart['bullets'] = get_bullets(
-                series_id, dates, values, info,
-                user_query=query
-            )
-
+            if combined:
+                charts.append(combined)
+            else:
+                # Combination refused by chart crime prevention → separate charts
+                for sid, d, v, inf in group.series_data:
+                    chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
+                    chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
+                    charts.append(chart)
+        else:
+            # Single series → individual chart
+            sid, d, v, inf = group.series_data[0]
+            chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
+            chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
             charts.append(chart)
 
     # 5. Generate AI summary (with conversation history for context)
