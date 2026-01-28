@@ -283,6 +283,16 @@ Think: What charts would a smart analyst show to EXPLAIN THE ANSWER to this pers
 - "Are rents increasing?" → Show rent data, NOT interest rates
 - "Is the job market strong?" → Show employment, unemployment, job openings
 - "Should I worry about inflation?" → Show CPI, PCE, maybe wages
+- "Minnesota unemployment" → Show MNUR (state rate) + UNRATE (national), NOT U-6
+
+CRITICAL RULES:
+- "unemployment" means the STANDARD unemployment rate (U-3). NEVER use U-6 unless explicitly asked.
+- For STATE queries, use state-specific FRED series:
+  - {{STATE_CODE}}UR = state unemployment rate (e.g., MNUR, TXUR, CAUR, NYUR)
+  - {{STATE_CODE}}NA = state nonfarm payrolls (e.g., MNNA, TXNA, CANA)
+  - ALWAYS pair state data with national equivalent for context
+  - State codes: AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY,DC
+- For RATES (unemployment %, interest rates): show percentage POINT changes, NOT percentage changes
 
 AVAILABLE DATA:
 {series_catalog}

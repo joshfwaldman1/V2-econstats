@@ -1,0 +1,5150 @@
+{
+  "alabama unemployment": {
+    "series": [
+      "ALUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Alabama unemployment rate (ALUR) compared to the national rate (UNRATE). Showing both lets you see whether Alabama is doing better or worse than the country overall."
+  },
+  "alabama jobs": {
+    "series": [
+      "ALNA",
+      "ALUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alabama nonfarm payrolls (ALNA) and unemployment rate (ALUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "alabama economy": {
+    "series": [
+      "ALUR",
+      "ALNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alabama economic overview: state unemployment (ALUR) and payrolls (ALNA) versus national benchmarks."
+  },
+  "alabama employment": {
+    "series": [
+      "ALNA",
+      "ALUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alabama employment: nonfarm payrolls (ALNA) and unemployment rate (ALUR)."
+  },
+  "how is alabama doing": {
+    "series": [
+      "ALUR",
+      "ALNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alabama economic health: unemployment (ALUR) and payrolls (ALNA) vs national rate."
+  },
+  "unemployment in alabama": {
+    "series": [
+      "ALUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Alabama (ALUR) compared to national average (UNRATE)."
+  },
+  "jobs in alabama": {
+    "series": [
+      "ALNA",
+      "ALUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Alabama: payrolls (ALNA) and unemployment (ALUR)."
+  },
+  "alabama labor market": {
+    "series": [
+      "ALUR",
+      "ALNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alabama labor market: unemployment rate and payrolls vs national."
+  },
+  "alaska unemployment": {
+    "series": [
+      "AKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Alaska unemployment rate (AKUR) compared to the national rate (UNRATE). Showing both lets you see whether Alaska is doing better or worse than the country overall."
+  },
+  "alaska jobs": {
+    "series": [
+      "AKNA",
+      "AKUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alaska nonfarm payrolls (AKNA) and unemployment rate (AKUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "alaska economy": {
+    "series": [
+      "AKUR",
+      "AKNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alaska economic overview: state unemployment (AKUR) and payrolls (AKNA) versus national benchmarks."
+  },
+  "alaska employment": {
+    "series": [
+      "AKNA",
+      "AKUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alaska employment: nonfarm payrolls (AKNA) and unemployment rate (AKUR)."
+  },
+  "how is alaska doing": {
+    "series": [
+      "AKUR",
+      "AKNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alaska economic health: unemployment (AKUR) and payrolls (AKNA) vs national rate."
+  },
+  "unemployment in alaska": {
+    "series": [
+      "AKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Alaska (AKUR) compared to national average (UNRATE)."
+  },
+  "jobs in alaska": {
+    "series": [
+      "AKNA",
+      "AKUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Alaska: payrolls (AKNA) and unemployment (AKUR)."
+  },
+  "alaska labor market": {
+    "series": [
+      "AKUR",
+      "AKNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Alaska labor market: unemployment rate and payrolls vs national."
+  },
+  "arizona unemployment": {
+    "series": [
+      "AZUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Arizona unemployment rate (AZUR) compared to the national rate (UNRATE). Showing both lets you see whether Arizona is doing better or worse than the country overall."
+  },
+  "arizona jobs": {
+    "series": [
+      "AZNA",
+      "AZUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arizona nonfarm payrolls (AZNA) and unemployment rate (AZUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "arizona economy": {
+    "series": [
+      "AZUR",
+      "AZNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arizona economic overview: state unemployment (AZUR) and payrolls (AZNA) versus national benchmarks."
+  },
+  "arizona employment": {
+    "series": [
+      "AZNA",
+      "AZUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arizona employment: nonfarm payrolls (AZNA) and unemployment rate (AZUR)."
+  },
+  "how is arizona doing": {
+    "series": [
+      "AZUR",
+      "AZNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arizona economic health: unemployment (AZUR) and payrolls (AZNA) vs national rate."
+  },
+  "unemployment in arizona": {
+    "series": [
+      "AZUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Arizona (AZUR) compared to national average (UNRATE)."
+  },
+  "jobs in arizona": {
+    "series": [
+      "AZNA",
+      "AZUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Arizona: payrolls (AZNA) and unemployment (AZUR)."
+  },
+  "arizona labor market": {
+    "series": [
+      "AZUR",
+      "AZNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arizona labor market: unemployment rate and payrolls vs national."
+  },
+  "arkansas unemployment": {
+    "series": [
+      "ARUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Arkansas unemployment rate (ARUR) compared to the national rate (UNRATE). Showing both lets you see whether Arkansas is doing better or worse than the country overall."
+  },
+  "arkansas jobs": {
+    "series": [
+      "ARNA",
+      "ARUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arkansas nonfarm payrolls (ARNA) and unemployment rate (ARUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "arkansas economy": {
+    "series": [
+      "ARUR",
+      "ARNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arkansas economic overview: state unemployment (ARUR) and payrolls (ARNA) versus national benchmarks."
+  },
+  "arkansas employment": {
+    "series": [
+      "ARNA",
+      "ARUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arkansas employment: nonfarm payrolls (ARNA) and unemployment rate (ARUR)."
+  },
+  "how is arkansas doing": {
+    "series": [
+      "ARUR",
+      "ARNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arkansas economic health: unemployment (ARUR) and payrolls (ARNA) vs national rate."
+  },
+  "unemployment in arkansas": {
+    "series": [
+      "ARUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Arkansas (ARUR) compared to national average (UNRATE)."
+  },
+  "jobs in arkansas": {
+    "series": [
+      "ARNA",
+      "ARUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Arkansas: payrolls (ARNA) and unemployment (ARUR)."
+  },
+  "arkansas labor market": {
+    "series": [
+      "ARUR",
+      "ARNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Arkansas labor market: unemployment rate and payrolls vs national."
+  },
+  "california unemployment": {
+    "series": [
+      "CAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "California unemployment rate (CAUR) compared to the national rate (UNRATE). Showing both lets you see whether California is doing better or worse than the country overall."
+  },
+  "california jobs": {
+    "series": [
+      "CANA",
+      "CAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "California nonfarm payrolls (CANA) and unemployment rate (CAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "california economy": {
+    "series": [
+      "CAUR",
+      "CANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "California economic overview: state unemployment (CAUR) and payrolls (CANA) versus national benchmarks."
+  },
+  "california employment": {
+    "series": [
+      "CANA",
+      "CAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "California employment: nonfarm payrolls (CANA) and unemployment rate (CAUR)."
+  },
+  "how is california doing": {
+    "series": [
+      "CAUR",
+      "CANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "California economic health: unemployment (CAUR) and payrolls (CANA) vs national rate."
+  },
+  "unemployment in california": {
+    "series": [
+      "CAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in California (CAUR) compared to national average (UNRATE)."
+  },
+  "jobs in california": {
+    "series": [
+      "CANA",
+      "CAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in California: payrolls (CANA) and unemployment (CAUR)."
+  },
+  "california labor market": {
+    "series": [
+      "CAUR",
+      "CANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "California labor market: unemployment rate and payrolls vs national."
+  },
+  "colorado unemployment": {
+    "series": [
+      "COUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Colorado unemployment rate (COUR) compared to the national rate (UNRATE). Showing both lets you see whether Colorado is doing better or worse than the country overall."
+  },
+  "colorado jobs": {
+    "series": [
+      "CONA",
+      "COUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Colorado nonfarm payrolls (CONA) and unemployment rate (COUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "colorado economy": {
+    "series": [
+      "COUR",
+      "CONA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Colorado economic overview: state unemployment (COUR) and payrolls (CONA) versus national benchmarks."
+  },
+  "colorado employment": {
+    "series": [
+      "CONA",
+      "COUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Colorado employment: nonfarm payrolls (CONA) and unemployment rate (COUR)."
+  },
+  "how is colorado doing": {
+    "series": [
+      "COUR",
+      "CONA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Colorado economic health: unemployment (COUR) and payrolls (CONA) vs national rate."
+  },
+  "unemployment in colorado": {
+    "series": [
+      "COUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Colorado (COUR) compared to national average (UNRATE)."
+  },
+  "jobs in colorado": {
+    "series": [
+      "CONA",
+      "COUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Colorado: payrolls (CONA) and unemployment (COUR)."
+  },
+  "colorado labor market": {
+    "series": [
+      "COUR",
+      "CONA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Colorado labor market: unemployment rate and payrolls vs national."
+  },
+  "connecticut unemployment": {
+    "series": [
+      "CTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Connecticut unemployment rate (CTUR) compared to the national rate (UNRATE). Showing both lets you see whether Connecticut is doing better or worse than the country overall."
+  },
+  "connecticut jobs": {
+    "series": [
+      "CTNA",
+      "CTUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Connecticut nonfarm payrolls (CTNA) and unemployment rate (CTUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "connecticut economy": {
+    "series": [
+      "CTUR",
+      "CTNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Connecticut economic overview: state unemployment (CTUR) and payrolls (CTNA) versus national benchmarks."
+  },
+  "connecticut employment": {
+    "series": [
+      "CTNA",
+      "CTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Connecticut employment: nonfarm payrolls (CTNA) and unemployment rate (CTUR)."
+  },
+  "how is connecticut doing": {
+    "series": [
+      "CTUR",
+      "CTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Connecticut economic health: unemployment (CTUR) and payrolls (CTNA) vs national rate."
+  },
+  "unemployment in connecticut": {
+    "series": [
+      "CTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Connecticut (CTUR) compared to national average (UNRATE)."
+  },
+  "jobs in connecticut": {
+    "series": [
+      "CTNA",
+      "CTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Connecticut: payrolls (CTNA) and unemployment (CTUR)."
+  },
+  "connecticut labor market": {
+    "series": [
+      "CTUR",
+      "CTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Connecticut labor market: unemployment rate and payrolls vs national."
+  },
+  "delaware unemployment": {
+    "series": [
+      "DEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Delaware unemployment rate (DEUR) compared to the national rate (UNRATE). Showing both lets you see whether Delaware is doing better or worse than the country overall."
+  },
+  "delaware jobs": {
+    "series": [
+      "DENA",
+      "DEUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Delaware nonfarm payrolls (DENA) and unemployment rate (DEUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "delaware economy": {
+    "series": [
+      "DEUR",
+      "DENA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Delaware economic overview: state unemployment (DEUR) and payrolls (DENA) versus national benchmarks."
+  },
+  "delaware employment": {
+    "series": [
+      "DENA",
+      "DEUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Delaware employment: nonfarm payrolls (DENA) and unemployment rate (DEUR)."
+  },
+  "how is delaware doing": {
+    "series": [
+      "DEUR",
+      "DENA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Delaware economic health: unemployment (DEUR) and payrolls (DENA) vs national rate."
+  },
+  "unemployment in delaware": {
+    "series": [
+      "DEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Delaware (DEUR) compared to national average (UNRATE)."
+  },
+  "jobs in delaware": {
+    "series": [
+      "DENA",
+      "DEUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Delaware: payrolls (DENA) and unemployment (DEUR)."
+  },
+  "delaware labor market": {
+    "series": [
+      "DEUR",
+      "DENA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Delaware labor market: unemployment rate and payrolls vs national."
+  },
+  "florida unemployment": {
+    "series": [
+      "FLUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Florida unemployment rate (FLUR) compared to the national rate (UNRATE). Showing both lets you see whether Florida is doing better or worse than the country overall."
+  },
+  "florida jobs": {
+    "series": [
+      "FLNA",
+      "FLUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Florida nonfarm payrolls (FLNA) and unemployment rate (FLUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "florida economy": {
+    "series": [
+      "FLUR",
+      "FLNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Florida economic overview: state unemployment (FLUR) and payrolls (FLNA) versus national benchmarks."
+  },
+  "florida employment": {
+    "series": [
+      "FLNA",
+      "FLUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Florida employment: nonfarm payrolls (FLNA) and unemployment rate (FLUR)."
+  },
+  "how is florida doing": {
+    "series": [
+      "FLUR",
+      "FLNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Florida economic health: unemployment (FLUR) and payrolls (FLNA) vs national rate."
+  },
+  "unemployment in florida": {
+    "series": [
+      "FLUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Florida (FLUR) compared to national average (UNRATE)."
+  },
+  "jobs in florida": {
+    "series": [
+      "FLNA",
+      "FLUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Florida: payrolls (FLNA) and unemployment (FLUR)."
+  },
+  "florida labor market": {
+    "series": [
+      "FLUR",
+      "FLNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Florida labor market: unemployment rate and payrolls vs national."
+  },
+  "georgia unemployment": {
+    "series": [
+      "GAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Georgia unemployment rate (GAUR) compared to the national rate (UNRATE). Showing both lets you see whether Georgia is doing better or worse than the country overall."
+  },
+  "georgia jobs": {
+    "series": [
+      "GANA",
+      "GAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Georgia nonfarm payrolls (GANA) and unemployment rate (GAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "georgia economy": {
+    "series": [
+      "GAUR",
+      "GANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Georgia economic overview: state unemployment (GAUR) and payrolls (GANA) versus national benchmarks."
+  },
+  "georgia employment": {
+    "series": [
+      "GANA",
+      "GAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Georgia employment: nonfarm payrolls (GANA) and unemployment rate (GAUR)."
+  },
+  "how is georgia doing": {
+    "series": [
+      "GAUR",
+      "GANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Georgia economic health: unemployment (GAUR) and payrolls (GANA) vs national rate."
+  },
+  "unemployment in georgia": {
+    "series": [
+      "GAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Georgia (GAUR) compared to national average (UNRATE)."
+  },
+  "jobs in georgia": {
+    "series": [
+      "GANA",
+      "GAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Georgia: payrolls (GANA) and unemployment (GAUR)."
+  },
+  "georgia labor market": {
+    "series": [
+      "GAUR",
+      "GANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Georgia labor market: unemployment rate and payrolls vs national."
+  },
+  "hawaii unemployment": {
+    "series": [
+      "HIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Hawaii unemployment rate (HIUR) compared to the national rate (UNRATE). Showing both lets you see whether Hawaii is doing better or worse than the country overall."
+  },
+  "hawaii jobs": {
+    "series": [
+      "HINA",
+      "HIUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Hawaii nonfarm payrolls (HINA) and unemployment rate (HIUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "hawaii economy": {
+    "series": [
+      "HIUR",
+      "HINA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Hawaii economic overview: state unemployment (HIUR) and payrolls (HINA) versus national benchmarks."
+  },
+  "hawaii employment": {
+    "series": [
+      "HINA",
+      "HIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Hawaii employment: nonfarm payrolls (HINA) and unemployment rate (HIUR)."
+  },
+  "how is hawaii doing": {
+    "series": [
+      "HIUR",
+      "HINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Hawaii economic health: unemployment (HIUR) and payrolls (HINA) vs national rate."
+  },
+  "unemployment in hawaii": {
+    "series": [
+      "HIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Hawaii (HIUR) compared to national average (UNRATE)."
+  },
+  "jobs in hawaii": {
+    "series": [
+      "HINA",
+      "HIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Hawaii: payrolls (HINA) and unemployment (HIUR)."
+  },
+  "hawaii labor market": {
+    "series": [
+      "HIUR",
+      "HINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Hawaii labor market: unemployment rate and payrolls vs national."
+  },
+  "idaho unemployment": {
+    "series": [
+      "IDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Idaho unemployment rate (IDUR) compared to the national rate (UNRATE). Showing both lets you see whether Idaho is doing better or worse than the country overall."
+  },
+  "idaho jobs": {
+    "series": [
+      "IDNA",
+      "IDUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Idaho nonfarm payrolls (IDNA) and unemployment rate (IDUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "idaho economy": {
+    "series": [
+      "IDUR",
+      "IDNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Idaho economic overview: state unemployment (IDUR) and payrolls (IDNA) versus national benchmarks."
+  },
+  "idaho employment": {
+    "series": [
+      "IDNA",
+      "IDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Idaho employment: nonfarm payrolls (IDNA) and unemployment rate (IDUR)."
+  },
+  "how is idaho doing": {
+    "series": [
+      "IDUR",
+      "IDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Idaho economic health: unemployment (IDUR) and payrolls (IDNA) vs national rate."
+  },
+  "unemployment in idaho": {
+    "series": [
+      "IDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Idaho (IDUR) compared to national average (UNRATE)."
+  },
+  "jobs in idaho": {
+    "series": [
+      "IDNA",
+      "IDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Idaho: payrolls (IDNA) and unemployment (IDUR)."
+  },
+  "idaho labor market": {
+    "series": [
+      "IDUR",
+      "IDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Idaho labor market: unemployment rate and payrolls vs national."
+  },
+  "illinois unemployment": {
+    "series": [
+      "ILUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Illinois unemployment rate (ILUR) compared to the national rate (UNRATE). Showing both lets you see whether Illinois is doing better or worse than the country overall."
+  },
+  "illinois jobs": {
+    "series": [
+      "ILNA",
+      "ILUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Illinois nonfarm payrolls (ILNA) and unemployment rate (ILUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "illinois economy": {
+    "series": [
+      "ILUR",
+      "ILNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Illinois economic overview: state unemployment (ILUR) and payrolls (ILNA) versus national benchmarks."
+  },
+  "illinois employment": {
+    "series": [
+      "ILNA",
+      "ILUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Illinois employment: nonfarm payrolls (ILNA) and unemployment rate (ILUR)."
+  },
+  "how is illinois doing": {
+    "series": [
+      "ILUR",
+      "ILNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Illinois economic health: unemployment (ILUR) and payrolls (ILNA) vs national rate."
+  },
+  "unemployment in illinois": {
+    "series": [
+      "ILUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Illinois (ILUR) compared to national average (UNRATE)."
+  },
+  "jobs in illinois": {
+    "series": [
+      "ILNA",
+      "ILUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Illinois: payrolls (ILNA) and unemployment (ILUR)."
+  },
+  "illinois labor market": {
+    "series": [
+      "ILUR",
+      "ILNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Illinois labor market: unemployment rate and payrolls vs national."
+  },
+  "indiana unemployment": {
+    "series": [
+      "INUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Indiana unemployment rate (INUR) compared to the national rate (UNRATE). Showing both lets you see whether Indiana is doing better or worse than the country overall."
+  },
+  "indiana jobs": {
+    "series": [
+      "INNA",
+      "INUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Indiana nonfarm payrolls (INNA) and unemployment rate (INUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "indiana economy": {
+    "series": [
+      "INUR",
+      "INNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Indiana economic overview: state unemployment (INUR) and payrolls (INNA) versus national benchmarks."
+  },
+  "indiana employment": {
+    "series": [
+      "INNA",
+      "INUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Indiana employment: nonfarm payrolls (INNA) and unemployment rate (INUR)."
+  },
+  "how is indiana doing": {
+    "series": [
+      "INUR",
+      "INNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Indiana economic health: unemployment (INUR) and payrolls (INNA) vs national rate."
+  },
+  "unemployment in indiana": {
+    "series": [
+      "INUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Indiana (INUR) compared to national average (UNRATE)."
+  },
+  "jobs in indiana": {
+    "series": [
+      "INNA",
+      "INUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Indiana: payrolls (INNA) and unemployment (INUR)."
+  },
+  "indiana labor market": {
+    "series": [
+      "INUR",
+      "INNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Indiana labor market: unemployment rate and payrolls vs national."
+  },
+  "iowa unemployment": {
+    "series": [
+      "IAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Iowa unemployment rate (IAUR) compared to the national rate (UNRATE). Showing both lets you see whether Iowa is doing better or worse than the country overall."
+  },
+  "iowa jobs": {
+    "series": [
+      "IANA",
+      "IAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Iowa nonfarm payrolls (IANA) and unemployment rate (IAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "iowa economy": {
+    "series": [
+      "IAUR",
+      "IANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Iowa economic overview: state unemployment (IAUR) and payrolls (IANA) versus national benchmarks."
+  },
+  "iowa employment": {
+    "series": [
+      "IANA",
+      "IAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Iowa employment: nonfarm payrolls (IANA) and unemployment rate (IAUR)."
+  },
+  "how is iowa doing": {
+    "series": [
+      "IAUR",
+      "IANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Iowa economic health: unemployment (IAUR) and payrolls (IANA) vs national rate."
+  },
+  "unemployment in iowa": {
+    "series": [
+      "IAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Iowa (IAUR) compared to national average (UNRATE)."
+  },
+  "jobs in iowa": {
+    "series": [
+      "IANA",
+      "IAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Iowa: payrolls (IANA) and unemployment (IAUR)."
+  },
+  "iowa labor market": {
+    "series": [
+      "IAUR",
+      "IANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Iowa labor market: unemployment rate and payrolls vs national."
+  },
+  "kansas unemployment": {
+    "series": [
+      "KSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Kansas unemployment rate (KSUR) compared to the national rate (UNRATE). Showing both lets you see whether Kansas is doing better or worse than the country overall."
+  },
+  "kansas jobs": {
+    "series": [
+      "KSNA",
+      "KSUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kansas nonfarm payrolls (KSNA) and unemployment rate (KSUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "kansas economy": {
+    "series": [
+      "KSUR",
+      "KSNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kansas economic overview: state unemployment (KSUR) and payrolls (KSNA) versus national benchmarks."
+  },
+  "kansas employment": {
+    "series": [
+      "KSNA",
+      "KSUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kansas employment: nonfarm payrolls (KSNA) and unemployment rate (KSUR)."
+  },
+  "how is kansas doing": {
+    "series": [
+      "KSUR",
+      "KSNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kansas economic health: unemployment (KSUR) and payrolls (KSNA) vs national rate."
+  },
+  "unemployment in kansas": {
+    "series": [
+      "KSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Kansas (KSUR) compared to national average (UNRATE)."
+  },
+  "jobs in kansas": {
+    "series": [
+      "KSNA",
+      "KSUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Kansas: payrolls (KSNA) and unemployment (KSUR)."
+  },
+  "kansas labor market": {
+    "series": [
+      "KSUR",
+      "KSNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kansas labor market: unemployment rate and payrolls vs national."
+  },
+  "kentucky unemployment": {
+    "series": [
+      "KYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Kentucky unemployment rate (KYUR) compared to the national rate (UNRATE). Showing both lets you see whether Kentucky is doing better or worse than the country overall."
+  },
+  "kentucky jobs": {
+    "series": [
+      "KYNA",
+      "KYUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kentucky nonfarm payrolls (KYNA) and unemployment rate (KYUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "kentucky economy": {
+    "series": [
+      "KYUR",
+      "KYNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kentucky economic overview: state unemployment (KYUR) and payrolls (KYNA) versus national benchmarks."
+  },
+  "kentucky employment": {
+    "series": [
+      "KYNA",
+      "KYUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kentucky employment: nonfarm payrolls (KYNA) and unemployment rate (KYUR)."
+  },
+  "how is kentucky doing": {
+    "series": [
+      "KYUR",
+      "KYNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kentucky economic health: unemployment (KYUR) and payrolls (KYNA) vs national rate."
+  },
+  "unemployment in kentucky": {
+    "series": [
+      "KYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Kentucky (KYUR) compared to national average (UNRATE)."
+  },
+  "jobs in kentucky": {
+    "series": [
+      "KYNA",
+      "KYUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Kentucky: payrolls (KYNA) and unemployment (KYUR)."
+  },
+  "kentucky labor market": {
+    "series": [
+      "KYUR",
+      "KYNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Kentucky labor market: unemployment rate and payrolls vs national."
+  },
+  "louisiana unemployment": {
+    "series": [
+      "LAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Louisiana unemployment rate (LAUR) compared to the national rate (UNRATE). Showing both lets you see whether Louisiana is doing better or worse than the country overall."
+  },
+  "louisiana jobs": {
+    "series": [
+      "LANA",
+      "LAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Louisiana nonfarm payrolls (LANA) and unemployment rate (LAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "louisiana economy": {
+    "series": [
+      "LAUR",
+      "LANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Louisiana economic overview: state unemployment (LAUR) and payrolls (LANA) versus national benchmarks."
+  },
+  "louisiana employment": {
+    "series": [
+      "LANA",
+      "LAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Louisiana employment: nonfarm payrolls (LANA) and unemployment rate (LAUR)."
+  },
+  "how is louisiana doing": {
+    "series": [
+      "LAUR",
+      "LANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Louisiana economic health: unemployment (LAUR) and payrolls (LANA) vs national rate."
+  },
+  "unemployment in louisiana": {
+    "series": [
+      "LAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Louisiana (LAUR) compared to national average (UNRATE)."
+  },
+  "jobs in louisiana": {
+    "series": [
+      "LANA",
+      "LAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Louisiana: payrolls (LANA) and unemployment (LAUR)."
+  },
+  "louisiana labor market": {
+    "series": [
+      "LAUR",
+      "LANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Louisiana labor market: unemployment rate and payrolls vs national."
+  },
+  "maine unemployment": {
+    "series": [
+      "MEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Maine unemployment rate (MEUR) compared to the national rate (UNRATE). Showing both lets you see whether Maine is doing better or worse than the country overall."
+  },
+  "maine jobs": {
+    "series": [
+      "MENA",
+      "MEUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maine nonfarm payrolls (MENA) and unemployment rate (MEUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "maine economy": {
+    "series": [
+      "MEUR",
+      "MENA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maine economic overview: state unemployment (MEUR) and payrolls (MENA) versus national benchmarks."
+  },
+  "maine employment": {
+    "series": [
+      "MENA",
+      "MEUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maine employment: nonfarm payrolls (MENA) and unemployment rate (MEUR)."
+  },
+  "how is maine doing": {
+    "series": [
+      "MEUR",
+      "MENA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maine economic health: unemployment (MEUR) and payrolls (MENA) vs national rate."
+  },
+  "unemployment in maine": {
+    "series": [
+      "MEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Maine (MEUR) compared to national average (UNRATE)."
+  },
+  "jobs in maine": {
+    "series": [
+      "MENA",
+      "MEUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Maine: payrolls (MENA) and unemployment (MEUR)."
+  },
+  "maine labor market": {
+    "series": [
+      "MEUR",
+      "MENA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maine labor market: unemployment rate and payrolls vs national."
+  },
+  "maryland unemployment": {
+    "series": [
+      "MDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Maryland unemployment rate (MDUR) compared to the national rate (UNRATE). Showing both lets you see whether Maryland is doing better or worse than the country overall."
+  },
+  "maryland jobs": {
+    "series": [
+      "MDNA",
+      "MDUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maryland nonfarm payrolls (MDNA) and unemployment rate (MDUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "maryland economy": {
+    "series": [
+      "MDUR",
+      "MDNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maryland economic overview: state unemployment (MDUR) and payrolls (MDNA) versus national benchmarks."
+  },
+  "maryland employment": {
+    "series": [
+      "MDNA",
+      "MDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maryland employment: nonfarm payrolls (MDNA) and unemployment rate (MDUR)."
+  },
+  "how is maryland doing": {
+    "series": [
+      "MDUR",
+      "MDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maryland economic health: unemployment (MDUR) and payrolls (MDNA) vs national rate."
+  },
+  "unemployment in maryland": {
+    "series": [
+      "MDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Maryland (MDUR) compared to national average (UNRATE)."
+  },
+  "jobs in maryland": {
+    "series": [
+      "MDNA",
+      "MDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Maryland: payrolls (MDNA) and unemployment (MDUR)."
+  },
+  "maryland labor market": {
+    "series": [
+      "MDUR",
+      "MDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Maryland labor market: unemployment rate and payrolls vs national."
+  },
+  "massachusetts unemployment": {
+    "series": [
+      "MAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Massachusetts unemployment rate (MAUR) compared to the national rate (UNRATE). Showing both lets you see whether Massachusetts is doing better or worse than the country overall."
+  },
+  "massachusetts jobs": {
+    "series": [
+      "MANA",
+      "MAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Massachusetts nonfarm payrolls (MANA) and unemployment rate (MAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "massachusetts economy": {
+    "series": [
+      "MAUR",
+      "MANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Massachusetts economic overview: state unemployment (MAUR) and payrolls (MANA) versus national benchmarks."
+  },
+  "massachusetts employment": {
+    "series": [
+      "MANA",
+      "MAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Massachusetts employment: nonfarm payrolls (MANA) and unemployment rate (MAUR)."
+  },
+  "how is massachusetts doing": {
+    "series": [
+      "MAUR",
+      "MANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Massachusetts economic health: unemployment (MAUR) and payrolls (MANA) vs national rate."
+  },
+  "unemployment in massachusetts": {
+    "series": [
+      "MAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Massachusetts (MAUR) compared to national average (UNRATE)."
+  },
+  "jobs in massachusetts": {
+    "series": [
+      "MANA",
+      "MAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Massachusetts: payrolls (MANA) and unemployment (MAUR)."
+  },
+  "massachusetts labor market": {
+    "series": [
+      "MAUR",
+      "MANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Massachusetts labor market: unemployment rate and payrolls vs national."
+  },
+  "michigan unemployment": {
+    "series": [
+      "MIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Michigan unemployment rate (MIUR) compared to the national rate (UNRATE). Showing both lets you see whether Michigan is doing better or worse than the country overall."
+  },
+  "michigan jobs": {
+    "series": [
+      "MINA",
+      "MIUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Michigan nonfarm payrolls (MINA) and unemployment rate (MIUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "michigan economy": {
+    "series": [
+      "MIUR",
+      "MINA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Michigan economic overview: state unemployment (MIUR) and payrolls (MINA) versus national benchmarks."
+  },
+  "michigan employment": {
+    "series": [
+      "MINA",
+      "MIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Michigan employment: nonfarm payrolls (MINA) and unemployment rate (MIUR)."
+  },
+  "how is michigan doing": {
+    "series": [
+      "MIUR",
+      "MINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Michigan economic health: unemployment (MIUR) and payrolls (MINA) vs national rate."
+  },
+  "unemployment in michigan": {
+    "series": [
+      "MIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Michigan (MIUR) compared to national average (UNRATE)."
+  },
+  "jobs in michigan": {
+    "series": [
+      "MINA",
+      "MIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Michigan: payrolls (MINA) and unemployment (MIUR)."
+  },
+  "michigan labor market": {
+    "series": [
+      "MIUR",
+      "MINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Michigan labor market: unemployment rate and payrolls vs national."
+  },
+  "minnesota unemployment": {
+    "series": [
+      "MNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Minnesota unemployment rate (MNUR) compared to the national rate (UNRATE). Showing both lets you see whether Minnesota is doing better or worse than the country overall."
+  },
+  "minnesota jobs": {
+    "series": [
+      "MNNA",
+      "MNUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Minnesota nonfarm payrolls (MNNA) and unemployment rate (MNUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "minnesota economy": {
+    "series": [
+      "MNUR",
+      "MNNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Minnesota economic overview: state unemployment (MNUR) and payrolls (MNNA) versus national benchmarks."
+  },
+  "minnesota employment": {
+    "series": [
+      "MNNA",
+      "MNUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Minnesota employment: nonfarm payrolls (MNNA) and unemployment rate (MNUR)."
+  },
+  "how is minnesota doing": {
+    "series": [
+      "MNUR",
+      "MNNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Minnesota economic health: unemployment (MNUR) and payrolls (MNNA) vs national rate."
+  },
+  "unemployment in minnesota": {
+    "series": [
+      "MNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Minnesota (MNUR) compared to national average (UNRATE)."
+  },
+  "jobs in minnesota": {
+    "series": [
+      "MNNA",
+      "MNUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Minnesota: payrolls (MNNA) and unemployment (MNUR)."
+  },
+  "minnesota labor market": {
+    "series": [
+      "MNUR",
+      "MNNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Minnesota labor market: unemployment rate and payrolls vs national."
+  },
+  "mississippi unemployment": {
+    "series": [
+      "MSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Mississippi unemployment rate (MSUR) compared to the national rate (UNRATE). Showing both lets you see whether Mississippi is doing better or worse than the country overall."
+  },
+  "mississippi jobs": {
+    "series": [
+      "MSNA",
+      "MSUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Mississippi nonfarm payrolls (MSNA) and unemployment rate (MSUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "mississippi economy": {
+    "series": [
+      "MSUR",
+      "MSNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Mississippi economic overview: state unemployment (MSUR) and payrolls (MSNA) versus national benchmarks."
+  },
+  "mississippi employment": {
+    "series": [
+      "MSNA",
+      "MSUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Mississippi employment: nonfarm payrolls (MSNA) and unemployment rate (MSUR)."
+  },
+  "how is mississippi doing": {
+    "series": [
+      "MSUR",
+      "MSNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Mississippi economic health: unemployment (MSUR) and payrolls (MSNA) vs national rate."
+  },
+  "unemployment in mississippi": {
+    "series": [
+      "MSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Mississippi (MSUR) compared to national average (UNRATE)."
+  },
+  "jobs in mississippi": {
+    "series": [
+      "MSNA",
+      "MSUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Mississippi: payrolls (MSNA) and unemployment (MSUR)."
+  },
+  "mississippi labor market": {
+    "series": [
+      "MSUR",
+      "MSNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Mississippi labor market: unemployment rate and payrolls vs national."
+  },
+  "missouri unemployment": {
+    "series": [
+      "MOUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Missouri unemployment rate (MOUR) compared to the national rate (UNRATE). Showing both lets you see whether Missouri is doing better or worse than the country overall."
+  },
+  "missouri jobs": {
+    "series": [
+      "MONA",
+      "MOUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Missouri nonfarm payrolls (MONA) and unemployment rate (MOUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "missouri economy": {
+    "series": [
+      "MOUR",
+      "MONA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Missouri economic overview: state unemployment (MOUR) and payrolls (MONA) versus national benchmarks."
+  },
+  "missouri employment": {
+    "series": [
+      "MONA",
+      "MOUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Missouri employment: nonfarm payrolls (MONA) and unemployment rate (MOUR)."
+  },
+  "how is missouri doing": {
+    "series": [
+      "MOUR",
+      "MONA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Missouri economic health: unemployment (MOUR) and payrolls (MONA) vs national rate."
+  },
+  "unemployment in missouri": {
+    "series": [
+      "MOUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Missouri (MOUR) compared to national average (UNRATE)."
+  },
+  "jobs in missouri": {
+    "series": [
+      "MONA",
+      "MOUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Missouri: payrolls (MONA) and unemployment (MOUR)."
+  },
+  "missouri labor market": {
+    "series": [
+      "MOUR",
+      "MONA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Missouri labor market: unemployment rate and payrolls vs national."
+  },
+  "montana unemployment": {
+    "series": [
+      "MTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Montana unemployment rate (MTUR) compared to the national rate (UNRATE). Showing both lets you see whether Montana is doing better or worse than the country overall."
+  },
+  "montana jobs": {
+    "series": [
+      "MTNA",
+      "MTUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Montana nonfarm payrolls (MTNA) and unemployment rate (MTUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "montana economy": {
+    "series": [
+      "MTUR",
+      "MTNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Montana economic overview: state unemployment (MTUR) and payrolls (MTNA) versus national benchmarks."
+  },
+  "montana employment": {
+    "series": [
+      "MTNA",
+      "MTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Montana employment: nonfarm payrolls (MTNA) and unemployment rate (MTUR)."
+  },
+  "how is montana doing": {
+    "series": [
+      "MTUR",
+      "MTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Montana economic health: unemployment (MTUR) and payrolls (MTNA) vs national rate."
+  },
+  "unemployment in montana": {
+    "series": [
+      "MTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Montana (MTUR) compared to national average (UNRATE)."
+  },
+  "jobs in montana": {
+    "series": [
+      "MTNA",
+      "MTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Montana: payrolls (MTNA) and unemployment (MTUR)."
+  },
+  "montana labor market": {
+    "series": [
+      "MTUR",
+      "MTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Montana labor market: unemployment rate and payrolls vs national."
+  },
+  "nebraska unemployment": {
+    "series": [
+      "NEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Nebraska unemployment rate (NEUR) compared to the national rate (UNRATE). Showing both lets you see whether Nebraska is doing better or worse than the country overall."
+  },
+  "nebraska jobs": {
+    "series": [
+      "NENA",
+      "NEUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nebraska nonfarm payrolls (NENA) and unemployment rate (NEUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "nebraska economy": {
+    "series": [
+      "NEUR",
+      "NENA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nebraska economic overview: state unemployment (NEUR) and payrolls (NENA) versus national benchmarks."
+  },
+  "nebraska employment": {
+    "series": [
+      "NENA",
+      "NEUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nebraska employment: nonfarm payrolls (NENA) and unemployment rate (NEUR)."
+  },
+  "how is nebraska doing": {
+    "series": [
+      "NEUR",
+      "NENA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nebraska economic health: unemployment (NEUR) and payrolls (NENA) vs national rate."
+  },
+  "unemployment in nebraska": {
+    "series": [
+      "NEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Nebraska (NEUR) compared to national average (UNRATE)."
+  },
+  "jobs in nebraska": {
+    "series": [
+      "NENA",
+      "NEUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Nebraska: payrolls (NENA) and unemployment (NEUR)."
+  },
+  "nebraska labor market": {
+    "series": [
+      "NEUR",
+      "NENA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nebraska labor market: unemployment rate and payrolls vs national."
+  },
+  "nevada unemployment": {
+    "series": [
+      "NVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Nevada unemployment rate (NVUR) compared to the national rate (UNRATE). Showing both lets you see whether Nevada is doing better or worse than the country overall."
+  },
+  "nevada jobs": {
+    "series": [
+      "NVNA",
+      "NVUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nevada nonfarm payrolls (NVNA) and unemployment rate (NVUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "nevada economy": {
+    "series": [
+      "NVUR",
+      "NVNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nevada economic overview: state unemployment (NVUR) and payrolls (NVNA) versus national benchmarks."
+  },
+  "nevada employment": {
+    "series": [
+      "NVNA",
+      "NVUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nevada employment: nonfarm payrolls (NVNA) and unemployment rate (NVUR)."
+  },
+  "how is nevada doing": {
+    "series": [
+      "NVUR",
+      "NVNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nevada economic health: unemployment (NVUR) and payrolls (NVNA) vs national rate."
+  },
+  "unemployment in nevada": {
+    "series": [
+      "NVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Nevada (NVUR) compared to national average (UNRATE)."
+  },
+  "jobs in nevada": {
+    "series": [
+      "NVNA",
+      "NVUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Nevada: payrolls (NVNA) and unemployment (NVUR)."
+  },
+  "nevada labor market": {
+    "series": [
+      "NVUR",
+      "NVNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Nevada labor market: unemployment rate and payrolls vs national."
+  },
+  "new hampshire unemployment": {
+    "series": [
+      "NHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Hampshire unemployment rate (NHUR) compared to the national rate (UNRATE). Showing both lets you see whether New Hampshire is doing better or worse than the country overall."
+  },
+  "new hampshire jobs": {
+    "series": [
+      "NHNA",
+      "NHUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Hampshire nonfarm payrolls (NHNA) and unemployment rate (NHUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "new hampshire economy": {
+    "series": [
+      "NHUR",
+      "NHNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Hampshire economic overview: state unemployment (NHUR) and payrolls (NHNA) versus national benchmarks."
+  },
+  "new hampshire employment": {
+    "series": [
+      "NHNA",
+      "NHUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Hampshire employment: nonfarm payrolls (NHNA) and unemployment rate (NHUR)."
+  },
+  "how is new hampshire doing": {
+    "series": [
+      "NHUR",
+      "NHNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Hampshire economic health: unemployment (NHUR) and payrolls (NHNA) vs national rate."
+  },
+  "unemployment in new hampshire": {
+    "series": [
+      "NHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in New Hampshire (NHUR) compared to national average (UNRATE)."
+  },
+  "jobs in new hampshire": {
+    "series": [
+      "NHNA",
+      "NHUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in New Hampshire: payrolls (NHNA) and unemployment (NHUR)."
+  },
+  "new hampshire labor market": {
+    "series": [
+      "NHUR",
+      "NHNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Hampshire labor market: unemployment rate and payrolls vs national."
+  },
+  "new jersey unemployment": {
+    "series": [
+      "NJUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Jersey unemployment rate (NJUR) compared to the national rate (UNRATE). Showing both lets you see whether New Jersey is doing better or worse than the country overall."
+  },
+  "new jersey jobs": {
+    "series": [
+      "NJNA",
+      "NJUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Jersey nonfarm payrolls (NJNA) and unemployment rate (NJUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "new jersey economy": {
+    "series": [
+      "NJUR",
+      "NJNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Jersey economic overview: state unemployment (NJUR) and payrolls (NJNA) versus national benchmarks."
+  },
+  "new jersey employment": {
+    "series": [
+      "NJNA",
+      "NJUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Jersey employment: nonfarm payrolls (NJNA) and unemployment rate (NJUR)."
+  },
+  "how is new jersey doing": {
+    "series": [
+      "NJUR",
+      "NJNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Jersey economic health: unemployment (NJUR) and payrolls (NJNA) vs national rate."
+  },
+  "unemployment in new jersey": {
+    "series": [
+      "NJUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in New Jersey (NJUR) compared to national average (UNRATE)."
+  },
+  "jobs in new jersey": {
+    "series": [
+      "NJNA",
+      "NJUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in New Jersey: payrolls (NJNA) and unemployment (NJUR)."
+  },
+  "new jersey labor market": {
+    "series": [
+      "NJUR",
+      "NJNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Jersey labor market: unemployment rate and payrolls vs national."
+  },
+  "new mexico unemployment": {
+    "series": [
+      "NMUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Mexico unemployment rate (NMUR) compared to the national rate (UNRATE). Showing both lets you see whether New Mexico is doing better or worse than the country overall."
+  },
+  "new mexico jobs": {
+    "series": [
+      "NMNA",
+      "NMUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Mexico nonfarm payrolls (NMNA) and unemployment rate (NMUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "new mexico economy": {
+    "series": [
+      "NMUR",
+      "NMNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Mexico economic overview: state unemployment (NMUR) and payrolls (NMNA) versus national benchmarks."
+  },
+  "new mexico employment": {
+    "series": [
+      "NMNA",
+      "NMUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Mexico employment: nonfarm payrolls (NMNA) and unemployment rate (NMUR)."
+  },
+  "how is new mexico doing": {
+    "series": [
+      "NMUR",
+      "NMNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Mexico economic health: unemployment (NMUR) and payrolls (NMNA) vs national rate."
+  },
+  "unemployment in new mexico": {
+    "series": [
+      "NMUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in New Mexico (NMUR) compared to national average (UNRATE)."
+  },
+  "jobs in new mexico": {
+    "series": [
+      "NMNA",
+      "NMUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in New Mexico: payrolls (NMNA) and unemployment (NMUR)."
+  },
+  "new mexico labor market": {
+    "series": [
+      "NMUR",
+      "NMNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New Mexico labor market: unemployment rate and payrolls vs national."
+  },
+  "new york unemployment": {
+    "series": [
+      "NYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New York unemployment rate (NYUR) compared to the national rate (UNRATE). Showing both lets you see whether New York is doing better or worse than the country overall."
+  },
+  "new york jobs": {
+    "series": [
+      "NYNA",
+      "NYUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New York nonfarm payrolls (NYNA) and unemployment rate (NYUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "new york economy": {
+    "series": [
+      "NYUR",
+      "NYNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New York economic overview: state unemployment (NYUR) and payrolls (NYNA) versus national benchmarks."
+  },
+  "new york employment": {
+    "series": [
+      "NYNA",
+      "NYUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New York employment: nonfarm payrolls (NYNA) and unemployment rate (NYUR)."
+  },
+  "how is new york doing": {
+    "series": [
+      "NYUR",
+      "NYNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New York economic health: unemployment (NYUR) and payrolls (NYNA) vs national rate."
+  },
+  "unemployment in new york": {
+    "series": [
+      "NYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in New York (NYUR) compared to national average (UNRATE)."
+  },
+  "jobs in new york": {
+    "series": [
+      "NYNA",
+      "NYUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in New York: payrolls (NYNA) and unemployment (NYUR)."
+  },
+  "new york labor market": {
+    "series": [
+      "NYUR",
+      "NYNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "New York labor market: unemployment rate and payrolls vs national."
+  },
+  "north carolina unemployment": {
+    "series": [
+      "NCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "North Carolina unemployment rate (NCUR) compared to the national rate (UNRATE). Showing both lets you see whether North Carolina is doing better or worse than the country overall."
+  },
+  "north carolina jobs": {
+    "series": [
+      "NCNA",
+      "NCUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Carolina nonfarm payrolls (NCNA) and unemployment rate (NCUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "north carolina economy": {
+    "series": [
+      "NCUR",
+      "NCNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Carolina economic overview: state unemployment (NCUR) and payrolls (NCNA) versus national benchmarks."
+  },
+  "north carolina employment": {
+    "series": [
+      "NCNA",
+      "NCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Carolina employment: nonfarm payrolls (NCNA) and unemployment rate (NCUR)."
+  },
+  "how is north carolina doing": {
+    "series": [
+      "NCUR",
+      "NCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Carolina economic health: unemployment (NCUR) and payrolls (NCNA) vs national rate."
+  },
+  "unemployment in north carolina": {
+    "series": [
+      "NCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in North Carolina (NCUR) compared to national average (UNRATE)."
+  },
+  "jobs in north carolina": {
+    "series": [
+      "NCNA",
+      "NCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in North Carolina: payrolls (NCNA) and unemployment (NCUR)."
+  },
+  "north carolina labor market": {
+    "series": [
+      "NCUR",
+      "NCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Carolina labor market: unemployment rate and payrolls vs national."
+  },
+  "north dakota unemployment": {
+    "series": [
+      "NDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "North Dakota unemployment rate (NDUR) compared to the national rate (UNRATE). Showing both lets you see whether North Dakota is doing better or worse than the country overall."
+  },
+  "north dakota jobs": {
+    "series": [
+      "NDNA",
+      "NDUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Dakota nonfarm payrolls (NDNA) and unemployment rate (NDUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "north dakota economy": {
+    "series": [
+      "NDUR",
+      "NDNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Dakota economic overview: state unemployment (NDUR) and payrolls (NDNA) versus national benchmarks."
+  },
+  "north dakota employment": {
+    "series": [
+      "NDNA",
+      "NDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Dakota employment: nonfarm payrolls (NDNA) and unemployment rate (NDUR)."
+  },
+  "how is north dakota doing": {
+    "series": [
+      "NDUR",
+      "NDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Dakota economic health: unemployment (NDUR) and payrolls (NDNA) vs national rate."
+  },
+  "unemployment in north dakota": {
+    "series": [
+      "NDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in North Dakota (NDUR) compared to national average (UNRATE)."
+  },
+  "jobs in north dakota": {
+    "series": [
+      "NDNA",
+      "NDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in North Dakota: payrolls (NDNA) and unemployment (NDUR)."
+  },
+  "north dakota labor market": {
+    "series": [
+      "NDUR",
+      "NDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "North Dakota labor market: unemployment rate and payrolls vs national."
+  },
+  "ohio unemployment": {
+    "series": [
+      "OHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Ohio unemployment rate (OHUR) compared to the national rate (UNRATE). Showing both lets you see whether Ohio is doing better or worse than the country overall."
+  },
+  "ohio jobs": {
+    "series": [
+      "OHNA",
+      "OHUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Ohio nonfarm payrolls (OHNA) and unemployment rate (OHUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "ohio economy": {
+    "series": [
+      "OHUR",
+      "OHNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Ohio economic overview: state unemployment (OHUR) and payrolls (OHNA) versus national benchmarks."
+  },
+  "ohio employment": {
+    "series": [
+      "OHNA",
+      "OHUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Ohio employment: nonfarm payrolls (OHNA) and unemployment rate (OHUR)."
+  },
+  "how is ohio doing": {
+    "series": [
+      "OHUR",
+      "OHNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Ohio economic health: unemployment (OHUR) and payrolls (OHNA) vs national rate."
+  },
+  "unemployment in ohio": {
+    "series": [
+      "OHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Ohio (OHUR) compared to national average (UNRATE)."
+  },
+  "jobs in ohio": {
+    "series": [
+      "OHNA",
+      "OHUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Ohio: payrolls (OHNA) and unemployment (OHUR)."
+  },
+  "ohio labor market": {
+    "series": [
+      "OHUR",
+      "OHNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Ohio labor market: unemployment rate and payrolls vs national."
+  },
+  "oklahoma unemployment": {
+    "series": [
+      "OKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Oklahoma unemployment rate (OKUR) compared to the national rate (UNRATE). Showing both lets you see whether Oklahoma is doing better or worse than the country overall."
+  },
+  "oklahoma jobs": {
+    "series": [
+      "OKNA",
+      "OKUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oklahoma nonfarm payrolls (OKNA) and unemployment rate (OKUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "oklahoma economy": {
+    "series": [
+      "OKUR",
+      "OKNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oklahoma economic overview: state unemployment (OKUR) and payrolls (OKNA) versus national benchmarks."
+  },
+  "oklahoma employment": {
+    "series": [
+      "OKNA",
+      "OKUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oklahoma employment: nonfarm payrolls (OKNA) and unemployment rate (OKUR)."
+  },
+  "how is oklahoma doing": {
+    "series": [
+      "OKUR",
+      "OKNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oklahoma economic health: unemployment (OKUR) and payrolls (OKNA) vs national rate."
+  },
+  "unemployment in oklahoma": {
+    "series": [
+      "OKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Oklahoma (OKUR) compared to national average (UNRATE)."
+  },
+  "jobs in oklahoma": {
+    "series": [
+      "OKNA",
+      "OKUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Oklahoma: payrolls (OKNA) and unemployment (OKUR)."
+  },
+  "oklahoma labor market": {
+    "series": [
+      "OKUR",
+      "OKNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oklahoma labor market: unemployment rate and payrolls vs national."
+  },
+  "oregon unemployment": {
+    "series": [
+      "ORUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Oregon unemployment rate (ORUR) compared to the national rate (UNRATE). Showing both lets you see whether Oregon is doing better or worse than the country overall."
+  },
+  "oregon jobs": {
+    "series": [
+      "ORNA",
+      "ORUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oregon nonfarm payrolls (ORNA) and unemployment rate (ORUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "oregon economy": {
+    "series": [
+      "ORUR",
+      "ORNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oregon economic overview: state unemployment (ORUR) and payrolls (ORNA) versus national benchmarks."
+  },
+  "oregon employment": {
+    "series": [
+      "ORNA",
+      "ORUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oregon employment: nonfarm payrolls (ORNA) and unemployment rate (ORUR)."
+  },
+  "how is oregon doing": {
+    "series": [
+      "ORUR",
+      "ORNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oregon economic health: unemployment (ORUR) and payrolls (ORNA) vs national rate."
+  },
+  "unemployment in oregon": {
+    "series": [
+      "ORUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Oregon (ORUR) compared to national average (UNRATE)."
+  },
+  "jobs in oregon": {
+    "series": [
+      "ORNA",
+      "ORUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Oregon: payrolls (ORNA) and unemployment (ORUR)."
+  },
+  "oregon labor market": {
+    "series": [
+      "ORUR",
+      "ORNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Oregon labor market: unemployment rate and payrolls vs national."
+  },
+  "pennsylvania unemployment": {
+    "series": [
+      "PAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Pennsylvania unemployment rate (PAUR) compared to the national rate (UNRATE). Showing both lets you see whether Pennsylvania is doing better or worse than the country overall."
+  },
+  "pennsylvania jobs": {
+    "series": [
+      "PANA",
+      "PAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Pennsylvania nonfarm payrolls (PANA) and unemployment rate (PAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "pennsylvania economy": {
+    "series": [
+      "PAUR",
+      "PANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Pennsylvania economic overview: state unemployment (PAUR) and payrolls (PANA) versus national benchmarks."
+  },
+  "pennsylvania employment": {
+    "series": [
+      "PANA",
+      "PAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Pennsylvania employment: nonfarm payrolls (PANA) and unemployment rate (PAUR)."
+  },
+  "how is pennsylvania doing": {
+    "series": [
+      "PAUR",
+      "PANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Pennsylvania economic health: unemployment (PAUR) and payrolls (PANA) vs national rate."
+  },
+  "unemployment in pennsylvania": {
+    "series": [
+      "PAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Pennsylvania (PAUR) compared to national average (UNRATE)."
+  },
+  "jobs in pennsylvania": {
+    "series": [
+      "PANA",
+      "PAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Pennsylvania: payrolls (PANA) and unemployment (PAUR)."
+  },
+  "pennsylvania labor market": {
+    "series": [
+      "PAUR",
+      "PANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Pennsylvania labor market: unemployment rate and payrolls vs national."
+  },
+  "rhode island unemployment": {
+    "series": [
+      "RIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Rhode Island unemployment rate (RIUR) compared to the national rate (UNRATE). Showing both lets you see whether Rhode Island is doing better or worse than the country overall."
+  },
+  "rhode island jobs": {
+    "series": [
+      "RINA",
+      "RIUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Rhode Island nonfarm payrolls (RINA) and unemployment rate (RIUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "rhode island economy": {
+    "series": [
+      "RIUR",
+      "RINA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Rhode Island economic overview: state unemployment (RIUR) and payrolls (RINA) versus national benchmarks."
+  },
+  "rhode island employment": {
+    "series": [
+      "RINA",
+      "RIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Rhode Island employment: nonfarm payrolls (RINA) and unemployment rate (RIUR)."
+  },
+  "how is rhode island doing": {
+    "series": [
+      "RIUR",
+      "RINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Rhode Island economic health: unemployment (RIUR) and payrolls (RINA) vs national rate."
+  },
+  "unemployment in rhode island": {
+    "series": [
+      "RIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Rhode Island (RIUR) compared to national average (UNRATE)."
+  },
+  "jobs in rhode island": {
+    "series": [
+      "RINA",
+      "RIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Rhode Island: payrolls (RINA) and unemployment (RIUR)."
+  },
+  "rhode island labor market": {
+    "series": [
+      "RIUR",
+      "RINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Rhode Island labor market: unemployment rate and payrolls vs national."
+  },
+  "south carolina unemployment": {
+    "series": [
+      "SCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "South Carolina unemployment rate (SCUR) compared to the national rate (UNRATE). Showing both lets you see whether South Carolina is doing better or worse than the country overall."
+  },
+  "south carolina jobs": {
+    "series": [
+      "SCNA",
+      "SCUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Carolina nonfarm payrolls (SCNA) and unemployment rate (SCUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "south carolina economy": {
+    "series": [
+      "SCUR",
+      "SCNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Carolina economic overview: state unemployment (SCUR) and payrolls (SCNA) versus national benchmarks."
+  },
+  "south carolina employment": {
+    "series": [
+      "SCNA",
+      "SCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Carolina employment: nonfarm payrolls (SCNA) and unemployment rate (SCUR)."
+  },
+  "how is south carolina doing": {
+    "series": [
+      "SCUR",
+      "SCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Carolina economic health: unemployment (SCUR) and payrolls (SCNA) vs national rate."
+  },
+  "unemployment in south carolina": {
+    "series": [
+      "SCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in South Carolina (SCUR) compared to national average (UNRATE)."
+  },
+  "jobs in south carolina": {
+    "series": [
+      "SCNA",
+      "SCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in South Carolina: payrolls (SCNA) and unemployment (SCUR)."
+  },
+  "south carolina labor market": {
+    "series": [
+      "SCUR",
+      "SCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Carolina labor market: unemployment rate and payrolls vs national."
+  },
+  "south dakota unemployment": {
+    "series": [
+      "SDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "South Dakota unemployment rate (SDUR) compared to the national rate (UNRATE). Showing both lets you see whether South Dakota is doing better or worse than the country overall."
+  },
+  "south dakota jobs": {
+    "series": [
+      "SDNA",
+      "SDUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Dakota nonfarm payrolls (SDNA) and unemployment rate (SDUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "south dakota economy": {
+    "series": [
+      "SDUR",
+      "SDNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Dakota economic overview: state unemployment (SDUR) and payrolls (SDNA) versus national benchmarks."
+  },
+  "south dakota employment": {
+    "series": [
+      "SDNA",
+      "SDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Dakota employment: nonfarm payrolls (SDNA) and unemployment rate (SDUR)."
+  },
+  "how is south dakota doing": {
+    "series": [
+      "SDUR",
+      "SDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Dakota economic health: unemployment (SDUR) and payrolls (SDNA) vs national rate."
+  },
+  "unemployment in south dakota": {
+    "series": [
+      "SDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in South Dakota (SDUR) compared to national average (UNRATE)."
+  },
+  "jobs in south dakota": {
+    "series": [
+      "SDNA",
+      "SDUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in South Dakota: payrolls (SDNA) and unemployment (SDUR)."
+  },
+  "south dakota labor market": {
+    "series": [
+      "SDUR",
+      "SDNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "South Dakota labor market: unemployment rate and payrolls vs national."
+  },
+  "tennessee unemployment": {
+    "series": [
+      "TNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Tennessee unemployment rate (TNUR) compared to the national rate (UNRATE). Showing both lets you see whether Tennessee is doing better or worse than the country overall."
+  },
+  "tennessee jobs": {
+    "series": [
+      "TNNA",
+      "TNUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Tennessee nonfarm payrolls (TNNA) and unemployment rate (TNUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "tennessee economy": {
+    "series": [
+      "TNUR",
+      "TNNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Tennessee economic overview: state unemployment (TNUR) and payrolls (TNNA) versus national benchmarks."
+  },
+  "tennessee employment": {
+    "series": [
+      "TNNA",
+      "TNUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Tennessee employment: nonfarm payrolls (TNNA) and unemployment rate (TNUR)."
+  },
+  "how is tennessee doing": {
+    "series": [
+      "TNUR",
+      "TNNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Tennessee economic health: unemployment (TNUR) and payrolls (TNNA) vs national rate."
+  },
+  "unemployment in tennessee": {
+    "series": [
+      "TNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Tennessee (TNUR) compared to national average (UNRATE)."
+  },
+  "jobs in tennessee": {
+    "series": [
+      "TNNA",
+      "TNUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Tennessee: payrolls (TNNA) and unemployment (TNUR)."
+  },
+  "tennessee labor market": {
+    "series": [
+      "TNUR",
+      "TNNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Tennessee labor market: unemployment rate and payrolls vs national."
+  },
+  "texas unemployment": {
+    "series": [
+      "TXUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Texas unemployment rate (TXUR) compared to the national rate (UNRATE). Showing both lets you see whether Texas is doing better or worse than the country overall."
+  },
+  "texas jobs": {
+    "series": [
+      "TXNA",
+      "TXUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Texas nonfarm payrolls (TXNA) and unemployment rate (TXUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "texas economy": {
+    "series": [
+      "TXUR",
+      "TXNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Texas economic overview: state unemployment (TXUR) and payrolls (TXNA) versus national benchmarks."
+  },
+  "texas employment": {
+    "series": [
+      "TXNA",
+      "TXUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Texas employment: nonfarm payrolls (TXNA) and unemployment rate (TXUR)."
+  },
+  "how is texas doing": {
+    "series": [
+      "TXUR",
+      "TXNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Texas economic health: unemployment (TXUR) and payrolls (TXNA) vs national rate."
+  },
+  "unemployment in texas": {
+    "series": [
+      "TXUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Texas (TXUR) compared to national average (UNRATE)."
+  },
+  "jobs in texas": {
+    "series": [
+      "TXNA",
+      "TXUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Texas: payrolls (TXNA) and unemployment (TXUR)."
+  },
+  "texas labor market": {
+    "series": [
+      "TXUR",
+      "TXNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Texas labor market: unemployment rate and payrolls vs national."
+  },
+  "utah unemployment": {
+    "series": [
+      "UTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Utah unemployment rate (UTUR) compared to the national rate (UNRATE). Showing both lets you see whether Utah is doing better or worse than the country overall."
+  },
+  "utah jobs": {
+    "series": [
+      "UTNA",
+      "UTUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Utah nonfarm payrolls (UTNA) and unemployment rate (UTUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "utah economy": {
+    "series": [
+      "UTUR",
+      "UTNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Utah economic overview: state unemployment (UTUR) and payrolls (UTNA) versus national benchmarks."
+  },
+  "utah employment": {
+    "series": [
+      "UTNA",
+      "UTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Utah employment: nonfarm payrolls (UTNA) and unemployment rate (UTUR)."
+  },
+  "how is utah doing": {
+    "series": [
+      "UTUR",
+      "UTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Utah economic health: unemployment (UTUR) and payrolls (UTNA) vs national rate."
+  },
+  "unemployment in utah": {
+    "series": [
+      "UTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Utah (UTUR) compared to national average (UNRATE)."
+  },
+  "jobs in utah": {
+    "series": [
+      "UTNA",
+      "UTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Utah: payrolls (UTNA) and unemployment (UTUR)."
+  },
+  "utah labor market": {
+    "series": [
+      "UTUR",
+      "UTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Utah labor market: unemployment rate and payrolls vs national."
+  },
+  "vermont unemployment": {
+    "series": [
+      "VTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Vermont unemployment rate (VTUR) compared to the national rate (UNRATE). Showing both lets you see whether Vermont is doing better or worse than the country overall."
+  },
+  "vermont jobs": {
+    "series": [
+      "VTNA",
+      "VTUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Vermont nonfarm payrolls (VTNA) and unemployment rate (VTUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "vermont economy": {
+    "series": [
+      "VTUR",
+      "VTNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Vermont economic overview: state unemployment (VTUR) and payrolls (VTNA) versus national benchmarks."
+  },
+  "vermont employment": {
+    "series": [
+      "VTNA",
+      "VTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Vermont employment: nonfarm payrolls (VTNA) and unemployment rate (VTUR)."
+  },
+  "how is vermont doing": {
+    "series": [
+      "VTUR",
+      "VTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Vermont economic health: unemployment (VTUR) and payrolls (VTNA) vs national rate."
+  },
+  "unemployment in vermont": {
+    "series": [
+      "VTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Vermont (VTUR) compared to national average (UNRATE)."
+  },
+  "jobs in vermont": {
+    "series": [
+      "VTNA",
+      "VTUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Vermont: payrolls (VTNA) and unemployment (VTUR)."
+  },
+  "vermont labor market": {
+    "series": [
+      "VTUR",
+      "VTNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Vermont labor market: unemployment rate and payrolls vs national."
+  },
+  "virginia unemployment": {
+    "series": [
+      "VAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Virginia unemployment rate (VAUR) compared to the national rate (UNRATE). Showing both lets you see whether Virginia is doing better or worse than the country overall."
+  },
+  "virginia jobs": {
+    "series": [
+      "VANA",
+      "VAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Virginia nonfarm payrolls (VANA) and unemployment rate (VAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "virginia economy": {
+    "series": [
+      "VAUR",
+      "VANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Virginia economic overview: state unemployment (VAUR) and payrolls (VANA) versus national benchmarks."
+  },
+  "virginia employment": {
+    "series": [
+      "VANA",
+      "VAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Virginia employment: nonfarm payrolls (VANA) and unemployment rate (VAUR)."
+  },
+  "how is virginia doing": {
+    "series": [
+      "VAUR",
+      "VANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Virginia economic health: unemployment (VAUR) and payrolls (VANA) vs national rate."
+  },
+  "unemployment in virginia": {
+    "series": [
+      "VAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Virginia (VAUR) compared to national average (UNRATE)."
+  },
+  "jobs in virginia": {
+    "series": [
+      "VANA",
+      "VAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Virginia: payrolls (VANA) and unemployment (VAUR)."
+  },
+  "virginia labor market": {
+    "series": [
+      "VAUR",
+      "VANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Virginia labor market: unemployment rate and payrolls vs national."
+  },
+  "washington unemployment": {
+    "series": [
+      "WAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Washington unemployment rate (WAUR) compared to the national rate (UNRATE). Showing both lets you see whether Washington is doing better or worse than the country overall."
+  },
+  "washington jobs": {
+    "series": [
+      "WANA",
+      "WAUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington nonfarm payrolls (WANA) and unemployment rate (WAUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "washington economy": {
+    "series": [
+      "WAUR",
+      "WANA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington economic overview: state unemployment (WAUR) and payrolls (WANA) versus national benchmarks."
+  },
+  "washington employment": {
+    "series": [
+      "WANA",
+      "WAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington employment: nonfarm payrolls (WANA) and unemployment rate (WAUR)."
+  },
+  "how is washington doing": {
+    "series": [
+      "WAUR",
+      "WANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington economic health: unemployment (WAUR) and payrolls (WANA) vs national rate."
+  },
+  "unemployment in washington": {
+    "series": [
+      "WAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Washington (WAUR) compared to national average (UNRATE)."
+  },
+  "jobs in washington": {
+    "series": [
+      "WANA",
+      "WAUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Washington: payrolls (WANA) and unemployment (WAUR)."
+  },
+  "washington labor market": {
+    "series": [
+      "WAUR",
+      "WANA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington labor market: unemployment rate and payrolls vs national."
+  },
+  "west virginia unemployment": {
+    "series": [
+      "WVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "West Virginia unemployment rate (WVUR) compared to the national rate (UNRATE). Showing both lets you see whether West Virginia is doing better or worse than the country overall."
+  },
+  "west virginia jobs": {
+    "series": [
+      "WVNA",
+      "WVUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "West Virginia nonfarm payrolls (WVNA) and unemployment rate (WVUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "west virginia economy": {
+    "series": [
+      "WVUR",
+      "WVNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "West Virginia economic overview: state unemployment (WVUR) and payrolls (WVNA) versus national benchmarks."
+  },
+  "west virginia employment": {
+    "series": [
+      "WVNA",
+      "WVUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "West Virginia employment: nonfarm payrolls (WVNA) and unemployment rate (WVUR)."
+  },
+  "how is west virginia doing": {
+    "series": [
+      "WVUR",
+      "WVNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "West Virginia economic health: unemployment (WVUR) and payrolls (WVNA) vs national rate."
+  },
+  "unemployment in west virginia": {
+    "series": [
+      "WVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in West Virginia (WVUR) compared to national average (UNRATE)."
+  },
+  "jobs in west virginia": {
+    "series": [
+      "WVNA",
+      "WVUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in West Virginia: payrolls (WVNA) and unemployment (WVUR)."
+  },
+  "west virginia labor market": {
+    "series": [
+      "WVUR",
+      "WVNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "West Virginia labor market: unemployment rate and payrolls vs national."
+  },
+  "wisconsin unemployment": {
+    "series": [
+      "WIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wisconsin unemployment rate (WIUR) compared to the national rate (UNRATE). Showing both lets you see whether Wisconsin is doing better or worse than the country overall."
+  },
+  "wisconsin jobs": {
+    "series": [
+      "WINA",
+      "WIUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wisconsin nonfarm payrolls (WINA) and unemployment rate (WIUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "wisconsin economy": {
+    "series": [
+      "WIUR",
+      "WINA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wisconsin economic overview: state unemployment (WIUR) and payrolls (WINA) versus national benchmarks."
+  },
+  "wisconsin employment": {
+    "series": [
+      "WINA",
+      "WIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wisconsin employment: nonfarm payrolls (WINA) and unemployment rate (WIUR)."
+  },
+  "how is wisconsin doing": {
+    "series": [
+      "WIUR",
+      "WINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wisconsin economic health: unemployment (WIUR) and payrolls (WINA) vs national rate."
+  },
+  "unemployment in wisconsin": {
+    "series": [
+      "WIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Wisconsin (WIUR) compared to national average (UNRATE)."
+  },
+  "jobs in wisconsin": {
+    "series": [
+      "WINA",
+      "WIUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Wisconsin: payrolls (WINA) and unemployment (WIUR)."
+  },
+  "wisconsin labor market": {
+    "series": [
+      "WIUR",
+      "WINA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wisconsin labor market: unemployment rate and payrolls vs national."
+  },
+  "wyoming unemployment": {
+    "series": [
+      "WYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wyoming unemployment rate (WYUR) compared to the national rate (UNRATE). Showing both lets you see whether Wyoming is doing better or worse than the country overall."
+  },
+  "wyoming jobs": {
+    "series": [
+      "WYNA",
+      "WYUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wyoming nonfarm payrolls (WYNA) and unemployment rate (WYUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "wyoming economy": {
+    "series": [
+      "WYUR",
+      "WYNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wyoming economic overview: state unemployment (WYUR) and payrolls (WYNA) versus national benchmarks."
+  },
+  "wyoming employment": {
+    "series": [
+      "WYNA",
+      "WYUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wyoming employment: nonfarm payrolls (WYNA) and unemployment rate (WYUR)."
+  },
+  "how is wyoming doing": {
+    "series": [
+      "WYUR",
+      "WYNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wyoming economic health: unemployment (WYUR) and payrolls (WYNA) vs national rate."
+  },
+  "unemployment in wyoming": {
+    "series": [
+      "WYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Wyoming (WYUR) compared to national average (UNRATE)."
+  },
+  "jobs in wyoming": {
+    "series": [
+      "WYNA",
+      "WYUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Wyoming: payrolls (WYNA) and unemployment (WYUR)."
+  },
+  "wyoming labor market": {
+    "series": [
+      "WYUR",
+      "WYNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Wyoming labor market: unemployment rate and payrolls vs national."
+  },
+  "dc unemployment": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Washington D.C. unemployment rate (DCUR) compared to the national rate (UNRATE). Showing both lets you see whether Washington D.C. is doing better or worse than the country overall."
+  },
+  "dc jobs": {
+    "series": [
+      "DCNA",
+      "DCUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. nonfarm payrolls (DCNA) and unemployment rate (DCUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "dc economy": {
+    "series": [
+      "DCUR",
+      "DCNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. economic overview: state unemployment (DCUR) and payrolls (DCNA) versus national benchmarks."
+  },
+  "dc employment": {
+    "series": [
+      "DCNA",
+      "DCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. employment: nonfarm payrolls (DCNA) and unemployment rate (DCUR)."
+  },
+  "how is dc doing": {
+    "series": [
+      "DCUR",
+      "DCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. economic health: unemployment (DCUR) and payrolls (DCNA) vs national rate."
+  },
+  "unemployment in dc": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Washington D.C. (DCUR) compared to national average (UNRATE)."
+  },
+  "jobs in dc": {
+    "series": [
+      "DCNA",
+      "DCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Washington D.C.: payrolls (DCNA) and unemployment (DCUR)."
+  },
+  "dc labor market": {
+    "series": [
+      "DCUR",
+      "DCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. labor market: unemployment rate and payrolls vs national."
+  },
+  "district of columbia unemployment": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Washington D.C. unemployment rate (DCUR) compared to the national rate (UNRATE). Showing both lets you see whether Washington D.C. is doing better or worse than the country overall."
+  },
+  "district of columbia jobs": {
+    "series": [
+      "DCNA",
+      "DCUR",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. nonfarm payrolls (DCNA) and unemployment rate (DCUR) alongside national payrolls (PAYEMS) for context."
+  },
+  "district of columbia economy": {
+    "series": [
+      "DCUR",
+      "DCNA",
+      "UNRATE",
+      "PAYEMS"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. economic overview: state unemployment (DCUR) and payrolls (DCNA) versus national benchmarks."
+  },
+  "district of columbia employment": {
+    "series": [
+      "DCNA",
+      "DCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. employment: nonfarm payrolls (DCNA) and unemployment rate (DCUR)."
+  },
+  "how is district of columbia doing": {
+    "series": [
+      "DCUR",
+      "DCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. economic health: unemployment (DCUR) and payrolls (DCNA) vs national rate."
+  },
+  "unemployment in district of columbia": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Unemployment rate in Washington D.C. (DCUR) compared to national average (UNRATE)."
+  },
+  "jobs in district of columbia": {
+    "series": [
+      "DCNA",
+      "DCUR"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Job market in Washington D.C.: payrolls (DCNA) and unemployment (DCUR)."
+  },
+  "district of columbia labor market": {
+    "series": [
+      "DCUR",
+      "DCNA",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": false,
+    "explanation": "Washington D.C. labor market: unemployment rate and payrolls vs national."
+  },
+  "how does alabama unemployment look": {
+    "series": [
+      "ALUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Alabama unemployment rate (ALUR) vs national (UNRATE)."
+  },
+  "alabama unemployment rate": {
+    "series": [
+      "ALUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Alabama unemployment rate compared to national average."
+  },
+  "how does alaska unemployment look": {
+    "series": [
+      "AKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Alaska unemployment rate (AKUR) vs national (UNRATE)."
+  },
+  "alaska unemployment rate": {
+    "series": [
+      "AKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Alaska unemployment rate compared to national average."
+  },
+  "how does arizona unemployment look": {
+    "series": [
+      "AZUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Arizona unemployment rate (AZUR) vs national (UNRATE)."
+  },
+  "arizona unemployment rate": {
+    "series": [
+      "AZUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Arizona unemployment rate compared to national average."
+  },
+  "how does arkansas unemployment look": {
+    "series": [
+      "ARUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Arkansas unemployment rate (ARUR) vs national (UNRATE)."
+  },
+  "arkansas unemployment rate": {
+    "series": [
+      "ARUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Arkansas unemployment rate compared to national average."
+  },
+  "how does california unemployment look": {
+    "series": [
+      "CAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "California unemployment rate (CAUR) vs national (UNRATE)."
+  },
+  "california unemployment rate": {
+    "series": [
+      "CAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "California unemployment rate compared to national average."
+  },
+  "how does colorado unemployment look": {
+    "series": [
+      "COUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Colorado unemployment rate (COUR) vs national (UNRATE)."
+  },
+  "colorado unemployment rate": {
+    "series": [
+      "COUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Colorado unemployment rate compared to national average."
+  },
+  "how does connecticut unemployment look": {
+    "series": [
+      "CTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Connecticut unemployment rate (CTUR) vs national (UNRATE)."
+  },
+  "connecticut unemployment rate": {
+    "series": [
+      "CTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Connecticut unemployment rate compared to national average."
+  },
+  "how does delaware unemployment look": {
+    "series": [
+      "DEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Delaware unemployment rate (DEUR) vs national (UNRATE)."
+  },
+  "delaware unemployment rate": {
+    "series": [
+      "DEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Delaware unemployment rate compared to national average."
+  },
+  "how does florida unemployment look": {
+    "series": [
+      "FLUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Florida unemployment rate (FLUR) vs national (UNRATE)."
+  },
+  "florida unemployment rate": {
+    "series": [
+      "FLUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Florida unemployment rate compared to national average."
+  },
+  "how does georgia unemployment look": {
+    "series": [
+      "GAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Georgia unemployment rate (GAUR) vs national (UNRATE)."
+  },
+  "georgia unemployment rate": {
+    "series": [
+      "GAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Georgia unemployment rate compared to national average."
+  },
+  "how does hawaii unemployment look": {
+    "series": [
+      "HIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Hawaii unemployment rate (HIUR) vs national (UNRATE)."
+  },
+  "hawaii unemployment rate": {
+    "series": [
+      "HIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Hawaii unemployment rate compared to national average."
+  },
+  "how does idaho unemployment look": {
+    "series": [
+      "IDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Idaho unemployment rate (IDUR) vs national (UNRATE)."
+  },
+  "idaho unemployment rate": {
+    "series": [
+      "IDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Idaho unemployment rate compared to national average."
+  },
+  "how does illinois unemployment look": {
+    "series": [
+      "ILUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Illinois unemployment rate (ILUR) vs national (UNRATE)."
+  },
+  "illinois unemployment rate": {
+    "series": [
+      "ILUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Illinois unemployment rate compared to national average."
+  },
+  "how does indiana unemployment look": {
+    "series": [
+      "INUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Indiana unemployment rate (INUR) vs national (UNRATE)."
+  },
+  "indiana unemployment rate": {
+    "series": [
+      "INUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Indiana unemployment rate compared to national average."
+  },
+  "how does iowa unemployment look": {
+    "series": [
+      "IAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Iowa unemployment rate (IAUR) vs national (UNRATE)."
+  },
+  "iowa unemployment rate": {
+    "series": [
+      "IAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Iowa unemployment rate compared to national average."
+  },
+  "how does kansas unemployment look": {
+    "series": [
+      "KSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Kansas unemployment rate (KSUR) vs national (UNRATE)."
+  },
+  "kansas unemployment rate": {
+    "series": [
+      "KSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Kansas unemployment rate compared to national average."
+  },
+  "how does kentucky unemployment look": {
+    "series": [
+      "KYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Kentucky unemployment rate (KYUR) vs national (UNRATE)."
+  },
+  "kentucky unemployment rate": {
+    "series": [
+      "KYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Kentucky unemployment rate compared to national average."
+  },
+  "how does louisiana unemployment look": {
+    "series": [
+      "LAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Louisiana unemployment rate (LAUR) vs national (UNRATE)."
+  },
+  "louisiana unemployment rate": {
+    "series": [
+      "LAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Louisiana unemployment rate compared to national average."
+  },
+  "how does maine unemployment look": {
+    "series": [
+      "MEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Maine unemployment rate (MEUR) vs national (UNRATE)."
+  },
+  "maine unemployment rate": {
+    "series": [
+      "MEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Maine unemployment rate compared to national average."
+  },
+  "how does maryland unemployment look": {
+    "series": [
+      "MDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Maryland unemployment rate (MDUR) vs national (UNRATE)."
+  },
+  "maryland unemployment rate": {
+    "series": [
+      "MDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Maryland unemployment rate compared to national average."
+  },
+  "how does massachusetts unemployment look": {
+    "series": [
+      "MAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Massachusetts unemployment rate (MAUR) vs national (UNRATE)."
+  },
+  "massachusetts unemployment rate": {
+    "series": [
+      "MAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Massachusetts unemployment rate compared to national average."
+  },
+  "how does michigan unemployment look": {
+    "series": [
+      "MIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Michigan unemployment rate (MIUR) vs national (UNRATE)."
+  },
+  "michigan unemployment rate": {
+    "series": [
+      "MIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Michigan unemployment rate compared to national average."
+  },
+  "how does minnesota unemployment look": {
+    "series": [
+      "MNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Minnesota unemployment rate (MNUR) vs national (UNRATE)."
+  },
+  "minnesota unemployment rate": {
+    "series": [
+      "MNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Minnesota unemployment rate compared to national average."
+  },
+  "how does mississippi unemployment look": {
+    "series": [
+      "MSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Mississippi unemployment rate (MSUR) vs national (UNRATE)."
+  },
+  "mississippi unemployment rate": {
+    "series": [
+      "MSUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Mississippi unemployment rate compared to national average."
+  },
+  "how does missouri unemployment look": {
+    "series": [
+      "MOUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Missouri unemployment rate (MOUR) vs national (UNRATE)."
+  },
+  "missouri unemployment rate": {
+    "series": [
+      "MOUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Missouri unemployment rate compared to national average."
+  },
+  "how does montana unemployment look": {
+    "series": [
+      "MTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Montana unemployment rate (MTUR) vs national (UNRATE)."
+  },
+  "montana unemployment rate": {
+    "series": [
+      "MTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Montana unemployment rate compared to national average."
+  },
+  "how does nebraska unemployment look": {
+    "series": [
+      "NEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Nebraska unemployment rate (NEUR) vs national (UNRATE)."
+  },
+  "nebraska unemployment rate": {
+    "series": [
+      "NEUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Nebraska unemployment rate compared to national average."
+  },
+  "how does nevada unemployment look": {
+    "series": [
+      "NVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Nevada unemployment rate (NVUR) vs national (UNRATE)."
+  },
+  "nevada unemployment rate": {
+    "series": [
+      "NVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Nevada unemployment rate compared to national average."
+  },
+  "how does new hampshire unemployment look": {
+    "series": [
+      "NHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Hampshire unemployment rate (NHUR) vs national (UNRATE)."
+  },
+  "new hampshire unemployment rate": {
+    "series": [
+      "NHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Hampshire unemployment rate compared to national average."
+  },
+  "how does new jersey unemployment look": {
+    "series": [
+      "NJUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Jersey unemployment rate (NJUR) vs national (UNRATE)."
+  },
+  "new jersey unemployment rate": {
+    "series": [
+      "NJUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Jersey unemployment rate compared to national average."
+  },
+  "how does new mexico unemployment look": {
+    "series": [
+      "NMUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Mexico unemployment rate (NMUR) vs national (UNRATE)."
+  },
+  "new mexico unemployment rate": {
+    "series": [
+      "NMUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New Mexico unemployment rate compared to national average."
+  },
+  "how does new york unemployment look": {
+    "series": [
+      "NYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New York unemployment rate (NYUR) vs national (UNRATE)."
+  },
+  "new york unemployment rate": {
+    "series": [
+      "NYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "New York unemployment rate compared to national average."
+  },
+  "how does north carolina unemployment look": {
+    "series": [
+      "NCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "North Carolina unemployment rate (NCUR) vs national (UNRATE)."
+  },
+  "north carolina unemployment rate": {
+    "series": [
+      "NCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "North Carolina unemployment rate compared to national average."
+  },
+  "how does north dakota unemployment look": {
+    "series": [
+      "NDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "North Dakota unemployment rate (NDUR) vs national (UNRATE)."
+  },
+  "north dakota unemployment rate": {
+    "series": [
+      "NDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "North Dakota unemployment rate compared to national average."
+  },
+  "how does ohio unemployment look": {
+    "series": [
+      "OHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Ohio unemployment rate (OHUR) vs national (UNRATE)."
+  },
+  "ohio unemployment rate": {
+    "series": [
+      "OHUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Ohio unemployment rate compared to national average."
+  },
+  "how does oklahoma unemployment look": {
+    "series": [
+      "OKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Oklahoma unemployment rate (OKUR) vs national (UNRATE)."
+  },
+  "oklahoma unemployment rate": {
+    "series": [
+      "OKUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Oklahoma unemployment rate compared to national average."
+  },
+  "how does oregon unemployment look": {
+    "series": [
+      "ORUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Oregon unemployment rate (ORUR) vs national (UNRATE)."
+  },
+  "oregon unemployment rate": {
+    "series": [
+      "ORUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Oregon unemployment rate compared to national average."
+  },
+  "how does pennsylvania unemployment look": {
+    "series": [
+      "PAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Pennsylvania unemployment rate (PAUR) vs national (UNRATE)."
+  },
+  "pennsylvania unemployment rate": {
+    "series": [
+      "PAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Pennsylvania unemployment rate compared to national average."
+  },
+  "how does rhode island unemployment look": {
+    "series": [
+      "RIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Rhode Island unemployment rate (RIUR) vs national (UNRATE)."
+  },
+  "rhode island unemployment rate": {
+    "series": [
+      "RIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Rhode Island unemployment rate compared to national average."
+  },
+  "how does south carolina unemployment look": {
+    "series": [
+      "SCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "South Carolina unemployment rate (SCUR) vs national (UNRATE)."
+  },
+  "south carolina unemployment rate": {
+    "series": [
+      "SCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "South Carolina unemployment rate compared to national average."
+  },
+  "how does south dakota unemployment look": {
+    "series": [
+      "SDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "South Dakota unemployment rate (SDUR) vs national (UNRATE)."
+  },
+  "south dakota unemployment rate": {
+    "series": [
+      "SDUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "South Dakota unemployment rate compared to national average."
+  },
+  "how does tennessee unemployment look": {
+    "series": [
+      "TNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Tennessee unemployment rate (TNUR) vs national (UNRATE)."
+  },
+  "tennessee unemployment rate": {
+    "series": [
+      "TNUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Tennessee unemployment rate compared to national average."
+  },
+  "how does texas unemployment look": {
+    "series": [
+      "TXUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Texas unemployment rate (TXUR) vs national (UNRATE)."
+  },
+  "texas unemployment rate": {
+    "series": [
+      "TXUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Texas unemployment rate compared to national average."
+  },
+  "how does utah unemployment look": {
+    "series": [
+      "UTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Utah unemployment rate (UTUR) vs national (UNRATE)."
+  },
+  "utah unemployment rate": {
+    "series": [
+      "UTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Utah unemployment rate compared to national average."
+  },
+  "how does vermont unemployment look": {
+    "series": [
+      "VTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Vermont unemployment rate (VTUR) vs national (UNRATE)."
+  },
+  "vermont unemployment rate": {
+    "series": [
+      "VTUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Vermont unemployment rate compared to national average."
+  },
+  "how does virginia unemployment look": {
+    "series": [
+      "VAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Virginia unemployment rate (VAUR) vs national (UNRATE)."
+  },
+  "virginia unemployment rate": {
+    "series": [
+      "VAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Virginia unemployment rate compared to national average."
+  },
+  "how does washington unemployment look": {
+    "series": [
+      "WAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Washington unemployment rate (WAUR) vs national (UNRATE)."
+  },
+  "washington unemployment rate": {
+    "series": [
+      "WAUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Washington unemployment rate compared to national average."
+  },
+  "how does west virginia unemployment look": {
+    "series": [
+      "WVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "West Virginia unemployment rate (WVUR) vs national (UNRATE)."
+  },
+  "west virginia unemployment rate": {
+    "series": [
+      "WVUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "West Virginia unemployment rate compared to national average."
+  },
+  "how does wisconsin unemployment look": {
+    "series": [
+      "WIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wisconsin unemployment rate (WIUR) vs national (UNRATE)."
+  },
+  "wisconsin unemployment rate": {
+    "series": [
+      "WIUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wisconsin unemployment rate compared to national average."
+  },
+  "how does wyoming unemployment look": {
+    "series": [
+      "WYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wyoming unemployment rate (WYUR) vs national (UNRATE)."
+  },
+  "wyoming unemployment rate": {
+    "series": [
+      "WYUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Wyoming unemployment rate compared to national average."
+  },
+  "how does dc unemployment look": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Dc unemployment rate (DCUR) vs national (UNRATE)."
+  },
+  "dc unemployment rate": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "Dc unemployment rate compared to national average."
+  },
+  "how does district of columbia unemployment look": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "District Of Columbia unemployment rate (DCUR) vs national (UNRATE)."
+  },
+  "district of columbia unemployment rate": {
+    "series": [
+      "DCUR",
+      "UNRATE"
+    ],
+    "show_yoy": false,
+    "combine_chart": true,
+    "is_comparison": true,
+    "explanation": "District Of Columbia unemployment rate compared to national average."
+  }
+}
