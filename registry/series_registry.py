@@ -732,6 +732,7 @@ QUERY_MAP: Dict[str, dict] = {
     'jobs': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
     'employment': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
     'labor market': {'series': ['PAYEMS', 'UNRATE'], 'combine': False},
+
     'unemployment': {'series': ['UNRATE'], 'combine': False},
     'hiring': {'series': ['PAYEMS', 'JTSJOL'], 'combine': False},
     'job openings': {'series': ['JTSJOL'], 'combine': False},
@@ -903,7 +904,29 @@ class SeriesRegistry:
                     with open(path) as f:
                         plans = json.load(f)
                         self._plans.update(plans)
-                        print(f"[Registry] Loaded {len(plans)} plans from {filename}")
+                        # Wire up synonyms: if a plan has a "synonyms" list,
+                        # register each synonym as an additional key pointing
+                        # to the same plan (so "compare job market to pre-pandemic"
+                        # resolves to the "job market pre-pandemic" plan).
+                        synonym_count = 0
+                        for key, plan in plans.items():
+                            synonyms = plan.get('synonyms', [])
+                            for syn in synonyms:
+                                syn_key = syn.lower().strip()
+                                if syn_key not in self._plans:
+                                    self._plans[syn_key] = plan
+                                    synonym_count += 1
+                                # Also register the normalized form of the synonym
+                                # so "Compare the job market to pre-pandemic" →
+                                # normalize → "job market to pre-pandemic" → matches
+                                syn_normalized = self._normalize(syn_key)
+                                if syn_normalized and syn_normalized not in self._plans:
+                                    self._plans[syn_normalized] = plan
+                                    synonym_count += 1
+                        loaded_msg = f"[Registry] Loaded {len(plans)} plans from {filename}"
+                        if synonym_count:
+                            loaded_msg += f" (+{synonym_count} synonyms)"
+                        print(loaded_msg)
                 except Exception as e:
                     print(f"[Registry] Error loading {filename}: {e}")
 
@@ -987,6 +1010,7 @@ class SeriesRegistry:
             r'^what is\s+', r'^what are\s+', r'^show me\s+', r'^show\s+',
             r'^tell me about\s+', r'^how is\s+', r'^how are\s+',
             r'^what\'s\s+', r'^whats\s+', r'^give me\s+',
+            r'^compare\s+', r'^comparing\s+', r'^explain\s+',
             r'\s+changed\s*$', r'\s+doing\s*$', r'\s+looking\s*$', r'\s+trending\s*$',
             r'\?$', r'\.+$', r'\s+the\s+', r'^the\s+'
         ]

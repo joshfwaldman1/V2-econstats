@@ -27,6 +27,12 @@ def extract_temporal_filter(query: str) -> Optional[Dict]:
     now = datetime.now()
     current_year = now.year
 
+    # === COMPARISON queries ("compare X to pre-pandemic", "vs 2019") ===
+    # When the user is COMPARING to a time period, don't truncate the data.
+    # Show the full time range so they can see current vs. the reference period.
+    comparison_words = ['compare', 'compared to', 'vs', 'versus', 'relative to']
+    is_comparison = any(cw in q for cw in comparison_words)
+
     # === "Since YYYY" - open-ended range from year to present ===
     if match := re.search(r'\bsince\s+((?:19|20)\d{2})\b', q):
         year = int(match.group(1))
@@ -102,7 +108,18 @@ def extract_temporal_filter(query: str) -> Optional[Dict]:
         }
 
     # === Period references ===
+    # When the user says "compare X to pre-pandemic", they want the FULL range
+    # (pre-pandemic through today) so they can see the comparison visually.
+    # Only truncate when they specifically ask for JUST that period.
+
     if re.search(r'\b(pre[\s-]?(covid|pandemic|2020)|before\s+(covid|pandemic|the\s+pandemic|2020))\b', q):
+        if is_comparison:
+            # "Compare X to pre-pandemic" → show full range from 2017 to present
+            return {
+                'temporal_focus': 'pre-COVID comparison',
+                'years_override': current_year - 2017 + 1,
+                'explanation': 'Comparing current data to pre-COVID levels (Feb 2020 baseline).',
+            }
         return {
             'temporal_focus': 'pre-COVID',
             'filter_end_date': '2020-02-29',
@@ -111,6 +128,12 @@ def extract_temporal_filter(query: str) -> Optional[Dict]:
         }
 
     if re.search(r'\b(during\s+(covid|pandemic|the\s+pandemic)|covid\s+era|pandemic\s+period)\b', q):
+        if is_comparison:
+            return {
+                'temporal_focus': 'COVID period comparison',
+                'years_override': current_year - 2018 + 1,
+                'explanation': 'Comparing current data to COVID pandemic period.',
+            }
         return {
             'temporal_focus': 'COVID period',
             'filter_start_date': '2020-03-01',
@@ -128,6 +151,12 @@ def extract_temporal_filter(query: str) -> Optional[Dict]:
         }
 
     if re.search(r'\b(great\s+recession|during\s+(?:the\s+)?recession|2008\s+(?:recession|crisis)|financial\s+crisis)\b', q):
+        if is_comparison:
+            return {
+                'temporal_focus': 'Great Recession comparison',
+                'years_override': current_year - 2006 + 1,
+                'explanation': 'Comparing current data to Great Recession period.',
+            }
         return {
             'temporal_focus': 'Great Recession',
             'filter_start_date': '2007-12-01',

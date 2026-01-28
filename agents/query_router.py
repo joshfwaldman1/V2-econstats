@@ -104,7 +104,8 @@ INDICATORS = {
         "comparison_type": "yoy_rate",
     },
     "unemployment": {
-        "keywords": ["unemployment", "jobless", "jobs"],
+        "keywords": ["unemployment", "jobless", "jobs", "job market", "labor market",
+                     "employment", "labor", "workforce"],
         "fred_series": ["UNRATE"],  # Already a rate level
         "fred_metadata": {
             "UNRATE": {
