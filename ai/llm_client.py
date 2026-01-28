@@ -250,9 +250,89 @@ def build_rich_data_context(series_data: List[tuple]) -> str:
     return "\n".join(lines) if lines else "No data available."
 
 
+def build_dynamic_plan(query: str, available_series: List[Dict]) -> Optional[Dict[str, Any]]:
+    """
+    Dynamically build a query plan when no pre-built plan matches.
+
+    Instead of picking from existing plans (which may not cover the query),
+    this selects appropriate series directly based on the query intent.
+
+    Args:
+        query: The user's question
+        available_series: List of dicts with 'id', 'name', 'description'
+
+    Returns:
+        Dict with 'series', 'show_yoy', 'explanation' or None if can't build
+    """
+    client = get_client()
+    if not client:
+        return None
+
+    # Build series catalog for LLM
+    series_catalog = "\n".join([
+        f"- {s['id']}: {s['name']} - {s.get('description', '')[:100]}"
+        for s in available_series[:100]  # Limit to avoid context overflow
+    ])
+
+    prompt = f"""You are a senior economic analyst. A user asks a question, and you need to decide what data to show them.
+
+USER QUESTION: "{query}"
+
+Think: What charts would a smart analyst show to EXPLAIN THE ANSWER to this person?
+- Don't just match keywords - think about what data actually answers their question
+- "Are rents increasing?" → Show rent data, NOT interest rates
+- "Is the job market strong?" → Show employment, unemployment, job openings
+- "Should I worry about inflation?" → Show CPI, PCE, maybe wages
+
+AVAILABLE DATA:
+{series_catalog}
+
+Select 1-4 series that would help you EXPLAIN THE ANSWER. Not tangentially related data - the actual answer.
+
+DISPLAY RULES:
+- show_yoy=true for INDEXES (CPI, home prices) - raw index values are meaningless
+- show_yoy=false for RATES (unemployment %, fed funds %) - already interpretable
+
+Reply in JSON:
+{{"series": ["SERIES_ID1", "SERIES_ID2"], "show_yoy": true/false, "explanation": "What this data shows"}}
+
+If you can't answer with available data: {{"series": [], "explanation": "Why not"}}"""
+
+    try:
+        response = client.messages.create(
+            model=config.default_model,
+            max_tokens=300,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        text = response.content[0].text.strip()
+        print(f"[AI] Dynamic plan for '{query}': {text[:100]}...")
+
+        # Parse JSON response
+        if '{' in text:
+            start = text.index('{')
+            end = text.rindex('}') + 1
+            result = json.loads(text[start:end])
+
+            if result.get('series'):
+                return {
+                    'series': result['series'],
+                    'show_yoy': result.get('show_yoy', False),
+                    'explanation': result.get('explanation', ''),
+                    'dynamic': True  # Flag that this was dynamically built
+                }
+    except Exception as e:
+        print(f"[AI] Dynamic plan error: {e}")
+
+    return None
+
+
 def classify_query(query: str, available_topics: List[str]) -> Optional[Dict[str, Any]]:
     """
     Use LLM to understand query intent and route to appropriate topic.
+
+    NOTE: This is the OLD approach - picks from existing plan names.
+    Prefer build_dynamic_plan() which can select series directly.
 
     Args:
         query: The user's question

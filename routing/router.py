@@ -248,7 +248,30 @@ class QueryRouter:
         Use LLM to route complex/novel queries.
 
         This is the fallback when pattern matching fails.
+        Uses build_dynamic_plan to select series directly (not from plan names).
         """
+        try:
+            from ai import build_dynamic_plan
+
+            # Get all available series with descriptions for the LLM
+            available_series = self._get_series_catalog()
+
+            # Build a dynamic plan based on available series
+            plan = build_dynamic_plan(query, available_series)
+
+            if plan and plan.get('series'):
+                return RoutingResult(
+                    series=plan['series'],
+                    show_yoy=plan.get('show_yoy', False),
+                    explanation=plan.get('explanation', ''),
+                    route_type='dynamic_llm'
+                )
+        except ImportError as e:
+            print(f"[Router] LLM import error: {e}")
+        except Exception as e:
+            print(f"[Router] LLM routing error: {e}")
+
+        # Fallback to old classify_query if dynamic fails
         try:
             from ai import classify_query
             classification = classify_query(query, registry.all_plan_keys())
@@ -260,12 +283,54 @@ class QueryRouter:
                     if classification.get('show_yoy') is not None:
                         result.show_yoy = classification['show_yoy']
                     return result
-        except ImportError:
-            pass
         except Exception as e:
-            print(f"[Router] LLM routing error: {e}")
+            print(f"[Router] Fallback LLM error: {e}")
 
         return None
+
+    def _get_series_catalog(self) -> List[Dict]:
+        """Get catalog of all available series for dynamic routing."""
+        # Start with registered series (high-quality descriptions)
+        catalog = []
+        for sid, info in registry._series.items():
+            catalog.append({
+                'id': sid,
+                'name': info.name,
+                'description': info.short_description or info.bullets[0] if info.bullets else ''
+            })
+
+        # Add common FRED series that may not be in registry
+        # This ensures LLM can route to important series even without plans
+        common_series = [
+            {'id': 'CUSR0000SEHA', 'name': 'CPI: Rent of Primary Residence', 'description': 'What renters actually pay for rent'},
+            {'id': 'CUSR0000SEHC', 'name': 'CPI: Owners Equivalent Rent', 'description': 'Imputed rent for homeowners'},
+            {'id': 'CUSR0000SAF1', 'name': 'CPI: Food', 'description': 'Food price inflation'},
+            {'id': 'CUSR0000SETB01', 'name': 'CPI: Gasoline', 'description': 'Gas price changes'},
+            {'id': 'CUSR0000SAM', 'name': 'CPI: Medical Care', 'description': 'Healthcare cost inflation'},
+            {'id': 'DSPIC96', 'name': 'Real Disposable Income', 'description': 'Income after taxes, adjusted for inflation'},
+            {'id': 'CES0500000003', 'name': 'Average Hourly Earnings', 'description': 'Average wages for private workers'},
+            {'id': 'LES1252881600Q', 'name': 'Real Median Weekly Earnings', 'description': 'Middle-class wages adjusted for inflation'},
+            {'id': 'JTSJOL', 'name': 'Job Openings', 'description': 'Unfilled job positions (JOLTS)'},
+            {'id': 'JTSQUR', 'name': 'Quits Rate', 'description': 'Workers voluntarily leaving jobs'},
+            {'id': 'PCE', 'name': 'Personal Consumption Expenditures', 'description': 'Consumer spending'},
+            {'id': 'DGORDER', 'name': 'Durable Goods Orders', 'description': 'Orders for long-lasting manufactured goods'},
+            {'id': 'INDPRO', 'name': 'Industrial Production', 'description': 'Factory output'},
+            {'id': 'TOTALSA', 'name': 'Total Vehicle Sales', 'description': 'Car and truck sales'},
+            {'id': 'RRVRUSQ156N', 'name': 'Rental Vacancy Rate', 'description': 'Percent of rentals vacant'},
+            {'id': 'MSPUS', 'name': 'Median Home Sale Price', 'description': 'Typical home selling price'},
+            {'id': 'PERMIT', 'name': 'Building Permits', 'description': 'Future construction activity'},
+            {'id': 'VIXCLS', 'name': 'VIX Volatility Index', 'description': 'Stock market fear gauge'},
+            {'id': 'DTWEXBGS', 'name': 'US Dollar Index', 'description': 'Dollar strength vs other currencies'},
+            {'id': 'T10YIE', 'name': '10-Year Breakeven Inflation', 'description': 'Market inflation expectations'},
+        ]
+
+        # Add common series if not already in catalog
+        existing_ids = {s['id'] for s in catalog}
+        for series in common_series:
+            if series['id'] not in existing_ids:
+                catalog.append(series)
+
+        return catalog
 
     def _cache_result(self, query: str, result: RoutingResult) -> None:
         """Cache routing result."""

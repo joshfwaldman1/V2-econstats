@@ -430,6 +430,7 @@ def is_fed_related_query(query: str) -> bool:
     Returns:
         True if the query is Fed-related and should display Fed guidance
     """
+    import re
     query_lower = query.lower()
 
     # Core Fed-related terms
@@ -446,12 +447,16 @@ def is_fed_related_query(query: str) -> bool:
         'interest rate', 'benchmark rate',
     ]
 
-    # Monetary policy terms
+    # Monetary policy terms - use word boundaries to avoid false matches
+    # e.g., "easing" should NOT match "increasing"
     policy_keywords = [
-        'monetary policy', 'policy stance', 'tightening', 'easing',
+        'monetary policy', 'policy stance', 'tightening',
         'hawkish', 'dovish', 'pivot',
         'quantitative tightening', 'qt', 'balance sheet',
     ]
+
+    # These need word boundary matching to avoid false positives
+    word_boundary_keywords = ['easing', 'fed']
 
     # Forward guidance terms (also triggers SEP)
     guidance_keywords = [
@@ -460,9 +465,17 @@ def is_fed_related_query(query: str) -> bool:
         'how many cuts', 'how many hikes',
     ]
 
-    all_keywords = fed_core_keywords + rate_keywords + policy_keywords + guidance_keywords
+    # Check multi-word keywords (substring match is fine)
+    multi_word_keywords = fed_core_keywords + rate_keywords + policy_keywords + guidance_keywords
+    if any(kw in query_lower for kw in multi_word_keywords if len(kw.split()) > 1 or kw not in word_boundary_keywords):
+        return True
 
-    return any(kw in query_lower for kw in all_keywords)
+    # Check single-word keywords with word boundaries
+    for kw in word_boundary_keywords:
+        if re.search(rf'\b{kw}\b', query_lower):
+            return True
+
+    return False
 
 
 def get_fed_guidance_for_query(query: str) -> Optional[Dict]:

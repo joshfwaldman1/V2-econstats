@@ -1,6 +1,6 @@
 """AI module - All LLM interactions consolidated."""
 
-from .llm_client import get_ai_summary, classify_query, stream_summary, build_rich_data_context
+from .llm_client import get_ai_summary, classify_query, stream_summary, build_rich_data_context, build_dynamic_plan
 from .summarizer import (
     generate_summary,
     generate_fallback_summary,
