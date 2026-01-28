@@ -21,6 +21,7 @@ anthropic>=0.18.0
 # Data processing
 pandas>=2.0.0
 numpy>=1.24.0
+python-dateutil>=2.8.0  # Date arithmetic (also a pandas dependency)
 
 # Optional: for streaming SSE
 sse-starlette>=1.6.0

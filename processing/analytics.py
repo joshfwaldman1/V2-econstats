@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 def compute_series_analytics(
@@ -76,21 +77,38 @@ def compute_series_analytics(
         'data_type': data_type,
     }
 
-    # Year-over-year change
-    if len(df) > yoy_periods:
-        year_ago = df['value'].iloc[-(yoy_periods + 1)]
+    # Year-over-year change — DATE-BASED lookup, not position-based.
+    # Position-based (iloc[-13]) breaks when data has gaps, missing months,
+    # or irregular frequency. Date-based ensures we compare Dec 2025 to Dec 2024.
+    yoy_target_date = latest_date - relativedelta(years=1)
+    yoy_row = _find_nearest_observation(df, yoy_target_date)
+    if yoy_row is not None:
+        year_ago = yoy_row['value']
+        year_ago_date = yoy_row.name
         yoy_change = latest - year_ago
         yoy_pct = (yoy_change / abs(year_ago) * 100) if year_ago != 0 else None
         analytics['yoy'] = {
             'change': round(yoy_change, 4),
             'change_pct': round(yoy_pct, 2) if yoy_pct else None,
             'prior_value': round(year_ago, 4),
-            'prior_date': df.index[-(yoy_periods + 1)].strftime('%Y-%m-%d'),
+            'prior_date': year_ago_date.strftime('%Y-%m-%d'),
         }
 
-    # Short-term trend (3 months or equivalent)
-    if len(df) > short_term_periods:
-        short_ago = df['value'].iloc[-(short_term_periods + 1)]
+    # Short-term trend — also DATE-BASED.
+    # For monthly: 3 months back. For quarterly: 6 months. For daily: ~3 months.
+    if frequency == 'quarterly':
+        short_term_delta = relativedelta(months=6)
+    elif frequency == 'daily':
+        short_term_delta = relativedelta(months=3)
+    elif frequency == 'weekly':
+        short_term_delta = relativedelta(months=3)
+    else:  # monthly
+        short_term_delta = relativedelta(months=3)
+
+    short_target_date = latest_date - short_term_delta
+    short_row = _find_nearest_observation(df, short_target_date)
+    if short_row is not None:
+        short_ago = short_row['value']
         short_change = latest - short_ago
         short_pct = (short_change / abs(short_ago) * 100) if short_ago != 0 else None
 
@@ -158,9 +176,14 @@ def compute_series_analytics(
     }
 
     # Recent momentum (is it accelerating or decelerating?)
-    if len(df) > short_term_periods * 2:
-        recent_change = df['value'].iloc[-1] - df['value'].iloc[-(short_term_periods + 1)]
-        prior_change = df['value'].iloc[-(short_term_periods + 1)] - df['value'].iloc[-(short_term_periods * 2 + 1)]
+    # Use date-based lookups for consistency
+    mid_target = latest_date - short_term_delta
+    far_target = latest_date - short_term_delta - short_term_delta
+    mid_row = _find_nearest_observation(df, mid_target)
+    far_row = _find_nearest_observation(df, far_target)
+    if mid_row is not None and far_row is not None:
+        recent_change = latest - mid_row['value']
+        prior_change = mid_row['value'] - far_row['value']
 
         if prior_change != 0:
             momentum = 'accelerating' if recent_change > prior_change else 'decelerating'
@@ -174,6 +197,54 @@ def compute_series_analytics(
         }
 
     return analytics
+
+
+def _find_nearest_observation(df: pd.DataFrame, target_date) -> Optional[pd.Series]:
+    """
+    Find the observation closest to target_date in the DataFrame.
+
+    Uses date-based lookup instead of position-based indexing.
+    This ensures YoY compares Dec 2025 to Dec 2024, even if data has
+    gaps, missing months, or irregular frequency.
+
+    Args:
+        df: DataFrame with DatetimeIndex and 'value' column
+        target_date: The target date to find
+
+    Returns:
+        The row (as pd.Series) closest to target_date, or None if no data
+        is within a reasonable range (45 days for monthly, 120 days for quarterly).
+    """
+    if len(df) == 0:
+        return None
+
+    # Convert target to pandas Timestamp for comparison
+    target = pd.Timestamp(target_date)
+
+    # Find closest date using searchsorted
+    idx = df.index.searchsorted(target, side='left')
+
+    # Check both the date before and after the target
+    candidates = []
+    if idx > 0:
+        candidates.append(idx - 1)
+    if idx < len(df):
+        candidates.append(idx)
+
+    if not candidates:
+        return None
+
+    # Pick the closest
+    best_idx = min(candidates, key=lambda i: abs(df.index[i] - target))
+    best_date = df.index[best_idx]
+
+    # Sanity check: don't use an observation more than 45 days away
+    # (handles missing months gracefully but rejects wild mismatches)
+    max_gap = pd.Timedelta(days=45)
+    if abs(best_date - target) > max_gap:
+        return None
+
+    return df.iloc[best_idx]
 
 
 def _format_date(dt: datetime, frequency: str) -> str:
