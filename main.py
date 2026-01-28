@@ -179,9 +179,22 @@ async def home(request: Request):
     except Exception:
         pass
 
+    # Example queries for the homepage "Try these questions" grid
+    examples = [
+        "How is the economy doing?",
+        "Are wages keeping up with inflation?",
+        "Is the labor market cooling off?",
+        "How tight is the job market right now?",
+        "Is rent inflation coming down yet?",
+        "Compare the job market to pre-pandemic",
+        "How is New York's economy?",
+        "What are Fed rate projections?",
+    ]
+
     return templates.TemplateResponse("index.html", {
         "request": request,
         "last_updated": last_updated,
+        "examples": examples,
     })
 
 
