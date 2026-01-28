@@ -989,6 +989,18 @@ class SeriesRegistry:
         """Get all available plan keys for LLM classification."""
         return list(self._plans.keys())
 
+    def get_all_plans(self) -> Dict[str, dict]:
+        """
+        Get all loaded plans as a dict of {plan_key: plan_data}.
+
+        Used by the plan catalog builder to organize plans into topic
+        buckets for the LLM routing prompt.
+
+        Returns:
+            Dict mapping plan key strings to their plan dicts.
+        """
+        return dict(self._plans)
+
     def _normalize(self, query: str) -> str:
         """Normalize query for matching.
 

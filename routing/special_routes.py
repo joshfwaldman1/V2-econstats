@@ -132,6 +132,71 @@ class SpecialRouter:
 
         return None
 
+    def get_enrichment(self, query: str, flags: Optional[dict] = None) -> dict:
+        """
+        Get special HTML boxes for enrichment WITHOUT replacing routing.
+
+        Unlike check(), this returns only the extra_data (HTML boxes)
+        without series or routing decisions. Used by the new unified
+        router to add special content on top of LLM-selected plans.
+
+        Args:
+            query: The user's query string.
+            flags: Optional dict of special flags from the LLM router:
+                   needs_fed_sep, needs_recession_scorecard, needs_cape
+
+        Returns:
+            Dict with optional keys: fed_sep_html, fed_guidance,
+            recession_html, cape_html. Empty dict if nothing matches.
+        """
+        enrichment = {}
+        flags = flags or {}
+
+        # Fed SEP enrichment
+        needs_fed = flags.get('needs_fed_sep', False)
+        if not needs_fed and self._fed_sep:
+            needs_fed = self._fed_sep['is_fed_query'](query)
+
+        if needs_fed and self._fed_sep:
+            try:
+                guidance = self._fed_sep['get_guidance'](query)
+                if guidance:
+                    enrichment['fed_guidance'] = guidance
+                if self._fed_sep['is_sep_query'](query):
+                    sep_data = self._fed_sep['get_sep_data']()
+                    if sep_data:
+                        enrichment['fed_sep_html'] = self._format_fed_sep_html(sep_data)
+            except Exception as e:
+                print(f"[SpecialRoutes] Fed enrichment error: {e}")
+
+        # Recession scorecard enrichment
+        needs_recession = flags.get('needs_recession_scorecard', False)
+        if not needs_recession and self._recession:
+            needs_recession = self._recession['is_query'](query)
+
+        if needs_recession and self._recession:
+            try:
+                scorecard = self._recession['build_scorecard']()
+                if scorecard:
+                    enrichment['recession_html'] = self._recession['format_display'](scorecard)
+            except Exception as e:
+                print(f"[SpecialRoutes] Recession enrichment error: {e}")
+
+        # CAPE/valuation enrichment
+        needs_cape = flags.get('needs_cape', False)
+        if not needs_cape and self._shiller:
+            needs_cape = self._shiller['is_query'](query)
+
+        if needs_cape and self._shiller:
+            try:
+                bubble_data = self._shiller['get_bubble_data']()
+                if bubble_data:
+                    enrichment['cape_html'] = self._format_cape_html(bubble_data)
+            except Exception as e:
+                print(f"[SpecialRoutes] CAPE enrichment error: {e}")
+
+        return enrichment
+
     def _handle_fed_query(self, query: str) -> SpecialRouteResult:
         """Handle Fed-related queries."""
         guidance = self._fed_sep['get_guidance'](query)
