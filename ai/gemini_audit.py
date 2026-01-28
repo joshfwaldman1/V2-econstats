@@ -16,6 +16,8 @@ from urllib.request import urlopen, Request
 from urllib.error import URLError
 import ssl
 
+from ai.economic_knowledge import ANTI_PATTERNS, DISPLAY_RULES, DEMOGRAPHIC_SERIES_KNOWLEDGE, SECTOR_SERIES_KNOWLEDGE
+
 # Gemini API configuration
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "") or os.environ.get("GOOGLE_API_KEY", "")
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -126,11 +128,16 @@ SUMMARY TO AUDIT:
 
 {f'CHART DESCRIPTIONS: {json.dumps(chart_descriptions)}' if chart_descriptions else ''}
 
+{DISPLAY_RULES}
+
+{ANTI_PATTERNS}
+
 CHECK FOR:
 1. Wrong numbers (does summary match actual data?)
 2. Misleading claims (overstating/understating trends?)
 3. Missing critical context
-4. Chart descriptions that reference meaningless raw index values
+4. Violations of the display rules and anti-patterns above
+5. Chart descriptions that reference meaningless raw index values
 
 Reply in JSON format:
 {{"approved": true/false, "issues": ["issue1", "issue2"], "suggested_fix": "brief fix or null"}}
@@ -190,11 +197,16 @@ USER QUERY: "{query}"
 ROUTED TO: "{selected_topic}"
 SERIES: {selected_series[:5]}
 
+{DEMOGRAPHIC_SERIES_KNOWLEDGE}
+
+{SECTOR_SERIES_KNOWLEDGE}
+
 COMMON ROUTING ERRORS TO CHECK:
-- Demographics ignored ("Black workers" → general data)
-- Sector ignored ("manufacturing jobs" → all jobs)
-- Geographic ignored ("California housing" → national data)
+- Demographics ignored ("Black workers" → general data instead of LNS14000006)
+- Sector ignored ("manufacturing jobs" → all jobs instead of MANEMP)
+- Geographic ignored ("California housing" → national data instead of CAUR)
 - Comparison missed ("vs" or "compared to" in query)
+- U-6 returned when U-3 (UNRATE) was appropriate
 
 Is this routing correct?
 

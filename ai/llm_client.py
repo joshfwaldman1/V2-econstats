@@ -18,6 +18,13 @@ from datetime import datetime
 from config import config
 from cache import cache_manager
 from processing.analytics import compute_series_analytics, analytics_to_text
+from ai.economic_knowledge import (
+    get_compact_knowledge_prompt,
+    get_series_catalog_text,
+    get_full_knowledge_prompt,
+    ANTI_PATTERNS,
+    DISPLAY_RULES,
+)
 
 # Lazy import Anthropic to avoid startup issues
 _client = None
@@ -81,7 +88,12 @@ def get_ai_summary(
             if exchange.get('summary'):
                 conv_context += f"Assistant: {exchange['summary'][:200]}...\n"
 
+    # Use the master knowledge base for consistent rules across all prompts
+    knowledge_rules = get_compact_knowledge_prompt()
+
     prompt = f"""You are an expert economist providing clear, insightful analysis of economic data for a general audience.
+
+{knowledge_rules}
 
 USER QUESTION: "{query}"
 {conv_context}
@@ -95,26 +107,12 @@ CURRENT DATA:
    - Directly answers the user's question with specific numbers
    - Explains what trends MEAN for workers, consumers, or the economy
    - Puts current values in context (vs historical average, pre-pandemic, vs national average for state data)
-   - Uses plain language accessible to non-economists - NO jargon like "U-6" or "basis points"
+   - Uses plain language accessible to non-economists
    - For STATE data: always compare to the national rate (e.g., "Minnesota's 3.2% is below the national 4.1%")
 
 2. "suggestions": Array of 3 follow-up questions the user might want to ask
 
 3. "chart_descriptions": Object mapping series_id to a 1-sentence description for EACH chart
-
-## CRITICAL DISPLAY RULES:
-- NEVER reference raw index values (e.g., "CPI is 326" means nothing - say "up 3.0% from a year ago")
-- NEVER emphasize obscure indicators. Use what normal people understand:
-  - "unemployment" = standard unemployment rate. NOT U-6 or U-4 unless asked
-  - "inflation" = year-over-year price change. NOT raw CPI level
-  - "jobs" = payrolls number. Say "added 175K jobs" NOT "up 1.2%"
-- For RATES (unemployment %, interest rates): use percentage POINT changes
-  - GOOD: "up 0.7 percentage points from a year ago"
-  - BAD: "rising 9.1% year-over-year" (this is the % change OF the rate - confusing!)
-- For STATE data: always mention whether the state is above or below the national average
-- Put values in context of 1-5 years, NOT decades
-- Good: "Gas prices are down 8% from a year ago, offering relief to consumers"
-- Bad: "The gasoline index is 238.5"
 
 Series to describe: {series_list}
 
@@ -275,36 +273,31 @@ def build_dynamic_plan(query: str, available_series: List[Dict]) -> Optional[Dic
     if not client:
         return None
 
-    # Build series catalog for LLM
-    series_catalog = "\n".join([
+    # Use the master knowledge base for series catalog and rules
+    knowledge_rules = get_compact_knowledge_prompt()
+    series_catalog_from_kb = get_series_catalog_text()
+
+    # Also include any additional series passed in (e.g., from registry)
+    extra_series = "\n".join([
         f"- {s['id']}: {s['name']} - {s.get('description', '')[:100]}"
-        for s in available_series[:100]  # Limit to avoid context overflow
+        for s in available_series[:50]
+        if s['id'] not in series_catalog_from_kb  # Avoid duplicates
     ])
 
     prompt = f"""You are a senior economic analyst. A user asks a question, and you need to decide what data to show them.
+
+{knowledge_rules}
 
 USER QUESTION: "{query}"
 
 Think: What charts would a smart analyst show to EXPLAIN THE ANSWER to this person?
 - Don't just match keywords - think about what data actually answers their question
-- "Are rents increasing?" → Show rent data, NOT interest rates
-- "Is the job market strong?" → Show employment, unemployment, job openings
-- "Should I worry about inflation?" → Show CPI, PCE, maybe wages
-- "Minnesota unemployment" → Show MNUR (state rate) + UNRATE (national), NOT U-6
+- Select 1-4 series that would help you EXPLAIN THE ANSWER
 
-CRITICAL RULES:
-- "unemployment" means the STANDARD unemployment rate (U-3). NEVER use U-6 unless explicitly asked.
-- For STATE queries, use state-specific FRED series:
-  - {{STATE_CODE}}UR = state unemployment rate (e.g., MNUR, TXUR, CAUR, NYUR)
-  - {{STATE_CODE}}NA = state nonfarm payrolls (e.g., MNNA, TXNA, CANA)
-  - ALWAYS pair state data with national equivalent for context
-  - State codes: AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY,DC
-- For RATES (unemployment %, interest rates): show percentage POINT changes, NOT percentage changes
+AVAILABLE FRED SERIES (organized by topic):
+{series_catalog_from_kb}
 
-AVAILABLE DATA:
-{series_catalog}
-
-Select 1-4 series that would help you EXPLAIN THE ANSWER. Not tangentially related data - the actual answer.
+{f"ADDITIONAL AVAILABLE SERIES:{chr(10)}{extra_series}" if extra_series else ""}
 
 DISPLAY RULES:
 - show_yoy=true for INDEXES (CPI, home prices) - raw index values are meaningless
@@ -371,11 +364,9 @@ Question: "{query}"
 
 Available topics: {topics_str}
 
-DISPLAY RULES (show_yoy):
-- RATES (unemployment %, interest rates, P/E ratios) → show_yoy: false (already meaningful)
-- INDEXES (CPI, home price index) → show_yoy: true (raw index meaningless, show inflation rate)
-- LEVELS (GDP dollars, employment count) → show_yoy: false usually
-- GROWTH questions ("how fast", "growth rate") → show_yoy: true
+{DISPLAY_RULES}
+
+{ANTI_PATTERNS}
 
 Reply in format: topic_name|show_yoy
 Examples: "inflation|true" or "unemployment|false" or "none|false" """
@@ -430,7 +421,12 @@ async def stream_summary(
 
     data_context = build_rich_data_context(series_data)
 
+    # Use the master knowledge base for consistent display rules
+    knowledge_rules = get_compact_knowledge_prompt()
+
     prompt = f"""You are an expert economist. Provide a 3-4 sentence summary.
+
+{knowledge_rules}
 
 USER QUESTION: "{query}"
 

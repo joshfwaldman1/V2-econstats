@@ -13,11 +13,19 @@ higher-quality query plans than any single model alone.
 
 import json
 import os
+import sys
 import time
 import concurrent.futures
 from pathlib import Path
 from urllib.request import urlopen, Request
 from typing import Optional, Dict, Any, Tuple
+
+# Ensure project root is on the path for imports
+_project_root = str(Path(__file__).parent.parent)
+if _project_root not in sys.path:
+    sys.path.insert(0, _project_root)
+
+from ai.economic_knowledge import get_compact_knowledge_prompt, ANTI_PATTERNS, DISPLAY_RULES
 
 # Load environment variables from .env file
 try:
@@ -282,6 +290,8 @@ PLAN A:
 
 PLAN B:
 {json.dumps(plan_b, indent=2)}
+
+{ANTI_PATTERNS}
 
 ## CRITICAL EVALUATION PRINCIPLE: MULTI-DIMENSIONAL ANSWERS
 
@@ -725,8 +735,13 @@ def generate_ensemble_description(
     if not data_summary:
         return original_explanation
 
+    # Use the master knowledge base for consistent rules
+    knowledge_rules = get_compact_knowledge_prompt()
+
     # Build the prompt for generating descriptions
     description_prompt = f"""You are an expert economist writing a clear, insightful summary for a user.
+
+{knowledge_rules}
 
 USER QUERY: {query}
 
@@ -743,24 +758,9 @@ Write an improved explanation that:
 5. Be fact-based. Characterize as "strong", "weak", "cooling", etc. only if data supports it
 6. If multiple series are shown, explain what EACH measures and why it matters
 
-***CRITICAL - LEAD WITH THE HEADLINE SERIES!***
-- UNRATE (U-3) is THE unemployment rate - lead with this, not U6RATE
-- CPIAUCSL (headline CPI) is THE inflation rate - lead with this, not core
-- PAYEMS is THE jobs number - lead with this
-- The first series listed is typically the "headline" that users expect to see first
-- Secondary/broader measures (U-6, core inflation, etc.) should come AFTER the headline
-
 ***CRITICAL - DO NOT HALLUCINATE DATES!***
 - ONLY use dates that appear in the DATA SUMMARY above
 - If you don't see a specific date in the data, say "recent data" or "latest available"
-- NEVER guess or make up dates like "December 2024" unless that exact date is in the data
-
-***CRITICAL - PAYROLLS = CHANGES, NOT LEVELS!***
-- For employment/payroll data, ALWAYS focus on job GROWTH and CHANGES
-- BAD: "Total nonfarm payrolls stand at 159.5 million"
-- GOOD: "The economy added 150,000 jobs last month, with a 3-month average of 180,000"
-- The absolute LEVEL of employment is almost meaningless - CHANGES tell the story
-- Mention: monthly gains, 3-month averages, year-over-year job gains
 
 CRITICAL: Do NOT start with "The data shows..." or "Looking at...". Answer directly.
 
