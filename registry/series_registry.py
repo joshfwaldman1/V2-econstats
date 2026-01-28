@@ -967,8 +967,16 @@ class SeriesRegistry:
         return list(self._plans.keys())
 
     def _normalize(self, query: str) -> str:
-        """Normalize query for matching."""
+        """Normalize query for matching.
+
+        Strips possessives, filler words, and punctuation so that
+        "how is new york's economy?" matches "new york economy".
+        """
         q = query.lower().strip()
+
+        # Strip possessives: "new york's" → "new york"
+        q = re.sub(r"'s\b", '', q)
+        q = re.sub(r"'s\b", '', q)  # Handle curly apostrophe too
 
         # Normalize "v." and "versus" to "vs"
         q = re.sub(r'\bv\.?\s+', 'vs ', q)

@@ -16,6 +16,7 @@ from config import config
 from cache import cache_manager
 from registry import registry
 from processing.analytics import compute_series_analytics, analytics_to_text
+from ai.economic_knowledge import DISPLAY_RULES, ANTI_PATTERNS
 
 
 def generate_dynamic_bullets(
@@ -96,6 +97,10 @@ PRE-COMPUTED ANALYTICS: {analytics_text}
 
 {f"DOMAIN CONTEXT: {static_guidance}" if static_guidance else ""}
 {f"USER QUESTION: {user_query}" if user_query else ""}
+
+{DISPLAY_RULES}
+
+{ANTI_PATTERNS}
 
 Write 2 bullets that:
 1. INTERPRET what the trend means (e.g., "wages rising faster than inflation means workers gaining purchasing power")
