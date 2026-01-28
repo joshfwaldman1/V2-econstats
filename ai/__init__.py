@@ -24,6 +24,7 @@ try:
     from .gemini_audit import (
         audit_summary,
         audit_routing,
+        audit_bullets,
         quick_fact_check,
         full_audit,
         is_available as gemini_audit_available
@@ -31,6 +32,7 @@ try:
 except ImportError:
     audit_summary = None
     audit_routing = None
+    audit_bullets = None
     quick_fact_check = None
     full_audit = None
     gemini_audit_available = lambda: False
@@ -60,6 +62,7 @@ __all__ = [
     # Gemini audit
     'audit_summary',
     'audit_routing',
+    'audit_bullets',
     'quick_fact_check',
     'full_audit',
     'gemini_audit_available',

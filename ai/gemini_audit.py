@@ -262,6 +262,112 @@ Is the claim approximately accurate?"""
     return True  # Default to trust
 
 
+def audit_bullets(
+    query: str,
+    charts: List[Dict[str, Any]],
+    series_data: List[tuple]
+) -> List[Dict[str, Any]]:
+    """
+    Audit chart bullets for accuracy using Gemini Flash.
+
+    Reviews each chart's bullets against the actual data to catch:
+    - Numbers that don't match the data
+    - Percentage-point vs percent confusion on rates
+    - Misleading interpretations
+    - Anti-pattern violations (e.g., "rising 4.8% YoY" for a 4.2% rate)
+
+    Args:
+        query: Original user query
+        charts: List of chart dicts (each with 'bullets', 'series_id', 'name')
+        series_data: List of (series_id, dates, values, info) tuples
+
+    Returns:
+        List of charts with corrected bullets (bullets replaced if issues found)
+    """
+    if not GEMINI_API_KEY:
+        return charts
+
+    # Build data lookup for verification
+    data_lookup = {}
+    for sid, dates, values, info in series_data:
+        if values:
+            data_lookup[sid] = {
+                'name': info.get('name', info.get('title', sid)),
+                'latest': values[-1],
+                'latest_date': dates[-1] if dates else 'unknown',
+                'yoy_change': (values[-1] - values[-13]) if len(values) >= 13 else None,
+            }
+
+    # Review each chart's bullets
+    for chart in charts:
+        bullets = chart.get('bullets', [])
+        if not bullets:
+            continue
+
+        series_id = chart.get('series_id', '')
+
+        # For combined charts, gather data for all traces
+        chart_data_context = []
+        if chart.get('is_combined') and chart.get('traces'):
+            for trace in chart['traces']:
+                tid = trace.get('series_id', '')
+                if tid in data_lookup:
+                    d = data_lookup[tid]
+                    chart_data_context.append(
+                        f"- {d['name']}: latest={d['latest']:.2f}"
+                        + (f", YoY change={d['yoy_change']:+.2f}" if d['yoy_change'] is not None else "")
+                    )
+        elif series_id in data_lookup:
+            d = data_lookup[series_id]
+            chart_data_context.append(
+                f"- {d['name']}: latest={d['latest']:.2f}"
+                + (f", YoY change={d['yoy_change']:+.2f}" if d['yoy_change'] is not None else "")
+            )
+
+        if not chart_data_context:
+            continue
+
+        prompt = f"""FAST REVIEW of chart bullets for accuracy.
+
+QUERY: "{query}"
+CHART: "{chart.get('name', series_id)}"
+
+ACTUAL DATA:
+{chr(10).join(chart_data_context)}
+
+BULLETS TO REVIEW:
+{chr(10).join(f'- "{b}"' for b in bullets)}
+
+{ANTI_PATTERNS}
+
+Are these bullets accurate? Check:
+1. Numbers match the actual data above?
+2. No percentage-of-a-percentage errors (e.g., "unemployment rising 5% YoY" when rate went from 3.5% to 3.7%)?
+3. Clear and insightful?
+
+Reply JSON: {{"approved": true/false, "fixed_bullets": ["bullet1", "bullet2"] or null}}
+Only provide fixed_bullets if you found actual errors. Keep fixes minimal."""
+
+        response = _call_gemini(prompt, max_tokens=300)
+
+        if response:
+            try:
+                if '{' in response:
+                    start = response.index('{')
+                    end = response.rindex('}') + 1
+                    result = json.loads(response[start:end])
+
+                    if not result.get('approved', True) and result.get('fixed_bullets'):
+                        fixed = result['fixed_bullets']
+                        if isinstance(fixed, list) and len(fixed) > 0:
+                            print(f"[GeminiAudit] Fixed bullets for {series_id}: {result.get('approved')}")
+                            chart['bullets'] = fixed[:3]
+            except (json.JSONDecodeError, ValueError):
+                pass
+
+    return charts
+
+
 def is_available() -> bool:
     """Check if Gemini audit is available."""
     return bool(GEMINI_API_KEY)

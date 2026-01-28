@@ -20,6 +20,15 @@ from ai import generate_summary, get_bullets, review_summary, get_summary_text, 
 from config import config
 from registry import registry
 
+# Gemini Flash audit layer for bullet/summary review
+try:
+    from ai.gemini_audit import audit_bullets, is_available as gemini_available
+    GEMINI_AUDIT_AVAILABLE = gemini_available()
+except ImportError:
+    audit_bullets = None
+    GEMINI_AUDIT_AVAILABLE = False
+    print("[Search] Gemini audit not available")
+
 # Judgment layer for interpretive queries (adds expert quotes, thresholds, web search)
 try:
     from agents.judgment_layer import is_judgment_query, process_judgment_query
@@ -175,6 +184,13 @@ async def api_search(body: SearchRequest):
                 chart_title=group.title,
             )
             if combined:
+                # Generate AI bullets for each series in the combined chart
+                combined_bullets = []
+                for sid, d, v, inf in group.series_data:
+                    b = get_bullets(sid, d, v, inf, user_query=query)
+                    if b:
+                        combined_bullets.append(b[0])  # 1 bullet per series
+                combined['bullets'] = combined_bullets[:3]  # Max 3 for combined
                 charts.append(combined)
             else:
                 # Combination refused by chart crime prevention → separate charts
@@ -188,6 +204,13 @@ async def api_search(body: SearchRequest):
             chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
             chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
             charts.append(chart)
+
+    # 4b. Gemini Flash review of chart bullets
+    if GEMINI_AUDIT_AVAILABLE and config.enable_gemini_audit and audit_bullets:
+        try:
+            charts = audit_bullets(query, charts, series_data)
+        except Exception as e:
+            print(f"[Search] Bullet audit error: {e}")
 
     # 5. Generate AI summary (returns dict with summary, suggestions, chart_descriptions)
     # Build conversation history from request history for context
@@ -399,6 +422,13 @@ async def search_html(
                 chart_title=group.title,
             )
             if combined:
+                # Generate AI bullets for each series in the combined chart
+                combined_bullets = []
+                for sid, d, v, inf in group.series_data:
+                    b = get_bullets(sid, d, v, inf, user_query=query)
+                    if b:
+                        combined_bullets.append(b[0])  # 1 bullet per series
+                combined['bullets'] = combined_bullets[:3]  # Max 3 for combined
                 charts.append(combined)
             else:
                 # Combination refused by chart crime prevention → separate charts
@@ -412,6 +442,13 @@ async def search_html(
             chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
             chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
             charts.append(chart)
+
+    # 4b. Gemini Flash review of chart bullets
+    if GEMINI_AUDIT_AVAILABLE and config.enable_gemini_audit and audit_bullets:
+        try:
+            charts = audit_bullets(query, charts, series_data)
+        except Exception as e:
+            print(f"[Search] Bullet audit error: {e}")
 
     # 5. Generate AI summary (with conversation history for context)
     summary_result = generate_summary(query, series_data, conversation_history=conv_history)
