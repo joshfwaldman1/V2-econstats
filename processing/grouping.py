@@ -362,8 +362,11 @@ def _get_semantic_tags(series_id: str, name: str) -> Set[str]:
     if 'unemploy' in name_lower or sid_lower.endswith('ur') or series_id in ('UNRATE', 'U6RATE'):
         tags.add('unemployment')
 
-    # Employment / payrolls
-    if 'employ' in name_lower or 'payroll' in name_lower or 'nonfarm' in name_lower:
+    # Employment / payrolls — exclude 'unemployment' names to avoid false pairing
+    # ('employ' is a substring of 'unemployment', which would cause UNRATE and EPOP
+    # to share a tag and get combined on the same chart despite different scales)
+    if (('employ' in name_lower and 'unemploy' not in name_lower)
+            or 'payroll' in name_lower or 'nonfarm' in name_lower):
         tags.add('employment')
     if sid_lower.endswith('na') or series_id == 'PAYEMS':
         tags.add('employment')

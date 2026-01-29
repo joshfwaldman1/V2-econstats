@@ -109,7 +109,9 @@
         {# Secondary metric based on series type #}
         {% if chart.yoy_change is not none and chart.yoy_type %}
         <p class="text-sm mt-1 {% if chart.yoy_change >= 0 %}text-emerald-600{% else %}text-red-600{% endif %}">
-            {% if chart.yoy_type == 'jobs' %}
+            {% if chart.yoy_type == 'jobs' and chart.is_job_change %}
+                {{ "%+.0f"|format(chart.yoy_change) }}K/mo avg
+            {% elif chart.yoy_type == 'jobs' %}
                 YoY: {{ "%+.1f"|format(chart.yoy_change / 1000) }}M
             {% elif chart.yoy_type == 'pp' %}
                 {{ "%+.1f"|format(chart.yoy_change) }} pp YoY

@@ -108,8 +108,14 @@ def format_chart_data(
         yoy_type = get_yoy_type(series_id)
         if yoy_type:
             if yoy_type == 'jobs':
-                # Absolute change in thousands
-                yoy_change = values[-1] - values[-13]
+                if is_job_change:
+                    # For monthly job-changes charts, show the 12-month average
+                    # monthly change instead of the raw level difference.
+                    # Raw level diff (e.g., +600K) is misleading next to "-22K/mo".
+                    yoy_change = (values[-1] - values[-13]) / 12
+                else:
+                    # Absolute change in thousands (for level display)
+                    yoy_change = values[-1] - values[-13]
             elif yoy_type == 'pp':
                 # Percentage point change
                 yoy_change = values[-1] - values[-13]
@@ -288,6 +294,21 @@ def format_combined_chart(
     if len(set(unit_categories)) > 1 and 'other' not in unit_categories:
         print(f"[Chart] REFUSING to combine series with incompatible units: {units}")
         return {}  # Return empty - caller will fall back to separate charts
+
+    # Even within the same unit category, check for scale mismatch.
+    # e.g., Unemployment Rate (~4%) vs Employment-Population Ratio (~80%)
+    # are both "percent" but look terrible on the same axis.
+    if len(set(unit_categories)) == 1 and unit_categories[0] == 'percent':
+        max_vals = []
+        for _, _, vals, _ in series_data:
+            if vals:
+                max_vals.append(max(abs(v) for v in vals[-60:] if v is not None) if vals[-60:] else 0)
+        if len(max_vals) >= 2:
+            highest = max(max_vals)
+            lowest = min(v for v in max_vals if v > 0) if any(v > 0 for v in max_vals) else 1
+            if lowest > 0 and (highest / lowest) > 5:
+                print(f"[Chart] REFUSING to combine percent series with {highest/lowest:.1f}x scale mismatch")
+                return {}
 
     # Build traces for each series
     traces = []

@@ -384,7 +384,11 @@ async def api_search(body: SearchRequest):
             if chart.get('yoy_type') == 'pp':
                 metric.change = f"{yoy:+.1f} pp"
             elif chart.get('yoy_type') == 'jobs':
-                metric.change = f"{yoy/1000:+.0f}K"
+                if chart.get('is_job_change'):
+                    # 12-month average monthly change (already divided by 12 in formatter)
+                    metric.change = f"{yoy:+.0f}K/mo avg"
+                else:
+                    metric.change = f"{yoy/1000:+.0f}K"
             else:
                 metric.change = f"{yoy:+.1f}%"
             metric.changeType = 'positive' if yoy > 0 else 'negative' if yoy < 0 else 'neutral'
@@ -582,7 +586,11 @@ async def api_search_stream(body: SearchRequest):
                 if chart.get('yoy_type') == 'pp':
                     metric['change'] = f"{yoy:+.1f} pp"
                 elif chart.get('yoy_type') == 'jobs':
-                    metric['change'] = f"{yoy/1000:+.0f}K"
+                    if chart.get('is_job_change'):
+                        # 12-month average monthly change (already divided by 12 in formatter)
+                        metric['change'] = f"{yoy:+.0f}K/mo avg"
+                    else:
+                        metric['change'] = f"{yoy/1000:+.0f}K"
                 else:
                     metric['change'] = f"{yoy:+.1f}%"
                 metric['changeType'] = 'positive' if yoy > 0 else 'negative' if yoy < 0 else 'neutral'
