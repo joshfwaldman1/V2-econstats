@@ -18,6 +18,7 @@ fuzzy → LLM fallback chain, cutting latency from 1.5-6.5s to 0.5-1.2s
 for non-cached, non-exact queries.
 """
 
+import re
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
 
@@ -91,6 +92,37 @@ SECTOR_OVERRIDES = {
     'government': ['USGOVT', 'CES9000000001'],
     'hospitality': ['USLAH', 'CES7000000001'],
     'finance': ['USFIRE', 'CES5500000001'],
+}
+
+# State name → FRED series codes (unemployment rate + nonfarm payrolls)
+# FRED convention: {STATE_CODE}UR = unemployment rate, {STATE_CODE}NA = nonfarm payrolls
+STATE_OVERRIDES = {
+    'alabama': ['ALUR', 'ALNA'], 'alaska': ['AKUR', 'AKNA'],
+    'arizona': ['AZUR', 'AZNA'], 'arkansas': ['ARUR', 'ARNA'],
+    'california': ['CAUR', 'CANA'], 'colorado': ['COUR', 'CONA'],
+    'connecticut': ['CTUR', 'CTNA'], 'delaware': ['DEUR', 'DENA'],
+    'florida': ['FLUR', 'FLNA'], 'georgia': ['GAUR', 'GANA'],
+    'hawaii': ['HIUR', 'HINA'], 'idaho': ['IDUR', 'IDNA'],
+    'illinois': ['ILUR', 'ILNA'], 'indiana': ['INUR', 'INNA'],
+    'iowa': ['IAUR', 'IANA'], 'kansas': ['KSUR', 'KSNA'],
+    'kentucky': ['KYUR', 'KYNA'], 'louisiana': ['LAUR', 'LANA'],
+    'maine': ['MEUR', 'MENA'], 'maryland': ['MDUR', 'MDNA'],
+    'massachusetts': ['MAUR', 'MANA'], 'michigan': ['MIUR', 'MINA'],
+    'minnesota': ['MNUR', 'MNNA'], 'mississippi': ['MSUR', 'MSNA'],
+    'missouri': ['MOUR', 'MONA'], 'montana': ['MTUR', 'MTNA'],
+    'nebraska': ['NEUR', 'NENA'], 'nevada': ['NVUR', 'NVNA'],
+    'new hampshire': ['NHUR', 'NHNA'], 'new jersey': ['NJUR', 'NJNA'],
+    'new mexico': ['NMUR', 'NMNA'], 'new york': ['NYUR', 'NYNA'],
+    'north carolina': ['NCUR', 'NCNA'], 'north dakota': ['NDUR', 'NDNA'],
+    'ohio': ['OHUR', 'OHNA'], 'oklahoma': ['OKUR', 'OKNA'],
+    'oregon': ['ORUR', 'ORNA'], 'pennsylvania': ['PAUR', 'PANA'],
+    'rhode island': ['RIUR', 'RINA'], 'south carolina': ['SCUR', 'SCNA'],
+    'south dakota': ['SDUR', 'SDNA'], 'tennessee': ['TNUR', 'TNNA'],
+    'texas': ['TXUR', 'TXNA'], 'utah': ['UTUR', 'UTNA'],
+    'vermont': ['VTUR', 'VTNA'], 'virginia': ['VAUR', 'VANA'],
+    'washington': ['WAUR', 'WANA'], 'west virginia': ['WVUR', 'WVNA'],
+    'wisconsin': ['WIUR', 'WINA'], 'wyoming': ['WYUR', 'WYNA'],
+    'district of columbia': ['DCUR', 'DCNA'], 'dc': ['DCUR', 'DCNA'],
 }
 
 # Topic keyword sets → expected series families
@@ -213,6 +245,21 @@ class QueryRouter:
             return result
 
         # =====================================================================
+        # STEP 2b: Health check queries (curated multi-indicator sets)
+        # Health checks map "how is X doing?" to the RIGHT indicators.
+        # Priority over LLM router because the curated sets are more
+        # reliable than LLM selection for these entity-specific queries.
+        # =====================================================================
+        if (special_router._health_check
+                and special_router._health_check['is_query'](query)):
+            hc_result = self._handle_health_check(query)
+            if hc_result:
+                hc_result = self._enrich_special(hc_result, query)
+                hc_result = self._validate(hc_result, query)
+                self._cache_result(query, hc_result)
+                return hc_result
+
+        # =====================================================================
         # STEP 3: LLM Router (single Gemini call)
         # =====================================================================
         if self._llm_router and self._llm_router.available:
@@ -270,6 +317,44 @@ class QueryRouter:
             series=[],
             route_type='none',
             explanation="No matching economic data found for this query.",
+        )
+
+    # =========================================================================
+    # STEP 2b HELPER: Health check routing
+    # =========================================================================
+
+    def _handle_health_check(self, query: str) -> Optional[RoutingResult]:
+        """
+        Route health check queries to curated indicator sets.
+
+        Uses the health check module's entity detection to map queries
+        like "how are consumers doing?" to the right set of indicators
+        (e.g., sentiment, retail sales, real income, savings rate).
+
+        Returns None if the query is a health check but no entity matches.
+        """
+        if not special_router._health_check:
+            return None
+
+        entity = special_router._health_check['detect_entity'](query)
+        if not entity:
+            return None
+
+        config = special_router._health_check['get_config'](entity)
+        if not config:
+            return None
+
+        # HealthCheckConfig is a dataclass with primary_series, show_yoy, etc.
+        series = getattr(config, 'primary_series', [])
+        show_yoy = getattr(config, 'show_yoy', [False])
+        # Use the first show_yoy value as the overall flag
+        show_yoy_flag = show_yoy[0] if isinstance(show_yoy, list) and show_yoy else False
+
+        return RoutingResult(
+            series=series,
+            show_yoy=show_yoy_flag,
+            route_type='health_check',
+            explanation=getattr(config, 'explanation', ''),
         )
 
     # =========================================================================
@@ -407,7 +492,6 @@ class QueryRouter:
         for demo_keyword, expected_series in DEMOGRAPHIC_OVERRIDES.items():
             # Use word boundary check to avoid false positives
             # (e.g., "blackout" should not trigger "black")
-            import re
             if re.search(rf'\b{re.escape(demo_keyword)}\b', q):
                 # Query mentions this demographic — do we have the right series?
                 has_demo_series = any(s in series_set for s in expected_series)
@@ -448,7 +532,30 @@ class QueryRouter:
                     )
 
         # -----------------------------------------------------------------
-        # 3. Topic mismatch check (log only — not aggressive enough to override)
+        # 3. State check — query about a specific US state but got national data
+        # -----------------------------------------------------------------
+        for state_keyword, expected_series in STATE_OVERRIDES.items():
+            if state_keyword in q:
+                # Check that we have state-specific series, not just generic national
+                has_state_series = any(s in series_set for s in expected_series)
+                if not has_state_series and series_set.issubset(GENERIC_NATIONAL):
+                    # Add national comparison series alongside state data
+                    state_with_national = expected_series + ['UNRATE', 'PAYEMS']
+                    print(f"[Validate] State override: '{state_keyword}' → {expected_series}")
+                    return RoutingResult(
+                        series=state_with_national,
+                        route_type=f'{result.route_type}_validated',
+                        explanation=f'{state_keyword.title()} economic data vs national benchmarks.',
+                        fed_guidance=result.fed_guidance,
+                        fed_sep_html=result.fed_sep_html,
+                        recession_html=result.recession_html,
+                        cape_html=result.cape_html,
+                        polymarket_html=result.polymarket_html,
+                        temporal_context=result.temporal_context,
+                    )
+
+        # -----------------------------------------------------------------
+        # 4. Topic mismatch check (log only — not aggressive enough to override)
         # -----------------------------------------------------------------
         query_topic = None
         for topic, keywords in TOPIC_KEYWORDS.items():

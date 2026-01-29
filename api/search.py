@@ -37,7 +37,73 @@ except ImportError:
     JUDGMENT_AVAILABLE = False
     print("[Search] Judgment layer not available")
 
+# Recession scorecard — built from live FRED data after fetching
+try:
+    from agents.recession_scorecard import (
+        is_recession_query, build_recession_scorecard, format_scorecard_for_display
+    )
+    RECESSION_SCORECARD_AVAILABLE = True
+except ImportError:
+    RECESSION_SCORECARD_AVAILABLE = False
+    print("[Search] Recession scorecard not available")
+
 search_router = APIRouter()
+
+
+# =============================================================================
+# RECESSION SCORECARD HELPER
+# =============================================================================
+# The recession scorecard needs LIVE indicator values to show meaningful
+# red/yellow/green status lights. The routing layer can flag that a recession
+# scorecard is needed, but the actual scorecard must be built AFTER FRED data
+# is fetched so the indicator values are real.
+
+# Mapping of FRED series IDs to recession scorecard parameter names
+_SCORECARD_SERIES_MAP = {
+    'SAHMREALTIME': 'sahm_value',
+    'T10Y2Y': 'yield_curve_value',
+    'UMCSENT': 'sentiment_value',
+    'ICSA': 'claims_value',
+    'USSLIND': 'lei_value',
+    'NAPM': 'pmi_value',
+    'BAMLH0A0HYM2': 'credit_spread_value',
+}
+
+
+def _build_live_recession_scorecard(series_data: list) -> Optional[str]:
+    """
+    Build a recession scorecard HTML box from live FRED data.
+
+    Extracts the latest values from fetched series_data for any recession
+    indicator series present, then builds the scorecard with real values
+    instead of empty/unknown.
+
+    Args:
+        series_data: List of (series_id, dates, values, info) tuples from FRED.
+
+    Returns:
+        HTML string for the scorecard, or None if no recession indicators found
+        or the scorecard module is unavailable.
+    """
+    if not RECESSION_SCORECARD_AVAILABLE:
+        return None
+
+    # Extract latest values for each recession indicator from fetched data
+    scorecard_kwargs = {}
+    for sid, dates, values, info in series_data:
+        param_name = _SCORECARD_SERIES_MAP.get(sid)
+        if param_name and values:
+            scorecard_kwargs[param_name] = values[-1]  # Latest value
+
+    if not scorecard_kwargs:
+        return None
+
+    # Build the scorecard with real values
+    scorecard = build_recession_scorecard(**scorecard_kwargs)
+    if scorecard and scorecard.get('indicators'):
+        return format_scorecard_for_display(scorecard)
+
+    return None
 
 
 # =============================================================================
@@ -336,6 +402,15 @@ async def api_search(body: SearchRequest):
             url=f"https://fred.stlouisfed.org/series/{sid}"
         ))
 
+    # 9. Build live recession scorecard from fetched data if applicable
+    # The routing layer may have set recession_html, but it was built without
+    # actual data values. Rebuild it with the live FRED data we just fetched.
+    recession_html = routing_result.recession_html
+    if RECESSION_SCORECARD_AVAILABLE and is_recession_query(query):
+        live_scorecard = _build_live_recession_scorecard(series_data)
+        if live_scorecard:
+            recession_html = live_scorecard
+
     return SearchResponse(
         query=query,
         summary=summary_text,
@@ -346,7 +421,7 @@ async def api_search(body: SearchRequest):
         sources=sources,
         temporal_context=temporal.get('explanation') if temporal else None,
         fed_sep_html=routing_result.fed_sep_html,
-        recession_html=routing_result.recession_html,
+        recession_html=recession_html,
         cape_html=routing_result.cape_html,
         polymarket_html=polymarket_html,
         error=None
@@ -520,8 +595,16 @@ async def api_search_stream(body: SearchRequest):
         special_data = {}
         if routing_result.fed_sep_html:
             special_data['fed_sep_html'] = routing_result.fed_sep_html
-        if routing_result.recession_html:
-            special_data['recession_html'] = routing_result.recession_html
+
+        # Build live recession scorecard from fetched data
+        recession_html = routing_result.recession_html
+        if RECESSION_SCORECARD_AVAILABLE and is_recession_query(query):
+            live_scorecard = _build_live_recession_scorecard(series_data)
+            if live_scorecard:
+                recession_html = live_scorecard
+        if recession_html:
+            special_data['recession_html'] = recession_html
+
         if routing_result.cape_html:
             special_data['cape_html'] = routing_result.cape_html
 
@@ -543,7 +626,9 @@ async def api_search_stream(body: SearchRequest):
         yield f"data: {json.dumps({'type': 'sources', 'data': sources})}\n\n"
 
         # 8. Stream AI summary token-by-token
-        async for chunk in stream_summary(query, series_data):
+        # Build conversation history from request history for context
+        conversation_history = [{"query": q} for q in history] if history else None
+        async for chunk in stream_summary(query, series_data, conversation_history=conversation_history):
             yield f"data: {json.dumps({'type': 'summary_chunk', 'text': chunk})}\n\n"
 
         # 9. Send suggestions (use static generation to avoid a second LLM call)
@@ -706,6 +791,13 @@ async def search_html(
     new_history = conv_history + [{"query": query, "summary": summary}]
     new_history = new_history[-5:]
 
+    # 10. Build live recession scorecard from fetched data if applicable
+    recession_html = routing_result.recession_html
+    if RECESSION_SCORECARD_AVAILABLE and is_recession_query(query):
+        live_scorecard = _build_live_recession_scorecard(series_data)
+        if live_scorecard:
+            recession_html = live_scorecard
+
     # Build context for template
     context = {
         "request": request,
@@ -717,7 +809,7 @@ async def search_html(
         "temporal_context": temporal.get('explanation') if temporal else None,
         # Special HTML boxes
         "fed_sep_html": routing_result.fed_sep_html,
-        "recession_html": routing_result.recession_html,
+        "recession_html": recession_html,
         "cape_html": routing_result.cape_html,
         "polymarket_html": polymarket_html,
     }

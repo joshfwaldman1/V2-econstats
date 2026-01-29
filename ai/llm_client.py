@@ -496,13 +496,20 @@ Examples: "inflation|true" or "unemployment|false" or "none|false" """
 
 async def stream_summary(
     query: str,
-    series_data: List[tuple]
+    series_data: List[tuple],
+    conversation_history: List[Dict] = None
 ):
     """
     Stream AI summary generation.
 
     Yields text chunks as they are generated.
     Use for SSE responses.
+
+    Args:
+        query: The user's question.
+        series_data: List of (series_id, dates, values, info) tuples.
+        conversation_history: Optional list of previous exchanges for
+            multi-turn context (e.g., [{"query": "How is inflation?"}]).
     """
     client = get_client()
     if not client:
@@ -515,10 +522,23 @@ async def stream_summary(
     # Use the master knowledge base for consistent display rules
     knowledge_rules = get_compact_knowledge_prompt()
 
+    # Build conversation context if history is provided
+    history_context = ""
+    if conversation_history:
+        recent = conversation_history[-3:]  # Last 3 exchanges for context
+        history_lines = []
+        for exchange in recent:
+            if isinstance(exchange, dict):
+                prev_query = exchange.get('query', '')
+                if prev_query:
+                    history_lines.append(f"- Previous question: \"{prev_query}\"")
+        if history_lines:
+            history_context = "\nCONVERSATION CONTEXT (previous questions):\n" + "\n".join(history_lines) + "\n"
+
     prompt = f"""You are an expert economist. Provide a 3-4 sentence summary.
 
 {knowledge_rules}
-
+{history_context}
 USER QUESTION: "{query}"
 
 === GROUND TRUTH (you MUST use these exact numbers) ===
