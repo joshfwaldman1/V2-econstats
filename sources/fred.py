@@ -122,8 +122,26 @@ class FREDSource(DataSource):
             info_task = client.get(info_url, params=info_params)
             obs_resp, info_resp = await asyncio.gather(obs_task, info_task)
 
+            # Check HTTP status codes BEFORE parsing JSON
+            # FRED returns 429 on rate limit, 400 on bad series, 500 on server error
+            if obs_resp.status_code == 429:
+                return SeriesData(
+                    id=series_id, dates=[], values=[],
+                    error=f"FRED API rate limit exceeded for {series_id}. Please wait and retry."
+                )
+            if obs_resp.status_code >= 500:
+                return SeriesData(
+                    id=series_id, dates=[], values=[],
+                    error=f"FRED API server error ({obs_resp.status_code}) for {series_id}."
+                )
+            if obs_resp.status_code == 400:
+                return SeriesData(
+                    id=series_id, dates=[], values=[],
+                    error=f"Bad request for series '{series_id}'. The series ID may not exist."
+                )
+
             obs_data = obs_resp.json()
-            info_data = info_resp.json()
+            info_data = info_resp.json() if info_resp.status_code == 200 else {}
 
             if 'error_message' in obs_data:
                 return SeriesData(
@@ -132,6 +150,8 @@ class FREDSource(DataSource):
                     values=[],
                     error=obs_data.get('error_message', 'Unknown error')
                 )
+            if 'error_message' in info_data:
+                print(f"[FRED] Info endpoint error for {series_id}: {info_data['error_message']}")
 
             # Parse observations
             dates = []
@@ -206,6 +226,24 @@ class FREDSource(DataSource):
             }
 
             obs_resp = client.get(obs_url, params=obs_params)
+
+            # Check HTTP status codes
+            if obs_resp.status_code == 429:
+                return SeriesData(
+                    id=series_id, dates=[], values=[],
+                    error=f"FRED API rate limit exceeded for {series_id}. Please wait and retry."
+                )
+            if obs_resp.status_code >= 500:
+                return SeriesData(
+                    id=series_id, dates=[], values=[],
+                    error=f"FRED API server error ({obs_resp.status_code}) for {series_id}."
+                )
+            if obs_resp.status_code == 400:
+                return SeriesData(
+                    id=series_id, dates=[], values=[],
+                    error=f"Bad request for series '{series_id}'. The series ID may not exist."
+                )
+
             obs_data = obs_resp.json()
 
             if 'error_message' in obs_data:
@@ -225,7 +263,9 @@ class FREDSource(DataSource):
             }
 
             info_resp = client.get(info_url, params=info_params)
-            info_data = info_resp.json()
+            info_data = info_resp.json() if info_resp.status_code == 200 else {}
+            if 'error_message' in info_data:
+                print(f"[FRED] Info endpoint error for {series_id}: {info_data['error_message']}")
 
             # Parse observations
             dates = []

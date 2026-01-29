@@ -404,14 +404,6 @@
         ],
         "show_yoy": true,
         "title": "Real vs Nominal GDP Growth (YoY %)"
-      },
-      {
-        "series": [
-          "GDPC1",
-          "GDP"
-        ],
-        "normalize": true,
-        "title": "Real vs Nominal GDP (Indexed to 100)"
       }
     ]
   },
@@ -431,14 +423,6 @@
         ],
         "show_yoy": true,
         "title": "Real vs Nominal GDP Growth (YoY %)"
-      },
-      {
-        "series": [
-          "GDPC1",
-          "GDP"
-        ],
-        "normalize": true,
-        "title": "Nominal vs Real GDP (Indexed to 100)"
       }
     ]
   },

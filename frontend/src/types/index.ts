@@ -25,12 +25,19 @@ export interface RecessionPeriod {
   end: string
 }
 
+export interface SourceInfo {
+  series_id: string
+  name: string
+  url: string
+}
+
 export interface SearchResponse {
   query: string
   summary: string
   suggestions: string[]
   chart_descriptions: Record<string, string>
   charts: ChartData[]
+  sources: SourceInfo[]
   temporal_context: string | null
   fed_sep_html: string | null
   recession_html: string | null

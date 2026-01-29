@@ -182,7 +182,7 @@ def _extract_json(content: str) -> Optional[Dict]:
         # Try parsing the whole content as JSON
         try:
             return json.loads(content.strip())
-        except:
+        except (json.JSONDecodeError, ValueError):
             return None
 
 
@@ -518,7 +518,8 @@ def load_few_shot_examples(plans_dir: Optional[str] = None, num_examples: int = 
                         })
                         if len(examples) >= num_examples:
                             break
-            except:
+            except (json.JSONDecodeError, OSError, KeyError) as e:
+                print(f"[AgentEnsemble] Error loading plan file {plan_file}: {e}")
                 continue
         if len(examples) >= num_examples:
             break

@@ -139,7 +139,7 @@ def load_shiller_data() -> pd.DataFrame:
             if month == 0:
                 month = 1
             return datetime(year, month, 1)
-        except:
+        except (ValueError, TypeError, OverflowError):
             return None
 
     df['date'] = df['date_raw'].apply(parse_shiller_date)

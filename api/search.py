@@ -80,6 +80,13 @@ class ChartResponse(BaseModel):
     description: str
 
 
+class SourceInfo(BaseModel):
+    """Source citation for a data series."""
+    series_id: str
+    name: str
+    url: str
+
+
 class SearchResponse(BaseModel):
     """JSON search response."""
     query: str
@@ -88,6 +95,7 @@ class SearchResponse(BaseModel):
     chart_descriptions: dict
     charts: List[dict]
     metrics: List[MetricResponse]
+    sources: List[SourceInfo] = []
     temporal_context: Optional[str]
     fed_sep_html: Optional[str]
     recession_html: Optional[str]
@@ -139,6 +147,7 @@ async def api_search(body: SearchRequest):
     results = await source_manager.fetch_many(routing_result.series, years)
 
     series_data = []
+    fetch_errors = []
     for result in results:
         if result.is_valid:
             dates = result.dates
@@ -153,8 +162,23 @@ async def api_search(body: SearchRequest):
 
             if dates and values:
                 series_data.append((result.id, dates, values, result.info))
+        elif result.error:
+            fetch_errors.append(f"{result.id}: {result.error}")
 
     if not series_data:
+        # Build a specific error message from individual series failures
+        if fetch_errors:
+            # Show the first 3 specific errors so users know what went wrong
+            error_detail = "; ".join(fetch_errors[:3])
+            if "rate limit" in error_detail.lower():
+                error_msg = f"FRED API rate limit reached. Please wait a moment and try again. ({error_detail})"
+            elif "not exist" in error_detail.lower() or "Bad request" in error_detail.lower():
+                error_msg = f"Series not found: {error_detail}"
+            else:
+                error_msg = f"Unable to fetch data: {error_detail}"
+        else:
+            error_msg = "Unable to fetch data for the requested series. Please try again."
+
         return SearchResponse(
             query=query,
             summary="",
@@ -167,7 +191,7 @@ async def api_search(body: SearchRequest):
             recession_html=None,
             cape_html=None,
             polymarket_html=None,
-            error="Unable to fetch data for the requested series. Please try again."
+            error=error_msg
         )
 
     # 4. Format chart data using auto-grouping
@@ -248,15 +272,45 @@ async def api_search(body: SearchRequest):
     # 6. Get Polymarket predictions if relevant
     polymarket_html = query_router.get_polymarket_html(query)
 
-    # 7. Build metrics from chart data
+    # 7. Build metrics from chart data (deduplicate by series_id to avoid
+    #    duplicate metric cards when the same series appears in multiple chart groups)
     metrics = []
-    for chart in charts[:4]:  # Max 4 metrics
+    seen_metric_ids = set()
+    for chart in charts[:8]:  # Check more charts but cap metrics at 4
         series_id = chart.get('series_id', '')
+        if series_id in seen_metric_ids:
+            continue
+        seen_metric_ids.add(series_id)
+        if len(metrics) >= 4:
+            break
         series_info = registry.get_series(series_id)
+        latest = chart.get('latest', 0)
+        unit = chart.get('unit', '')
+
+        # Format the value with unit awareness
+        # FRED series with "Thousands" unit: values are already in thousands,
+        # so 7000 = 7,000 thousands = 7 million, NOT 7 thousand.
+        if chart.get('is_job_change'):
+            formatted_value = f"{latest:+.0f}K/mo"
+        elif chart.get('is_payems_level'):
+            formatted_value = f"{latest / 1000:.1f}M"
+        elif 'Percent' in unit or '%' in unit:
+            formatted_value = f"{latest:.1f}%"
+        elif 'Thousand' in unit:
+            if latest >= 1000:
+                formatted_value = f"{latest / 1000:.1f}M"
+            else:
+                formatted_value = f"{latest:.0f}K"
+        elif latest > 1000000:
+            formatted_value = f"{latest / 1000000:.1f}M"
+        elif latest > 1000:
+            formatted_value = f"{latest / 1000:.0f}K"
+        else:
+            formatted_value = f"{latest:.1f}"
 
         metric = MetricResponse(
             label=chart.get('name', chart.get('series_id', 'Unknown')),
-            value=f"{chart.get('latest', 0):.1f}" if chart.get('latest') else 'N/A',
+            value=formatted_value if latest else 'N/A',
             description=series_info.short_description if series_info and series_info.short_description else None,
         )
         if chart.get('yoy_change') is not None:
@@ -273,6 +327,15 @@ async def api_search(body: SearchRequest):
     # Use AI suggestions if available, otherwise generate static ones
     suggestions = ai_suggestions if ai_suggestions else generate_suggestions(query, routing_result.series)
 
+    # 8. Build source citations
+    sources = []
+    for sid, dates, values, info in series_data:
+        sources.append(SourceInfo(
+            series_id=sid,
+            name=info.get('title', info.get('name', sid)),
+            url=f"https://fred.stlouisfed.org/series/{sid}"
+        ))
+
     return SearchResponse(
         query=query,
         summary=summary_text,
@@ -280,6 +343,7 @@ async def api_search(body: SearchRequest):
         chart_descriptions=chart_descriptions,
         charts=charts,
         metrics=metrics,
+        sources=sources,
         temporal_context=temporal.get('explanation') if temporal else None,
         fed_sep_html=routing_result.fed_sep_html,
         recession_html=routing_result.recession_html,
@@ -294,48 +358,198 @@ async def api_search_stream(body: SearchRequest):
     """
     Streaming search endpoint using Server-Sent Events.
 
-    Streams results as they become available for React frontend.
+    Sends charts/metrics/sources immediately, then streams the AI summary
+    token-by-token. This gives users visual feedback within ~500ms instead of
+    waiting 2-5 seconds for the full response.
+
+    Event sequence:
+        1. charts   — formatted chart data + metric cards
+        2. special  — Fed SEP / recession / CAPE / Polymarket HTML boxes
+        3. sources  — FRED source citations with URLs
+        4. summary_chunk (repeated) — streaming summary text
+        5. done     — suggestions + chart_descriptions
     """
     from fastapi.responses import StreamingResponse
     from ai import stream_summary
 
     query = body.query
+    history = body.history
 
     async def event_generator():
         # 1. Route query
         routing_result = query_router.route(query)
 
         if not routing_result.series:
-            yield f"data: {json.dumps({'type': 'error', 'message': 'No matching data found'})}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'message': 'No matching economic data found for your query.'})}\n\n"
             return
 
-        # Send routing info
-        yield f"data: {json.dumps({'type': 'routing', 'series': routing_result.series})}\n\n"
-
-        # 2. Fetch data
+        # 2. Extract temporal context and determine date range
+        temporal = extract_temporal_filter(query)
         years = get_smart_date_range(query, config.default_years)
+        if temporal and temporal.get('years_override'):
+            years = temporal['years_override']
+
+        # 3. Fetch data for all series in parallel
+        results = await source_manager.fetch_many(routing_result.series, years)
+
         series_data = []
-
-        for series_id in routing_result.series:
-            result = source_manager.fetch_sync(series_id, years)
+        fetch_errors = []
+        for result in results:
             if result.is_valid:
-                series_data.append((series_id, result.dates, result.values, result.info))
+                dates = result.dates
+                values = result.values
 
-        # Send chart data
+                # Apply temporal filtering if specified
+                if temporal:
+                    start_date = temporal.get('filter_start_date')
+                    end_date = temporal.get('filter_end_date')
+                    if start_date or end_date:
+                        dates, values = filter_data_by_dates(dates, values, start_date, end_date)
+
+                if dates and values:
+                    series_data.append((result.id, dates, values, result.info))
+            elif result.error:
+                fetch_errors.append(f"{result.id}: {result.error}")
+
+        if not series_data:
+            if fetch_errors:
+                error_detail = "; ".join(fetch_errors[:3])
+                if "rate limit" in error_detail.lower():
+                    error_msg = f"FRED API rate limit reached. Please wait a moment and try again. ({error_detail})"
+                elif "not exist" in error_detail.lower() or "Bad request" in error_detail.lower():
+                    error_msg = f"Series not found: {error_detail}"
+                else:
+                    error_msg = f"Unable to fetch data: {error_detail}"
+            else:
+                error_msg = "Unable to fetch data for the requested series. Please try again."
+            yield f"data: {json.dumps({'type': 'error', 'message': error_msg})}\n\n"
+            return
+
+        # 4. Format chart data using auto-grouping (same logic as non-streaming)
         charts = []
-        for series_id, dates, values, info in series_data:
-            chart = format_chart_data(series_id, dates, values, info, show_yoy=routing_result.show_yoy)
-            charts.append(chart)
+        groups = auto_group_series(series_data, routing_result)
 
-        yield f"data: {json.dumps({'type': 'charts', 'data': charts})}\n\n"
+        for group in groups:
+            if len(group.series_data) > 1:
+                combined = format_combined_chart(
+                    group.series_data,
+                    show_yoy=group.show_yoy,
+                    user_query=query,
+                    chart_title=group.title,
+                )
+                if combined:
+                    combined_bullets = []
+                    for sid, d, v, inf in group.series_data:
+                        b = get_bullets(sid, d, v, inf, user_query=query)
+                        if b:
+                            combined_bullets.append(b[0])
+                    combined['bullets'] = combined_bullets[:3]
+                    charts.append(combined)
+                else:
+                    for sid, d, v, inf in group.series_data:
+                        chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
+                        chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
+                        charts.append(chart)
+            else:
+                sid, d, v, inf = group.series_data[0]
+                chart = format_chart_data(sid, d, v, inf, show_yoy=group.show_yoy, user_query=query)
+                chart['bullets'] = get_bullets(sid, d, v, inf, user_query=query)
+                charts.append(chart)
 
-        # 3. Stream AI summary
-        yield f"data: {json.dumps({'type': 'summary_start'})}\n\n"
+        # 4b. Gemini Flash review of chart bullets
+        if GEMINI_AUDIT_AVAILABLE and config.enable_gemini_audit and audit_bullets:
+            try:
+                charts = audit_bullets(query, charts, series_data)
+            except Exception as e:
+                print(f"[Stream] Bullet audit error: {e}")
 
+        # 5. Build metrics from chart data (deduplicate by series_id)
+        metrics = []
+        seen_metric_ids = set()
+        for chart in charts[:8]:
+            series_id = chart.get('series_id', '')
+            if series_id in seen_metric_ids:
+                continue
+            seen_metric_ids.add(series_id)
+            if len(metrics) >= 4:
+                break
+            series_info = registry.get_series(series_id)
+
+            latest = chart.get('latest', 0)
+            unit = chart.get('unit', '')
+
+            # Format the value with unit awareness
+            if chart.get('is_job_change'):
+                formatted_value = f"{latest:+.0f}K/mo"
+            elif chart.get('is_payems_level'):
+                formatted_value = f"{latest / 1000:.1f}M"
+            elif 'Percent' in unit or '%' in unit:
+                formatted_value = f"{latest:.1f}%"
+            elif 'Thousand' in unit:
+                if latest >= 1000:
+                    formatted_value = f"{latest / 1000:.1f}M"
+                else:
+                    formatted_value = f"{latest:.0f}K"
+            elif latest > 1000000:
+                formatted_value = f"{latest / 1000000:.1f}M"
+            elif latest > 1000:
+                formatted_value = f"{latest / 1000:.0f}K"
+            else:
+                formatted_value = f"{latest:.1f}"
+
+            metric = {
+                'label': chart.get('name', chart.get('series_id', 'Unknown')),
+                'value': formatted_value if latest else 'N/A',
+                'description': series_info.short_description if series_info and series_info.short_description else None,
+            }
+            if chart.get('yoy_change') is not None:
+                yoy = chart['yoy_change']
+                if chart.get('yoy_type') == 'pp':
+                    metric['change'] = f"{yoy:+.1f} pp"
+                elif chart.get('yoy_type') == 'jobs':
+                    metric['change'] = f"{yoy/1000:+.0f}K"
+                else:
+                    metric['change'] = f"{yoy:+.1f}%"
+                metric['changeType'] = 'positive' if yoy > 0 else 'negative' if yoy < 0 else 'neutral'
+            metrics.append(metric)
+
+        # === SEND CHARTS + METRICS (first visible content for user) ===
+        yield f"data: {json.dumps({'type': 'charts', 'data': charts, 'metrics': metrics, 'temporal_context': temporal.get('explanation') if temporal else None})}\n\n"
+
+        # 6. Build and send special HTML boxes
+        special_data = {}
+        if routing_result.fed_sep_html:
+            special_data['fed_sep_html'] = routing_result.fed_sep_html
+        if routing_result.recession_html:
+            special_data['recession_html'] = routing_result.recession_html
+        if routing_result.cape_html:
+            special_data['cape_html'] = routing_result.cape_html
+
+        polymarket_html = query_router.get_polymarket_html(query)
+        if polymarket_html:
+            special_data['polymarket_html'] = polymarket_html
+
+        if special_data:
+            yield f"data: {json.dumps({'type': 'special', **special_data})}\n\n"
+
+        # 7. Build and send source citations
+        sources = []
+        for sid, dates, values, info in series_data:
+            sources.append({
+                'series_id': sid,
+                'name': info.get('title', info.get('name', sid)),
+                'url': f"https://fred.stlouisfed.org/series/{sid}"
+            })
+        yield f"data: {json.dumps({'type': 'sources', 'data': sources})}\n\n"
+
+        # 8. Stream AI summary token-by-token
         async for chunk in stream_summary(query, series_data):
             yield f"data: {json.dumps({'type': 'summary_chunk', 'text': chunk})}\n\n"
 
-        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+        # 9. Send suggestions (use static generation to avoid a second LLM call)
+        suggestions = generate_suggestions(query, routing_result.series)
+
+        yield f"data: {json.dumps({'type': 'done', 'suggestions': suggestions})}\n\n"
 
     return StreamingResponse(
         event_generator(),

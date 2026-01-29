@@ -17,6 +17,8 @@ from datetime import datetime, timedelta
 from typing import Optional, Tuple
 from urllib.request import Request, urlopen
 
+from processing.analytics import compute_series_analytics
+
 # API Keys
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY') or os.getenv('GOOGLE_API_KEY')
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
@@ -343,6 +345,34 @@ def claude_synthesize(
     if not ANTHROPIC_API_KEY:
         return ""
 
+    # Build GROUND TRUTH section from data_summary
+    # This prevents Claude from hallucinating numbers from training data
+    ground_truth_lines = []
+    for ds in data_summary:
+        sid = ds.get('series_id', '')
+        name = ds.get('name', sid)
+        val = ds.get('latest_value', '')
+        dt = ds.get('data_type', '')
+        if dt == 'index':
+            yoy = ds.get('yoy_percent')
+            if yoy is not None:
+                ground_truth_lines.append(f"  {name} ({sid}): CURRENT YEAR-OVER-YEAR RATE = {yoy:+.1f}%")
+            else:
+                ground_truth_lines.append(f"  {name} ({sid}): CURRENT VALUE = {val}")
+        elif dt == 'rate':
+            ground_truth_lines.append(f"  {name} ({sid}): CURRENT RATE = {val}%")
+        else:
+            ground_truth_lines.append(f"  {name} ({sid}): CURRENT VALUE = {val}")
+
+    ground_truth_section = ""
+    if ground_truth_lines:
+        ground_truth_section = (
+            "\n\n=== GROUND TRUTH (you MUST use these exact numbers) ===\n"
+            + "\n".join(ground_truth_lines)
+            + "\n=== END GROUND TRUTH ==="
+            + "\nDo NOT cite any other numbers for these indicators. Use ONLY the values above."
+        )
+
     # Build threshold section
     threshold_section = ""
     if threshold_contexts:
@@ -376,6 +406,7 @@ def claude_synthesize(
         prompt = f"""You are synthesizing economic data with expert commentary to address a question that involves uncertainty about future outcomes.
 
 USER QUESTION: {query}
+{ground_truth_section}
 
 CURRENT DATA:
 {json.dumps(data_summary, indent=2)}
@@ -403,7 +434,8 @@ Write a CLEAR and BALANCED response that:
    - What questions should they be asking?
    - What would change the picture in either direction?
 
-FORMAT: 4-5 bullet points. Lead with clear data, then balanced analysis.
+FORMAT: Write 4-5 sentences in plain prose (NO bullet points, NO asterisks, NO markdown formatting).
+Use plain text only — no bold, no italic, no bullet markers like • or -.
 
 KEY PRINCIPLE: Be clear about what the data shows (not wishy-washy about facts), while honest about what it doesn't predict (not falsely authoritative about the future). Example: "CAPE is elevated by historical standards" (clear) but "whether this leads to a correction depends on..." (honest about uncertainty)."""
     else:
@@ -411,6 +443,7 @@ KEY PRINCIPLE: Be clear about what the data shows (not wishy-washy about facts),
         prompt = f"""You are synthesizing economic data with expert commentary to answer a judgment question.
 
 USER QUESTION: {query}
+{ground_truth_section}
 
 CURRENT DATA:
 {json.dumps(data_summary, indent=2)}
@@ -435,12 +468,15 @@ Write an informed answer that:
    - If experts disagree or outlook is unclear, say so
    - Avoid false precision about future outcomes
 
-FORMAT: 4-5 bullet points. Include quotes in quotation marks with attribution.
+FORMAT: Write 4-5 sentences in plain prose (NO bullet points, NO asterisks, NO markdown formatting).
+Use plain text only — no bold, no italic, no bullet markers like • or -.
+Include quotes in quotation marks with attribution inline.
 
 IMPORTANT:
 - Be direct when the data supports a clear answer
 - But acknowledge uncertainty for forward-looking questions
-- Use expert quotes to support your assessment"""
+- Use expert quotes to support your assessment
+- You MUST cite ONLY the numbers from GROUND TRUTH above — never substitute numbers from training data"""
 
     try:
         url = 'https://api.anthropic.com/v1/messages'
@@ -459,14 +495,50 @@ IMPORTANT:
         with urlopen(req, timeout=20) as response:
             result = json.loads(response.read().decode('utf-8'))
             text = result['content'][0]['text'].strip()
-            # Clean up
+            # Clean up: remove quotes, HTML tags, and markdown formatting
             text = text.strip('"\'')
             text = re.sub(r'<[^>]+>', '', text)
+            text = _strip_markdown(text)
             return text
 
     except Exception as e:
         print(f"[JudgmentLayer] Claude synthesis error: {e}")
         return ""
+
+
+def _strip_markdown(text: str) -> str:
+    """
+    Strip markdown formatting from text so it renders cleanly as plain text.
+
+    Removes:
+    - **bold** and *italic* markers
+    - Bullet point markers (•, -, *)
+    - Numbered list markers (1., 2., etc.)
+    - Header markers (#, ##, etc.)
+    - Excessive whitespace from removed formatting
+
+    The frontend renders summaries as plain <Text>, so markdown
+    must be stripped to avoid showing raw asterisks and bullet markers.
+    """
+    # Remove bold: **text** → text
+    text = re.sub(r'\*\*([^*]+)\*\*', r'\1', text)
+    # Remove italic: *text* → text
+    text = re.sub(r'\*([^*]+)\*', r'\1', text)
+    # Remove bold/italic: ***text*** → text
+    text = re.sub(r'\*{3}([^*]+)\*{3}', r'\1', text)
+    # Remove headers: ## Header → Header
+    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
+    # Remove bullet markers at start of lines: • , - , * (when used as bullets)
+    text = re.sub(r'^[\s]*[•\-\*]\s+', '', text, flags=re.MULTILINE)
+    # Remove numbered list markers: 1. , 2. , etc.
+    text = re.sub(r'^\s*\d+\.\s+', '', text, flags=re.MULTILINE)
+    # Collapse multiple newlines into a single space (join into prose)
+    text = re.sub(r'\n{2,}', ' ', text)
+    # Convert remaining single newlines to spaces
+    text = re.sub(r'\n', ' ', text)
+    # Clean up extra whitespace
+    text = re.sub(r'\s{2,}', ' ', text).strip()
+    return text
 
 
 def _get_judgment_cache_key(query: str, series_ids: list) -> str:
@@ -547,30 +619,73 @@ def process_judgment_query(
         latest = values[-1]
         latest_date = dates[-1] if dates else None
 
-        # Get YoY change if available
+        # Determine data_type from info or registry
+        data_type = info.get('data_type', '')
+        if not data_type:
+            try:
+                from registry import registry as _registry
+                _series_info = _registry.get_series(series_id)
+                if _series_info:
+                    data_type = _series_info.data_type or ''
+            except Exception:
+                pass
+
+        # Determine frequency for analytics computation
+        freq = info.get('frequency', 'monthly').lower()
+        if 'quarter' in freq:
+            frequency = 'quarterly'
+        elif 'daily' in freq or 'day' in freq:
+            frequency = 'daily'
+        elif 'week' in freq:
+            frequency = 'weekly'
+        else:
+            frequency = 'monthly'
+
+        # Compute analytics with pandas for accurate YoY values
+        analytics = compute_series_analytics(dates, values, series_id, frequency, data_type)
+
+        # For INDEX series (CPI, PCE, home prices), the raw value is meaningless.
+        # Use the YoY% as the "current value" for thresholds and data summary.
+        # Without this, raw CPI index ~315 gets passed to thresholds expecting YoY%,
+        # causing "315 > 5.0 → High inflation" and hallucinated "9.6% inflation".
+        threshold_value = latest
+        display_value = round(latest, 2)
+
+        if data_type == 'index' and 'yoy' in analytics and analytics['yoy'].get('change_pct') is not None:
+            yoy_pct = analytics['yoy']['change_pct']
+            threshold_value = yoy_pct
+            display_value = round(yoy_pct, 2)
+            unit = 'Percent Change from Year Ago'
+
+        # Compute YoY change for the summary
         yoy_change = None
-        if len(values) >= 12:
-            yoy_change = latest - values[-12]
+        if 'yoy' in analytics and analytics['yoy'].get('change_pct') is not None:
+            yoy_change = analytics['yoy']['change_pct']
 
         summary = {
             'series_id': series_id,
             'name': name,
-            'latest_value': round(latest, 2),
+            'latest_value': display_value,
             'latest_date': latest_date,
             'unit': unit,
+            'data_type': data_type,
         }
         if yoy_change is not None:
-            summary['yoy_change'] = round(yoy_change, 2)
+            if data_type == 'index':
+                # For indexes, the YoY% IS the meaningful value — label it clearly
+                summary['yoy_percent'] = round(yoy_change, 2)
+                summary['note'] = f"Year-over-year rate: {yoy_change:+.1f}%"
+            else:
+                summary['yoy_change'] = round(yoy_change, 2)
 
         data_summary.append(summary)
 
-        # Get threshold context
+        # Get threshold context using the correct value
         # For payroll changes, we need to handle differently
         if series_id == 'PAYEMS' and info.get('is_payroll_change'):
-            # Use monthly change value for threshold comparison
             threshold_ctx = get_threshold_context('PAYEMS', latest)
         else:
-            threshold_ctx = get_threshold_context(series_id, latest)
+            threshold_ctx = get_threshold_context(series_id, threshold_value)
 
         if threshold_ctx:
             threshold_contexts.append(threshold_ctx)

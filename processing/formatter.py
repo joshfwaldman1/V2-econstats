@@ -97,7 +97,8 @@ def format_chart_data(
                 latest_date_formatted = f"Q{quarter} {dt.year}"
             else:
                 latest_date_formatted = dt.strftime('%b %Y')
-        except:
+        except (ValueError, TypeError) as e:
+            print(f"[Formatter] Date parse error for '{latest_date}': {e}")
             latest_date_formatted = latest_date
 
     # Calculate YoY change for display

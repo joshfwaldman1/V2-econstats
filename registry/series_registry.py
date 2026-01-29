@@ -713,6 +713,336 @@ SERIES_DB: Dict[str, SeriesInfo] = {
             'Rose from 43% in 1970 to around 57% today.'
         ]
     ),
+
+    # =========================================================================
+    # JOLTS COMPONENTS (from US-Chartbook)
+    # =========================================================================
+    'JTSHIL': SeriesInfo(
+        id='JTSHIL',
+        name='JOLTS Hires (Total)',
+        unit='Level in Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Monthly hires across all employers; shows realized hiring activity vs. just posted openings',
+    ),
+    'JTSQUL': SeriesInfo(
+        id='JTSQUL',
+        name='JOLTS Quits (Total)',
+        unit='Level in Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Workers voluntarily leaving jobs; high quits = confident workers, low quits = labor market cooling',
+    ),
+    'JTSQUR': SeriesInfo(
+        id='JTSQUR',
+        name='JOLTS Quits Rate',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        short_description='Rate at which workers voluntarily leave jobs; proxy for labor market confidence',
+    ),
+    'JTSLDL': SeriesInfo(
+        id='JTSLDL',
+        name='JOLTS Layoffs & Discharges',
+        unit='Level in Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Involuntary separations; spikes signal employer distress',
+    ),
+    'JTSJOR': SeriesInfo(
+        id='JTSJOR',
+        name='JOLTS Job Openings Rate',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        short_description='Job openings as a share of total employment + openings; measures labor demand intensity',
+    ),
+    'JTSHIR': SeriesInfo(
+        id='JTSHIR',
+        name='JOLTS Hires Rate',
+        unit='Percent',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='rate',
+        short_description='Hires as a share of total employment; shows hiring intensity',
+    ),
+    'JTSTSL': SeriesInfo(
+        id='JTSTSL',
+        name='JOLTS Total Separations',
+        unit='Level in Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='All workers leaving jobs (quits + layoffs + other); net job growth = hires minus separations',
+    ),
+
+    # =========================================================================
+    # GDP COMPONENTS (from US-Chartbook)
+    # =========================================================================
+    'A006RE': SeriesInfo(
+        id='A006RE',
+        name='GDP Contribution: Private Investment',
+        unit='Percentage Points',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        short_description='How much private investment added to or subtracted from GDP growth',
+    ),
+    'DPCERE': SeriesInfo(
+        id='DPCERE',
+        name='GDP Contribution: Consumer Spending',
+        unit='Percentage Points',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        short_description='How much consumer spending contributed to GDP growth; typically the largest component',
+    ),
+    'A019RE': SeriesInfo(
+        id='A019RE',
+        name='GDP Contribution: Net Exports',
+        unit='Percentage Points',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        short_description='How much trade (exports minus imports) contributed to GDP growth; often negative for the US',
+    ),
+    'A822RE': SeriesInfo(
+        id='A822RE',
+        name='GDP Contribution: Government Spending',
+        unit='Percentage Points',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        short_description='How much federal, state, and local government spending contributed to GDP growth',
+    ),
+    'A014RE': SeriesInfo(
+        id='A014RE',
+        name='GDP Contribution: Change in Inventories',
+        unit='Percentage Points',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        short_description='How much inventory changes contributed to GDP; volatile and often reverses quarter-to-quarter',
+    ),
+    'A008RX': SeriesInfo(
+        id='A008RX',
+        name='Real Nonresidential Fixed Investment',
+        unit='Billions of Chained 2017 Dollars',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='level',
+        frequency='quarterly',
+        short_description='Business investment in structures, equipment, and IP; signals corporate confidence in future growth',
+    ),
+    'A011RE': SeriesInfo(
+        id='A011RE',
+        name='GDP Contribution: Residential Investment',
+        unit='Percentage Points',
+        source='U.S. Bureau of Economic Analysis',
+        data_type='growth_rate',
+        frequency='quarterly',
+        short_description='How much homebuilding/renovation contributed to GDP growth; sensitive to mortgage rates',
+    ),
+
+    # =========================================================================
+    # INFLATION DECOMPOSITION (from US-Chartbook)
+    # =========================================================================
+    'CUSR0000SAF1': SeriesInfo(
+        id='CUSR0000SAF1',
+        name='CPI: Food',
+        unit='Index 1982-84=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Consumer price index for all food items; ~13% of the CPI basket',
+    ),
+    'CUSR0000SA0E': SeriesInfo(
+        id='CUSR0000SA0E',
+        name='CPI: Energy',
+        unit='Index 1982-84=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Consumer price index for energy (gasoline, electricity, natural gas); most volatile CPI component',
+    ),
+    'CUSR0000SACL1E': SeriesInfo(
+        id='CUSR0000SACL1E',
+        name='CPI: Commodities Less Food & Energy',
+        unit='Index 1982-84=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Core goods prices (clothing, cars, appliances); deflated for years due to globalization',
+    ),
+    'CUSR0000SASLE': SeriesInfo(
+        id='CUSR0000SASLE',
+        name='CPI: Services Less Energy',
+        unit='Index 1982-84=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Core services prices (healthcare, education, insurance); stickiest part of inflation',
+    ),
+    'CUSR0000SAF11': SeriesInfo(
+        id='CUSR0000SAF11',
+        name='CPI: Food at Home',
+        unit='Index 1982-84=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Grocery prices; what consumers most directly feel at the supermarket',
+    ),
+    'CUSR0000SEFV': SeriesInfo(
+        id='CUSR0000SEFV',
+        name='CPI: Food Away from Home',
+        unit='Index 1982-84=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Restaurant and takeout prices; driven by labor costs and food input prices',
+    ),
+
+    # =========================================================================
+    # PRODUCER PRICE INDEX (from US-Chartbook)
+    # =========================================================================
+    'WPSFD4131': SeriesInfo(
+        id='WPSFD4131',
+        name='PPI: Final Demand',
+        unit='Index Nov 2009=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Producer prices for finished goods/services; leading indicator of consumer inflation',
+    ),
+    'WPUFD49116': SeriesInfo(
+        id='WPUFD49116',
+        name='PPI: Final Demand Less Food & Energy',
+        unit='Index Nov 2009=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Core producer prices; strips out volatile food/energy for underlying producer cost trends',
+    ),
+    'WPU00000000': SeriesInfo(
+        id='WPU00000000',
+        name='PPI: All Commodities',
+        unit='Index 1982=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        short_description='Broad commodity price index; early signal of input cost pressures',
+    ),
+
+    # =========================================================================
+    # UNEMPLOYMENT BY REASON & DURATION (from US-Chartbook)
+    # =========================================================================
+    'LNS13023621': SeriesInfo(
+        id='LNS13023621',
+        name='Unemployed: Job Losers',
+        unit='Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Workers who lost or were terminated from their previous job; spikes in recessions',
+    ),
+    'LNS13023653': SeriesInfo(
+        id='LNS13023653',
+        name='Unemployed: Temporary Layoffs',
+        unit='Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Workers on temporary layoff expecting recall; spiked massively during COVID',
+    ),
+    'LNS13023705': SeriesInfo(
+        id='LNS13023705',
+        name='Unemployed: Job Leavers',
+        unit='Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Workers who voluntarily quit; high levels signal confidence in finding better work',
+    ),
+    'LNS13023557': SeriesInfo(
+        id='LNS13023557',
+        name='Unemployed: Re-entrants',
+        unit='Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='People re-entering the labor force after a period of not looking for work',
+    ),
+    'LNS13008276': SeriesInfo(
+        id='LNS13008276',
+        name='Median Unemployment Duration',
+        unit='Weeks',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Median weeks spent unemployed; rising duration signals a harder job market',
+    ),
+    'LNS13008275': SeriesInfo(
+        id='LNS13008275',
+        name='Mean Unemployment Duration',
+        unit='Weeks',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Average weeks spent unemployed; pulled up by long-term jobless',
+    ),
+    'LNS12032194': SeriesInfo(
+        id='LNS12032194',
+        name='Part-Time for Economic Reasons',
+        unit='Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        short_description='Workers wanting full-time but stuck in part-time; a key underemployment measure',
+    ),
+    'LNU05026639': SeriesInfo(
+        id='LNU05026639',
+        name='Want a Job but Not Looking',
+        unit='Thousands',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        sa=False,
+        short_description='People who want work but are not actively searching; hidden labor market slack',
+    ),
+
+    # =========================================================================
+    # WAGE MEASURES (from US-Chartbook)
+    # =========================================================================
+    'LEU0252881600Q': SeriesInfo(
+        id='LEU0252881600Q',
+        name='Median Usual Weekly Earnings',
+        unit='Dollars',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='level',
+        frequency='quarterly',
+        short_description='Median weekly pay for full-time workers; less distorted by high earners than averages',
+    ),
+    'ECIWAG': SeriesInfo(
+        id='ECIWAG',
+        name='Employment Cost Index: Wages & Salaries',
+        unit='Index Dec 2005=100',
+        source='U.S. Bureau of Labor Statistics',
+        data_type='index',
+        show_yoy=True,
+        frequency='quarterly',
+        short_description='Tracks employer labor costs holding job composition fixed; the Fed watches this closely',
+    ),
+
+    # =========================================================================
+    # INDUSTRIAL PRODUCTION (from US-Chartbook)
+    # =========================================================================
+    'INDPRO': SeriesInfo(
+        id='INDPRO',
+        name='Industrial Production Index',
+        unit='Index 2017=100',
+        source='Federal Reserve',
+        data_type='index',
+        show_yoy=True,
+        short_description='Output of manufacturing, mining, and utilities; proxy for goods-sector health',
+    ),
+    'TCU': SeriesInfo(
+        id='TCU',
+        name='Capacity Utilization',
+        unit='Percent',
+        source='Federal Reserve',
+        data_type='rate',
+        short_description='% of industrial capacity in use; >80% may signal inflation pressure, <75% signals slack',
+        benchmark=80.0,
+    ),
 }
 
 
@@ -737,6 +1067,26 @@ QUERY_MAP: Dict[str, dict] = {
     'hiring': {'series': ['PAYEMS', 'JTSJOL'], 'combine': False},
     'job openings': {'series': ['JTSJOL'], 'combine': False},
 
+    # JOLTS detail (from US-Chartbook)
+    'jolts': {'series': ['JTSJOL', 'JTSHIL', 'JTSQUL', 'JTSLDL'], 'combine': False},
+    'jolts data': {'series': ['JTSJOL', 'JTSHIL', 'JTSQUL', 'JTSLDL'], 'combine': False},
+    'labor turnover': {'series': ['JTSHIL', 'JTSQUL', 'JTSLDL', 'JTSTSL'], 'combine': False},
+    'quits': {'series': ['JTSQUL', 'JTSQUR'], 'combine': False},
+    'quits rate': {'series': ['JTSQUR'], 'combine': False},
+    'layoffs': {'series': ['JTSLDL', 'ICSA'], 'combine': False},
+    'hires': {'series': ['JTSHIL', 'JTSHIR'], 'combine': False},
+    'labor market flows': {'series': ['JTSHIL', 'JTSQUL', 'JTSLDL'], 'combine': True},
+    'beveridge curve': {'series': ['JTSJOL', 'UNRATE'], 'combine': False},
+
+    # Unemployment detail (from US-Chartbook)
+    'unemployment by reason': {'series': ['LNS13023621', 'LNS13023705', 'LNS13023557'], 'combine': True},
+    'job losers': {'series': ['LNS13023621', 'LNS13023653'], 'combine': True},
+    'unemployment duration': {'series': ['LNS13008276', 'LNS13008275'], 'combine': True},
+    'how long are people unemployed': {'series': ['LNS13008276', 'LNS13008275'], 'combine': True},
+    'underemployment': {'series': ['U6RATE', 'LNS12032194'], 'combine': False},
+    'hidden unemployment': {'series': ['U6RATE', 'LNU05026639', 'LNS12032194'], 'combine': False},
+    'part time': {'series': ['LNS12032194'], 'combine': False},
+
     # Labor market health (deeper) - use prime-age
     'labor market health': {'series': ['LNS12300060', 'UNRATE'], 'combine': False},
     'labor market tight': {'series': ['LNS12300060', 'JTSJOL', 'UNRATE'], 'combine': False},
@@ -756,6 +1106,25 @@ QUERY_MAP: Dict[str, dict] = {
     'how have rents changed': {'series': ['CUSR0000SEHA', 'CUSR0000SAH1'], 'show_yoy': True, 'combine': True},
     'rental prices': {'series': ['CUSR0000SEHA', 'CUSR0000SAH1'], 'show_yoy': True, 'combine': True},
 
+    # Inflation decomposition (from US-Chartbook)
+    'inflation breakdown': {'series': ['CUSR0000SAF1', 'CUSR0000SA0E', 'CUSR0000SACL1E', 'CUSR0000SASLE'], 'show_yoy': True, 'combine': True},
+    'inflation components': {'series': ['CUSR0000SAF1', 'CUSR0000SA0E', 'CUSR0000SACL1E', 'CUSR0000SASLE'], 'show_yoy': True, 'combine': True},
+    'what is driving inflation': {'series': ['CUSR0000SAF1', 'CUSR0000SA0E', 'CUSR0000SAH1', 'CUSR0000SASLE'], 'show_yoy': True, 'combine': True},
+    'food prices': {'series': ['CUSR0000SAF11', 'CUSR0000SEFV'], 'show_yoy': True, 'combine': True},
+    'food inflation': {'series': ['CUSR0000SAF11', 'CUSR0000SEFV'], 'show_yoy': True, 'combine': True},
+    'grocery prices': {'series': ['CUSR0000SAF11'], 'show_yoy': True, 'combine': False},
+    'energy prices': {'series': ['CUSR0000SA0E'], 'show_yoy': True, 'combine': False},
+    'goods inflation': {'series': ['CUSR0000SACL1E'], 'show_yoy': True, 'combine': False},
+    'services inflation': {'series': ['CUSR0000SASLE'], 'show_yoy': True, 'combine': False},
+    'cpi vs pce': {'series': ['CPIAUCSL', 'PCEPI'], 'show_yoy': True, 'combine': True},
+
+    # PPI (from US-Chartbook)
+    'ppi': {'series': ['WPSFD4131', 'WPUFD49116'], 'show_yoy': True, 'combine': True},
+    'producer prices': {'series': ['WPSFD4131', 'WPUFD49116'], 'show_yoy': True, 'combine': True},
+    'producer price index': {'series': ['WPSFD4131'], 'show_yoy': True, 'combine': False},
+    'commodity prices': {'series': ['WPU00000000'], 'show_yoy': True, 'combine': False},
+    'input costs': {'series': ['WPSFD4131', 'WPU00000000'], 'show_yoy': True, 'combine': True},
+
     # GDP - Annual (YoY), quarterly, core GDP, and GDPNow
     'gdp': {'series': ['A191RL1Q225SBEA', 'PB0000031Q225SBEA', 'GDPNOW'], 'combine': False},
     'gdp growth': {'series': ['A191RL1Q225SBEA', 'PB0000031Q225SBEA', 'GDPNOW'], 'combine': False},
@@ -767,6 +1136,17 @@ QUERY_MAP: Dict[str, dict] = {
     'core gdp': {'series': ['PB0000031Q225SBEA'], 'combine': False},
     'private demand': {'series': ['PB0000031Q225SBEA'], 'combine': False},
     'final sales': {'series': ['PB0000031Q225SBEA'], 'combine': False},
+
+    # GDP components (from US-Chartbook)
+    'gdp components': {'series': ['DPCERE', 'A006RE', 'A822RE', 'A019RE'], 'combine': True},
+    'gdp breakdown': {'series': ['DPCERE', 'A006RE', 'A822RE', 'A019RE'], 'combine': True},
+    'gdp contributions': {'series': ['DPCERE', 'A006RE', 'A822RE', 'A019RE'], 'combine': True},
+    'what drove gdp': {'series': ['DPCERE', 'A006RE', 'A822RE', 'A019RE'], 'combine': True},
+    'investment': {'series': ['A008RX', 'A011RE'], 'combine': False},
+    'business investment': {'series': ['A008RX'], 'combine': False},
+    'residential investment': {'series': ['A011RE', 'HOUST'], 'combine': False},
+    'inventories': {'series': ['A014RE'], 'combine': False},
+    'net exports gdp': {'series': ['A019RE'], 'combine': False},
 
     # Interest rates
     'interest rates': {'series': ['FEDFUNDS', 'DGS10'], 'combine': True},
@@ -781,6 +1161,12 @@ QUERY_MAP: Dict[str, dict] = {
     'housing': {'series': ['CSUSHPINSA', 'HOUST'], 'combine': False},
     'home prices': {'series': ['CSUSHPINSA'], 'combine': False, 'show_yoy': True},
     'housing market': {'series': ['CSUSHPINSA', 'MORTGAGE30US'], 'combine': False},
+
+    # Industrial production (from US-Chartbook)
+    'industrial production': {'series': ['INDPRO'], 'show_yoy': True, 'combine': False},
+    'capacity utilization': {'series': ['TCU'], 'combine': False},
+    'manufacturing output': {'series': ['INDPRO', 'MANEMP'], 'combine': False},
+    'factory output': {'series': ['INDPRO', 'TCU'], 'combine': False},
 
     # Consumer
     'consumer': {'series': ['RSXFS', 'UMCSENT'], 'combine': False},
@@ -850,6 +1236,12 @@ QUERY_MAP: Dict[str, dict] = {
     # Wages
     'wages': {'series': ['CES0500000003'], 'combine': False},
     'earnings': {'series': ['CES0500000003'], 'combine': False},
+    'wage growth': {'series': ['CES0500000003', 'ECIWAG'], 'combine': False, 'show_yoy': True},
+    'wages vs inflation': {'series': ['CES0500000003', 'CPIAUCSL'], 'combine': False, 'show_yoy': True},
+    'real wages': {'series': ['CES0500000003', 'CPIAUCSL'], 'combine': False, 'show_yoy': True},
+    'median wages': {'series': ['LEU0252881600Q'], 'combine': False},
+    'employment cost index': {'series': ['ECIWAG'], 'combine': False, 'show_yoy': True},
+    'eci': {'series': ['ECIWAG'], 'combine': False, 'show_yoy': True},
 
     # International comparisons - FRED has this data!
     'us vs europe': {'series': ['A191RL1Q225SBEA', 'CLVMNACSCAB1GQEA19', 'UNRATE', 'LRHUTTTTEZM156S'], 'show_yoy': False, 'combine': False},

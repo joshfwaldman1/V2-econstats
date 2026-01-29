@@ -11,6 +11,7 @@ import {
   Separator,
   Grid,
   IconButton,
+  Link,
 } from '@radix-ui/themes'
 import {
   ArrowLeftIcon,
@@ -27,6 +28,7 @@ interface ResultsPageProps {
   onFollowUp: (query: string) => void
   onBack: () => void
   isLoading: boolean
+  isStreaming?: boolean
 }
 
 export function ResultsPage({
@@ -34,6 +36,7 @@ export function ResultsPage({
   onFollowUp,
   onBack,
   isLoading,
+  isStreaming = false,
 }: ResultsPageProps) {
   const [followUpQuery, setFollowUpQuery] = useState('')
 
@@ -88,7 +91,7 @@ export function ResultsPage({
       </Flex>
 
       {/* AI Response */}
-      <Flex gap="3" mb="6">
+      <Flex gap="3" mb="2">
         <Box
           style={{
             width: 32,
@@ -104,10 +107,45 @@ export function ResultsPage({
         </Box>
         <Card style={{ flex: 1 }}>
           <Text size="3" style={{ lineHeight: 1.6 }}>
-            {response.summary}
+            {response.summary || (isStreaming ? '' : 'Generating summary...')}
+            {isStreaming && (
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: 2,
+                  height: '1em',
+                  background: 'var(--blue-9)',
+                  marginLeft: 2,
+                  verticalAlign: 'text-bottom',
+                  animation: 'blink 1s step-end infinite',
+                }}
+              />
+            )}
           </Text>
         </Card>
       </Flex>
+
+      {/* Source Citations */}
+      {response.sources && response.sources.length > 0 && (
+        <Flex gap="1" align="center" ml="9" mb="6" wrap="wrap">
+          <Text size="1" color="gray">Sources:</Text>
+          {response.sources.map((source, i) => (
+            <span key={source.series_id}>
+              {i > 0 && <Text size="1" color="gray"> · </Text>}
+              <Link
+                size="1"
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={source.name}
+                highContrast
+              >
+                {source.series_id}
+              </Link>
+            </span>
+          ))}
+        </Flex>
+      )}
 
       {/* Special Data Boxes */}
       {response.fed_sep_html && (
@@ -146,22 +184,26 @@ export function ResultsPage({
 
       {/* Follow-up Suggestions */}
       <Box mb="6">
-        <Text size="2" color="gray" mb="3">
-          Continue exploring:
-        </Text>
-        <Flex gap="2" wrap="wrap" mb="4">
-          {response.suggestions?.map((suggestion) => (
-            <Button
-              key={suggestion}
-              variant="outline"
-              size="2"
-              onClick={() => onFollowUp(suggestion)}
-              disabled={isLoading}
-            >
-              {suggestion}
-            </Button>
-          ))}
-        </Flex>
+        {response.suggestions && response.suggestions.length > 0 && (
+          <>
+            <Text size="2" color="gray" mb="3">
+              Continue exploring:
+            </Text>
+            <Flex gap="2" wrap="wrap" mb="4">
+              {response.suggestions.map((suggestion) => (
+                <Button
+                  key={suggestion}
+                  variant="outline"
+                  size="2"
+                  onClick={() => onFollowUp(suggestion)}
+                  disabled={isLoading || isStreaming}
+                >
+                  {suggestion}
+                </Button>
+              ))}
+            </Flex>
+          </>
+        )}
 
         {/* Follow-up Input */}
         <form onSubmit={handleFollowUpSubmit}>
@@ -172,13 +214,13 @@ export function ResultsPage({
                 placeholder="Ask a follow-up question..."
                 value={followUpQuery}
                 onChange={(e) => setFollowUpQuery(e.target.value)}
-                disabled={isLoading}
+                disabled={isLoading || isStreaming}
               />
             </Box>
             <IconButton
               size="3"
               type="submit"
-              disabled={isLoading || !followUpQuery.trim()}
+              disabled={isLoading || isStreaming || !followUpQuery.trim()}
             >
               <PaperPlaneIcon width="18" height="18" />
             </IconButton>
@@ -194,6 +236,13 @@ export function ResultsPage({
           </Box>
         </Flex>
       )}
+
+      {/* CSS for blinking cursor animation */}
+      <style>{`
+        @keyframes blink {
+          50% { opacity: 0; }
+        }
+      `}</style>
     </Box>
   )
 }

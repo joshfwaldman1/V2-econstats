@@ -211,7 +211,7 @@ def get_latest_sep_url() -> Tuple[str, str]:
             with urlopen(req, timeout=5) as response:
                 if response.status == 200:
                     return url, meeting_date.strftime('%B %Y')
-        except:
+        except (Exception, OSError):
             continue
 
     # Fallback to known good URL (December 2024)

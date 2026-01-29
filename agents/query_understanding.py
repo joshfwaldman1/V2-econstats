@@ -1275,19 +1275,22 @@ def _validate_series_exist(series_list: List[str]) -> List[str]:
     try:
         from agents.alphavantage import ALPHAVANTAGE_SERIES
         av_series = set(ALPHAVANTAGE_SERIES.keys())
-    except:
+    except (ImportError, AttributeError) as e:
+        print(f"[QueryUnderstanding] AlphaVantage catalog unavailable: {e}")
         av_series = set()
 
     try:
         from agents.eia import EIA_SERIES
         eia_series = set(EIA_SERIES.keys())
-    except:
+    except (ImportError, AttributeError) as e:
+        print(f"[QueryUnderstanding] EIA catalog unavailable: {e}")
         eia_series = set()
 
     try:
         from agents.zillow import ZILLOW_METROS
         zillow_series = set(ZILLOW_METROS.keys())
-    except:
+    except (ImportError, AttributeError) as e:
+        print(f"[QueryUnderstanding] Zillow catalog unavailable: {e}")
         zillow_series = set()
 
     # Known FRED series (we don't import all, just validate format)
@@ -1388,8 +1391,8 @@ def get_series_for_query(query: str, verbose: bool = False) -> Dict:
                 'explanation': health_result.get('explanation', ''),
                 'entity': health_result.get('entity', '')
             }
-    except:
-        pass
+    except (ImportError, Exception) as e:
+        print(f"[QueryUnderstanding] Health check routing error: {e}")
 
     # Last resort: return empty (let app.py handle default routing)
     return {

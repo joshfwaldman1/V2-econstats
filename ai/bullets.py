@@ -276,9 +276,10 @@ def _clean_bullet(bullet: str) -> str:
     if not bullet or not isinstance(bullet, str):
         return ''
 
-    # Remove any bold-marked chain-of-thought sections
-    # Pattern: **However...** or **Note:...** etc.
-    bullet = re.sub(r'\*\*[^*]*\*\*', '', bullet)
+    # Strip bold markers but keep content: **text** → text
+    # (Previously this removed the entire bold section including content,
+    # which would wipe out bullets like "**Prices rising at 2.6%.**")
+    bullet = re.sub(r'\*\*([^*]*)\*\*', r'\1', bullet)
 
     # Remove common chain-of-thought phrases
     cot_patterns = [

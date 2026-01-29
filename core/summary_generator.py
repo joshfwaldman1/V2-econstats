@@ -199,7 +199,11 @@ not just WHAT the numbers say, but WHY it's happening and WHAT IT MEANS for them
 
 USER QUESTION: {query}
 
-DATA:
+=== GROUND TRUTH (you MUST use these exact numbers) ===
+{ground_truth}
+=== END GROUND TRUTH ===
+
+FULL DATA:
 {data_json}
 
 {topic_guidance}
@@ -209,6 +213,10 @@ DATA:
 {news_context}
 
 Write 2-3 sentences that are ANALYTICAL, not descriptive.
+
+CRITICAL RULES:
+- You MUST cite ONLY the numbers from GROUND TRUTH above. Do NOT use any numbers from your training data.
+- If GROUND TRUTH says the current rate is 4.1%, you write 4.1%. Never substitute a different number.
 
 FORMAT RULES:
 1. LEAD WITH THE INSIGHT, not the number
@@ -227,7 +235,7 @@ FORMAT RULES:
    BAD: "The Fed will monitor incoming data"
    GOOD: "If shelter inflation keeps falling at this pace, the Fed can cut rates by June"
 
-5. BE SPECIFIC with numbers and dates
+5. BE SPECIFIC with numbers and dates — use ONLY GROUND TRUTH numbers
    BAD: "Inflation is coming down"
    GOOD: "Core PCE has fallen from 5.5% to 2.8% - another 0.8pp to reach the Fed's 2% target"
 
@@ -334,6 +342,59 @@ def format_series_data_for_prompt(series_data: List[Dict]) -> str:
     return json.dumps(cleaned, indent=2)
 
 
+def _build_ground_truth_from_dicts(series_data: List[Dict]) -> str:
+    """
+    Build a GROUND TRUTH block from dict-format series data.
+
+    This prevents the LLM from hallucinating numbers from training data.
+    Instead of burying values in the data JSON, we state them prominently
+    in a format the LLM can't miss.
+
+    Args:
+        series_data: List of dicts with name, latest_value, latest_date,
+                     yoy_change, unit, etc.
+
+    Returns:
+        Multi-line ground truth string with current values for each series.
+    """
+    lines = []
+
+    for s in series_data:
+        name = s.get("name", s.get("series_id", "Unknown"))
+        latest = s.get("latest_value")
+        date = s.get("latest_date", "")
+        unit = s.get("unit", s.get("units", ""))
+
+        if latest is None:
+            continue
+
+        lines.append(f"--- {name} ---")
+
+        # Format based on what data is available
+        if s.get("yoy_change") is not None:
+            yoy = s["yoy_change"]
+            if isinstance(latest, (int, float)):
+                lines.append(f"  CURRENT VALUE: {latest} {unit} (as of {date})")
+            else:
+                lines.append(f"  CURRENT VALUE: {latest} (as of {date})")
+            direction = "up" if yoy > 0 else "down" if yoy < 0 else "unchanged"
+            lines.append(f"  YEAR-OVER-YEAR: {direction} {abs(yoy)}")
+        elif s.get("monthly_job_change") is not None:
+            lines.append(f"  LATEST MONTHLY CHANGE: {s['monthly_job_change']:+,} (as of {date})")
+            if s.get("avg_monthly_change_3mo") is not None:
+                lines.append(f"  3-MONTH AVERAGE: {s['avg_monthly_change_3mo']:+,.0f}")
+        elif isinstance(latest, (int, float)):
+            lines.append(f"  CURRENT VALUE: {latest} {unit} (as of {date})")
+        else:
+            lines.append(f"  CURRENT VALUE: {latest} (as of {date})")
+
+    if lines:
+        lines.append("")
+        lines.append("DO NOT cite any numbers from your training data. Use ONLY the values above.")
+
+    return "\n".join(lines) if lines else ""
+
+
 # =============================================================================
 # MAIN SUMMARY GENERATION FUNCTION
 # =============================================================================
@@ -395,10 +456,14 @@ def generate_analytical_summary(
     # Format data
     data_json = format_series_data_for_prompt(data)
 
+    # Build GROUND TRUTH block — exact current values the LLM must cite
+    ground_truth = _build_ground_truth_from_dicts(data)
+
     # Build the prompt
     prompt = SUMMARY_PROMPT_TEMPLATE.format(
         query=query,
         data_json=data_json,
+        ground_truth=ground_truth,
         topic_guidance=topic_guidance,
         framework_context=framework_context,
         news_context=news_context,

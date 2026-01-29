@@ -50,6 +50,10 @@ def get_ai_summary(
     """
     Generate a rich AI summary with chart descriptions and suggestions.
 
+    All math is computed by pandas in processing/analytics.py.
+    The LLM receives pre-computed values in a GROUND TRUTH block and
+    must cite those exact numbers — never substitute training data.
+
     Args:
         query: The user's question
         series_data: List of (series_id, dates, values, info) tuples
@@ -78,6 +82,11 @@ def get_ai_summary(
     data_context = build_rich_data_context(series_data)
     series_list = [s[0] for s in series_data if s[2]]  # series IDs with data
 
+    # Build GROUND TRUTH block — explicit current values the LLM MUST cite.
+    # This prevents hallucination from training data (e.g., citing "9.6% inflation"
+    # when current CPI YoY is actually 2.65%).
+    ground_truth = _build_summary_ground_truth(series_data)
+
     # Build conversation context
     conv_context = ""
     if conversation_history:
@@ -98,13 +107,19 @@ def get_ai_summary(
 USER QUESTION: "{query}"
 {conv_context}
 
-CURRENT DATA:
+=== GROUND TRUTH (you MUST use these exact numbers) ===
+{ground_truth}
+=== END GROUND TRUTH ===
+
+FULL DATA CONTEXT:
 {data_context}
 
 ## TASK: Return a JSON object with three parts:
 
-1. "summary": A 3-4 sentence expert summary that:
-   - Directly answers the user's question with specific numbers
+1. "summary": A 3-4 sentence expert summary in plain prose (NO markdown, NO bold, NO bullet points) that:
+   - You MUST cite ONLY the numbers from GROUND TRUTH above. Do NOT use any numbers from your training data.
+   - If GROUND TRUTH says inflation is 2.6%, you write 2.6%. Never substitute a different number.
+   - Directly answers the user's question with the specific GROUND TRUTH numbers
    - Explains what trends MEAN for workers, consumers, or the economy
    - Puts current values in context (vs historical average, pre-pandemic, vs national average for state data)
    - Uses plain language accessible to non-economists
@@ -243,6 +258,91 @@ def build_rich_data_context(series_data: List[tuple]) -> str:
         lines.append(" | ".join(context_parts))
 
     return "\n".join(lines) if lines else "No data available."
+
+
+def _build_summary_ground_truth(series_data: List[tuple]) -> str:
+    """
+    Build an explicit GROUND TRUTH block with exact current values for ALL series.
+
+    This is the key defense against hallucination in summaries. Instead of
+    burying values in the analytics context, we state them prominently in a
+    format the LLM can't miss.
+
+    Same approach as bullets._build_ground_truth(), but handles multiple series
+    at once (summaries cover 1-4 series, bullets cover 1).
+
+    Args:
+        series_data: List of (series_id, dates, values, info) tuples
+
+    Returns:
+        Multi-line ground truth string with current values for each series.
+    """
+    lines = []
+
+    for series_id, dates, values, info in series_data:
+        if not values or len(values) < 2:
+            continue
+
+        name = info.get('name', info.get('title', series_id))
+
+        # Determine frequency and data_type
+        freq = info.get('frequency', 'monthly').lower()
+        if 'quarter' in freq:
+            frequency = 'quarterly'
+        elif 'daily' in freq or 'day' in freq:
+            frequency = 'daily'
+        elif 'week' in freq:
+            frequency = 'weekly'
+        else:
+            frequency = 'monthly'
+
+        data_type = info.get('data_type', '')
+        if not data_type:
+            from registry import registry as _registry
+            _series_info = _registry.get_series(series_id)
+            if _series_info:
+                data_type = _series_info.data_type or ''
+
+        # Compute analytics for ground truth values
+        analytics = compute_series_analytics(dates, values, series_id, frequency, data_type)
+        if 'error' in analytics:
+            continue
+
+        latest = analytics.get('latest_value')
+        latest_date = analytics.get('latest_date_formatted', '')
+
+        lines.append(f"--- {name} ({series_id}) ---")
+
+        if data_type == 'index':
+            # For indexes (CPI, PCE, home prices): the YoY % is the meaningful number
+            if 'yoy' in analytics and analytics['yoy'].get('change_pct') is not None:
+                yoy_pct = analytics['yoy']['change_pct']
+                lines.append(f"  CURRENT YEAR-OVER-YEAR RATE: {yoy_pct:+.1f}% (as of {latest_date})")
+                lines.append(f"  This means prices/values are changing at {abs(yoy_pct):.1f}% per year.")
+            else:
+                lines.append(f"  CURRENT VALUE: {latest} (as of {latest_date})")
+        elif data_type == 'rate':
+            lines.append(f"  CURRENT RATE: {latest:.1f}% (as of {latest_date})")
+            if 'yoy' in analytics:
+                change = analytics['yoy']['change']
+                direction = "up" if change > 0 else "down" if change < 0 else "unchanged"
+                lines.append(f"  VS YEAR AGO: {direction} {abs(change):.2f} percentage points")
+        elif data_type == 'growth_rate':
+            lines.append(f"  CURRENT GROWTH RATE: {latest:.1f}% (as of {latest_date})")
+        else:
+            lines.append(f"  CURRENT VALUE: {latest} (as of {latest_date})")
+            if 'yoy' in analytics and analytics['yoy'].get('change_pct') is not None:
+                lines.append(f"  YEAR-OVER-YEAR CHANGE: {analytics['yoy']['change_pct']:+.1f}%")
+
+        # Add momentum
+        if 'momentum' in analytics:
+            lines.append(f"  TREND: {analytics['momentum']['direction']}")
+
+    if lines:
+        lines.append("")
+        lines.append("DO NOT cite any numbers from your training data. Use ONLY the values above.")
+
+    return "\n".join(lines) if lines else "No ground truth data available."
 
 
 def build_dynamic_plan(query: str, available_series: List[Dict]) -> Optional[Dict[str, Any]]:
@@ -410,6 +510,7 @@ async def stream_summary(
         return
 
     data_context = build_rich_data_context(series_data)
+    ground_truth = _build_summary_ground_truth(series_data)
 
     # Use the master knowledge base for consistent display rules
     knowledge_rules = get_compact_knowledge_prompt()
@@ -420,11 +521,18 @@ async def stream_summary(
 
 USER QUESTION: "{query}"
 
-DATA:
+=== GROUND TRUTH (you MUST use these exact numbers) ===
+{ground_truth}
+=== END GROUND TRUTH ===
+
+FULL DATA:
 {data_context}
 
-Be concise, reference specific numbers, explain what trends mean for the economy.
-Put values in context (vs year ago, pre-pandemic, historical average)."""
+RULES:
+- You MUST cite ONLY the numbers from GROUND TRUTH above. Do NOT use any numbers from your training data.
+- Be concise, reference the specific GROUND TRUTH numbers, explain what trends mean for the economy.
+- Put values in context (vs year ago, pre-pandemic, historical average).
+- Write in plain prose. Do NOT use markdown formatting (no **bold**, no bullet points, no headers)."""
 
     try:
         with client.messages.stream(

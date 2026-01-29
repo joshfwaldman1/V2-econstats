@@ -342,6 +342,11 @@ def analytics_to_text(analytics: Dict) -> str:
         r = analytics['range_1y']
         if data_type == 'rate':
             lines.append(f"1Y range: {r['low']:.1f}% - {r['high']:.1f}%")
+        elif data_type == 'index':
+            # For indexes: suppress raw index range (e.g., "306-315") — meaningless to users
+            # and confusing to LLMs which may misinterpret raw values as rates.
+            # Only show position relative to high/low as percentages.
+            lines.append(f"1Y position: {r['pct_from_high']:+.1f}% from high, {r['pct_from_low']:+.1f}% from low")
         else:
             lines.append(f"1Y range: {r['low']:.2f} - {r['high']:.2f} (currently {r['pct_from_high']:+.1f}% from high)")
 

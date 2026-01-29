@@ -96,7 +96,8 @@ class ShillerSource(DataSource):
             return {}
         try:
             return self._module['get_current_cape']()
-        except:
+        except Exception as e:
+            print(f"[Shiller] Error getting current CAPE: {e}")
             return {}
 
     def get_bubble_comparison(self) -> dict:
@@ -105,7 +106,8 @@ class ShillerSource(DataSource):
             return {}
         try:
             return self._module['get_bubble_comparison']()
-        except:
+        except Exception as e:
+            print(f"[Shiller] Error getting bubble comparison: {e}")
             return {}
 
     def is_valuation_query(self, query: str) -> bool:
@@ -114,5 +116,6 @@ class ShillerSource(DataSource):
             return False
         try:
             return self._module['is_valuation_query'](query)
-        except:
+        except Exception as e:
+            print(f"[Shiller] Error checking valuation query: {e}")
             return False

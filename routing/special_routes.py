@@ -215,8 +215,8 @@ class SpecialRouter:
                 if sep_data:
                     result.extra_data['fed_sep'] = sep_data
                     result.extra_data['fed_sep_html'] = self._format_fed_sep_html(sep_data)
-            except:
-                pass
+            except Exception as e:
+                print(f"[SpecialRoutes] Fed SEP data error: {e}")
 
         if guidance:
             result.extra_data['fed_guidance'] = guidance
@@ -238,8 +238,8 @@ class SpecialRouter:
             if scorecard:
                 result.extra_data['recession_scorecard'] = scorecard
                 result.extra_data['recession_html'] = self._recession['format_display'](scorecard)
-        except:
-            pass
+        except Exception as e:
+            print(f"[SpecialRoutes] Recession scorecard error: {e}")
 
         return result
 
@@ -407,8 +407,8 @@ class SpecialRouter:
             predictions = self._polymarket['find_predictions'](query)
             if predictions:
                 return self._polymarket['format_box'](predictions)
-        except:
-            pass
+        except Exception as e:
+            print(f"[SpecialRoutes] Polymarket error: {e}")
 
         return None
 

@@ -17,15 +17,13 @@ router uses fuzzy match + old Claude fallback.
 """
 
 import json
-import os
+import time
 from datetime import datetime, timedelta
 from typing import Optional, Dict, List, Any
 from urllib.request import urlopen, Request
 
+from config import config
 from .plan_catalog import PlanCatalog
-
-# API Key - check both GEMINI_API_KEY and GOOGLE_API_KEY
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "") or os.environ.get("GOOGLE_API_KEY", "")
 
 # Cache for LLM routing results (avoid repeated calls for the same query)
 _routing_cache: Dict[str, tuple] = {}
@@ -90,7 +88,8 @@ class LLMRouter:
 
     def __init__(self, catalog: PlanCatalog):
         self.catalog = catalog
-        self._available = bool(GEMINI_API_KEY)
+        self._api_key = config.google_api_key or ''
+        self._available = bool(self._api_key)
         if self._available:
             print("[LLMRouter] Initialized with Gemini 2.0 Flash")
         else:
@@ -155,17 +154,21 @@ class LLMRouter:
         """
         Call Gemini 2.0 Flash and return the raw text response.
 
-        Uses low temperature (0.1) for consistent routing decisions.
+        Uses temperature 0.2 — low enough for consistent routing but high
+        enough for good semantic matching on novel phrasings.
+
+        Retries with exponential backoff (0.5s, 1.0s) to handle transient
+        errors and rate limits without hammering the API.
         """
         url = (
             'https://generativelanguage.googleapis.com/v1beta/models/'
-            f'gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
+            f'gemini-2.0-flash:generateContent?key={self._api_key}'
         )
 
         payload = {
             'contents': [{'parts': [{'text': prompt}]}],
             'generationConfig': {
-                'temperature': 0.1,  # Very low for deterministic routing
+                'temperature': 0.2,  # Low for consistency, not too low for semantic matching
                 'maxOutputTokens': 400,
             },
         }
@@ -187,6 +190,10 @@ class LLMRouter:
                 if attempt == retries - 1:
                     print(f"[LLMRouter] Gemini error after {retries} attempts: {e}")
                     return None
+                # Exponential backoff: 0.5s, 1.0s
+                backoff = 0.5 * (2 ** attempt)
+                print(f"[LLMRouter] Gemini attempt {attempt + 1} failed: {e}, retrying in {backoff}s")
+                time.sleep(backoff)
         return None
 
     def _parse_response(self, text: str) -> Optional[Dict]:

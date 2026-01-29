@@ -433,14 +433,6 @@
         ],
         "show_yoy": true,
         "title": "Wage Growth vs Inflation (YoY %)"
-      },
-      {
-        "series": [
-          "CES0500000003",
-          "CPIAUCSL"
-        ],
-        "normalize": true,
-        "title": "Wages vs Inflation (Indexed to 100)"
       }
     ]
   },
@@ -452,7 +444,7 @@
     ],
     "show_yoy": true,
     "combine_chart": false,
-    "explanation": "\u2022 **Real Median Weekly Earnings** (LES1252881600Q): The definitive measure of whether wages are keeping up with inflation. When this rises, workers' purchasing power is genuinely increasing.\n\u2022 **Wages vs Inflation (YoY)**: Compares nominal wage growth (Average Hourly Earnings) directly against CPI inflation. When the wage line is above inflation, workers are gaining ground.\n\u2022 **Wages vs Inflation (Indexed)**: Both series indexed to 100 at the same starting point to show cumulative gains. If wages stay above inflation, purchasing power has increased over the period.",
+    "explanation": "Real Median Weekly Earnings (LES1252881600Q): The definitive measure of whether wages are keeping up with inflation. When this rises, workers' purchasing power is genuinely increasing. Wages vs Inflation (YoY): Compares nominal wage growth (Average Hourly Earnings) directly against CPI inflation. When the wage line is above inflation, workers are gaining ground.",
     "chart_groups": [
       {
         "series": [
@@ -468,14 +460,6 @@
         ],
         "show_yoy": true,
         "title": "Wage Growth vs Inflation (YoY %)"
-      },
-      {
-        "series": [
-          "CES0500000003",
-          "CPIAUCSL"
-        ],
-        "normalize": true,
-        "title": "Wages vs Inflation (Indexed to 100)"
       }
     ]
   },
