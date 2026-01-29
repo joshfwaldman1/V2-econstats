@@ -555,7 +555,8 @@ class QueryRouter:
                     )
 
         # -----------------------------------------------------------------
-        # 4. Topic mismatch check (log only — not aggressive enough to override)
+        # 4. Topic mismatch check — override if clearly wrong
+        # e.g., query about "inflation" returning Dow Jones instead of CPI
         # -----------------------------------------------------------------
         query_topic = None
         for topic, keywords in TOPIC_KEYWORDS.items():
@@ -566,8 +567,28 @@ class QueryRouter:
         if query_topic:
             expected = TOPIC_SERIES.get(query_topic, set())
             if expected and not any(s in expected for s in result.series):
-                print(f"[Validate] Topic mismatch (logged): query={query_topic}, "
-                      f"series={result.series[:3]}")
+                # Series completely miss the topic — try to find the right plan
+                fallback_plan = registry.get_plan(query_topic)
+                if fallback_plan and fallback_plan.get('series'):
+                    print(f"[Validate] Topic override: query={query_topic}, "
+                          f"wrong={result.series[:3]} → {fallback_plan['series'][:4]}")
+                    return RoutingResult(
+                        series=fallback_plan['series'],
+                        show_yoy=fallback_plan.get('show_yoy', False),
+                        combine_chart=fallback_plan.get('combine_chart', False),
+                        route_type=f'{result.route_type}_validated',
+                        explanation=fallback_plan.get('explanation', ''),
+                        # Preserve enrichment
+                        fed_guidance=result.fed_guidance,
+                        fed_sep_html=result.fed_sep_html,
+                        recession_html=result.recession_html,
+                        cape_html=result.cape_html,
+                        polymarket_html=result.polymarket_html,
+                        temporal_context=result.temporal_context,
+                    )
+                else:
+                    print(f"[Validate] Topic mismatch (no fallback): query={query_topic}, "
+                          f"series={result.series[:3]}")
 
         return result
 

@@ -1409,14 +1409,29 @@ class SeriesRegistry:
         q = re.sub(r'\bv\.?\s+', 'vs ', q)
         q = re.sub(r'\bversus\b', 'vs', q)
 
-        # Remove filler words
+        # Strip punctuation first (so suffix patterns can match cleanly)
+        q = re.sub(r'[?!.]+$', '', q).strip()
+
+        # Remove filler words and question patterns (applied iteratively
+        # so that prefix removal exposes suffix patterns and vice versa)
         fillers = [
+            # Question prefixes
             r'^what is\s+', r'^what are\s+', r'^show me\s+', r'^show\s+',
             r'^tell me about\s+', r'^how is\s+', r'^how are\s+',
             r'^what\'s\s+', r'^whats\s+', r'^give me\s+',
             r'^compare\s+', r'^comparing\s+', r'^explain\s+',
+            r'^is\s+', r'^are\s+', r'^will\s+', r'^can you show\s+',
+            r'^does\s+', r'^do\s+', r'^should i\s+',
+            # Directional / state suffixes (don't change what's being asked about)
             r'\s+changed\s*$', r'\s+doing\s*$', r'\s+looking\s*$', r'\s+trending\s*$',
-            r'\?$', r'\.+$', r'\s+the\s+', r'^the\s+'
+            r'\s+coming down\s*$', r'\s+going up\s*$', r'\s+going down\s*$',
+            r'\s+getting worse\s*$', r'\s+getting better\s*$',
+            r'\s+rising\s*$', r'\s+falling\s*$', r'\s+dropping\s*$',
+            r'\s+increasing\s*$', r'\s+decreasing\s*$', r'\s+improving\s*$',
+            r'\s+right now\s*$', r'\s+these days\s*$', r'\s+currently\s*$',
+            r'\s+today\s*$', r'\s+lately\s*$', r'\s+recently\s*$',
+            # Articles
+            r'\s+the\s+', r'^the\s+',
         ]
         for filler in fillers:
             q = re.sub(filler, ' ', q)
